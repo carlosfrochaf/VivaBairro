@@ -44,6 +44,7 @@ O **VivaBairro** é uma plataforma digital colaborativa projetada para centraliz
 
 ## Navegação Rápida
 
+- [Entregas consolidadas do RT02](entregas-rt02.md)
 - [Visão Geral e Proposta de Valor](1-visao-geral/proposito-objetivos.md)
 - [Documento de Visão do Produto](1-visao-geral/documento-visao-produto.md)
 - [Documento de Escopo do Projeto](1-visao-geral/documento-escopo.md)

@@ -1,6 +1,7 @@
 # Sumário
 
 * [Apresentação](README.md)
+* [Entregas consolidadas do RT02](entregas-rt02.md)
 
 ## 1. Visão Geral do Projeto
 * [Documento de Visão do Produto (Product Vision Board)](1-visao-geral/documento-visao-produto.md)

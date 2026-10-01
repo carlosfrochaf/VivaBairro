@@ -6,6 +6,10 @@ O VivaBairro será um site responsivo, com interface mobile-first. A arquitetura
 
 ## Diagrama de componentes
 
+![Diagrama da arquitetura do VivaBairro](../assets/arquitetura-vivabairro.svg)
+
+O SVG é o diagrama visual exportável para a apresentação; abaixo fica a representação Mermaid editável.
+
 ```mermaid
 flowchart TD
     U[Morador, organizador ou moderador] -->|HTTPS| FE[Frontend web responsivo]
