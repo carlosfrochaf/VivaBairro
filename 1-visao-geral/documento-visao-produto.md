@@ -1,47 +1,48 @@
-# Documento de Visão do Produto (Product Vision Board)
+# Documento de Visão do Produto
 
-**Projeto:** VivaBairro  
-**Artefato:** Product Vision Board  
-**Natureza:** Plataforma Web de Conexão e Zeladoria Hiperlocal  
+VivaBairro — Product Vision Board
+
+> 📥 **Download do documento original:** [Documento_de_Visao_do_Produto_VivaBairro.docx](../assets/Documento_de_Visao_do_Produto_VivaBairro.docx)
 
 ---
 
 ## Visão
 
-Ser o lugar de referência onde cada bairro se organiza: moradores descobrem o que acontece perto deles, divulgam iniciativas e compartilham avisos úteis de forma clara, confiável e atualizada. 
+Ser o lugar de referência onde cada bairro se organiza: moradores descobrem o que acontece perto deles, divulgam iniciativas e compartilham avisos úteis de forma clara, confiável e atualizada. O objetivo é que mutirões, feiras, pedidos de ajuda e problemas de infraestrutura deixem de se perder em conversas dispersas e passem a gerar participação e resolução.
 
-O objetivo é que mutirões, feiras, pedidos de ajuda e problemas de infraestrutura deixem de se perder em conversas dispersas e passem a gerar participação e resolução comunitária efetiva.
+## Público-alvo
 
----
+• Moradores: consultam, participam, publicam e denunciam conteúdo.  
+• Organizadores (comerciantes, associações, coletivos, produtores de eventos): criam e administram atividades.  
+• Moderadores de bairro: analisam denúncias e publicações das regiões pelas quais respondem.  
+• Prefeitura e equipe municipal: cadastram bairros, atribuem moderadores e publicam comunicados oficiais.  
 
-## Público-Alvo
+## Necessidades
 
-* **Moradores:** consultam, participam, publicam e denunciam conteúdo indevido.
-* **Organizadores (comerciantes, associações, coletivos, produtores de eventos):** criam e administram atividades e eventos locais.
-* **Moderadores de bairro:** analisam denúncias e publicações das regiões territoriais pelas quais respondem.
-* **Prefeitura e equipe municipal:** cadastram bairros, atribuem moderadores e publicam comunicados oficiais verificados.
+• Moradores: encontrar rapidamente o que acontece no próprio bairro, sem depender de grupos de mensagens e conversas longas.  
+• Organizadores: divulgar atividades, acompanhar confirmações de presença e avisar mudanças ou cancelamentos.  
+• Quem publica avisos: informar problemas e pedidos de ajuda com assunto, local e situação atual (em andamento, resolvido), para que avisos antigos não pareçam atuais.  
+• Todos os usuários: privacidade (sem endereço residencial ou localização exata expostos por padrão) e orientação para não divulgar dados de terceiros.  
+• Moderação: decisões transparentes, com registro de quem agiu e por quê, direito de pedir revisão e proteção contra denúncias em massa.  
+• Prefeitura: canal oficial, identificado e distinguível das publicações dos moradores.  
 
----
+## Produto
 
-## Necessidades dos Usuários e Stakeholders
+Site (web) organizado por bairro, com:
 
-* **Moradores:** encontrar rapidamente o que acontece no próprio bairro, sem depender de grupos de mensagens instantâneas e conversas longas.
-* **Organizadores:** divulgar atividades, acompanhar confirmações de presença (RSVP) e avisar mudanças ou cancelamentos de forma instantânea.
-* **Quem publica avisos:** informar problemas urbanos e pedidos de ajuda com assunto, local e situação atual (*em andamento*, *resolvido*), para que avisos antigos não pareçam atuais.
-* **Todos os usuários:** privacidade garantida (sem endereço residencial ou localização exata expostos por padrão) e orientação clara para não divulgar dados de terceiros.
-* **Moderação:** decisões transparentes, com registro auditável de quem agiu e por quê, direito formal de pedir revisão e proteção contra denúncias em massa (*anti-brigading*).
-* **Prefeitura:** canal oficial devidamente identificado e distinguível das publicações informais dos moradores.
+• Página inicial por bairro: atividades próximas, avisos recentes e comunicados oficiais, com filtros por data, categoria e região, e busca (ex.: nome de uma praça).  
+• Atividades e eventos: título, descrição, objetivo, data, horário, local, vagas, custo e contato; confirmação e cancelamento de presença; edição, lotação e cancelamento pelo organizador; arquivamento após a data.  
+• Avisos e pedidos de ajuda: categorias, descrição, local, foto opcional, atualização de status e respostas vinculadas ao próprio aviso (mensagens privadas avaliadas em etapa futura).  
+• Conta e perfil: cadastro mínimo (e-mail, senha, nome de exibição), bairro principal, controle de notificações, edição de dados e encerramento de conta com anonimização das publicações.  
+• Perfis e permissões: morador, organizador, moderador e administrador municipal, com funções separadas.  
+• Moderação com registro: ações publicação por publicação, log de decisões, aviso ao autor e pedido de revisão.  
+• Notificações: no site e, opcionalmente, por e-mail (confirmações, mudanças, respostas, atualizações e decisões de moderação).  
 
----
+## Benefícios de negócio
 
-## Especificação do Produto
-
-Site (*web*) responsivo e otimizado por bairro, contendo:
-
-* **Página inicial por bairro:** atividades próximas, avisos recentes e comunicados oficiais, com filtros por data, categoria e região, e busca textual (ex.: nome de uma praça ou rua).
-* **Atividades e eventos:** título, descrição, objetivo, data, horário, local, vagas, custo e contato; confirmação e cancelamento de presença; edição, lotação e cancelamento pelo organizador; arquivamento automático após a data.
-* **Avisos e pedidos de ajuda:** categorias, descrição, local, foto opcional, atualização de status e respostas vinculadas ao próprio aviso (mensagens privadas avaliadas em etapa futura).
-* **Conta e perfil:** cadastro mínimo (e-mail, senha, nome de exibição), definição de bairro principal, controle granular de notificações, edição de dados e encerramento de conta com anonimização das publicações.
-* **Perfis e permissões:** morador, organizador, moderador e administrador municipal, com funções e acessos estritamente separados (RBAC).
-* **Moderação com registro:** ações publicação por publicação, log de decisões auditável, aviso ao autor e fluxo de pedido de revisão.
-* **Notificações:** no site (in-app) e, opcionalmente, por e-mail (confirmações, mudanças de eventos, respostas, atualizações e decisões de moderação).
+• Engajamento comunitário: mais participação em atividades locais e maior circulação de iniciativas.  
+• Eficiência para o poder público: canal organizado para identificar problemas de infraestrutura e comunicar-se oficialmente com os moradores.  
+• Confiança e segurança: moderação transparente e auditável, com proteção de dados pessoais, o que apoia a conformidade com a LGPD.  
+• Visibilidade para o comércio e entidades locais: divulgação de feiras, oficinas e campanhas para um público segmentado por bairro.  
+• Redução de ruído: informações estruturadas (assunto, local, status) diminuem retrabalho e dúvidas repetidas.  
+• Escalabilidade: a estrutura por bairro permite expandir para novas regiões e municípios com administração descentralizada.  

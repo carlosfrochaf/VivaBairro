@@ -6,7 +6,6 @@
 * [Documento de Visão do Produto (Product Vision Board)](1-visao-geral/documento-visao-produto.md)
 * [Propósito e Objetivos](1-visao-geral/proposito-objetivos.md)
 * [Público-Alvo e Personas](1-visao-geral/personas-perfis.md)
-* [Benefícios de Negócio e Impacto](1-visao-geral/beneficios-negocio.md)
 
 ## 2. Bairros e Localização
 * [Modelo Geográfico e Privacidade](2-localizacao-bairros/modelo-geografico.md)
