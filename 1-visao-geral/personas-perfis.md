@@ -1,10 +1,10 @@
-# Público-Alvo & Personas
+# Público-Alvo e Personas
 
 O **VivaBairro** foi arquitetado para atender de forma equilibrada múltiplos públicos da dinâmica urbana e comunitária.
 
 ---
 
-## 👥 Mapeamento de Personas
+## Mapeamento de Personas
 
 ### 1. Morador Local (Cidadão)
 * **Objetivo:** Ficar por dentro do que acontece na vizinhança, encontrar feiras/oficinas, reportar problemas da rua e ajudar vizinhos.
@@ -18,6 +18,6 @@ O **VivaBairro** foi arquitetado para atender de forma equilibrada múltiplos p�
 * **Objetivo:** Criar mutirões, reuniões de condomínio/bairro, oficinas esportivas e campanhas de arrecadação.
 * **Necessidades:** Controle de inscrições (RSVP), lista de participantes, capacidade de envio de alertas em caso de mudança de local/horário.
 
-### 4. Prefeitura e Equipes Municipais (Zeladoria & Comunicação)
+### 4. Prefeitura e Equipes Municipais (Zeladoria e Comunicação)
 * **Objetivo:** Divulgar comunicados oficiais de trânsito/obras/saúde, mapear demandas de infraestrutura e moderar o ambiente cívico.
 * **Necessidades:** Selo de verificação oficial, ferramentas de auditoria e moderação regionalizada.

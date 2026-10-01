@@ -4,7 +4,7 @@ O modelo de dados relacional reflete as entidades de negócio e suas restriçõe
 
 ---
 
-## 🗄️ Entidades Principais
+## Entidades Principais
 
 ```
  ┌─────────────────┐       ┌─────────────────┐       ┌─────────────────┐
@@ -30,7 +30,7 @@ O modelo de dados relacional reflete as entidades de negócio e suas restriçõe
 
 ---
 
-## 📝 Dicionário de Tabelas
+## Dicionário de Tabelas
 
 1. **`Users`**: Identificação do morador, credenciais criptografadas, papel RBAC (`CITIZEN`, `ORGANIZER`, `MODERATOR`, `ADMIN`) e bairro padrão.
 2. **`Neighborhoods`**: Bairros cadastrados oficialmente pela prefeitura.

@@ -4,7 +4,7 @@ O **VivaBairro** nasce para solucionar um problema cotidiano enfrentado por milh
 
 ---
 
-## 🎯 O Problema da Dispersão de Informações
+## O Problema da Dispersão de Informações
 
 Hoje em dia, a comunicação em bairros e cidades depende de ferramentas que não foram desenhadas para a gestão comunitária (como grupos de WhatsApp, Facebook, Telegram ou murais físicos):
 
@@ -14,7 +14,7 @@ Hoje em dia, a comunicação em bairros e cidades depende de ferramentas que nã
 
 ---
 
-## 🚀 A Solução VivaBairro
+## A Solução VivaBairro
 
 O **VivaBairro** estrutura a comunicação em três eixos principais:
 
@@ -34,7 +34,7 @@ O **VivaBairro** estrutura a comunicação em três eixos principais:
 
 ---
 
-## 🏆 Metas de Impacto
+## Metas de Impacto
 
 1. **Fortalecer o senso de comunidade:** Conectar vizinhos, coletivos culturais e pequenos comerciantes locais.
 2. **Promover a cidadania ativa:** Facilitar a organização de mutirões, feiras, aulas abertas e campanhas solidárias.

@@ -1,10 +1,10 @@
-# Feed Inteligente, Busca & Filtros
+# Feed Inteligente, Busca e Filtros
 
 A navegação no **VivaBairro** foi otimizada para entregar relevância hiperlocal com rapidez.
 
 ---
 
-## 🧭 Estrutura da Página Inicial (Feed Principal)
+## Estrutura da Página Inicial (Feed Principal)
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -20,7 +20,7 @@ A navegação no **VivaBairro** foi otimizada para entregar relevância hiperloc
 
 ---
 
-## 🔍 Mecanismos de Filtro e Busca
+## Mecanismos de Filtro e Busca
 
 1. **Filtro por Categoria:**
    * Alternância rápida entre: *Todos*, *Atividades/Eventos*, *Infraestrutura*, *Trânsito*, *Achados e Perdidos*, *Ajuda Mútua*.

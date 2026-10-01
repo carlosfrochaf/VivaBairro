@@ -4,16 +4,16 @@ A área de **Atividades e Eventos** é o coração da convivência comunitária 
 
 ---
 
-## 📝 Campos da Publicação de Evento
+## Campos da Publicação de Evento
 
 Ao cadastrar uma atividade, o organizador preenche os dados necessários:
 
 | Campo | Tipo | Obrigatório? | Descrição |
 | :--- | :--- | :--- | :--- |
 | **Título** | Texto | Sim | Nome da atividade (ex: *Oficina de Horta Urbana*). |
-| **Descrição & Objetivo** | Texto longo | Sim | Explicação detalhada do que acontecerá e por que foi organizada. |
-| **Data & Horários** | Data / Hora | Sim | Início e término da atividade. |
-| **Bairro & Local** | Seleção / Texto | Sim | Ponto de referência e orientações de acesso. |
+| **Descrição e Objetivo** | Texto longo | Sim | Explicação detalhada do que acontecerá e por que foi organizada. |
+| **Data e Horários** | Data / Hora | Sim | Início e término da atividade. |
+| **Bairro e Local** | Seleção / Texto | Sim | Ponto de referência e orientações de acesso. |
 | **Limite de Vagas** | Numérico | Não | Quantidade máxima de participantes (se aplicável). |
 | **Custo / Taxa** | Valor / Gratuito | Não | Gratuito por padrão; valor opcional para custeio de materiais. |
 | **Materiais Necessários**| Texto | Não | O que o participante deve levar (ex: *luvas, água, caderno*). |
@@ -21,7 +21,7 @@ Ao cadastrar uma atividade, o organizador preenche os dados necessários:
 
 ---
 
-## 🔄 Estados e Ciclo de Vida da Atividade
+## Estados e Ciclo de Vida da Atividade
 
 ```
  [Planejamento/Criado] ──► [Inscrições Abertas] ──► [Lotado (Opcional)]

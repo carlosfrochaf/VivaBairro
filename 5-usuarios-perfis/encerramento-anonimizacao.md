@@ -1,10 +1,10 @@
-# Encerramento de Conta & Anonimização de Dados
+# Encerramento de Conta e Anonimização de Dados
 
 O encerramento de conta no VivaBairro foi desenhado para respeitar o direito ao esquecimento e à privacidade (LGPD), sem quebrar a coerência do histórico comunitário do bairro.
 
 ---
 
-## 🗑️ Processo de Exclusão da Conta
+## Processo de Exclusão da Conta
 
 Quando um usuário solicita o encerramento da sua conta:
 

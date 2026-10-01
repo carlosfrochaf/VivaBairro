@@ -4,7 +4,7 @@ O controle de acesso baseado em funções (*Role-Based Access Control - RBAC*) n
 
 ---
 
-## 👥 Papéis do Sistema
+## Papéis do Sistema
 
 ```
  ┌─────────────────────────────────────────────────────────────┐
@@ -30,16 +30,16 @@ O controle de acesso baseado em funções (*Role-Based Access Control - RBAC*) n
 
 ---
 
-## 📊 Matriz Detalhada de Permissões
+## Matriz Detalhada de Permissões
 
 | Recurso / Funcionalidade | Morador | Organizador | Moderador | Administrador |
 | :--- | :---: | :---: | :---: | :---: |
-| **Consultar Feed e Buscar** | ✅ | ✅ | ✅ | ✅ |
-| **Criar Avisos e Pedidos de Ajuda** | ✅ | ✅ | ✅ | ✅ |
-| **Confirmar Presença em Eventos** | ✅ | ✅ | ✅ | ✅ |
-| **Criar e Gerenciar Eventos Próprios** | ✅ | ✅ | ✅ | ✅ |
-| **Editar Vagas / Cancelar Evento Próprio**| ❌ | ✅ | ✅ | ✅ |
-| **Mover Publicação de Bairro (Correção)**| ❌ | ❌ | ✅ | ✅ |
-| **Ocultar / Moderar Conteúdo Denunciado**| ❌ | ❌ | ✅ | ✅ |
-| **Publicar Comunicados Oficiais** | ❌ | ❌ | ❌ | ✅ |
-| **Cadastrar Novos Bairros / Moderadores**| ❌ | ❌ | ❌ | ✅ |
+| **Consultar Feed e Buscar** | Sim | Sim | Sim | Sim |
+| **Criar Avisos e Pedidos de Ajuda** | Sim | Sim | Sim | Sim |
+| **Confirmar Presença em Eventos** | Sim | Sim | Sim | Sim |
+| **Criar e Gerenciar Eventos Próprios** | Sim | Sim | Sim | Sim |
+| **Editar Vagas / Cancelar Evento Próprio**| Não | Sim | Sim | Sim |
+| **Mover Publicação de Bairro (Correção)**| Não | Não | Sim | Sim |
+| **Ocultar / Moderar Conteúdo Denunciado**| Não | Não | Sim | Sim |
+| **Publicar Comunicados Oficiais** | Não | Não | Não | Sim |
+| **Cadastrar Novos Bairros / Moderadores**| Não | Não | Não | Sim |

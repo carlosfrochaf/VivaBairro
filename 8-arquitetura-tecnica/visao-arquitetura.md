@@ -4,7 +4,7 @@ A arquitetura do **VivaBairro** é moderna, escalável e construída sobre padr�
 
 ---
 
-## 🏛️ Diagrama de Componentes
+## Diagrama de Componentes
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -29,7 +29,7 @@ A arquitetura do **VivaBairro** é moderna, escalável e construída sobre padr�
 
 ---
 
-## 💻 Tecnologias Recomendadas
+## Tecnologias Recomendadas
 
 * **Frontend:** Next.js / React ou Vue 3 com Tailwind CSS (design limpo e acessível).
 * **Backend:** Node.js (NestJS / Express) ou Python (FastAPI).

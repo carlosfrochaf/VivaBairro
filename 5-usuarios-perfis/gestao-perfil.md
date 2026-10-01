@@ -1,10 +1,10 @@
-# Gestão de Perfil & Preferências
+# Gestão de Perfil e Preferências
 
 No painel de perfil, o usuário possui total autonomia para customizar sua experiência e controlar o fluxo de informações.
 
 ---
 
-## ⚙️ Configurações Disponíveis no Perfil
+## Configurações Disponíveis no Perfil
 
 * **Definição de Território:**
   * Alteração do Bairro Principal a qualquer momento.

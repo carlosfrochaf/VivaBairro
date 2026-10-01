@@ -4,7 +4,7 @@ Para manter um ambiente respeitoso, sem censura arbitrária e seguro contra ataq
 
 ---
 
-## 🛡️ Princípios de Moderação Justa
+## Princípios de Moderação Justa
 
 1. **Moderação Granular (Publicação por Publicação):**
    * Se um aviso contém dados indevidos, apenas a publicação específica é tratada/removida, sem banir de imediato toda a conta do usuário.
@@ -18,7 +18,7 @@ Para manter um ambiente respeitoso, sem censura arbitrária e seguro contra ataq
 
 ---
 
-## ⚖️ Direito de Resposta e Pedido de Revisão
+## Direito de Resposta e Pedido de Revisão
 
 Quando uma publicação sofre ação de moderação:
 * O autor recebe uma notificação explicando o motivo com clareza.

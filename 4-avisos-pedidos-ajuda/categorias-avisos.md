@@ -4,7 +4,7 @@ O módulo de **Avisos e Ocorrências** organiza acontecimentos relevantes do bai
 
 ---
 
-## 🏷️ Tipos de Publicação
+## Tipos de Publicação
 
 ```
                             ┌───────────────────────────┐
@@ -26,7 +26,7 @@ O módulo de **Avisos e Ocorrências** organiza acontecimentos relevantes do bai
    * Fechamento temporário de rua para feira livre, obras na via, semáforo com defeito ou desvios de ônibus.
 3. **Achados e Perdidos:**
    * Animais domésticos desaparecidos/encontrados ou documentos/objetos perdidos em praças ou vias públicas.
-4. **Utilidade Pública & Serviços:**
+4. **Utilidade Pública e Serviços:**
    * Campanhas de vacinação, horários da coleta seletiva e manutenções programadas de água e energia.
 5. **Pedidos de Ajuda e Apoio Comunitário:**
    * Solicitação de empréstimo de ferramentas para mutirão, indicação de profissionais locais ou auxílio solidário.
