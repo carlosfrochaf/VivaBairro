@@ -1,53 +1,56 @@
-# Evoluz — Irrigação Inteligente com IA, Energia Solar e Evapotranspiração
+# VivaBairro — Plataforma Comunitária de Conexão Local
 
-Bem-vindo à documentação oficial do **Evoluz**.
+Bem-vindo à documentação oficial do **VivaBairro**.
 
-O **Evoluz** é uma solução de engenharia e inteligência artificial aberta e de baixo custo, projetada para a agricultura familiar em regiões com infraestrutura energética precária ou isolada (como o semiárido brasileiro).
+O **VivaBairro** é uma plataforma digital colaborativa projetada para centralizar, organizar e dar visibilidade a acontecimentos, iniciativas, eventos e avisos de utilidade pública no âmbito dos bairros e comunidades locais.
 
 ---
 
-## 💡 A Proposta de Valor
+## 💡 O Conceito do VivaBairro
 
-> O Evoluz une, em um único algoritmo de inteligência artificial embarcada (TinyML), duas decisões cruciais que hoje são tomadas de forma isolada no campo:
+> Em muitas cidades e bairros, informações vitais para a convivência e cidadania (como um mutirão de limpeza, uma feira de produtores, um buraco na via, um animal perdido ou um pedido de doação) acabam dispersas e perdidas em grupos infinitos de mensagens instantâneas e redes sociais.
 >
-> 1. **Quanto de água a planta realmente precisa** (calculado via Evapotranspiração $ET_0$ e umidade do solo);
-> 2. **Quanta energia solar está disponível no momento** (geração fotovoltaica instantânea + saúde da bateria).
+> O **VivaBairro** resolve essa fragmentação através de um feed estruturado por **Assunto**, **Localização (Bairro/Ponto de Referência)** e **Situação Atual (Status)**.
 
 ```
-   ┌───────────────────────────┐      ┌───────────────────────────┐
-   │     Orçamento Hídrico     │      │   Orçamento Energético    │
-   │  (Evapotranspiração ET0)  │      │ (Painel Solar + Bateria)  │
-   └─────────────┬─────────────┘      └─────────────┬─────────────┘
-                 │                                  │
-                 └──────────────► 🧠 ◄──────────────┘
-                           IA Decisora
-                        (ESP32 / TinyML)
-                                │
-                                ▼
-                   💧 Irrigação Inteligente
-                 (Momento Certo & Volume Exato)
+       ┌─────────────────────────────────────────────────────────────┐
+       │                 ECOSSISTEMA VIVABAIRRO                      │
+       ├──────────────────────────────┬──────────────────────────────┤
+       │ 👥 Moradores & Comércio      │ 🏛️ Prefeitura & Moderação    │
+       │  • Consultam avisos locais   │  • Cadastro de bairros       │
+       │  • Confirmam presença        │  • Comunicados oficiais      │
+       │  • Criam mutirões e alertas  │  • Moderação auditável       │
+       └──────────────┬───────────────┴──────────────┬───────────────┘
+                      │                              │
+                      ▼                              ▼
+       ┌─────────────────────────────────────────────────────────────┐
+       │                   FEED GEOLOCALIZADO                        │
+       │   [Atividades & Eventos]   |   [Avisos & Infraestrutura]    │
+       │   [Pedidos de Ajuda]       |   [Comunicados Oficiais]       │
+       └─────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 🎯 Por que o Evoluz é diferente?
+## 🌟 Pilares Fundamentais
 
-| Abordagem Tradicional | Soluções Comerciais com IA | **Evoluz (Nossa Solução)** |
-| :--- | :--- | :--- |
-| Irrigação por timer fixo (relógio). | IA decide com base em clima/solo, mas ignora o estado da energia solar/bateria. | **Cruza hídrico + energético** em tempo real. |
-| Depende de energia da concessionária ou queima baterias solares rapidamente. | Soluções proprietárias, fechadas e com custo proibitivo para pequenos produtores. | **Hardware acessível (ESP32)**, código aberto e operação **100% offline**. |
-| Desperdício de água e desgaste de bomba. | Alto custo de licenciamento e nuvem obrigatória. | Alinhado a programas governamentais existentes (**MIDR/MME/MDA/Codevasf**). |
+1. 📍 **Localização Sem Invasão de Privacidade:** O usuário escolhe o bairro principal para navegar sem a obrigatoriedade de fornecer o GPS exato ou endereço residencial.
+2. 📅 **Gestão Dinâmica de Atividades:** Inscrições com confirmação de presença (RSVP), limite de vagas, cancelamento e alertas automáticos de alteração de horário/local.
+3. 🛠️ **Avisos com Ciclo de Vida:** Publicações com status atualizáveis (*Em andamento*, *Resolvido*, *Encerrado*) para evitar ruído e notícias desatualizadas.
+4. 🤝 **Colaboração e Ajuda Mútua:** Espaço seguro para troca de ferramentas, indicações e apoio entre vizinhos.
+5. 🛡️ **Governança e Moderação Justa:** Atuação transparente de moderadores e prefeitura, com trilha de auditoria e proteção contra denúncias em massa (*anti-brigading*).
 
 ---
 
 ## 🧭 Navegação Rápida
 
-- [Visão Geral & Contexto](introducao/visao-geral.md)
-- [As Dores que o Evoluz Resolve](introducao/o-problema.md)
-- [Análise da Lacuna de Mercado](introducao/lacuna-de-mercado.md)
-- [Fundamento: Orçamento Hídrico ($ET_0$)](fundamentos/orcamento-hidrico.md)
-- [Fundamento: Orçamento Energético (Solar + Bateria)](fundamentos/orcamento-energetico.md)
-- [Arquitetura de Hardware & Software](arquitetura/visao-geral.md)
-- [Matriz de Decisão da IA](algoritmo-decisao/matriz-decisao.md)
-- [Impacto Social e Políticas Públicas](impacto-social-publico/impacto-social.md)
-- [Guia de Início Rápido (Hardware & Firmware)](guia-desenvolvimento/getting-started.md)
+- [Visão Geral & Proposta de Valor](1-visao-geral/proposito-objetivos.md)
+- [Perfis de Usuários & Personas](1-visao-geral/personas-perfis.md)
+- [Bairros & Modelo Territorial](2-localizacao-bairros/modelo-geografico.md)
+- [Gestão de Atividades & Eventos](3-atividades-eventos/ciclo-vida-eventos.md)
+- [Avisos, Problemas & Ajuda Mútua](4-avisos-pedidos-ajuda/categorias-avisos.md)
+- [Privacidade & Proteção de Dados (LGPD)](4-avisos-pedidos-ajuda/privacidade-seguranca.md)
+- [Contas & Política de Anonimização](5-usuarios-perfis/autenticacao-cadastro.md)
+- [Governança, Moderação & Prefeitura](6-governanca-moderacao/matriz-permissoes.md)
+- [Busca, Feed & Notificações](7-busca-notificacoes/feed-busca-filtros.md)
+- [Arquitetura Técnica & Modelo de Dados](8-arquitetura-tecnica/visao-arquitetura.md)

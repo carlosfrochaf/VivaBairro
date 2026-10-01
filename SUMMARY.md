@@ -1,30 +1,39 @@
 # Sumário
 
-* [Introdução](README.md)
+* [Apresentação](README.md)
 
-## 📌 Contexto & Problema
-* [Visão Geral & Resumo Executivo](introducao/visao-geral.md)
-* [As Dores que o Evoluz Resolve](introducao/o-problema.md)
-* [Lacuna de Mercado & Concorrentes](introducao/lacuna-de-mercado.md)
+## 📌 1. Visão Geral do Projeto
+* [Propósito e Objetivos](1-visao-geral/proposito-objetivos.md)
+* [Público-Alvo & Personas](1-visao-geral/personas-perfis.md)
 
-## 🔬 Fundamentos Técnicos
-* [Orçamento Hídrico (Evapotranspiração ET0)](fundamentos/orcamento-hidrico.md)
-* [Orçamento Energético & Proteção de Bateria](fundamentos/orcamento-energetico.md)
+## 📍 2. Bairros & Localização
+* [Modelo Geográfico & Privacidade](2-localizacao-bairros/modelo-geografico.md)
+* [Gestão Territorial & Moderação Regional](2-localizacao-bairros/gestao-territorial.md)
 
-## 🛠️ Arquitetura do Sistema
-* [Visão Geral da Arquitetura](arquitetura/visao-geral.md)
-* [Especificação de Hardware](arquitetura/hardware.md)
-* [Software & TinyML Embarcado](arquitetura/software-ia.md)
-* [Dashboard & Interface do Produtor](arquitetura/dashboard.md)
+## 📅 3. Atividades & Eventos
+* [Ciclo de Vida de Eventos](3-atividades-eventos/ciclo-vida-eventos.md)
+* [Confirmação de Presença (RSVP) & Notificações](3-atividades-eventos/inscricoes-participacao.md)
 
-## 🧠 Algoritmo & Inteligência Artificial
-* [Matriz de Decisão Multivariável](algoritmo-decisao/matriz-decisao.md)
-* [Evolução do Modelo: Regras a Reinforcement Learning](algoritmo-decisao/evolucao-ia.md)
+## 📢 4. Avisos, Problemas & Pedidos de Ajuda
+* [Categorias de Avisos e Ocorrências](4-avisos-pedidos-ajuda/categorias-avisos.md)
+* [Status & Atualização de Ocorrências](4-avisos-pedidos-ajuda/ciclo-vida-status.md)
+* [Pedidos de Ajuda e Colaboração Comunitária](4-avisos-pedidos-ajuda/pedidos-ajuda-colaboracao.md)
+* [Privacidade, LGPD & Canais de Emergência](4-avisos-pedidos-ajuda/privacidade-seguranca.md)
 
-## 🌍 Impacto Social & Políticas Públicas
-* [Impacto Social e Agricultura Familiar](impacto-social-publico/impacto-social.md)
-* [Integração com Políticas Públicas (MIDR/MME/MDA/Codevasf)](impacto-social-publico/politicas-publicas.md)
+## 👤 5. Contas & Perfis de Usuário
+* [Cadastro Enxuto & Autenticação](5-usuarios-perfis/autenticacao-cadastro.md)
+* [Gestão de Perfil & Preferências](5-usuarios-perfis/gestao-perfil.md)
+* [Encerramento de Conta & Anonimização de Dados](5-usuarios-perfis/encerramento-anonimizacao.md)
 
-## 🚀 Guia de Desenvolvimento & Montagem
-* [Getting Started / Montagem Rápida](guia-desenvolvimento/getting-started.md)
-* [Pinout & Esquema Elétrico](guia-desenvolvimento/esquematico.md)
+## 🏛️ 6. Governança, Administração & Moderação
+* [Matriz de Perfis e Permissões (RBAC)](6-governanca-moderacao/matriz-permissoes.md)
+* [Fluxo de Moderação, Denúncias e Recursos](6-governanca-moderacao/politica-moderacao.md)
+* [Comunicados Oficiais da Prefeitura](6-governanca-moderacao/comunicados-oficiais.md)
+
+## 🔍 7. Consulta, Filtros & Notificações
+* [Feed Inteligente, Busca & Filtros](7-busca-notificacoes/feed-busca-filtros.md)
+* [Central de Notificações (In-App e E-mail)](7-busca-notificacoes/central-notificacoes.md)
+
+## ⚙️ 8. Arquitetura Técnica
+* [Visão Geral da Arquitetura do Sistema](8-arquitetura-tecnica/visao-arquitetura.md)
+* [Modelo Conceitual de Dados](8-arquitetura-tecnica/modelo-dados.md)

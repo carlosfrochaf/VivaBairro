@@ -1,10 +1,10 @@
 $schema: https://api.gitbook.com/gitbook-docs.yaml
 site:
-  title: Evoluz — Irrigação Inteligente
+  title: VivaBairro — Documentação Oficial
   structure:
     - type: space
-      key: evoluz-docs
-      title: Documentação Evoluz
+      key: vivabairro-docs
+      title: Documentação VivaBairro
       path: docs
       default: true
       content:
