@@ -1,5 +1,7 @@
 # Direção de interface
 
+Para consultar padrões de componentes, estados e layout, use o [Material Design 3 do Google](../referencias-e-pesquisa.md#interface-e-usabilidade). Trate-o como referência e adapte ao VivaBairro e à plataforma web.
+
 A interface do VivaBairro deve preservar a identidade visual já criada e tornar fáceis de encontrar bairro, data, local, estado e autoria. Material Design 3 pode servir como referência de componentes e layouts responsivos, sem copiar a marca ou impor uma aparência genérica. Consulte [fundamentos do Material 3](https://m3.material.io/foundations/) e [layouts adaptáveis](https://m3.material.io/foundations/layout/canonical-examples/overview).
 
 ## Regras para novas telas

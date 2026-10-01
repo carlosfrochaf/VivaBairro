@@ -15,6 +15,13 @@ Perguntas úteis para pesquisa do produto incluem: onde as pessoas procuram info
 
 Use essa referência nas páginas do GitBook, mensagens da interface, erros, avisos de privacidade e explicações sobre moderação. Prefira palavras que moradores reconheçam e exemplos específicos do produto.
 
+## Interface e usabilidade
+
+- [Material Design 3 — Google](https://m3.material.io/): sistema de design com orientações para componentes, layout, estados de interação, conteúdo e acessibilidade. Consulte-o para comparar padrões visuais e de interação e para discutir consistência entre telas; adapte os exemplos ao VivaBairro e ao uso na web, sem assumir que o produto precisa copiar o visual ou os componentes do Google.
+- [Fundamentos do Material Design 3](https://m3.material.io/foundations/): referência mais específica para layout, estados, acessibilidade e conteúdo de interface.
+
+Material Design 3 é uma referência de design, não uma pesquisa feita com o público do VivaBairro. As decisões de usabilidade do projeto ainda precisam ser avaliadas com pessoas que representem seus públicos.
+
 ## Diagramas e arquitetura
 
 - [C4 model](https://c4model.com/) e [diagramas C4](https://c4model.com/diagrams): explicam como separar diagramas por nível e público. Para o VivaBairro, contexto e containers descrevem limites do sistema, usuários, responsabilidades internas e serviços externos sem exigir que todos os detalhes técnicos sejam decididos de uma vez.
