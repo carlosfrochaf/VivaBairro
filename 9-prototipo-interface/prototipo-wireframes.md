@@ -1,81 +1,46 @@
 # Wireframes e Telas Principais
 
-Esta seção apresenta a arquitetura visual e os fluxos de navegação mobile do **VivaBairro (Protótipo A3)**, demonstrando a jornada do usuário em conformidade com as diretrizes de usabilidade, clareza e baixo atrito cognitivo.
+## Direção visual e dispositivos
 
-***
+O protótipo parte da identidade existente: azul-petróleo, azul-marinho, verde-água e coral; cartões com cantos arredondados; títulos curtos; localização e status visíveis; navegação simples. A implementação proposta é um site responsivo, com prioridade para celular e adaptação a telas largas.
 
-## Visão Geral das Telas
+## Protótipo de alta fidelidade existente
 
-![Protótipo VivaBairro](../.gitbook/assets/prototipo-vivabairro.jpg)
+![Protótipo mobile do VivaBairro](../.gitbook/assets/prototipo-vivabairro.jpg)
 
-***
+O material inclui boas-vindas, início com atividades e avisos, detalhe de atividade, confirmação de presença, criação de aviso e perfil. As telas existentes cobrem cadastro/entrada, função principal, participação, publicação e perfil. A recomendação de eventos pode personalizar a descoberta, mas não representa a integração de IA exigida no fluxo de aviso.
 
-## 1. Tela de Login / Início (Boas-Vindas e Acesso)
+## Fluxo complementar de IA
 
-* **Propósito:** Apresentação da marca, ambientação do morador e acesso sem barreiras burocráticas.
-* **Elementos Visuais:**
-  * Identidade visual limpa com ícone comunitário do VivaBairro.
-  * Chamada de valor (_Hero copy_): _"Faça parte do seu bairro. Ações pequenas, mudanças reais."_
-  * Botões de Ação Primária e Secundária: **Entrar** (login de usuários existentes) e **Criar Conta** (cadastro simplificado).
-  * Mensagem de transparência: _"Sem burocracia. Só o que acontece perto de você."_
+O protótipo abaixo acrescenta as telas que faltavam ao fluxo de publicação. A pessoa pode escrever o aviso manualmente ou pedir sugestões opcionais de categoria e resumo. Na tela de resultado, ela revisa cada sugestão antes de aplicar e ainda confirma a publicação por conta própria.
 
-***
+![Telas de ação e resultado da IA](../assets/fluxo-ia-avisos.svg)
 
-## 2. Tela de Função Principal (Feed do Bairro)
+### Tela de ação da IA
 
-* **Propósito:** Centralizar tudo o que acontece na vizinhança imediata do morador.
-* **Elementos Visuais:**
-  * Saudação personalizada com identificação do usuário e localização (_"Oi, Julia! Acontece perto de você"_).
-  * Busca global no canto superior direito para pesquisa por ruas, termos ou tipos de serviço.
-  * Módulo de destaque de atividades em formato de cards visuais (_"Mutirão da praça"_, _"Aula de horta"_).
-  * Feed dinâmico de avisos e ocorrências recentes com status e autor.
-  * Barra de navegação inferior (_Bottom Navigation_): **Início**, **Publicar (+)** e **Meu Perfil**.
+O formulário mantém título, descrição, bairro e ponto de referência. A ação “Sugerir categoria e resumo” explica que o texto será processado por um serviço de IA. A pessoa pode continuar sem aceitar, usar o serviço ou cancelar. Uma indicação de carregamento informa que a sugestão está sendo preparada.
 
-***
+### Tela de resultado da IA
 
-## 3. Tela de Ação da IA (Recomendação Contextual e Detalhes da Atividade)
+A resposta mostra a categoria sugerida e um resumo editável, identificados como sugestões. Cada item pode ser aplicado ou descartado. A tela preserva o texto original, explica que a IA pode errar e deixa claro que nada é publicado até a confirmação final.
 
-* **Propósito:** Apresentar a atividade sugerida pelo motor de recomendação inteligente com todas as orientações práticas de participação.
-* **Mecanismo de IA:** O algoritmo cruza o histórico de participação, categorias de interesse e proximidade territorial para gerar recomendações personalizadas (_"Nesta semana: 3 atividades combinam com você no Jardim Aurora"_).
-* **Elementos Visuais:**
-  * Banner ilustrativo do evento e tag de categoria (_Atividade • Jardim Aurora_).
-  * Título e horário: _"Mutirão da Praça do Sol — Sábado, 24 de outubro • 9h às 12h"_.
-  * Descrição do objetivo comunitário: _"Vamos deixar a praça mais viva? A comunidade vai plantar mudas, pintar os bancos e organizar um cantinho para as crianças."_
-  * Ponto de encontro e prova social: _"Coreto da Praça do Sol • 18 pessoas já vão"_.
-  * Botão de Ação: **Quero Participar** (com aviso de lembrete automático 1 dia antes).
+## Mapa dos fluxos e telas principais
 
-***
+| Tela ou fluxo | Objetivo | Ação principal |
+| --- | --- | --- |
+| Boas-vindas / Entrar | Apresentar o serviço e autenticar ou criar conta. | Entrar ou criar conta. |
+| Início / Feed do bairro | Encontrar atividades futuras, avisos e comunicados. | Abrir publicação, buscar ou trocar de bairro. |
+| Detalhe de atividade | Exibir objetivo, data, local, organizador e vagas. | Confirmar participação. |
+| Resultado da participação | Confirmar sucesso e apresentar os próximos passos. | Ver minhas atividades ou voltar ao início. |
+| Criar aviso / Ação de IA | Registrar problema ou pedido de ajuda, com assistência opcional. | Pedir sugestões ou publicar manualmente. |
+| Resultado da IA | Permitir revisar e editar as sugestões recebidas. | Aplicar sugestões ou descartá-las; confirmar publicação separadamente. |
+| Perfil e configurações | Gerenciar bairro, dados, avisos, inscrições e notificações. | Editar preferências e acompanhar publicações. |
+| Moderação municipal | Analisar denúncias de bairros atribuídos e registrar decisões. | Manter, pedir ajuste, ocultar ou remover com justificativa. |
 
-## 4. Tela de Resultado / Saída (Confirmação de Inscrição e Feedback)
+## Estados que precisam ser prototipados
 
-* **Propósito:** Fornecer feedback imediato de sucesso da ação executada pelo morador.
-* **Elementos Visuais:**
-  * Ícone de confirmação de sucesso em destaque (_Check verde_).
-  * Mensagem clara de retorno: _"Inscrição confirmada! Seu lugar no mutirão está reservado."_
-  * Card resumo da próxima atividade agendada com data e horário.
-  * Dicas contextuais: _"Leve uma garrafinha e protetor solar."_
-  * Botões de navegação rápida: **Ver Minhas Atividades** ou **Voltar ao Início**.
+Além das telas principais, o fluxo deve mostrar carregamento da IA, falha/timeout, resposta inválida, ausência de conexão, formulário com erros, aviso publicado e publicação encaminhada para moderação. Em todos os casos, o rascunho original deve permanecer disponível. A pessoa deve conseguir publicar sem usar IA.
 
-***
+## Critérios de revisão de usabilidade
 
-## 5. Tela de Criação e Reporte (Publicação de Avisos e Ocorrências)
-
-* **Propósito:** Canal simplificado para o cidadão reportar problemas urbanos, pedidos de ajuda ou avisos locais.
-* **Elementos Visuais:**
-  * Título e orientação: _"Criar aviso — Conte algo importante para o bairro."_
-  * Campo **Título**: _"Ex.: banco quebrado na praça"_.
-  * Campo **Local**: _"Rua ou ponto de referência"_.
-  * Campo **O que aconteceu?**: Espaço para descrição simples e objetiva.
-  * Botão de anexo de foto opcional (_"Adicionar foto"_).
-  * Botão de submissão em destaque: **Publicar Aviso**.
-
-***
-
-## 6. Tela de Configurações e Perfil (Meu Espaço)
-
-* **Propósito:** Painel pessoal do morador para gerenciar participações, histórico e preferências.
-* **Elementos Visuais:**
-  * Avatar com iniciais, nome (_Julia Martins_) e tempo de comunidade (_Jardim Aurora • desde 2025_).
-  * Painel de métricas de impacto comunitário: **4 atividades** participadas | **2 avisos** publicados | **18 conexões** locais.
-  * Seção **Próximas Atividades**: listagem de eventos com status de confirmação.
-  * Seção **Seus Avisos**: listagem de ocorrências criadas pelo usuário para acompanhamento e atualização de status (_"Luz apagada na Rua das Acácias • 3 apoios"_).
+Os campos devem ter rótulos claros, exemplos próximos ao formato esperado e mensagens de erro que indiquem como corrigir. Ações primárias devem ser distinguíveis das ações de voltar ou cancelar. Sugestões da IA não podem ser visualmente confundidas com fatos confirmados. Em celular, botões devem ser fáceis de tocar; em desktop, conteúdo deve aproveitar o espaço sem esticar excessivamente as linhas de texto.

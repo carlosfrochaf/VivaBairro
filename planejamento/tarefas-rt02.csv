@@ -1,0 +1,17 @@
+Título,Status,Prioridade,Área,Descrição
+Registrar feedbacks reais recebidos no RT01,Backlog,Alta,Visão do produto,Preencher feedback decisão e alteração no Product Vision Board sem inventar comentários.
+Criar o quadro RT02 no GitHub Projects pelo navegador,Backlog,Alta,Planejamento,Importar ou cadastrar o CSV configurar status e prioridade atribuir responsáveis e vincular as tarefas ao repositório.
+Revisar Product Vision Board e Lean Canvas,Em revisão,Alta,Visão do produto,Validar problema público proposta métricas e hipóteses do VivaBairro.
+Revisar requisitos RF e RNF com o grupo,Em revisão,Alta,Requisitos,Confirmar critérios de aceite desempenho segurança responsividade e escopo de IA.
+Desenhar fluxo de aviso assistido por IA,Em revisão,Alta,Protótipo,Criar formulário consentimento carregamento sugestões editáveis e alternativa manual.
+Adicionar tela de resultado da IA ao protótipo,Em revisão,Alta,Protótipo,Exibir categoria e resumo como sugestões revisáveis sem publicação automática.
+Validar fluxos mobile e desktop,Backlog,Média,Usabilidade,Revisar telas em diferentes larguras teclado foco contraste e mensagens de erro.
+Revisar diagrama de arquitetura e modelo de dados,Em revisão,Alta,Arquitetura,Validar fluxo entre frontend backend banco serviço de IA e permissões.
+Conferir rastreabilidade de usabilidade,Em revisão,Média,Usabilidade,Vincular requisitos telas e critérios de usabilidade na matriz do projeto.
+Definir estratégia de autenticação e bairros,Backlog,Média,Desenvolvimento,Escolher provedor de login e como associar contas a bairros no protótipo.
+Implementar feed eventos e confirmações,Backlog,Média,Desenvolvimento,Construir consulta de atividades avisos e fluxo de presença da primeira versão.
+Implementar criação e atualização de avisos,Backlog,Média,Desenvolvimento,Permitir rascunho publicação atualização de status e respostas de ajuda.
+Implementar adaptador de IA com fallback,Backlog,Média,Desenvolvimento,Manter chave no backend validar resposta e permitir fluxo manual se indisponível.
+Implementar painel de moderação municipal,Backlog,Média,Governança,Restringir ações por bairro registrar motivo e permitir recurso.
+Configurar lint e formatação quando o app for iniciado,Em revisão,Média,Qualidade,Conectar as configurações do repositório às ferramentas da stack escolhida.
+Preparar roteiro de demonstração e critérios de verificação,Backlog,Alta,Entrega,Demonstrar fluxos principais riscos e decisões pendentes do projeto.

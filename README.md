@@ -45,6 +45,9 @@ O **VivaBairro** é uma plataforma digital colaborativa projetada para centraliz
 ## Navegação Rápida
 
 - [Visão Geral e Proposta de Valor](1-visao-geral/proposito-objetivos.md)
+- [Documento de Visão do Produto](1-visao-geral/documento-visao-produto.md)
+- [Documento de Escopo do Projeto](1-visao-geral/documento-escopo.md)
+- [Product Vision Board e Lean Canvas](1-visao-geral/visao-produto-lean-canvas.md)
 - [Perfis de Usuários e Personas](1-visao-geral/personas-perfis.md)
 - [Bairros e Modelo Territorial](2-localizacao-bairros/modelo-geografico.md)
 - [Gestão de Atividades e Eventos](3-atividades-eventos/ciclo-vida-eventos.md)
@@ -55,3 +58,7 @@ O **VivaBairro** é uma plataforma digital colaborativa projetada para centraliz
 - [Busca, Feed e Notificações](7-busca-notificacoes/feed-busca-filtros.md)
 - [Arquitetura Técnica e Modelo de Dados](8-arquitetura-tecnica/visao-arquitetura.md)
 - [Protótipo Inicial de Interface e Mockups](9-prototipo-interface/prototipo-wireframes.md)
+- [Requisitos Funcionais e Não Funcionais](10-requisitos/requisitos-funcionais-nao-funcionais.md)
+- [Rastreabilidade de Usabilidade](10-requisitos/rastreabilidade-usabilidade.md)
+- [Gestão e Qualidade de Código](11-qualidade/qualidade-codigo.md)
+- [Planejamento do RT02](planejamento/como-usar-o-quadro.md)

@@ -5,6 +5,7 @@
 ## 1. Visão Geral do Projeto
 * [Documento de Visão do Produto (Product Vision Board)](1-visao-geral/documento-visao-produto.md)
 * [Documento de Escopo do Projeto](1-visao-geral/documento-escopo.md)
+* [Visão do Produto e Lean Canvas — revisão RT02](1-visao-geral/visao-produto-lean-canvas.md)
 * [Propósito e Objetivos](1-visao-geral/proposito-objetivos.md)
 * [Público-Alvo e Personas](1-visao-geral/personas-perfis.md)
 
@@ -42,3 +43,12 @@
 
 ## 9. Protótipo Inicial de Interface
 * [Wireframes e Telas Principais](9-prototipo-interface/prototipo-wireframes.md)
+
+## 10. Requisitos e Rastreabilidade
+* [Requisitos Funcionais e Não Funcionais](10-requisitos/requisitos-funcionais-nao-funcionais.md)
+* [Rastreabilidade de Usabilidade](10-requisitos/rastreabilidade-usabilidade.md)
+
+## 11. Qualidade e Planejamento
+* [Gestão e Qualidade de Código](11-qualidade/qualidade-codigo.md)
+* [Prompt de apoio baseado em Material Design 3](11-qualidade/prompt-prototipo-material-3.md)
+* [Como usar o quadro de tarefas](planejamento/como-usar-o-quadro.md)
