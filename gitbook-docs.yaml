@@ -1,10 +1,10 @@
 $schema: https://api.gitbook.com/gitbook-docs.yaml
 site:
-  title: VivaBairro — Documentação Oficial
+  title: VivaBairro
   structure:
     - type: space
       key: vivabairro-docs
-      title: Documentação VivaBairro
+      title: VivaBairro
       path: docs
       default: true
       content:
