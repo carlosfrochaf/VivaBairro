@@ -4,6 +4,7 @@
 
 ## 1. Visão Geral do Projeto
 * [Documento de Visão do Produto (Product Vision Board)](1-visao-geral/documento-visao-produto.md)
+* [Documento de Escopo do Projeto](1-visao-geral/documento-escopo.md)
 * [Propósito e Objetivos](1-visao-geral/proposito-objetivos.md)
 * [Público-Alvo e Personas](1-visao-geral/personas-perfis.md)
 
