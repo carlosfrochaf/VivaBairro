@@ -1,10 +1,12 @@
 # Protótipo e fluxos de interface
 
-## Direção atual
+## Protótipo mobile
 
-O export vetorial atualizado em [protótipo mobile](../assets/prototipo-vivabairro.svg) mostra entrada, feed, detalhe de evento, confirmação de presença, criação de aviso e perfil. A interface usa azul-marinho, verde-petróleo, verde-água e coral, com navegação mobile-first.
+![Protótipo mobile do VivaBairro em seis telas](../assets/prototipo-vivabairro.svg)
 
-Nomes, bairros, contagens e eventos no fluxo mobile são exemplos fictícios, não contas ou dados de uso reais. O SVG atual usa a lista “Próximas atividades” do bairro selecionado e substitui a métrica sem regra por bairros acompanhados. O JPG que permanece em assets é uma captura anterior e não representa esses ajustes; usar o SVG como versão de referência. Não mostrar métricas de uso sem fonte.
+O [arquivo SVG do protótipo mobile](../assets/prototipo-vivabairro.svg) está incluído nesta página para consulta no GitBook. Ele deriva do export vetorial que estava na pasta de usabilidade e recebeu alterações neste repositório, portanto não deve ser tratado como uma cópia intacta do arquivo original do Figma. O arquivo é um protótipo visual, não uma aplicação funcionando.
+
+As telas mostram entrada, feed, detalhe e confirmação de evento, criação de aviso e perfil. Nomes, bairros, contagens e eventos são dados de demonstração. A captura JPG em `assets/` é uma versão anterior do visual e não deve ser usada como referência atual. Preserve o arquivo-fonte do Figma separadamente quando ele estiver disponível; registre propostas de alteração sem apresentá-las como parte do original.
 
 ## Fluxo opcional de IA
 

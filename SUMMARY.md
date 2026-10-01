@@ -2,6 +2,7 @@
 
 * [Sobre o VivaBairro](sobre-o-projeto.md)
 * [Apresentação](README.md)
+* [Referências e pesquisa](referencias-e-pesquisa.md)
 
 ## Visão do produto
 * [Visão do produto e hipóteses](1-visao-geral/visao-produto-lean-canvas.md)

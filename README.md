@@ -13,6 +13,7 @@ O produto ainda está em definição. A documentação diferencia o que foi prop
 - [Arquitetura e dados](8-arquitetura-tecnica/visao-arquitetura.md)
 - [Protótipo e fluxos](9-prototipo-interface/prototipo-wireframes.md)
 - [Planejamento do desenvolvimento](planejamento/como-usar-o-quadro.md)
+- [Referências e pesquisa](referencias-e-pesquisa.md)
 
 ## Materiais
 

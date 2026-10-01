@@ -19,6 +19,13 @@ Este arquivo orienta agentes que trabalham no repositório. O GitBook continua s
 - Em fluxos de interface, represente entradas, confirmações, erros, cancelamento e recuperação para ações sensíveis. Dados de exemplo devem estar marcados como fictícios; não invente estatísticas ou funções para deixar uma tela mais cheia.
 - Preserve contraste, foco, rótulos legíveis e distinção que não dependa apenas de cor. Mantenha padrão visual e de termos com o protótipo existente, sem adornos que ocultem o fluxo.
 
+## Pesquisa e fontes externas
+
+- Consulte `referencias-e-pesquisa.md` como índice inicial; para decisões de tecnologia, segurança, privacidade, acessibilidade ou legislação, confira também a fonte primária vigente e sua versão/data.
+- Separe o que a fonte recomenda da evidência coletada com usuários e das decisões aprovadas pela equipe. Uma referência externa não prova que uma necessidade exista no público do VivaBairro nem que o produto esteja em conformidade.
+- Prefira documentação oficial e pesquisas primárias. Adapte guias de outros países ao contexto local, sem apresentá-los como obrigação brasileira.
+- Ao usar uma fonte para justificar requisito ou decisão, registre o link, o ponto aplicado e o limite da conclusão na página pertinente. Atualize o índice quando uma fonte nova fundamentar uma decisão duradoura; remova ou marque links desatualizados.
+
 ## Mapa da documentação
 
 `SUMMARY.md` define a navegação do GitBook. Use as páginas atuais como referência por assunto:
