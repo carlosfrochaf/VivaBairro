@@ -1,25 +1,27 @@
-# Fluxo de Moderação, Denúncias e Recursos
+# Denúncias, análise e revisão
 
-Para manter um ambiente respeitoso, sem censura arbitrária e seguro contra ataques virtuais, o **VivaBairro** segue protocolos rigorosos de moderação.
+A moderação protege pessoas e mantém informações úteis sem tratar volume de denúncias como prova de infração. Denúncias acionam uma análise humana; não ocultam ou removem automaticamente conteúdo.
 
----
+## Fluxo de análise
 
-## Princípios de Moderação Justa
+1. **Receber denúncia.** A pessoa escolhe o item, o motivo e, se quiser, explica o contexto. O nome de quem denunciou não é exibido ao autor da publicação.
+2. **Priorizar a fila.** A equipe pode ordenar casos por risco, exposição de dados pessoais, alcance ou tempo de espera. Número de denúncias, isoladamente, não determina uma decisão.
+3. **Analisar o item.** O moderador confere o conteúdo e as regras públicas da comunidade, registra o motivo e verifica se tem autorização para aquele bairro.
+4. **Tomar uma ação individual.** Pode manter, pedir ajuste ao autor, ocultar durante análise, restaurar ou remover o item específico. Não suspender uma conta como consequência automática de uma publicação.
+5. **Avisar o autor.** Informar qual item foi afetado, a ação, a regra relacionada e como solicitar revisão.
+6. **Revisar quando solicitado.** Uma pessoa diferente da decisão inicial deve revisar quando possível. O resultado e a justificativa ficam no histórico do item.
 
-1. **Moderação Granular (Publicação por Publicação):**
-   * Se um aviso contém dados indevidos, apenas a publicação específica é tratada/removida, sem banir de imediato toda a conta do usuário.
-2. **Proteção Anti-Brigading (Sem Exclusão Automática por Volume):**
-   * Denúncias de usuários servem para **priorizar a fila de análise humana** dos moderadores, mas **nunca removem uma publicação automaticamente**. Isso impede que grupos usem denúncias em massa para silenciar vozes legítimas.
-3. **Trilha de Auditoria Obrigatória:**
-   * Toda ação de moderação (ocultar, editar local, solicitar correção ou suspender conta) registra no banco de dados:
-     * Quem foi o moderador responsável;
-     * Qual regra da comunidade foi violada;
-     * Data, hora e justificativa formal.
+## Regras de decisão
 
----
+- Cada denúncia e ação se aplica a um evento, aviso ou resposta identificável.
+- Ocultação temporária deve mostrar ao autor que o item está em análise e por quê; o público deve receber uma indicação proporcional sem expor detalhes da denúncia.
+- Remoção não apaga o registro de auditoria. A pessoa moderadora não edita silenciosamente o conteúdo; pedido de correção deve ser respondido pelo autor ou registrado como intervenção administrativa visível.
+- Restrição de conta é uma decisão separada. Definir critérios, duração, aviso e revisão antes de implementar suspensão.
+- Se o moderador tiver conflito de interesse, deve se abster e encaminhar a análise.
+- Não publicar quem denunciou. Limitar acesso ao contexto detalhado da denúncia a pessoas que precisam analisá-la.
 
-## Direito de Resposta e Pedido de Revisão
+## Escopo e auditoria
 
-Quando uma publicação sofre ação de moderação:
-* O autor recebe uma notificação explicando o motivo com clareza.
-* É disponibilizado um botão de **"Solicitar Revisão"**, permitindo que o autor ajuste o conteúdo ou apresente esclarecimentos à equipe administrativa.
+Moderadores só analisam itens de bairros atribuídos a eles. Administradores municipais podem acompanhar a fila e agir nos bairros de seu município. Toda decisão registra ator, papel, município/bairro, item, ação, motivo, data, notificação enviada e eventual revisão. Permissões e escopo são validados no servidor.
+
+A equipe precisa aprovar e publicar regras de comunidade e definir retenção de denúncias antes de operar com conteúdo real. O repositório ainda não registra equipe ativa, prazo de resposta ou escala de atendimento; não prometer tempo de resolução.

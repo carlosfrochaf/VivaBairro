@@ -1,22 +1,19 @@
-# Confirmação de Presença (RSVP) e Notificações
+# Participação em eventos
 
-O sistema de participação do **VivaBairro** permite planejar a logística dos eventos sem burocracia.
+Uma pessoa autenticada pode confirmar e cancelar a própria presença. O sistema deve manter uma única confirmação ativa por conta e evento.
 
----
+## Confirmação e capacidade
 
-## Fluxo de Inscrição e Confirmação de Presença
+- Sem limite definido, a confirmação registra presença sem bloquear novas pessoas.
+- Com limite, a disponibilidade é calculada pelo número de confirmações ativas.
+- Duas confirmações concorrentes não podem ocupar a última vaga ao mesmo tempo; a reserva precisa ser atômica no backend.
+- Se o evento está lotado, mostrar isso antes de confirmar. Não prometer lista de espera até a equipe decidir como ela funcionará.
+- Cancelar libera a vaga. Mostrar confirmação e não cancelar a participação de outra pessoa em nome do organizador sem processo definido.
 
-1. **Confirmação em 1 Clique:** O morador logado clica em *"Confirmar Presença"*.
-2. **Contador Público:** A página da atividade exibe a quantidade total de presenças confirmadas para incentivar a comunidade.
-3. **Cancelamento Responsável:** Se o morador não puder comparecer, ele pode cancelar a confirmação a qualquer momento, liberando a vaga para outro vizinho.
+## Dados e visibilidade
 
----
+O feed pode exibir número agregado de participantes. Não mostrar publicamente a lista nominal. A necessidade do organizador ver nomes ou exportar participantes ainda precisa de decisão de privacidade e finalidade.
 
-## Notificações Automáticas para Inscritos
+## Mudanças e notificações
 
-Para manter todos informados e evitar deslocamentos desnecessários:
-
-* **Mudança de Local:** Se o organizador alterar o endereço da atividade, todos os participantes confirmados recebem um alerta prioritário.
-* **Mudança de Horário ou Data:** Notificação imediata informando os novos horários.
-* **Cancelamento de Evento:** Mensagem clara informando o cancelamento e justificativa.
-* **Lembrete de Véspera:** Notificação opcional lembrando que a atividade ocorrerá no dia seguinte.
+Quem confirmou deve receber atualização quando o organizador mudar data, hora, local ou cancelar o evento. A notificação deve mostrar a versão nova e, se possível, o que mudou. Lembretes são opcionais e configuráveis. Definir canais disponíveis antes da implementação; não afirmar entrega de e-mail enquanto o serviço não existir.

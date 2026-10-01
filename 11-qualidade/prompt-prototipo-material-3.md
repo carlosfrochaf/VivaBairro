@@ -1,13 +1,18 @@
-# Prompt de Apoio para Evoluir o Protótipo
+# Direção de interface
 
-Este prompt pode ser usado com uma ferramenta de design ou geração de interface como ponto de partida. Ele pede uma interface inspirada em princípios e componentes do Material Design 3, sem copiar a marca Google e preservando a identidade visual do VivaBairro. As diretrizes de acessibilidade, estados de interação e layouts adaptáveis do Material 3 servem como referência para a revisão: [fundamentos do Material Design 3](https://m3.material.io/foundations/) e [exemplos de layouts adaptáveis](https://m3.material.io/foundations/layout/canonical-examples/overview).
+A interface do VivaBairro deve preservar a identidade visual já criada e tornar fáceis de encontrar bairro, data, local, estado e autoria. Material Design 3 pode servir como referência de componentes e layouts responsivos, sem copiar a marca ou impor uma aparência genérica. Consulte [fundamentos do Material 3](https://m3.material.io/foundations/) e [layouts adaptáveis](https://m3.material.io/foundations/layout/canonical-examples/overview).
 
-## Prompt
+## Regras para novas telas
 
-> Crie um protótipo mobile-first e responsivo para o VivaBairro, um site de eventos e avisos comunitários por bairro. Preserve a identidade existente em azul-marinho, verde-petróleo, verde-água e coral, com textos claros e cartões simples. Use componentes e estados de interação inspirados nas orientações abertas do Material Design 3, adaptando-os à marca própria do VivaBairro.
->
-> Apresente pelo menos estas telas: entrada/cadastro; feed do bairro com eventos e avisos; detalhe de atividade com data, local, objetivo e vagas; criação de aviso; perfil e configurações; painel de moderação municipal; assistência opcional de IA para sugerir categoria e resumo de um aviso; e resultado da IA com sugestões editáveis.
->
-> Na tela de IA, explique que o texto será enviado a um serviço externo e peça consentimento antes do envio. Marque todo resultado como sugestão, mantenha o texto original, permita aceitar, editar ou descartar cada sugestão e nunca publique automaticamente. Inclua estados de carregamento, erro, timeout e alternativa para continuar manualmente.
->
-> Use hierarquia visual consistente, contraste legível, rótulos permanentes nos campos, foco visível, botões fáceis de tocar e mensagens de erro específicas. Mostre claramente o bairro e o status de cada aviso. Evite depender somente de cor, localização GPS obrigatória, dados pessoais expostos e elementos decorativos que atrapalhem a leitura. Adapte a navegação entre celular e desktop e explique como os componentes refluem em telas maiores.
+- Use o mesmo sistema de cores, tipografia, espaçamento, cantos e ícones do protótipo. Documente alterações em vez de inventar um estilo por tela.
+- Dê prioridade a conteúdo e ações. Não acrescente gradientes decorativos, cartões, contadores, selos ou gráficos só para preencher espaço.
+- Não use métricas de engajamento, recomendações personalizadas ou conexões sem definir fonte e regra. Dados ilustrativos precisam de um rótulo visível de demonstração.
+- Mantenha bairro e estado juntos ao item. Mostre se a informação veio de morador, organizador ou canal municipal.
+- Escreva rótulos e erros com palavras que o público reconhece. Evite slogan e texto de marketing dentro dos fluxos.
+- Para consentimento, denúncia, exclusão, cancelamento e moderação, mostre consequências antes da confirmação e ofereça uma saída segura.
+- Use contraste, foco visível, rótulos permanentes, teclado e alvos de toque confortáveis. Cor nunca é a única forma de distinguir estado ou autoria.
+- Adapte cada fluxo para largura estreita e ampla sem criar telas desktop como simples versões esticadas do celular.
+
+## Lista de revisão
+
+Antes de aprovar uma tela, confirme que ela corresponde a um requisito, que os dados exibidos têm origem definida, que a ação principal e o caminho de volta são claros, que os estados de erro foram considerados e que o conteúdo não sugere uma função não especificada. Pedir a outra pessoa da equipe para percorrer a tarefa e explicar o que espera que aconteça.

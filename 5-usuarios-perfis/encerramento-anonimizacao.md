@@ -1,15 +1,17 @@
-# Encerramento de Conta e Anonimização de Dados
+# Encerramento de conta e dados associados
 
-O encerramento de conta no VivaBairro foi desenhado para respeitar o direito ao esquecimento e à privacidade (LGPD), sem quebrar a coerência do histórico comunitário do bairro.
+O encerramento de conta afeta credenciais, preferências e autoria de conteúdo. O sistema precisa explicar o que será removido, o que pode permanecer e por quê antes da confirmação.
 
----
+## Fluxo proposto
 
-## Processo de Exclusão da Conta
+1. A pessoa autenticada solicita encerramento e recebe resumo dos efeitos.
+2. Confirmar a solicitação antes de desativar o acesso.
+3. Revogar sessões e impedir novo uso das credenciais.
+4. Aplicar a política aprovada a dados da conta, eventos futuros, inscrições, respostas, denúncias e histórico de moderação.
+5. Informar o resultado e conservar apenas registros cuja finalidade e prazo tenham sido definidos.
 
-Quando um usuário solicita o encerramento da sua conta:
+Não prometer remoção imediata de todo registro, anonimização automática ou um direito legal específico sem uma política revisada por quem será responsável pelo tratamento. Publicações podem ter utilidade comunitária, mas manter conteúdo sem autoria também precisa de justificativa, prazo e opção informada.
 
-1. **Remoção de Dados Pessoais:** O e-mail, senha, nome de exibição e credenciais são imediatamente deletados dos servidores de autenticação.
-2. **Anonimização de Publicações Úteis:**
-   * Avisos históricos (ex: confirmação de que um buraco foi asfaltado ou relatório de um mutirão passado) são desvinculados do autor.
-   * O autor passa a ser identificado como `[Usuário Removido]`.
-3. **Preservação de Registros de Zeladoria:** Evita que a exclusão de um perfil deixe lacunas em relatórios públicos de serviços concluídos no bairro.
+## Decisões necessárias
+
+Definir prazo de encerramento, dados eliminados, dados anonimizados, conteúdo que continua público, tratamento de eventos futuros, registros de denúncia/moderação, backups e pedidos em andamento. A equipe ainda não definiu esses prazos. Até lá, o fluxo é uma proposta e não deve ser implementado como se a política estivesse aprovada.

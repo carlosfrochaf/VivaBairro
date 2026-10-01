@@ -1,48 +1,38 @@
-# Documento de Visão do Produto (Product Vision Board)
+# Visão do produto
 
-VivaBairro — Product Vision Board
+## Propósito
 
-> **Download do documento original:** [Documento\_de\_Visao\_do\_Produto\_VivaBairro.docx](../assets/Documento_de_Visao_do_Produto_VivaBairro.docx)
+O VivaBairro é um site para organizar informações locais por bairro. Moradores e pessoas que atuam na região podem consultar eventos, publicar avisos e acompanhar atualizações. O projeto também prevê ferramentas municipais, separadas das publicações comunitárias.
 
-***
+## Públicos previstos
 
-## Visão
+- Pessoas que moram, trabalham ou frequentam um bairro.
+- Pessoas e organizações que promovem atividades locais.
+- Equipes municipais que publicam informações oficiais ou cuidam da moderação.
 
-Ser o lugar de referência onde cada bairro se organiza: moradores descobrem o que acontece perto deles, divulgam iniciativas e compartilham avisos úteis de forma clara, confiável e atualizada. O objetivo é que mutirões, feiras, pedidos de ajuda e problemas de infraestrutura deixem de se perder em conversas dispersas e passem a gerar participação e resolução.
+Esses grupos são hipóteses de público, não resultado de pesquisa concluída. Consulte [Públicos e tarefas](publicos-e-tarefas.md) e [Hipóteses de negócio](visao-produto-lean-canvas.md).
 
-## Público-alvo
+## Necessidades que a proposta pretende atender
 
-• Moradores: consultam, participam, publicam e denunciam conteúdo.\
-• Organizadores (comerciantes, associações, coletivos, produtores de eventos): criam e administram atividades.\
-• Moderadores de bairro: analisam denúncias e publicações das regiões pelas quais respondem.\
-• Prefeitura e equipe municipal: cadastram bairros, atribuem moderadores e publicam comunicados oficiais.
+- Encontrar atividades com bairro, horário, local e propósito.
+- Perceber se um aviso continua aberto ou foi resolvido.
+- Divulgar uma iniciativa e informar alterações a quem confirmou presença.
+- Pedir ou oferecer ajuda sem publicar dados residenciais ou sensíveis.
+- Distinguir informações oficiais de publicações da comunidade.
+- Entender por que um conteúdo foi moderado e como pedir revisão.
 
-## Necessidades
+Ainda falta confirmar por pesquisa se essas são as necessidades mais frequentes nos bairros que a equipe escolher.
 
-• Moradores: encontrar rapidamente o que acontece no próprio bairro, sem depender de grupos de mensagens e conversas longas.\
-• Organizadores: divulgar atividades, acompanhar confirmações de presença e avisar mudanças ou cancelamentos.\
-• Quem publica avisos: informar problemas e pedidos de ajuda com assunto, local e situação atual (em andamento, resolvido), para que avisos antigos não pareçam atuais.\
-• Todos os usuários: privacidade (sem endereço residencial ou localização exata expostos por padrão) e orientação para não divulgar dados de terceiros.\
-• Moderação: decisões transparentes, com registro de quem agiu e por quê, direito de pedir revisão e proteção contra denúncias em massa.\
-• Prefeitura: canal oficial, identificado e distinguível das publicações dos moradores.
+## Capacidades previstas
 
-## Produto
+O produto prevê feed por bairro, busca e filtros, eventos com participação, avisos com estados, respostas de ajuda, notificações configuráveis, denúncia, moderação territorial e comunicados municipais identificados. A IA é uma assistência opcional para redação e categorização; a publicação permanece sob controle de quem escreveu.
 
-Site (web) organizado por bairro, com:
+## Resultados esperados e como avaliá-los
 
-• Página inicial por bairro: atividades próximas, avisos recentes e comunicados oficiais, com filtros por data, categoria e região, e busca (ex.: nome de uma praça).\
-• Atividades e eventos: título, descrição, objetivo, data, horário, local, vagas, custo e contato; confirmação e cancelamento de presença; edição, lotação e cancelamento pelo organizador; arquivamento após a data.\
-• Avisos e pedidos de ajuda: categorias, descrição, local, foto opcional, atualização de status e respostas vinculadas ao próprio aviso (mensagens privadas avaliadas em etapa futura).\
-• Conta e perfil: cadastro mínimo (e-mail, senha, nome de exibição), bairro principal, controle de notificações, edição de dados e encerramento de conta com anonimização das publicações.\
-• Perfis e permissões: morador, organizador, moderador e administrador municipal, com funções separadas.\
-• Moderação com registro: ações publicação por publicação, log de decisões, aviso ao autor e pedido de revisão.\
-• Notificações: no site e, opcionalmente, por e-mail (confirmações, mudanças, respostas, atualizações e decisões de moderação).
+Espera-se que o contexto organizado ajude as pessoas a encontrar informações e manter avisos atualizados. Isso ainda precisa ser testado. Uma avaliação inicial pode observar se participantes concluem tarefas de busca, publicação, inscrição, atualização e denúncia, onde hesitam e se compreendem as diferenças entre conteúdo comunitário e oficial.
 
-## Benefícios de negócio
+Não há parceria municipal confirmada, métrica de adoção ou redução de problemas comprovada. Evitar apresentar esses efeitos como benefícios já obtidos.
 
-• Engajamento comunitário: mais participação em atividades locais e maior circulação de iniciativas.\
-• Eficiência para o poder público: canal organizado para identificar problemas de infraestrutura e comunicar-se oficialmente com os moradores.\
-• Confiança e segurança: moderação transparente e auditável, com proteção de dados pessoais, o que apoia a conformidade com a LGPD.\
-• Visibilidade para o comércio e entidades locais: divulgação de feiras, oficinas e campanhas para um público segmentado por bairro.\
-• Redução de ruído: informações estruturadas (assunto, local, status) diminuem retrabalho e dúvidas repetidas.\
-• Escalabilidade: a estrutura por bairro permite expandir para novas regiões e municípios com administração descentralizada.
+## Documento-fonte
+
+O arquivo Word em [assets/Documento_de_Visao_do_Produto_VivaBairro.docx](../assets/Documento_de_Visao_do_Produto_VivaBairro.docx) é uma versão de referência anterior, não a fonte de verdade. Esta página descreve a visão vigente no repositório.

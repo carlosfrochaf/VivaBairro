@@ -1,25 +1,19 @@
-# Privacidade, LGPD e Canais de Emergência
+# Privacidade e uso responsável
 
-Para proteger a integridade dos moradores e manter a plataforma alinhada à **Lei Geral de Proteção de Dados (LGPD)**, o VivaBairro estabelece diretrizes claras de conduta e segurança.
+O VivaBairro deve pedir e exibir apenas dados necessários à tarefa. Não precisa de localização contínua nem endereço residencial. Publicações usam bairro e local público ou ponto de referência.
 
----
+## Conteúdo e imagens
 
-## Diretrizes de Proteção a Dados Pessoais
+Antes de publicar, orientar a pessoa a não incluir telefone, endereço residencial, documentos, informação médica, rostos ou placas de terceiros sem autorização. Fotos são opcionais. Deve existir uma forma de pedir correção ou remoção de informação pessoal exposta.
 
-* **Proibição de Exposição Não Autorizada:** É expressamente vetado publicar dados sensíveis de terceiros (endereços residenciais completos, telefones pessoais, documentos de identidade, condições médicas ou fotos de pessoas sem consentimento).
-* **Moderação de Imagens:** Fotos são permitidas e recomendadas apenas para demonstrar a situação física (ex: foto do buraco na rua ou do cachorro encontrado), devendo-se evitar imagens de rostos ou placas de veículos.
+A equipe ainda precisa definir quem será responsável pelo tratamento de dados, quais dados são necessários, por quanto tempo ficam, quem acessa denúncias e logs, como atender pedidos de acesso/correção/encerramento e quais fornecedores externos processam dados. Não declarar conformidade legal antes de revisar o fluxo com a pessoa responsável e orientação adequada.
 
----
+## Serviço externo de IA
 
-## Não Substituição de Serviços de Emergência
+O fluxo deve identificar que texto sai do VivaBairro, quais campos são enviados, a finalidade, o fornecedor escolhido e a política de retenção conhecida. Consentimento precede a chamada e a pessoa pode publicar sem IA. Não enviar dados de conta, bairro ou local se não forem necessários; o rascunho deve ser retido pelo menor tempo necessário.
 
-O VivaBairro é uma ferramenta de **comunicação e zeladoria comunitária**, não um canal de socorro urgente.
+Como o fornecedor ainda não foi escolhido, o protótipo de consentimento é ilustrativo e não deve ser usado para uma chamada real até exibir essas informações.
 
-> **Aviso de Emergência em Destaque:**
-> O sistema exibe de forma permanente e clara:
->
-> * *"Em situações de risco à vida, crimes em andamento, incêndios ou urgências médicas, **não utilize este site**. Ligue imediatamente para os canais de emergência oficiais:"*
->   * **Polícia Militar:** `190`
->   * **SAMU:** `192`
->   * **Corpo de Bombeiros:** `193`
->   * **Defesa Civil:** `199`
+## Emergências e atendimento público
+
+O VivaBairro não é canal de emergência ou solicitação oficial de serviço e não garante resposta da prefeitura. Em risco imediato, orientar a pessoa a procurar os canais oficiais de emergência da sua região. Se o produto futuramente mostrar números ou contatos, a equipe deve obtê-los de uma fonte oficial local, registrar a fonte e manter a revisão atualizada.

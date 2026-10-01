@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="690" viewBox="0 0 1320 690" role="img" aria-labelledby="title desc">
+  <title id="title">Contexto do sistema VivaBairro</title>
+  <desc id="desc">Diagrama de contexto com moradores e organizadores, equipe municipal, o sistema VivaBairro e dois serviços externos opcionais: e-mail e IA.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#286A72"/></marker>
+    <marker id="arrow2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#BB5B34"/></marker>
+    <style>
+      .bg{fill:#F4F6F8}.ink{fill:#173047;font-family:Arial,sans-serif}.muted{fill:#566978;font-family:Arial,sans-serif}.title{font-size:31px;font-weight:700}.subtitle{font-size:16px}.head{font-size:20px;font-weight:700}.body{font-size:15px}.small{font-size:13px}.system{fill:#E9F2F2;stroke:#286A72;stroke-width:3}.person{fill:#fff;stroke:#173047;stroke-width:2}.external{fill:#FFF9F5;stroke:#BB5B34;stroke-width:2;stroke-dasharray:8 6}.flow{stroke:#286A72;stroke-width:3;fill:none;marker-end:url(#arrow)}.optional{stroke:#BB5B34;stroke-width:3;fill:none;marker-end:url(#arrow2)}.tag{fill:#fff;stroke:#CDD7DD;stroke-width:1}
+    </style>
+  </defs>
+  <rect width="1320" height="690" class="bg"/>
+  <text x="48" y="60" class="ink title">Quem usa o VivaBairro e com quais serviços ele conversa</text>
+  <text x="48" y="91" class="muted subtitle">Diagrama de contexto · não assume integração direta com sistemas da prefeitura</text>
+  <rect x="55" y="168" width="260" height="142" rx="16" class="person"/>
+  <text x="82" y="207" class="ink head">Moradores</text>
+  <text x="82" y="239" class="muted body">Consultam e publicam</text>
+  <text x="82" y="265" class="muted body">eventos e avisos locais</text>
+  <rect x="55" y="390" width="260" height="142" rx="16" class="person"/>
+  <text x="82" y="429" class="ink head">Organizadores</text>
+  <text x="82" y="461" class="muted body">Publicam eventos</text>
+  <text x="82" y="487" class="muted body">e avisam participantes</text>
+  <rect x="1005" y="168" width="260" height="142" rx="16" class="person"/>
+  <text x="1032" y="207" class="ink head">Equipe municipal</text>
+  <text x="1032" y="239" class="muted body">Administra bairros e</text>
+  <text x="1032" y="265" class="muted body">comunicados oficiais</text>
+  <rect x="1005" y="390" width="260" height="142" rx="16" class="person"/>
+  <text x="1032" y="429" class="ink head">Moderadores</text>
+  <text x="1032" y="461" class="muted body">Analisam itens dentro</text>
+  <text x="1032" y="487" class="muted body">dos bairros atribuídos</text>
+  <rect x="420" y="205" width="480" height="290" rx="24" class="system"/>
+  <text x="660" y="255" text-anchor="middle" class="ink head">VivaBairro</text>
+  <text x="660" y="294" text-anchor="middle" class="muted body">Site responsivo organizado por município e bairro</text>
+  <text x="660" y="342" text-anchor="middle" class="muted body">Feed · busca · eventos · avisos</text>
+  <text x="660" y="376" text-anchor="middle" class="muted body">Participação · colaboração · notificações</text>
+  <text x="660" y="410" text-anchor="middle" class="muted body">Moderação com escopo e histórico</text>
+  <text x="660" y="453" text-anchor="middle" class="muted small">Integrações e operação municipal ainda não definidas</text>
+  <rect x="420" y="565" width="210" height="82" rx="14" class="external"/>
+  <text x="525" y="598" text-anchor="middle" class="ink head">Serviço de e-mail</text>
+  <text x="525" y="624" text-anchor="middle" class="muted small">Opcional · fornecedor a decidir</text>
+  <rect x="690" y="565" width="210" height="82" rx="14" class="external"/>
+  <text x="795" y="598" text-anchor="middle" class="ink head">Serviço de IA</text>
+  <text x="795" y="624" text-anchor="middle" class="muted small">Opcional · fornecedor a decidir</text>
+  <path d="M315 235H405" class="flow"/>
+  <rect x="314" y="194" width="100" height="36" rx="6" class="tag"/>
+  <text x="364" y="210" text-anchor="middle" class="ink small">Consultar /</text>
+  <text x="364" y="224" text-anchor="middle" class="ink small">publicar</text>
+  <path d="M315 455H405" class="flow"/>
+  <rect x="318" y="414" width="96" height="36" rx="6" class="tag"/>
+  <text x="366" y="430" text-anchor="middle" class="ink small">Gerenciar</text>
+  <text x="366" y="444" text-anchor="middle" class="ink small">eventos</text>
+  <path d="M990 260H915" class="flow"/>
+  <rect x="899" y="215" width="112" height="38" rx="6" class="tag"/>
+  <text x="955" y="231" text-anchor="middle" class="ink small">Configurar e</text>
+  <text x="955" y="246" text-anchor="middle" class="ink small">comunicar</text>
+  <path d="M990 445H915" class="flow"/>
+  <rect x="902" y="400" width="110" height="38" rx="6" class="tag"/>
+  <text x="957" y="416" text-anchor="middle" class="ink small">Revisar itens</text>
+  <text x="957" y="431" text-anchor="middle" class="ink small">atribuídos</text>
+  <path d="M525 495V552" class="flow"/>
+  <text x="544" y="532" class="muted small">Notificações configuradas</text>
+  <path d="M795 495V552" class="optional"/>
+  <path d="M770 552V508" class="optional"/>
+  <text x="815" y="527" class="muted small">Rascunho com consentimento</text>
+  <text x="815" y="544" class="muted small">e sugestão de retorno</text>
+</svg>

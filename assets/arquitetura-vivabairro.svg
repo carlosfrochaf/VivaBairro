@@ -1,76 +1,95 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="820" viewBox="0 0 1280 820" role="img" aria-labelledby="title desc">
-  <title id="title">Diagrama da arquitetura do VivaBairro</title>
-  <desc id="desc">Diagrama que mostra usuário, frontend web, backend e seus serviços, banco de dados, armazenamento, notificações e integração opcional de IA.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1480" height="900" viewBox="0 0 1480 900" role="img" aria-labelledby="title desc">
+  <title id="title">Arquitetura proposta do VivaBairro em containers</title>
+  <desc id="desc">Visão técnica proposta: pessoas usam o site responsivo, que acessa uma API. A API lê e grava no banco, guarda fotos opcionalmente e chama serviços externos de e-mail e IA. A chamada de IA só ocorre após consentimento. Tecnologias ainda não escolhidas.</desc>
   <defs>
-    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#286A72"/>
-    </marker>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#286A72"/></marker>
+    <marker id="arrow2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#BB5B34"/></marker>
     <style>
-      .bg{fill:#F1F4F8}.card{fill:#fff;stroke:#D8E0EA;stroke-width:2}.main{fill:#E4F3F1;stroke:#286A72;stroke-width:2}.ai{fill:#FFF0E8;stroke:#E47A43;stroke-width:2}.title{font:700 27px Arial,sans-serif;fill:#14253D}.head{font:700 17px Arial,sans-serif;fill:#14253D}.body{font:400 13px Arial,sans-serif;fill:#344054}.small{font:400 11px Arial,sans-serif;fill:#687688}.flow{fill:none;stroke:#286A72;stroke-width:3;marker-end:url(#arrow)}.flowai{fill:none;stroke:#E47A43;stroke-width:3;stroke-dasharray:8 6;marker-end:url(#arrow)}.pill{fill:#286A72}.pilltext{font:700 12px Arial,sans-serif;fill:#fff}
+      .bg{fill:#F4F6F8}.ink{fill:#173047;font-family:Arial,sans-serif}.muted{fill:#566978;font-family:Arial,sans-serif}.title{font-size:32px;font-weight:700}.subtitle{font-size:17px}.heading{font-size:19px;font-weight:700}.body{font-size:15px}.small{font-size:13px}.boundary{fill:#E9F2F2;stroke:#286A72;stroke-width:2;stroke-dasharray:9 7}.external{fill:#FFF9F5;stroke:#BB5B34;stroke-width:2;stroke-dasharray:8 6}.container{fill:#fff;stroke:#286A72;stroke-width:2}.storage{fill:#fff;stroke:#173047;stroke-width:2}.flow{stroke:#286A72;stroke-width:3;fill:none;marker-end:url(#arrow)}.aiflow{stroke:#BB5B34;stroke-width:3;fill:none;marker-end:url(#arrow2)}.label{fill:#F4F6F8;stroke:#CAD4DB;stroke-width:1}
     </style>
   </defs>
-  <rect class="bg" width="1280" height="820"/>
-  <text x="52" y="55" class="title">VivaBairro · arquitetura conceitual</text>
-  <text x="52" y="82" class="small">Site responsivo · chamadas HTTPS/JSON · integração de IA opcional e protegida pelo backend</text>
+  <rect class="bg" width="1480" height="900"/>
+  <text x="52" y="62" class="ink title">Como o VivaBairro pode ser organizado</text>
+  <text x="52" y="94" class="muted subtitle">Visão de containers proposta · serviços e tecnologias ainda precisam ser escolhidos</text>
 
-  <rect x="50" y="300" width="190" height="150" rx="20" class="card"/>
-  <text x="145" y="344" text-anchor="middle" class="head">Pessoa usuária</text>
-  <text x="145" y="374" text-anchor="middle" class="body">Morador · organizador</text>
-  <text x="145" y="397" text-anchor="middle" class="body">moderador municipal</text>
-  <text x="145" y="427" text-anchor="middle" class="small">Navegador celular ou desktop</text>
+  <rect x="55" y="160" width="280" height="132" rx="14" class="container"/>
+  <text x="78" y="196" class="ink heading">Pessoas</text>
+  <text x="78" y="226" class="muted body">Moradores e organizadores</text>
+  <text x="78" y="251" class="muted body">Equipe municipal e moderadores</text>
 
-  <rect x="305" y="270" width="230" height="210" rx="20" class="main"/>
-  <text x="420" y="310" text-anchor="middle" class="head">Frontend web</text>
-  <text x="420" y="340" text-anchor="middle" class="body">Interface responsiva</text>
-  <text x="420" y="364" text-anchor="middle" class="body">Feed · busca · formulários</text>
-  <text x="420" y="388" text-anchor="middle" class="body">Perfil · painel de moderação</text>
-  <rect x="365" y="420" width="110" height="30" rx="15" class="pill"/>
-  <text x="420" y="440" text-anchor="middle" class="pilltext">HTTPS / JSON</text>
+  <rect x="55" y="380" width="280" height="128" rx="14" class="external"/>
+  <text x="78" y="418" class="ink heading">Provedor de e-mail</text>
+  <text x="78" y="448" class="muted body">Serviço externo opcional</text>
+  <text x="78" y="474" class="muted small">Entrega notificações configuradas</text>
 
-  <rect x="605" y="130" width="330" height="500" rx="20" class="card"/>
-  <text x="770" y="170" text-anchor="middle" class="head">Backend / API</text>
-  <rect x="635" y="195" width="270" height="70" rx="13" class="main"/>
-  <text x="770" y="224" text-anchor="middle" class="body">Autenticação e RBAC</text>
-  <text x="770" y="246" text-anchor="middle" class="small">Permissões verificadas no servidor</text>
-  <rect x="635" y="285" width="270" height="88" rx="13" class="main"/>
-  <text x="770" y="316" text-anchor="middle" class="body">Serviços de domínio</text>
-  <text x="770" y="339" text-anchor="middle" class="small">Atividades · avisos · respostas</text>
-  <text x="770" y="357" text-anchor="middle" class="small">denúncias · moderação territorial</text>
-  <rect x="635" y="393" width="270" height="78" rx="13" class="ai"/>
-  <text x="770" y="425" text-anchor="middle" class="body">Adaptador de IA opcional</text>
-  <text x="770" y="449" text-anchor="middle" class="small">Valida entrada, saída e timeout</text>
-  <rect x="635" y="491" width="270" height="78" rx="13" class="main"/>
-  <text x="770" y="523" text-anchor="middle" class="body">Busca e notificações</text>
-  <text x="770" y="547" text-anchor="middle" class="small">Feed por bairro · e-mail</text>
+  <rect x="55" y="610" width="280" height="150" rx="14" class="external"/>
+  <text x="78" y="648" class="ink heading">Provedor de IA</text>
+  <text x="78" y="678" class="muted body">Serviço externo opcional</text>
+  <text x="78" y="705" class="muted small">Recebe rascunho só após consentimento</text>
+  <text x="78" y="729" class="muted small">Devolve sugestões; não publica</text>
 
-  <rect x="1000" y="150" width="230" height="130" rx="20" class="card"/>
-  <text x="1115" y="195" text-anchor="middle" class="head">Banco relacional</text>
-  <text x="1115" y="226" text-anchor="middle" class="body">Contas · bairros</text>
-  <text x="1115" y="250" text-anchor="middle" class="body">eventos · avisos</text>
+  <rect x="385" y="142" width="1040" height="650" rx="20" class="boundary"/>
+  <text x="414" y="180" class="ink heading">Sistema VivaBairro</text>
+  <text x="414" y="206" class="muted small">Limite de responsabilidade do produto</text>
 
-  <rect x="1000" y="345" width="230" height="110" rx="20" class="card"/>
-  <text x="1115" y="386" text-anchor="middle" class="head">Auditoria</text>
-  <text x="1115" y="417" text-anchor="middle" class="body">Ações de moderação</text>
+  <rect x="435" y="280" width="270" height="176" rx="14" class="container"/>
+  <text x="460" y="320" class="ink heading">Site responsivo</text>
+  <text x="460" y="352" class="muted body">Feed, busca e perfis</text>
+  <text x="460" y="379" class="muted body">Eventos, avisos e painéis</text>
+  <text x="460" y="422" class="muted small">Navegador · interface</text>
 
-  <rect x="1000" y="520" width="230" height="110" rx="20" class="card"/>
-  <text x="1115" y="561" text-anchor="middle" class="head">Arquivos</text>
-  <text x="1115" y="592" text-anchor="middle" class="body">Fotos opcionais</text>
+  <rect x="790" y="252" width="310" height="235" rx="14" class="container"/>
+  <text x="818" y="292" class="ink heading">API e regras do produto</text>
+  <text x="818" y="326" class="muted body">Sessões e autorização territorial</text>
+  <text x="818" y="354" class="muted body">Eventos, avisos e participações</text>
+  <text x="818" y="382" class="muted body">Denúncias e auditoria</text>
+  <text x="818" y="410" class="muted body">Busca e notificações</text>
+  <text x="818" y="458" class="muted small">Tecnologia de backend a decidir</text>
 
-  <rect x="605" y="690" width="300" height="86" rx="18" class="ai"/>
-  <text x="755" y="727" text-anchor="middle" class="head">API externa de IA</text>
-  <text x="755" y="752" text-anchor="middle" class="small">Sugere categoria e resumo; não publica</text>
+  <rect x="1170" y="254" width="210" height="156" rx="14" class="storage"/>
+  <text x="1194" y="292" class="ink heading">Banco de dados</text>
+  <text x="1194" y="324" class="muted body">Contas, bairros</text>
+  <text x="1194" y="351" class="muted body">Eventos, avisos</text>
+  <text x="1194" y="378" class="muted body">Permissões e histórico</text>
 
-  <rect x="1000" y="690" width="230" height="86" rx="18" class="card"/>
-  <text x="1115" y="727" text-anchor="middle" class="head">E-mail / notificações</text>
-  <text x="1115" y="752" text-anchor="middle" class="small">Avisos e lembretes opcionais</text>
+  <rect x="1170" y="467" width="210" height="116" rx="14" class="storage"/>
+  <text x="1194" y="507" class="ink heading">Fotos</text>
+  <text x="1194" y="538" class="muted body">Armazenamento opcional</text>
+  <text x="1194" y="562" class="muted small">Acesso controlado</text>
 
-  <path d="M240 375 H295" class="flow"/>
-  <path d="M535 375 H590" class="flow"/>
-  <path d="M935 220 H990" class="flow"/>
-  <path d="M935 330 C965 330 970 400 990 400" class="flow"/>
-  <path d="M935 540 H990" class="flow"/>
-  <path d="M770 635 V680" class="flowai"/>
-  <path d="M905 535 C960 535 950 730 990 730" class="flow"/>
+  <path d="M335 222H420" class="flow"/>
+  <rect x="342" y="189" width="75" height="24" rx="6" class="label"/>
+  <text x="379" y="206" text-anchor="middle" class="ink small">HTTPS</text>
 
-  <text x="52" y="785" class="small">Dados do rascunho só seguem à IA após consentimento; a pessoa revisa e confirma antes de publicar.</text>
+  <path d="M705 350H775" class="flow"/>
+  <rect x="700" y="305" width="104" height="42" rx="6" class="label"/>
+  <text x="752" y="322" text-anchor="middle" class="ink small">HTTPS</text>
+  <text x="752" y="339" text-anchor="middle" class="ink small">JSON</text>
+
+  <path d="M1100 320H1155" class="flow"/>
+  <rect x="1091" y="276" width="94" height="38" rx="6" class="label"/>
+  <text x="1138" y="292" text-anchor="middle" class="ink small">Consulta /</text>
+  <text x="1138" y="307" text-anchor="middle" class="ink small">gravação</text>
+
+  <path d="M1100 431C1134 431 1135 520 1155 520" class="flow"/>
+  <rect x="1065" y="488" width="120" height="24" rx="6" class="label"/>
+  <text x="1125" y="505" text-anchor="middle" class="ink small">Upload / leitura</text>
+
+  <path d="M790 410C650 410 632 444 350 444" class="flow"/>
+  <rect x="544" y="415" width="154" height="24" rx="6" class="label"/>
+  <text x="621" y="432" text-anchor="middle" class="ink small">E-mail configurado</text>
+
+  <path d="M790 462C634 462 646 682 350 682" class="aiflow"/>
+  <rect x="489" y="567" width="185" height="40" rx="6" class="label"/>
+  <text x="581" y="584" text-anchor="middle" class="ink small">Título + descrição</text>
+  <text x="581" y="600" text-anchor="middle" class="ink small">após consentimento</text>
+  <path d="M350 722C619 722 627 484 790 484" class="aiflow"/>
+  <rect x="478" y="736" width="194" height="24" rx="6" class="label"/>
+  <text x="575" y="753" text-anchor="middle" class="ink small">Categoria + resumo sugeridos</text>
+
+  <line x1="420" y1="835" x2="470" y2="835" class="flow"/>
+  <text x="483" y="840" class="muted small">Conexão dentro do produto</text>
+  <line x1="720" y1="835" x2="770" y2="835" class="aiflow"/>
+  <text x="783" y="840" class="muted small">Chamada para serviço externo</text>
+  <text x="52" y="872" class="muted small">A trilha de auditoria é dado do sistema, não uma ferramenta separada. Tecnologias, provedor de IA e serviço de e-mail estão pendentes de decisão.</text>
 </svg>

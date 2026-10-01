@@ -1,15 +1,22 @@
-# Planejamento do RT02
+# Planejamento do desenvolvimento
 
-O arquivo `tarefas-rt02.csv` é a base para cadastrar o trabalho no GitHub Projects, Trello, Notion ou Excel. O grupo deve escolher uma dessas ferramentas, importar ou copiar as tarefas, atribuir responsáveis e atualizar os status durante o desenvolvimento. O CSV não afirma que um quadro externo já foi criado.
+O arquivo [plano-de-desenvolvimento.csv](plano-de-desenvolvimento.csv) oferece um ponto de partida para organizar o trabalho no GitHub Projects, Trello, Notion ou numa planilha. Ele não representa tarefas já atribuídas ou concluídas.
 
-## Colunas sugeridas para o quadro
+## Como organizar
 
-Use status **Backlog**, **Em andamento**, **Em revisão** e **Concluído**, prioridade **Alta/Média/Baixa**, responsável, prazo e vínculo para o requisito ou entrega. Separe trabalho de documentação, protótipo, desenvolvimento e revisão.
+1. Escolher a ferramenta que a equipe realmente vai atualizar.
+2. Importar ou copiar as atividades e revisar se ainda correspondem ao escopo.
+3. Definir responsáveis, prioridade, prazo e critério de conclusão; o CSV deixa esses campos sem atribuição.
+4. Dividir atividades grandes em entregas que possam ser revisadas em poucos dias.
+5. Atualizar o estado após revisar o trabalho, não apenas ao começar a tarefa.
+6. Ligar decisões e mudanças do produto às páginas do GitBook correspondentes.
 
-## Criar o quadro no GitHub sem CLI
+## Estados sugeridos
 
-No GitHub, abra a aba **Projects** do repositório ou da organização, crie um projeto em formato **Board**, adicione campos de status e prioridade e cadastre as linhas do CSV como itens. Para cada requisito funcional, vincule pelo menos uma tarefa ou cartão. A equipe pode usar o GitHub pelo navegador; não é necessário instalar o GitHub CLI.
+- **A fazer:** ainda sem início.
+- **Em andamento:** há uma pessoa responsável trabalhando.
+- **Em revisão:** a mudança está pronta para outra pessoa conferir.
+- **Concluído:** critério de conclusão atendido e artefatos/documentação atualizados.
+- **Bloqueado:** registrar o que falta e quem pode resolver.
 
-## Limites desta versão do plano
-
-Os responsáveis ainda não foram informados, então permanecem sem atribuição. O prazo geral indicado na orientação é 01/10/2026. Ajustem a ordem das tarefas e os responsáveis conforme o tempo restante e a divisão real do grupo.
+O quadro só deve ser apresentado como ativo depois de criado e atualizado pela equipe.

@@ -1,18 +1,27 @@
-# Documento de Escopo do Projeto
+# Escopo do produto
 
-VivaBairro — Definição de Escopo e Limites do Produto
+## O que o VivaBairro pretende oferecer
 
-> 🔗 **Link de Acesso ao Documento Completo:**\
-> [ Clique aqui para acessar o Documento de Escopo ](https://github.com/carlosfrochaf/VivaBairro/blob/main/assets/VivaBairro_Documento_de_Escopo.docx)<br>
+O VivaBairro é um site responsivo para consultar e publicar informações de um município por bairro. A primeira versão planejada cobre:
 
-***
+- feed de eventos, avisos e comunicados oficiais;
+- busca por texto, bairro, categoria e período;
+- criação e atualização de eventos, incluindo confirmação ou cancelamento de presença;
+- avisos de infraestrutura, mobilidade, itens perdidos e pedidos/ofertas de ajuda;
+- respostas vinculadas a pedidos de colaboração;
+- conta básica, seleção de bairros e preferências de notificação;
+- denúncia e moderação individual com justificativa, histórico e pedido de revisão;
+- administração municipal de bairros, moderadores e comunicados oficiais;
+- assistência opcional de IA para sugerir categoria e resumo, com consentimento e revisão humana.
 
-## Síntese do Documento de Escopo
+## O que não faz parte da primeira versão
 
-O **Documento de Escopo** tem como finalidade formalizar as fronteiras, os objetivos centrais, as entregas essenciais (MVP) e as diretrizes técnicas do projeto **VivaBairro**, alinhando as expectativas entre a equipe de desenvolvimento, a comunidade e a gestão pública.
+O produto não será apresentado como serviço de emergência, central de atendimento ou sistema que garante execução de serviços públicos. Também não terá rastreamento contínuo por GPS, mensagens privadas, avaliação automática de credibilidade, publicação ou moderação automática por IA, nem publicidade segmentada.
 
-&#x20;Objetivo Principal
+## Dependências e limites
 
-Estabelecer uma plataforma web comunitária estruturada por bairros para dar visibilidade a iniciativas locais (atividades, eventos e mutirões) e ocorrências de zeladoria urbana (avisos, problemas e pedidos de ajuda), reduzindo a dispersão de dados e promovendo a resolução colaborativa.
+O cadastro oficial de bairros, a autorização de administradores municipais, a operação diária da moderação e o canal para encaminhar demandas dependem de decisões e responsáveis ainda não definidos. Até que isso exista, as telas municipais representam um fluxo proposto. Integrações externas podem ser simuladas em protótipos, mas a demonstração deve identificar a simulação.
 
-###
+## Materiais de referência
+
+O arquivo Word em [assets/VivaBairro_Documento_de_Escopo.docx](../assets/VivaBairro_Documento_de_Escopo.docx) é uma versão de referência anterior, não a fonte de verdade. Esta página descreve o escopo vigente no repositório.

@@ -1,26 +1,23 @@
-# Gestão e Qualidade de Código
+# Qualidade e manutenção
 
-## Estado do repositório
+## Configuração existente
 
-O repositório atual contém principalmente documentação GitBook e assets do protótipo; ainda não há uma aplicação frontend/backend implementada. Por isso, a configuração entregue padroniza Markdown, espaços e formatação e estabelece regras a aplicar quando o código do site for iniciado. Não se afirma que exista pipeline de CI ou análise de código executada.
+Na raiz estão .editorconfig, .prettierrc.json, .markdownlint-cli2.jsonc, eslint.config.mjs e .gitattributes. Eles definem padrões de edição e ferramentas pretendidas; sua presença não significa que a aplicação ou as dependências de lint já existam.
 
-## Arquivos de configuração
+Quando a equipe escolher a stack, configurar comandos reproduzíveis para formatar, analisar e verificar o código. Registrar no README os comandos de desenvolvimento e as versões necessárias.
 
-| Arquivo | Uso |
-| --- | --- |
-| `.editorconfig` | Padroniza UTF-8, fim de linha, quebra final e indentação entre editores. |
-| `.prettierrc.json` | Define regras do formatador Prettier para Markdown, JSON, YAML, CSS e código futuro. |
-| `.markdownlint-cli2.jsonc` | Define regras automáticas de consistência para a documentação Markdown. |
-| `eslint.config.mjs` | Fornece regras iniciais para JavaScript, como igualdade estrita, aviso de variáveis não usadas e cautela com `console`. |
+## Práticas de implementação
 
-Os arquivos estabelecem a base de lint e formatação, mas as ferramentas ainda precisam ser instaladas e ligadas a comandos de verificação quando o frontend for iniciado. A configuração ESLint cobre JavaScript; se o grupo escolher TypeScript, deve incluir regras específicas para essa linguagem. Não há aplicação ainda, portanto não se afirma que lint, análise de tipos ou testes de aplicação já foram executados.
+- Separar interface, regras do produto, autorização, persistência e integrações.
+- Validar dados na entrada do servidor; não depender de controles escondidos na tela.
+- Aplicar autorização por conta, município e bairro em cada rota protegida.
+- Isolar e-mail, armazenamento e IA atrás de adaptadores, com caminho de falha.
+- Manter as entidades, transições de estado e permissões com os mesmos nomes da documentação.
+- Evitar dados pessoais em logs, exemplos, capturas e massa de demonstração.
+- Corrigir documentação, protótipo, requisitos e rastreabilidade junto à mudança que os afeta.
 
-## Práticas propostas
+## Revisão de mudanças
 
-O código futuro deve preferir componentes e funções pequenos, nomes que expliquem intenção, validação nas fronteiras da API e tratamento explícito de estados vazios e erros. Regras de negócio não devem ficar escondidas em componentes visuais. A integração de IA deve ser substituível por uma interface própria e não pode expor chaves no frontend.
+Uma revisão deve responder: qual tarefa do produto mudou? Que requisito e regra a sustentam? O que acontece fora de escopo ou quando falha? A permissão foi verificada no servidor? O desenho e a documentação continuam coerentes? Links, dados de exemplo e acessibilidade foram considerados?
 
-Os princípios SOLID serão usados como guia, sem criar abstrações desnecessárias: cada módulo terá responsabilidade clara; dependências externas, como banco e IA, serão acessadas por adaptadores; e serviços poderão ser testados sem chamar o provedor real. Pull requests devem descrever o comportamento alterado, vincular tarefas do quadro e registrar como foi verificado.
-
-## Verificações antes de integrar alterações
-
-Quem contribuir deve conferir links internos do GitBook, revisar a formatação Markdown, validar o diagrama e confirmar que toda mudança de requisito aparece nas telas ou na matriz de rastreabilidade correspondente. Quando o aplicativo existir, acrescentar verificação de lint, formatação, tipos e testes automatizados ao pipeline escolhido pelo grupo.
+Registrar quais verificações foram executadas e seu resultado; não afirmar que lint, testes, auditoria de segurança ou avaliação de acessibilidade ocorreram sem evidência.

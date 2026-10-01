@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1580" height="1040" viewBox="0 0 1580 1040" role="img" aria-labelledby="title desc">
+  <title id="title">Administração municipal e fluxo de moderação no VivaBairro</title>
+  <desc id="desc">Três telas propostas: administrar bairros e designar moderadores, limitar cada designação ao território escolhido e analisar uma publicação denunciada com motivo, auditoria e direito de revisão. Dados demonstrativos.</desc>
+  <defs>
+    <style>
+      .bg{fill:#F4F6F8}.panel{fill:#fff;stroke:#C9D4DB;stroke-width:2}.ink{fill:#173047;font-family:Arial,sans-serif}.muted{fill:#566978;font-family:Arial,sans-serif}.teal{fill:#286A72;font-family:Arial,sans-serif}.orange{fill:#BB5B34;font-family:Arial,sans-serif}.title{font-size:29px;font-weight:700}.sub{font-size:16px}.head{font-size:20px;font-weight:700}.body{font-size:14px}.small{font-size:12px}.tiny{font-size:11px}.label{font-size:11px;font-weight:700;letter-spacing:.5px}.nav{fill:#173047}.navtext{fill:#fff;font-family:Arial,sans-serif;font-size:13px}.field{fill:#fff;stroke:#C9D4DB;stroke-width:1.4}.card{fill:#E9F2F2}.warm{fill:#FFF5EF;stroke:#BB5B34;stroke-width:1.4}.primary{fill:#286A72}.outline{fill:#fff;stroke:#286A72;stroke-width:1.4}.line{stroke:#D8E0E4;stroke-width:1}.check{fill:#fff;stroke:#566978;stroke-width:1.3}
+    </style>
+  </defs>
+  <rect class="bg" width="1580" height="1040"/>
+  <text x="40" y="52" class="ink title">Administração e moderação por bairro</text>
+  <text x="40" y="80" class="muted sub">Fluxo proposto · dados fictícios · validação da autoridade municipal ainda precisa ser definida</text>
+  <text x="42" y="118" class="teal head">1 · Gerenciar equipe</text>
+  <text x="552" y="118" class="teal head">2 · Definir o escopo</text>
+  <text x="1062" y="118" class="teal head">3 · Analisar uma denúncia</text>
+
+  <g transform="translate(38 140)">
+    <rect class="panel" width="480" height="844" rx="14"/>
+    <rect class="nav" width="118" height="844" rx="14"/>
+    <rect x="103" y="0" width="15" height="844" fill="#173047"/>
+    <text x="18" y="40" class="navtext" font-weight="700">VivaBairro</text>
+    <text x="18" y="104" class="navtext">Visão geral</text>
+    <rect x="8" y="125" width="102" height="38" rx="6" fill="#286A72"/>
+    <text x="18" y="149" class="navtext">Bairros</text>
+    <text x="18" y="190" class="navtext">Equipe</text>
+    <text x="18" y="230" class="navtext">Comunicados</text>
+    <text x="18" y="270" class="navtext">Auditoria</text>
+    <text x="18" y="812" class="navtext">Sair</text>
+    <text x="140" y="42" class="ink head">Equipe municipal</text>
+    <text x="140" y="68" class="muted small">Município de demonstração · DADO FICTÍCIO</text>
+    <rect x="140" y="91" width="318" height="86" rx="8" class="warm"/>
+    <text x="156" y="119" class="orange body" font-weight="700">Acesso municipal</text>
+    <text x="156" y="143" class="muted small">A interface pressupõe conta autorizada.</text>
+    <text x="156" y="163" class="muted small">O processo de validação continua pendente.</text>
+    <text x="140" y="218" class="ink body" font-weight="700">Moderadores designados</text>
+    <text x="140" y="245" class="muted small">Bairro Centro · acesso de moderação</text>
+    <line x1="140" y1="259" x2="458" y2="259" class="line"/>
+    <text x="140" y="286" class="muted small">Bairro Jardim · acesso de moderação</text>
+    <line x1="140" y1="300" x2="458" y2="300" class="line"/>
+    <text x="140" y="327" class="muted small">Equipe de exemplo · não representa contas reais</text>
+    <rect x="140" y="362" width="318" height="48" rx="8" class="primary"/>
+    <text x="299" y="392" text-anchor="middle" class="body" fill="#fff" font-weight="700">DESIGNAR MODERADOR</text>
+    <text x="140" y="457" class="ink body" font-weight="700">Ações recentes</text>
+    <rect x="140" y="474" width="318" height="118" rx="8" class="card"/>
+    <text x="156" y="502" class="ink small">Designação, alteração ou revogação</text>
+    <text x="156" y="526" class="muted small">Exibir responsável, escopo e data.</text>
+    <text x="156" y="551" class="muted small">Este painel é um rascunho de interface.</text>
+  </g>
+
+  <g transform="translate(548 140)">
+    <rect class="panel" width="480" height="844" rx="14"/>
+    <text x="28" y="44" class="ink head">Nova designação</text>
+    <text x="28" y="73" class="muted small">A permissão fica limitada aos bairros selecionados.</text>
+    <text x="28" y="124" class="muted label">CONTA</text>
+    <rect x="28" y="136" width="424" height="48" rx="8" class="field"/>
+    <text x="44" y="166" class="ink body">moderador@exemplo.invalid · dado fictício</text>
+    <text x="28" y="220" class="muted label">PAPEL</text>
+    <rect x="28" y="232" width="424" height="48" rx="8" class="field"/>
+    <text x="44" y="262" class="ink body">Moderador municipal</text>
+    <text x="28" y="316" class="muted label">BAIRROS AUTORIZADOS</text>
+    <rect x="28" y="329" width="22" height="22" rx="3" class="check"/>
+    <text x="62" y="346" class="ink body">Centro · exemplo</text>
+    <rect x="28" y="368" width="22" height="22" rx="3" class="check"/>
+    <text x="62" y="385" class="ink body">Jardim · exemplo</text>
+    <rect x="28" y="412" width="424" height="102" rx="8" class="card"/>
+    <text x="46" y="443" class="ink body" font-weight="700">O que este papel permite</text>
+    <text x="46" y="469" class="muted small">Analisar conteúdo nos bairros marcados.</text>
+    <text x="46" y="493" class="muted small">Não concede gestão de outros bairros ou contas.</text>
+    <rect x="28" y="546" width="424" height="54" rx="8" class="primary"/>
+    <text x="240" y="580" text-anchor="middle" class="body" fill="#fff" font-weight="700">REVISAR E CONFIRMAR</text>
+    <rect x="28" y="614" width="424" height="54" rx="8" class="outline"/>
+    <text x="240" y="648" text-anchor="middle" class="teal body" font-weight="700">CANCELAR</text>
+    <text x="28" y="723" class="muted small">Confirmar mostra quem está concedendo o acesso e</text>
+    <text x="28" y="746" class="muted small">registra a ação. Revogação deve encerrar o acesso.</text>
+    <rect x="28" y="782" width="424" height="34" rx="6" class="warm"/>
+    <text x="44" y="804" class="orange tiny">Método para validar o primeiro administrador: pendente.</text>
+  </g>
+
+  <g transform="translate(1058 140)">
+    <rect class="panel" width="480" height="844" rx="14"/>
+    <text x="28" y="44" class="ink head">Fila de moderação</text>
+    <text x="28" y="73" class="muted small">Bairro Centro · escopo desta conta</text>
+    <rect x="28" y="94" width="424" height="44" rx="8" class="warm"/>
+    <text x="44" y="122" class="orange small" font-weight="700">DENÚNCIA: possível dado pessoal</text>
+    <text x="28" y="176" class="muted label">AVISO · EXEMPLO FICTÍCIO</text>
+    <text x="28" y="205" class="ink body" font-weight="700">Árvore caída perto da praça</text>
+    <text x="28" y="231" class="muted small">Bairro Centro · local público indicado</text>
+    <text x="28" y="255" class="muted small">Autor e data aparecem conforme a política de acesso.</text>
+    <line x1="28" y1="279" x2="452" y2="279" class="line"/>
+    <text x="28" y="311" class="ink body" font-weight="700">Decisão sobre este item</text>
+    <rect x="28" y="328" width="424" height="42" rx="7" class="field"/>
+    <text x="44" y="355" class="ink small">Manter · pedir correção · ocultar · remover</text>
+    <text x="28" y="403" class="muted label">MOTIVO OBRIGATÓRIO</text>
+    <rect x="28" y="416" width="424" height="95" rx="8" class="field"/>
+    <text x="44" y="447" class="muted small">Explique qual regra se aplica e qual parte</text>
+    <text x="44" y="469" class="muted small">do item precisa de ação. Não suspender conta</text>
+    <text x="44" y="491" class="muted small">automaticamente por esta publicação.</text>
+    <rect x="28" y="532" width="424" height="54" rx="8" class="primary"/>
+    <text x="240" y="566" text-anchor="middle" class="body" fill="#fff" font-weight="700">REGISTRAR DECISÃO</text>
+    <rect x="28" y="606" width="424" height="90" rx="8" class="card"/>
+    <text x="44" y="635" class="ink small" font-weight="700">Após a decisão</text>
+    <text x="44" y="659" class="muted small">Avisar o autor com ação e motivo; permitir</text>
+    <text x="44" y="680" class="muted small">pedido de revisão; guardar ator, bairro e data.</text>
+    <text x="28" y="750" class="muted small">A ação afeta este aviso, não todas as publicações</text>
+    <text x="28" y="773" class="muted small">nem a conta inteira.</text>
+  </g>
+  <text x="40" y="1018" class="muted small">Ações e textos representam um fluxo proposto. Regras de autorização, validação de representantes, retenção e prazos dependem de decisão da operação.</text>
+</svg>

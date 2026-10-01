@@ -1,44 +1,42 @@
-# Requisitos Funcionais e Não Funcionais
+# Requisitos do VivaBairro
 
-## Escopo
-
-Os requisitos descrevem a versão acadêmica do VivaBairro como site responsivo. A IA auxilia na redação e categorização de avisos; ela não publica conteúdo, confirma informações de segurança nem substitui decisões de moderadores.
+Os requisitos descrevem comportamentos e qualidades esperadas. A aplicação ainda precisa ser implementada; critérios marcados como proposta devem ser confirmados quando a equipe definir a stack e a operação.
 
 ## Requisitos funcionais
 
-| ID | Requisito | Critério de aceite |
+| ID | Requisito | Critério observável |
 | --- | --- | --- |
-| RF-01 | O sistema deve permitir criar conta, entrar e sair com credenciais válidas. | Credenciais inválidas não abrem uma sessão e a interface informa como corrigir. |
-| RF-02 | O usuário deve escolher um bairro principal e poder alterá-lo no perfil. | Feed, busca e formulário de publicação mostram o bairro selecionado. |
-| RF-03 | O sistema deve listar atividades futuras e avisos do bairro, com título, local, data e status. | Cada item abre uma visualização de detalhes. |
-| RF-04 | O usuário deve buscar e filtrar conteúdo por bairro, categoria, texto e período. | A lista atualiza os resultados e oferece mensagem quando não há correspondências. |
-| RF-05 | Um usuário autenticado deve criar e editar atividades com descrição, data, horário, local e limite opcional de participantes. | Publicações inválidas são rejeitadas com indicação dos campos que faltam. |
-| RF-06 | O usuário deve confirmar e cancelar sua participação em uma atividade. | O sistema registra uma única inscrição ativa por usuário e atualiza a disponibilidade de vagas. |
-| RF-07 | Um usuário autenticado deve criar, editar e atualizar o status de um aviso. | O autor pode marcar seu aviso como em andamento, resolvido ou encerrado. |
-| RF-08 | O usuário deve poder responder a um pedido de ajuda ou demonstrar que pode colaborar. | A resposta fica associada ao aviso e pode ser moderada conforme as regras da comunidade. |
-| RF-09 | Com consentimento explícito, o sistema deve enviar título e descrição de um rascunho de aviso ao serviço de IA para sugerir categoria e uma versão resumida. | A tela exibe as sugestões como rascunho; o autor pode aceitar, editar ou descartar cada uma. Nada é publicado sem confirmação humana. |
-| RF-10 | Se a IA falhar, exceder o tempo limite ou não retornar uma sugestão válida, o usuário deve conseguir continuar sem IA. | A interface informa a falha e preserva o texto original. |
-| RF-11 | Usuários devem poder denunciar atividade, aviso ou resposta, selecionando um motivo e adicionando contexto opcional. | A denúncia aparece na fila de moderação sem remover automaticamente o conteúdo. |
-| RF-12 | Moderadores designados pela prefeitura devem analisar conteúdo apenas nos bairros atribuídos a eles. | Ações de ocultar, restaurar ou remover exigem motivo e geram registro de auditoria. |
-| RF-13 | O autor deve receber aviso quando seu conteúdo for moderado e poder solicitar revisão. | O histórico mostra decisão, motivo e situação do pedido de revisão. |
-| RF-14 | Administradores municipais devem gerenciar bairros, designações de moderadores e comunicados oficiais. | As permissões administrativas não permitem editar silenciosamente conteúdo de moradores. |
-| RF-15 | O sistema deve notificar o usuário sobre mudanças em atividades inscritas, respostas aos seus avisos e decisões de moderação. | O usuário consegue configurar notificações e consultar a central no perfil. |
+| RF-01 | Criar conta, entrar, sair e recuperar acesso. | Credenciais inválidas não iniciam sessão; erros dizem como corrigir sem revelar se um e-mail está cadastrado. |
+| RF-02 | Escolher um município e bairro principal e acompanhar outros bairros. | Feed e publicação mostram o território ativo; conteúdo não muda de bairro por trocar a preferência do perfil. |
+| RF-03 | Consultar eventos, avisos e comunicados permitidos. | Cada cartão mostra tipo, bairro, local, data e estado e abre detalhes. |
+| RF-04 | Buscar e filtrar por texto, bairro, categoria e período. | Filtros ativos ficam visíveis e podem ser limpos; resultado vazio explica como ampliar a busca. |
+| RF-05 | Criar e editar eventos próprios com objetivo, data/hora, local e capacidade opcional. | Campos obrigatórios são validados; uma edição mostra o que mudou e notifica participantes quando a data, hora, local ou cancelamento mudar. |
+| RF-06 | Confirmar e cancelar presença. | Uma conta tem uma inscrição ativa por evento; capacidade concorrida não ultrapassa o limite. Política de lista de espera ainda precisa de decisão. |
+| RF-07 | Criar, editar e atualizar o estado dos avisos próprios. | O autor vê o estado atual e o histórico de atualização; a interface não oferece ações incompatíveis com o estado. |
+| RF-08 | Responder a um pedido ou oferta de colaboração. | Resposta fica ligada ao aviso e pode ser denunciada ou moderada individualmente. |
+| RF-09 | Solicitar uma sugestão de categoria/resumo por IA após consentir. | Antes do envio, a pessoa vê quais campos serão enviados, que serviço externo os processará e pode aceitar ou continuar sem IA. Sugestões são editáveis; nada é publicado automaticamente. |
+| RF-10 | Continuar sem IA em caso de recusa, timeout, falha ou resposta inválida. | O texto original permanece no formulário; erro não apaga o rascunho nem bloqueia publicação manual. |
+| RF-11 | Denunciar evento, aviso ou resposta. | A denúncia pede motivo, aceita contexto opcional e entra na fila sem remoção automática. A identidade de quem denunciou não aparece publicamente. |
+| RF-12 | Moderar conteúdo dentro do território autorizado. | O servidor recusa ações fora do município/bairro designado. Cada ação individual exige motivo e gera histórico. |
+| RF-13 | Avisar o autor de uma decisão e oferecer revisão. | A notificação identifica item, ação, motivo e caminho para recurso; o recurso tem estado consultável. |
+| RF-14 | Administrar bairros, designações e comunicados oficiais do município vinculado. | Toda ação confere escopo no servidor e registra concedente/ator, data e alteração; conteúdo de moradores não é editado em silêncio. |
+| RF-15 | Consultar e configurar notificações. | A pessoa controla tipos opcionais; alterações/cancelamento de eventos inscritos e decisões sobre conteúdo seguem preferências e política ainda a definir. |
 
 ## Requisitos não funcionais
 
-| ID | Requisito | Como verificar |
+| ID | Alvo proposto | Como verificar quando houver implementação |
 | --- | --- | --- |
-| RNF-01 Desempenho | Em condições normais de uso, 95% das consultas comuns devem responder em até 2 segundos. A chamada de IA terá limite próprio e não bloqueará a publicação manual. | Medir tempos de resposta em consultas de feed, busca e detalhes; simular timeout da IA. |
-| RNF-02 Responsividade | As páginas devem funcionar em celulares e computadores, sem rolagem horizontal para o conteúdo principal. | Conferir larguras pequenas, médias e grandes e testar em navegador móvel. |
-| RNF-03 Segurança | O tráfego deve usar HTTPS; senhas devem ser armazenadas com hash seguro; dados sensíveis e backups devem ter proteção apropriada em repouso; autorização deve ser aplicada no servidor. | Revisar configuração, rotas e testes de acesso por papel e bairro. |
-| RNF-04 Proteção de credenciais de IA | Chaves de API não podem estar no navegador, no repositório ou em mensagens de erro. Chamadas à IA passam pelo backend. | Busca no código e revisão das variáveis de ambiente antes de publicar. |
-| RNF-05 Privacidade | A localização residencial exata não é necessária. A integração de IA envia somente o texto necessário após consentimento e deve informar que um serviço externo será usado. | Revisar formulários, fluxo de consentimento, payload e política de privacidade. |
-| RNF-06 Acessibilidade | Formulários devem ter rótulos, foco visível, contraste legível e operação por teclado; mensagens de erro devem ser compreensíveis. | Revisão manual com teclado e leitor de tela e lista de verificação de acessibilidade. |
-| RNF-07 Confiabilidade | Indisponibilidade da IA não pode impedir criar um aviso manualmente. Falhas devem preservar o rascunho sempre que possível. | Simular serviço externo indisponível e verificar recuperação do formulário. |
-| RNF-08 Manutenibilidade | Interface, regras de negócio, persistência, moderação e integração de IA devem permanecer separados em módulos. | Revisão do diagrama e do código durante pull requests. |
-| RNF-09 Auditabilidade | Ações de moderação devem registrar ator, publicação, data, decisão e justificativa. | Consultar o registro após cada ação de moderação. |
-| RNF-10 Compatibilidade | O site deve operar nas versões atuais dos navegadores móveis e desktop escolhidos para a demonstração acadêmica. | Rodar o roteiro de verificação nos navegadores definidos pelo grupo. |
+| RNF-01 Desempenho | Manter consultas comuns de feed, busca e detalhes abaixo de 2 s no percentil 95. É um alvo inicial, não uma medição. | Antes de aceitar o resultado, registrar versão, ambiente, quantidade de dados, concorrência simulada, amostra de requisições e percentis. Medir separadamente chamadas externas de IA. |
+| RNF-02 Responsividade | Conteúdo utilizável em celular, tablet e desktop, sem rolagem horizontal da página. | Definir e registrar larguras de referência; conferir feed, formulário e painel municipal nessas larguras, incluindo zoom de texto. |
+| RNF-03 Segurança | HTTPS em implantação; senhas com hash apropriado; autorização verificada no servidor; segredos fora do navegador e do repositório. | Revisar configuração de implantação e tentar acesso indevido por papel, usuário e bairro; não apresentar revisão como auditoria certificada. |
+| RNF-04 Segredos externos | Chaves de API nunca aparecem em bundle, resposta de erro ou histórico versionado. | Conferir chamadas pelo backend e revisar variáveis de ambiente antes de implantar. |
+| RNF-05 Privacidade | Não exigir endereço residencial ou GPS contínuo. Só enviar à IA os campos necessários depois do consentimento. | Conferir formulários, payload, retenção e aviso de consentimento. Definir finalidade, responsável e retenção antes de usar dados reais. |
+| RNF-06 Acessibilidade | Formulários com rótulos associados, foco visível, operação por teclado, contraste legível e erros compreensíveis. | Fazer roteiro com teclado, ampliação e leitor de tela; registrar falhas. Não declarar conformidade sem avaliação apropriada. |
+| RNF-07 Recuperação | Falha de IA ou conexão não deve descartar texto já inserido. | Interromper a chamada e a conexão em diferentes etapas; verificar recuperação do rascunho e fluxo manual. |
+| RNF-08 Manutenibilidade | Separar interface, regras de negócio, autorização, persistência e integrações externas. | Revisar a estrutura quando a aplicação existir; documentar uma decisão quando a separação exigir uma exceção. |
+| RNF-09 Auditabilidade | Registrar ações municipais e de moderação com ator, escopo, item, motivo e data. | Conferir os registros ao conceder/revogar papel, moderar e revisar; definir retenção e acesso aos logs. |
+| RNF-10 Compatibilidade | Suportar os navegadores e versões escolhidos pela equipe para a implantação. | Publicar a matriz de navegadores e guardar os resultados do roteiro de verificação. |
 
-## Regras de segurança e limites da IA
+## Limites da assistência de IA
 
-A IA somente produz sugestões de categoria e redação. Não determina se um aviso é verdadeiro, urgente ou seguro; não identifica pessoas; não contata a prefeitura; não publica automaticamente; e não decide denúncias ou sanções. O usuário revisa o resultado e permanece responsável pela publicação. Se o texto contiver dados pessoais, a tela deve orientar a remoção antes do envio.
+A IA pode sugerir somente categoria e redação de aviso. Não verifica verdade, urgência ou segurança; não identifica pessoas; não decide denúncia ou sanção; não encaminha demanda; e não publica. A interface mantém modo manual. A equipe ainda precisa escolher provedor, retenção, política de dados e mensagens finais de consentimento antes de usar serviço real.

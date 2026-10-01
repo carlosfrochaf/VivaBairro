@@ -1,46 +1,40 @@
-# Wireframes e Telas Principais
+# Protótipo e fluxos de interface
 
-## Direção visual e dispositivos
+## Direção atual
 
-O protótipo parte da identidade existente: azul-petróleo, azul-marinho, verde-água e coral; cartões com cantos arredondados; títulos curtos; localização e status visíveis; navegação simples. A implementação proposta é um site responsivo, com prioridade para celular e adaptação a telas largas.
+O export vetorial atualizado em [protótipo mobile](../assets/prototipo-vivabairro.svg) mostra entrada, feed, detalhe de evento, confirmação de presença, criação de aviso e perfil. A interface usa azul-marinho, verde-petróleo, verde-água e coral, com navegação mobile-first.
 
-## Protótipo de alta fidelidade existente
+Nomes, bairros, contagens e eventos no fluxo mobile são exemplos fictícios, não contas ou dados de uso reais. O SVG atual usa a lista “Próximas atividades” do bairro selecionado e substitui a métrica sem regra por bairros acompanhados. O JPG que permanece em assets é uma captura anterior e não representa esses ajustes; usar o SVG como versão de referência. Não mostrar métricas de uso sem fonte.
 
-![Protótipo mobile do VivaBairro](../.gitbook/assets/prototipo-vivabairro.jpg)
+## Fluxo opcional de IA
 
-O material inclui boas-vindas, início com atividades e avisos, detalhe de atividade, confirmação de presença, criação de aviso e perfil. As telas existentes cobrem cadastro/entrada, função principal, participação, publicação e perfil. A recomendação de eventos pode personalizar a descoberta, mas não representa a integração de IA exigida no fluxo de aviso.
+![Três etapas: escrever, consentir e revisar sugestões](../assets/fluxo-ia-avisos.svg)
 
-## Fluxo complementar de IA
+O fluxo acrescenta uma decisão explícita antes de enviar título e descrição a um provedor externo. A caixa de autorização começa desmarcada; a tela informa os campos enviados, o uso e a alternativa sem IA. O resultado deixa categoria e resumo editáveis, mantém o original e exige uma confirmação de publicação separada.
 
-O protótipo abaixo acrescenta as telas que faltavam ao fluxo de publicação. A pessoa pode escrever o aviso manualmente ou pedir sugestões opcionais de categoria e resumo. Na tela de resultado, ela revisa cada sugestão antes de aplicar e ainda confirma a publicação por conta própria.
+Antes de usar serviço real, decidir provedor, política de retenção, texto final de consentimento e canal para explicar tratamento de dados. A tela atual é um fluxo proposto; a caixa está desenhada como estado ainda não autorizado.
 
-![Telas de ação e resultado da IA](../assets/fluxo-ia-avisos.svg)
+## Fluxo de administração e moderação
 
-### Tela de ação da IA
+![Administração de bairros, designação territorial e análise de conteúdo](../assets/fluxo-moderacao-municipal.svg)
 
-O formulário mantém título, descrição, bairro e ponto de referência. A ação “Sugerir categoria e resumo” explica que o texto será processado por um serviço de IA. A pessoa pode continuar sem aceitar, usar o serviço ou cancelar. Uma indicação de carregamento informa que a sugestão está sendo preparada.
+O material mostra designação restrita a bairros, análise de um item, motivo obrigatório e histórico. A validação de quem pode ser o primeiro administrador municipal está marcada como pendente porque o processo ainda não foi decidido. Dados são fictícios.
 
-### Tela de resultado da IA
+## Telas que completam o produto
 
-A resposta mostra a categoria sugerida e um resumo editável, identificados como sugestões. Cada item pode ser aplicado ou descartado. A tela preserva o texto original, explica que a IA pode errar e deixa claro que nada é publicado até a confirmação final.
+A próxima revisão do arquivo de design deve contemplar:
 
-## Mapa dos fluxos e telas principais
+- cadastro, recuperação de acesso e escolha de município/bairro;
+- busca e filtros, lista vazia e erro de conexão;
+- formulário e edição de evento, lotação, mudança de horário e cancelamento;
+- criar/editar aviso, atualizar estado e oferecer ajuda;
+- central de notificações e preferências;
+- denúncia, fila de moderação, pedido de ajuste, ocultação, remoção, restauração e recurso;
+- designação/revogação de moderador e criação/correção de comunicado municipal;
+- estados de carregamento, falha e recuperação de rascunho.
 
-| Tela ou fluxo | Objetivo | Ação principal |
-| --- | --- | --- |
-| Boas-vindas / Entrar | Apresentar o serviço e autenticar ou criar conta. | Entrar ou criar conta. |
-| Início / Feed do bairro | Encontrar atividades futuras, avisos e comunicados. | Abrir publicação, buscar ou trocar de bairro. |
-| Detalhe de atividade | Exibir objetivo, data, local, organizador e vagas. | Confirmar participação. |
-| Resultado da participação | Confirmar sucesso e apresentar os próximos passos. | Ver minhas atividades ou voltar ao início. |
-| Criar aviso / Ação de IA | Registrar problema ou pedido de ajuda, com assistência opcional. | Pedir sugestões ou publicar manualmente. |
-| Resultado da IA | Permitir revisar e editar as sugestões recebidas. | Aplicar sugestões ou descartá-las; confirmar publicação separadamente. |
-| Perfil e configurações | Gerenciar bairro, dados, avisos, inscrições e notificações. | Editar preferências e acompanhar publicações. |
-| Moderação municipal | Analisar denúncias de bairros atribuídos e registrar decisões. | Manter, pedir ajuste, ocultar ou remover com justificativa. |
+## Revisão de conteúdo visual
 
-## Estados que precisam ser prototipados
+Usar rótulos que correspondam aos documentos: “evento” para atividade, “aviso” para ocorrência comunitária, “comunicado municipal” para publicação oficial. Distinguir esses tipos pela palavra e contexto, não só por cor. Marcar qualquer dado de demonstração como fictício; não usar nomes, estatísticas ou recomendações sem regra. Em formulários sensíveis, apresentar privacidade, confirmação e recuperação junto à ação correspondente.
 
-Além das telas principais, o fluxo deve mostrar carregamento da IA, falha/timeout, resposta inválida, ausência de conexão, formulário com erros, aviso publicado e publicação encaminhada para moderação. Em todos os casos, o rascunho original deve permanecer disponível. A pessoa deve conseguir publicar sem usar IA.
-
-## Critérios de revisão de usabilidade
-
-Os campos devem ter rótulos claros, exemplos próximos ao formato esperado e mensagens de erro que indiquem como corrigir. Ações primárias devem ser distinguíveis das ações de voltar ou cancelar. Sugestões da IA não podem ser visualmente confundidas com fatos confirmados. Em celular, botões devem ser fáceis de tocar; em desktop, conteúdo deve aproveitar o espaço sem esticar excessivamente as linhas de texto.
+As telas propostas ainda precisam ser percorridas com participantes. Registrar versão, tarefa, dúvida observada e alteração escolhida; não afirmar que a interface foi validada antes de realizar essas sessões.

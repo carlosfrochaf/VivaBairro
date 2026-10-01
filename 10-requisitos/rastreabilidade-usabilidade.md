@@ -1,15 +1,24 @@
-# Rastreabilidade entre Requisitos e Usabilidade
+# Rastreabilidade entre necessidades, requisitos e interface
 
-Esta matriz conecta requisitos do VivaBairro às telas e aos princípios de usabilidade adotados. Os princípios aqui descritos são aplicados como critérios para revisão do protótipo, não como alegação de conformidade certificada.
+Esta matriz mostra quais tarefas o protótipo precisa sustentar. Os princípios servem como critérios de revisão; não são uma declaração de conformidade nem resultado de pesquisa concluída.
 
-| Requisitos | Tela ou fluxo | Princípio aplicado | Decisão de interface |
+| Necessidade/tarefa | Requisitos | Tela ou fluxo necessário | O que observar |
 | --- | --- | --- | --- |
-| RF-01, RF-02 | Entrada, cadastro e escolha do bairro | Correspondência com o contexto e prevenção de erros | Explicar por que o bairro é solicitado e permitir alterá-lo no perfil. |
-| RF-03, RF-04 | Feed, busca e filtros | Reconhecimento em vez de memorização | Mostrar categoria, bairro, data e status nos próprios cartões; preservar filtros ativos. |
-| RF-05, RF-07 | Formulários de atividade e aviso | Prevenção e recuperação de erros | Rótulos persistentes, campos obrigatórios claros e mensagens junto ao campo com problema. |
-| RF-06 | Confirmação e cancelamento de presença | Visibilidade do estado do sistema e controle do usuário | Mostrar confirmação, vagas e opção de cancelamento. |
-| RF-09, RF-10 | Ação e resultado da IA | Transparência, controle e tolerância a falhas | Consentimento antes do envio, sugestões marcadas como IA, edição e alternativa manual. |
-| RF-11, RF-12, RF-13 | Denúncia e moderação | Prevenção de dano e prestação de contas | Pedir motivo, registrar decisão, informar o autor e oferecer solicitação de revisão. |
-| RF-14 | Administração municipal | Visibilidade de permissões e escopo | Exibir bairro e papel do moderador; restringir as ações no servidor. |
-| RF-15 | Perfil e notificações | Controle e liberdade do usuário | Permitir escolher categorias de notificação e desligar lembretes opcionais. |
-| RNF-02, RNF-06 | Todas as telas | Design responsivo e acessibilidade | Conteúdo adapta-se ao tamanho de tela; foco, rótulos e estados não dependem apenas de cor. |
+| Encontrar evento por bairro e período | RF-02, RF-03, RF-04 | Escolha de bairro, feed, busca/filtros e detalhe | A pessoa identifica bairro, data, local e estado; entende quando não há resultados. |
+| Confirmar ou cancelar presença | RF-05, RF-06, RF-15 | Detalhe, confirmação e lista de minhas atividades | Vagas, confirmação e cancelamento são compreendidos; evitar duplicidade de inscrição. |
+| Publicar aviso manualmente | RF-07 | Formulário, validação e confirmação de publicação | Campos e localização pública são entendidos; erro não apaga o rascunho. |
+| Usar sugestão opcional de IA | RF-09, RF-10 | Pedido, consentimento explícito, resultado editável e alternativa manual | A pessoa sabe exatamente o que será enviado, reconhece sugestões e consegue recusar. |
+| Oferecer ajuda ou atualizar aviso | RF-07, RF-08, RF-15 | Detalhe de aviso, resposta e atualização de estado | Resposta fica ligada ao aviso; status não é confundido com confirmação oficial. |
+| Denunciar e acompanhar análise | RF-11, RF-13 | Formulário de denúncia e estado da solicitação | Motivo é claro; identidade do denunciante fica protegida; envio não oculta o item automaticamente. |
+| Moderar item no bairro autorizado | RF-12, RF-13 | Fila, detalhe da publicação, ação com motivo e revisão | Bairro/escopo ficam visíveis; cada ação é individual, explicável e registrada. |
+| Designar moderadores | RF-14 | Administração de equipe e bairros | Administrador entende a abrangência e pode revogar; não há concessão para outro município. |
+| Publicar comunicado municipal | RF-14, RF-15 | Formulário de comunicado e cartão do feed | Órgão e origem aparecem; destaque não se parece com selo de verdade independente. |
+| Usar em telas e tecnologias diferentes | RNF-02, RNF-06, RNF-10 | Todos os fluxos, incluindo painel municipal | Navegação por teclado, ampliação, foco, rótulos, mensagens e adaptação do layout. |
+
+## Princípios para revisão
+
+Dar retorno visível após ações; usar termos conhecidos pelo público; evitar perda de rascunhos; pedir confirmação antes de ações irreversíveis; permitir voltar e corrigir; marcar origem e estado das informações; não depender apenas de cor; limitar ações administrativas ao escopo exibido e autorizado.
+
+## Registro de sessões
+
+Depois de cada avaliação, registrar data, versão do protótipo, tarefas tentadas, perfil geral dos participantes, problemas observados e mudanças decididas. Não inventar resultados ou publicar detalhes que identifiquem participantes. Até realizar sessões, esta matriz é um plano de verificação.

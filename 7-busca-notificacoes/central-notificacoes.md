@@ -1,23 +1,22 @@
-# Central de Notificações (In-App e E-mail)
+# Central de notificações
 
-O motor de notificações do **VivaBairro** foca em relevância e pontualidade, sem praticar envio invasivo (*spam*).
+Notificações explicam o que aconteceu e levam à publicação ou configuração relacionada. A central mostra data, tipo, estado de leitura e origem da mensagem.
 
----
+## Eventos que podem gerar notificação
 
-## Canais de Entrega
+| Evento | Destinatário | Preferência |
+| --- | --- | --- |
+| Mudança de data, horário ou local de evento | Pessoas com presença confirmada | A atualização deve ficar na central; escolher se e-mail é opcional ou obrigatório para alterações críticas antes da implantação. |
+| Cancelamento de evento | Pessoas com presença confirmada | Exibir cancelamento e motivo informado; política de canal precisa ser decidida. |
+| Resposta a aviso ou oferta de ajuda | Autor do aviso | Configurável por tipo e canal. |
+| Decisão ou recurso de moderação | Autor e, no recurso, moderadores envolvidos | Entrega privada; não pode ser substituída por uma publicação no feed. |
+| Comunicado municipal | Pessoas que acompanham bairros afetados | Configurável; comunicados destacados também aparecem no feed. |
+| Lembrete de evento | Pessoas com presença confirmada | Opcional; frequência e antecedência precisam ser definidas. |
 
-* **Notificações In-App (No Site):** Sino de notificações no cabeçalho com badges de eventos não lidos.
-* **Notificações Transacionais por E-mail:** Envio imediato para alertas de segurança e mudanças críticas de eventos.
+## Regras de entrega
 
----
-
-## Gatilhos e Eventos Notificáveis
-
-| Gatilho do Sistema | Canal In-App | Canal E-mail | Configurável no Perfil? |
-| :--- | :---: | :---: | :---: |
-| **Mudança de local ou horário em evento inscrito** | Sim | Sim | Não (Crítico) |
-| **Cancelamento de evento inscrito** | Sim | Sim | Não (Crítico) |
-| **Resposta ao seu Pedido de Ajuda / Aviso** | Sim | Opcional | Sim |
-| **Decisão de Moderação sobre Publicação Própria** | Sim | Sim | Não (Auditoria) |
-| **Comunicado de Emergência da Prefeitura/Defesa Civil** | Sim | Sim | Não (Segurança Pública) |
-| **Lembrete de Véspera de Evento** | Sim | Opcional | Sim |
+- Cada alerta leva ao item afetado e identifica quem ou qual órgão originou a atualização.
+- Alterar preferências não apaga notificações já recebidas.
+- Falha de e-mail não deve apagar o registro da central; registrar falha sem expor conteúdo sensível em logs.
+- Não enviar notificações de resposta a quem denunciou se isso revelar sua identidade.
+- Frequência, retenção, horários silenciosos e canal para atualizações críticas ainda precisam de decisão operacional.

@@ -1,36 +1,32 @@
-# Visão do Produto e Lean Canvas
+# Visão do produto e hipóteses de negócio
 
-## Product Vision Board
+## Visão
 
-| Elemento | Definição |
-| --- | --- |
-| Visão | Ajudar pessoas de um mesmo bairro a encontrar informações locais confiáveis, participar de iniciativas e colaborar para resolver necessidades comunitárias. |
-| Público | Moradores, organizadores comunitários, comerciantes locais e equipes municipais responsáveis por bairros e comunicados. |
-| Necessidade | Eventos e avisos locais ficam dispersos, perdem contexto e não deixam claro se uma situação continua aberta ou já foi resolvida. |
-| Produto | Um site responsivo organizado por bairro, com atividades, avisos, pedidos de ajuda, notificações e moderação municipal transparente. |
-| Valor principal | Encontrar e compartilhar informações locais com contexto, localização e situação atual, sem depender de grupos extensos de mensagens. |
-| Diferencial | Conteúdo estruturado por bairro e status, participação em eventos e governança com moderadores municipais identificados. |
+O VivaBairro reúne eventos, avisos e pedidos de colaboração de um município em páginas organizadas por bairro. Quem mora ou atua na região consegue consultar o que vai acontecer, publicar uma informação local e acompanhar as atualizações. Canais municipais aparecem identificados e a moderação tem escopo e histórico visíveis.
 
-## Lean Canvas
+## Canvas de produto
 
-| Bloco | Hipótese atual |
-| --- | --- |
-| Problema | Informações comunitárias se perdem em conversas; avisos ficam desatualizados; é difícil descobrir eventos próximos; pedidos de ajuda não alcançam as pessoas adequadas. |
-| Segmentos de usuários | Moradores que consultam informações; pessoas que organizam eventos; comerciantes e associações; prefeitura e moderadores designados. |
-| Proposta única de valor | O que acontece no bairro, organizado e atualizado em um único lugar. |
-| Solução | Feed de atividades e avisos; publicação guiada; confirmação de presença; status de resolução; assistência opcional de IA para estruturar avisos; painel municipal de moderação. |
-| Canais | Site responsivo, divulgação por associações e canais municipais e compartilhamento de links de publicações. |
-| Receitas ou sustentação | Hipótese acadêmica: operação apoiada pelo município ou por parceria institucional. Não haverá anúncios direcionados no escopo inicial. |
-| Custos | Desenvolvimento e hospedagem do site, banco de dados, envio de notificações, armazenamento de imagens, operação de moderação e eventual uso de API de IA. |
-| Métricas-chave | Atividades publicadas e realizadas; confirmações e comparecimento; avisos atualizados ou resolvidos; tempo de análise de denúncias; usuários ativos por bairro. |
-| Vantagem difícil de copiar | Rede local de participantes e organizadores, parceria com a prefeitura e histórico organizado de informações por território. |
+Os pontos abaixo descrevem hipóteses de trabalho, não resultados comprovados.
 
-## Revisão da visão após o RT01
-
-Esta versão detalha a proposta existente no protótipo: atividades próximas, publicação de avisos, seleção de bairro, perfil e participação. Também inclui governança municipal e uma função de IA que ajuda a estruturar avisos, mantendo a decisão final com a pessoa que publica.
-
-O material recebido até agora não contém uma lista dos feedbacks específicos da apresentação RT01. Para não atribuir comentários inexistentes ao grupo, a revisão está registrada como hipótese baseada no protótipo e no escopo atual. Antes da entrega, o grupo deve acrescentar aqui cada feedback real, a decisão tomada e a alteração correspondente.
-
-| Feedback recebido no RT01 | Decisão do grupo | Mudança no produto/documento |
+| Elemento | Hipótese atual | Evidência ou próxima validação |
 | --- | --- | --- |
-| A preencher com o feedback real | A preencher | A preencher |
+| Problema | Informações locais se dispersam em conversas e redes; é difícil saber se um evento ou aviso continua válido. | Ainda sem pesquisa registrada. Conversar com moradores e organizadores; coletar exemplos de como hoje encontram e atualizam essas informações. |
+| Públicos | Moradores, organizadores locais, entidades/comércios e equipes municipais têm necessidades relacionadas, mas diferentes. | Perfis são provisórios. Confirmar tarefas e limitações com pessoas de cada grupo antes de priorizar funções. |
+| Proposta de valor | Encontrar e compartilhar informação do bairro com local, data e situação claros. | Testar se pessoas conseguem encontrar, publicar e atualizar um item no protótipo. |
+| Solução | Feed por bairro, busca, eventos com confirmação de presença, avisos com status, respostas de colaboração e comunicados oficiais. | Verificar os fluxos e a necessidade de cada função; o escopo pode diminuir com base no teste. |
+| Diferencial | Informações organizadas por território e estado, com origem municipal identificada e moderação explicável. | Ainda não foi comparado com canais já usados nos bairros escolhidos. |
+| Canais | Site responsivo; divulgação futura por associações, entidades locais e canais municipais. | Parcerias não estão confirmadas. Validar quais canais as pessoas realmente usam. |
+| Sustentação | Uma instituição ou município poderia apoiar a operação; custos incluem hospedagem, armazenamento, notificações e moderação. | Modelo financeiro e responsável pela operação não definidos. |
+| Sinais de uso | Pessoas encontram eventos, confirmam presença, atualizam avisos e recebem respostas úteis. | Instrumentação e metas ainda não definidas; estabelecer após validar fluxos e política de privacidade. |
+| Riscos | Baixa adesão, informação desatualizada, denúncias abusivas e expectativa de atendimento municipal. | Testar mensagens de escopo, regras de atualização e moderação; combinar operação antes de um piloto real. |
+
+## Limites atuais do conhecimento
+
+O repositório não contém entrevistas, observações de campo, dados de uso ou compromissos da prefeitura. Não afirmar que moradores pediram uma função, que o município apoiará o serviço ou que a plataforma já reduz problemas. Ao realizar pesquisa, registrar método, data, perfil geral das pessoas participantes, achados e limitações, sem publicar dados identificáveis.
+
+## Decisões a validar
+
+- Qual município e quais bairros serão usados no primeiro piloto ou demonstração com dados locais?
+- Quem será responsável por responder comunicados e moderar conteúdo no cotidiano?
+- Qual canal existente as pessoas usam hoje, e o que realmente se perde nele?
+- Quais funções são indispensáveis para testar a proposta antes de implementar notificações, IA ou integrações municipais?

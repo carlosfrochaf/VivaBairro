@@ -1,27 +1,20 @@
-# Status e Atualização de Ocorrências
+# Estados e atualizações de avisos
 
-Um dos maiores problemas das redes sociais convencionais é que problemas antigos e já resolvidos continuam circulando e gerando desinformação. No **VivaBairro**, cada aviso possui um **ciclo de vida ativo**.
+Cada aviso mostra se ainda requer atenção. Um estado não comprova, por si só, que o município confirmou uma ocorrência.
 
----
+| Estado | Quando usar | Quem pode alterar |
+| --- | --- | --- |
+| Aberto | Aviso ou pedido recém-publicado e ainda relevante. | Autor; moderação pode corrigir após contato e com registro. |
+| Em andamento | O autor informa que alguém está atuando ou há resposta relacionada. | Autor. Equipe municipal pode publicar uma atualização oficial vinculada quando houver informação de seu órgão. |
+| Resolvido | Autor informa que a necessidade foi atendida ou problema corrigido. | Autor. Equipe municipal pode acrescentar confirmação oficial separada; não sobrescrever a origem. |
+| Encerrado | O pedido não é mais necessário ou perdeu validade. | Autor; moderação pode encerrar item desatualizado seguindo regra publicada. |
 
-## Estados de um Aviso
+## Histórico e apresentação
 
-| Status | Badge / Visual | Significado | Exemplo de Aplicação |
-| :--- | :--- | :--- | :--- |
-| **Aberto / Novo** | `Aberto` | Ocorrência recém-reportada aguardando ação ou atenção da comunidade/órgãos. | Buraco aberto na via recentemente. |
-| **Em Andamento** | `Em Andamento` | A prefeitura, associação ou moradores já estão atuando na resolução. | Equipe da concessionária no local trocando o poste. |
-| **Resolvido** | `Resolvido` | O problema foi sanado com sucesso. | Árvore caída já recolhida e rua liberada. |
-| **Encerrado** | `Não é mais necessário`| O aviso perdeu a validade ou o pedido de ajuda foi atendido por outro canal. | Pet perdido já reencontrado pelo dono. |
+Guardar quem alterou o estado, quando e a origem da informação. Se o autor marcar como resolvido, mostrar “resolvido pelo autor”; se houver atualização de um órgão, mostrar o órgão e a data. Não usar um selo que sugira confirmação oficial quando ela não ocorreu.
 
----
+O autor pode corrigir ou encerrar seu aviso. A moderação pode ocultar ou remover por violação de regra, mas isso é uma ação de moderação separada do estado operacional. O sistema deve avisar o autor quando outra conta fizer uma alteração.
 
-## Quem Pode Atualizar o Status?
+## Reabertura e validade
 
-* **O Autor da Publicação:** Pode editar o texto e alterar o status a qualquer momento.
-* **Moderadores e Prefeitura:** Podem atualizar o status mediante confirmação da zeladoria urbana (registrando a autoria da alteração no histórico do aviso).
-
-```
- [Aviso Criado] ──► [Em Andamento] ──► [Resolvido / Concluído]
-       │                                       ▲
-       └───────────────────────────────────────┘
-```
+Permitir ao autor reabrir um aviso se a situação voltar, preservando atualizações anteriores. O prazo de expiração automática, retenção e reabertura após remoção de conteúdo ainda precisam de política definida; não descartar um aviso silenciosamente.

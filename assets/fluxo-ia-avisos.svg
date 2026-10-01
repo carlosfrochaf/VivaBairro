@@ -1,68 +1,97 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="950" viewBox="0 0 1120 950" role="img" aria-labelledby="title desc">
-  <title id="title">Fluxo de assistência de IA na criação de um aviso do VivaBairro</title>
-  <desc id="desc">Duas telas mobile: preenchimento do aviso e revisão de categoria e resumo sugeridos pela IA antes da publicação.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1580" height="1020" viewBox="0 0 1580 1020" role="img" aria-labelledby="title desc">
+  <title id="title">Fluxo de consentimento e sugestões opcionais de IA para um aviso</title>
+  <desc id="desc">Três telas mobile: escrever um aviso, decidir explicitamente se título e descrição podem ser enviados a um provedor externo e revisar as sugestões antes de publicar. Há sempre uma alternativa sem IA.</desc>
   <defs>
     <style>
-      .page{fill:#F1F4F8}.phone{fill:#FBFCFE;stroke:#D8E0EA;stroke-width:2}.ink{fill:#14253D;font-family:Arial,sans-serif}.muted{fill:#687688;font-family:Arial,sans-serif}.teal{fill:#286A72;font-family:Arial,sans-serif}.title{font-size:25px;font-weight:700}.section{font-size:17px;font-weight:700}.body{font-size:13px}.small{font-size:11px}.label{font-size:10px;font-weight:700;letter-spacing:1px}.button{font-size:12px;font-weight:700}.field{fill:#fff;stroke:#D8E0EA;stroke-width:1.5}.card{fill:#E4F3F1}.outline{fill:#fff;stroke:#286A72;stroke-width:1.5}
+      .bg{fill:#F4F6F8}.phone{fill:#fff;stroke:#C9D4DB;stroke-width:2}.ink{fill:#173047;font-family:Arial,sans-serif}.muted{fill:#566978;font-family:Arial,sans-serif}.teal{fill:#286A72;font-family:Arial,sans-serif}.title{font-size:29px;font-weight:700}.sub{font-size:16px}.head{font-size:21px;font-weight:700}.body{font-size:15px}.small{font-size:13px}.label{font-size:12px;font-weight:700;letter-spacing:.5px}.field{fill:#fff;stroke:#C9D4DB;stroke-width:1.5}.card{fill:#E9F2F2}.notice{fill:#FFF5EF;stroke:#BB5B34;stroke-width:1.5}.primary{fill:#286A72}.secondary{fill:#fff;stroke:#286A72;stroke-width:1.5}.disabled{fill:#D6E0E4}.check{fill:#fff;stroke:#566978;stroke-width:1.5}.tag{fill:#173047}
     </style>
   </defs>
-  <rect class="page" width="1120" height="950"/>
-  <text x="60" y="52" class="ink title">VivaBairro · Assistência de IA para avisos</text>
-  <text x="60" y="78" class="muted body">A IA sugere; a pessoa revisa e decide o que publicar.</text>
+  <rect class="bg" width="1580" height="1020"/>
+  <text x="42" y="54" class="ink title">Publicar com ou sem ajuda de IA</text>
+  <text x="42" y="82" class="muted sub">Fluxo proposto · consentimento antes do envio · dados de exemplo identificados</text>
+  <text x="52" y="119" class="teal head">1 · Escrever</text>
+  <text x="557" y="119" class="teal head">2 · Escolher sobre o envio</text>
+  <text x="1062" y="119" class="teal head">3 · Revisar sugestões</text>
 
-  <g transform="translate(60 112)">
-    <rect class="phone" width="460" height="790" rx="28"/>
-    <text x="28" y="42" class="teal section">Novo aviso</text>
-    <text x="28" y="68" class="muted body">Compartilhe algo importante no seu bairro.</text>
-    <text x="28" y="111" class="muted label">TÍTULO</text>
-    <rect x="28" y="123" width="404" height="48" rx="12" class="field"/>
-    <text x="44" y="153" class="ink body">Ex.: árvore caída na Rua das Flores</text>
-    <text x="28" y="205" class="muted label">LOCAL</text>
-    <rect x="28" y="217" width="404" height="48" rx="12" class="field"/>
-    <text x="44" y="247" class="ink body">Rua ou ponto de referência</text>
-    <text x="28" y="299" class="muted label">O QUE ACONTECEU?</text>
-    <rect x="28" y="311" width="404" height="118" rx="12" class="field"/>
-    <text x="44" y="340" class="muted body">Descreva a situação e como ela afeta</text>
-    <text x="44" y="360" class="muted body">quem passa pelo local.</text>
-    <text x="44" y="402" class="muted small">Evite incluir dados pessoais de outras pessoas.</text>
-    <rect x="28" y="449" width="404" height="76" rx="14" class="card"/>
-    <text x="48" y="477" class="teal body" font-weight="700">Sugestão opcional com IA</text>
-    <text x="48" y="498" class="muted small">Sugere categoria e resumo. Você revisa antes de usar.</text>
-    <rect x="28" y="542" width="404" height="52" rx="14" fill="#286A72"/>
-    <text x="230" y="574" text-anchor="middle" class="button" fill="#fff">SUGERIR CATEGORIA E RESUMO</text>
-    <text x="28" y="619" class="muted small">O rascunho só será enviado após seu consentimento.</text>
-    <rect x="28" y="652" width="404" height="50" rx="14" class="outline"/>
-    <text x="230" y="682" text-anchor="middle" class="teal button">PUBLICAR MANUALMENTE</text>
-    <text x="230" y="748" text-anchor="middle" class="muted small">A IA pode errar e não confirma a situação.</text>
+  <g transform="translate(42 140)">
+    <rect class="phone" width="460" height="820" rx="18"/>
+    <text x="28" y="48" class="ink head">Novo aviso</text>
+    <text x="28" y="76" class="muted body">Informe o que houve e onde.</text>
+    <text x="28" y="122" class="muted label">TÍTULO · EXEMPLO FICTÍCIO</text>
+    <rect x="28" y="134" width="404" height="48" rx="8" class="field"/>
+    <text x="42" y="164" class="ink body">Árvore caída na Rua das Flores</text>
+    <text x="28" y="216" class="muted label">BAIRRO E LOCAL PÚBLICO</text>
+    <rect x="28" y="228" width="404" height="48" rx="8" class="field"/>
+    <text x="42" y="258" class="ink body">Bairro de demonstração · Rua das Flores</text>
+    <text x="28" y="310" class="muted label">DESCRIÇÃO</text>
+    <rect x="28" y="322" width="404" height="126" rx="8" class="field"/>
+    <text x="42" y="352" class="ink body">Uma árvore bloqueia parte da passagem</text>
+    <text x="42" y="376" class="ink body">próxima à praça. Exemplo fictício.</text>
+    <text x="42" y="424" class="muted small">Não inclua dados pessoais de terceiros.</text>
+    <rect x="28" y="475" width="404" height="78" rx="10" class="card"/>
+    <text x="46" y="507" class="teal body" font-weight="700">Quer ajuda para resumir?</text>
+    <text x="46" y="532" class="muted small">Opcional. Você decide antes de enviar.</text>
+    <rect x="28" y="579" width="404" height="54" rx="9" class="primary"/>
+    <text x="230" y="613" text-anchor="middle" class="body" fill="#fff" font-weight="700">PEDIR SUGESTÃO DE IA</text>
+    <rect x="28" y="651" width="404" height="54" rx="9" class="secondary"/>
+    <text x="230" y="685" text-anchor="middle" class="teal body" font-weight="700">PUBLICAR SEM IA</text>
+    <text x="28" y="753" class="muted small">O texto ainda não foi enviado ao serviço externo.</text>
+    <text x="28" y="777" class="muted small">A próxima tela explica o envio e pede autorização.</text>
   </g>
 
-  <g transform="translate(600 112)">
-    <rect class="phone" width="460" height="790" rx="28"/>
-    <text x="28" y="42" class="teal section">Revise as sugestões</text>
-    <text x="28" y="68" class="muted body">Confira tudo antes de aplicar ao aviso.</text>
-    <rect x="28" y="96" width="404" height="60" rx="13" class="card"/>
-    <text x="46" y="121" class="teal small" font-weight="700">SUGESTÃO DA IA</text>
-    <text x="46" y="142" class="muted small">Não é uma confirmação dos fatos.</text>
-    <text x="28" y="195" class="muted label">CATEGORIA SUGERIDA</text>
-    <rect x="28" y="207" width="404" height="56" rx="12" class="field"/>
-    <text x="46" y="241" class="ink body">Infraestrutura · Obstrução na via</text>
-    <rect x="28" y="277" width="194" height="42" rx="12" class="outline"/>
-    <text x="125" y="303" text-anchor="middle" class="teal small" font-weight="700">USAR CATEGORIA</text>
-    <rect x="238" y="277" width="194" height="42" rx="12" class="outline"/>
-    <text x="335" y="303" text-anchor="middle" class="teal small" font-weight="700">DESCARTAR</text>
-    <text x="28" y="359" class="muted label">RESUMO SUGERIDO · EDITÁVEL</text>
-    <rect x="28" y="371" width="404" height="118" rx="12" class="field"/>
-    <text x="46" y="400" class="ink body">Uma árvore caiu na Rua das Flores</text>
-    <text x="46" y="422" class="ink body">e está bloqueando parte da passagem.</text>
-    <text x="46" y="467" class="muted small">Toque no texto para editar antes de usar.</text>
-    <rect x="28" y="503" width="194" height="42" rx="12" class="outline"/>
-    <text x="125" y="529" text-anchor="middle" class="teal small" font-weight="700">USAR RESUMO</text>
-    <rect x="238" y="503" width="194" height="42" rx="12" class="outline"/>
-    <text x="335" y="529" text-anchor="middle" class="teal small" font-weight="700">DESCARTAR</text>
-    <text x="28" y="582" class="muted small">Seu texto original permanece salvo no rascunho.</text>
-    <rect x="28" y="616" width="404" height="52" rx="14" fill="#FF8A5B"/>
-    <text x="230" y="648" text-anchor="middle" class="ink button">REVISAR AVISO E PUBLICAR</text>
-    <text x="230" y="711" text-anchor="middle" class="muted small">Nada será publicado sem sua confirmação.</text>
-    <text x="230" y="746" text-anchor="middle" class="muted small">Se a IA falhar, você pode continuar manualmente.</text>
+  <g transform="translate(557 140)">
+    <rect class="phone" width="460" height="820" rx="18"/>
+    <text x="28" y="48" class="ink head">Enviar texto para sugestão?</text>
+    <text x="28" y="79" class="muted body">Um serviço externo vai processar estes campos.</text>
+    <rect x="28" y="112" width="404" height="128" rx="10" class="card"/>
+    <text x="46" y="145" class="teal label">SERÃO ENVIADOS</text>
+    <text x="46" y="176" class="ink body">Título e descrição do aviso.</text>
+    <text x="46" y="203" class="muted small">Bairro, localização e dados da conta não são</text>
+    <text x="46" y="222" class="muted small">necessários para gerar as sugestões.</text>
+    <rect x="28" y="260" width="404" height="116" rx="10" class="notice"/>
+    <text x="46" y="291" class="ink body" font-weight="700">O que a IA fará</text>
+    <text x="46" y="319" class="muted small">Sugerir categoria e resumo. Não confirma os fatos,</text>
+    <text x="46" y="340" class="muted small">não publica e pode errar. O provedor ainda será</text>
+    <text x="46" y="361" class="muted small">escolhido; confirme a política antes de integrar.</text>
+    <rect x="30" y="399" width="24" height="24" rx="3" class="check"/>
+    <text x="68" y="415" class="ink body">Autorizo o envio do título e da descrição para</text>
+    <text x="68" y="439" class="ink body">gerar sugestões para este aviso.</text>
+    <text x="28" y="488" class="muted small">Sem marcar esta opção, o texto não será enviado.</text>
+    <rect x="28" y="523" width="404" height="58" rx="9" class="disabled"/>
+    <text x="230" y="559" text-anchor="middle" class="ink body" font-weight="700">AUTORIZAR E GERAR SUGESTÕES</text>
+    <text x="230" y="600" text-anchor="middle" class="muted small">Botão ativo somente após a escolha acima.</text>
+    <rect x="28" y="634" width="404" height="54" rx="9" class="secondary"/>
+    <text x="230" y="668" text-anchor="middle" class="teal body" font-weight="700">VOLTAR E PUBLICAR SEM IA</text>
+    <text x="28" y="747" class="muted small">A autorização vale para esta solicitação. O rascunho</text>
+    <text x="28" y="771" class="muted small">continua no formulário se você voltar ou cancelar.</text>
+  </g>
+
+  <g transform="translate(1072 140)">
+    <rect class="phone" width="460" height="820" rx="18"/>
+    <text x="28" y="48" class="ink head">Revise as sugestões</text>
+    <text x="28" y="77" class="muted body">Nada é aplicado nem publicado por conta própria.</text>
+    <rect x="28" y="108" width="404" height="76" rx="10" class="notice"/>
+    <text x="46" y="138" class="ink body" font-weight="700">Sugestão de IA</text>
+    <text x="46" y="164" class="muted small">Pode estar incorreta. Confira o aviso original.</text>
+    <text x="28" y="224" class="muted label">CATEGORIA SUGERIDA</text>
+    <rect x="28" y="238" width="404" height="54" rx="8" class="field"/>
+    <text x="44" y="271" class="ink body">Infraestrutura · Obstrução de passagem</text>
+    <rect x="28" y="307" width="194" height="44" rx="8" class="secondary"/>
+    <text x="125" y="335" text-anchor="middle" class="teal small" font-weight="700">USAR CATEGORIA</text>
+    <rect x="238" y="307" width="194" height="44" rx="8" class="secondary"/>
+    <text x="335" y="335" text-anchor="middle" class="teal small" font-weight="700">DESCARTAR</text>
+    <text x="28" y="393" class="muted label">RESUMO SUGERIDO · EDITÁVEL</text>
+    <rect x="28" y="407" width="404" height="116" rx="8" class="field"/>
+    <text x="44" y="438" class="ink body">Uma árvore caída bloqueia parte da</text>
+    <text x="44" y="462" class="ink body">passagem perto da praça.</text>
+    <text x="44" y="500" class="muted small">Exemplo de sugestão; toque para editar.</text>
+    <rect x="28" y="538" width="194" height="44" rx="8" class="secondary"/>
+    <text x="125" y="566" text-anchor="middle" class="teal small" font-weight="700">USAR RESUMO</text>
+    <rect x="238" y="538" width="194" height="44" rx="8" class="secondary"/>
+    <text x="335" y="566" text-anchor="middle" class="teal small" font-weight="700">DESCARTAR</text>
+    <text x="28" y="619" class="muted small">O texto original fica disponível para comparação.</text>
+    <rect x="28" y="652" width="404" height="54" rx="9" class="primary"/>
+    <text x="230" y="686" text-anchor="middle" class="body" fill="#fff" font-weight="700">REVISAR AVISO E PUBLICAR</text>
+    <text x="28" y="752" class="muted small">A confirmação final continua sendo sua.</text>
   </g>
 </svg>
