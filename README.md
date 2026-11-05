@@ -4,6 +4,8 @@ O VivaBairro organiza eventos, avisos e pedidos de colaboração por município 
 
 O produto ainda está em definição. A documentação diferencia o que foi proposto, o que continua como hipótese e as decisões pendentes. Não há parceria municipal ou pesquisa com moradores registrada neste repositório.
 
+A pasta `app/` contém uma versão Alfa executável, com dados fictícios e IA simulada. Veja a [entrega RT03](rt03/README.md).
+
 ## Conteúdo
 
 - [Sobre o VivaBairro](sobre-o-projeto.md)
@@ -13,6 +15,7 @@ O produto ainda está em definição. A documentação diferencia o que foi prop
 - [Arquitetura e dados](8-arquitetura-tecnica/visao-arquitetura.md)
 - [Protótipo e fluxos](9-prototipo-interface/prototipo-wireframes.md)
 - [Planejamento do desenvolvimento](planejamento/como-usar-o-quadro.md)
+- [RT03: consolidação, versão Alfa, relatório de IA e testes](rt03/README.md)
 - [Referências e pesquisa](referencias-e-pesquisa.md)
 
 ## Materiais

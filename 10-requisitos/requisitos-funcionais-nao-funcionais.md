@@ -1,6 +1,6 @@
 # Requisitos do VivaBairro
 
-Os requisitos descrevem comportamentos e qualidades esperadas. A aplicação ainda precisa ser implementada; critérios marcados como proposta devem ser confirmados quando a equipe definir a stack e a operação.
+Os requisitos descrevem comportamentos e qualidades esperadas. Parte deles já tem implementação na [versão Alfa](../rt03/versao-alfa.md#cobertura-dos-requisitos); os demais continuam como proposta. Critérios marcados como proposta devem ser confirmados quando a equipe definir a stack e a operação.
 
 ## Requisitos funcionais
 

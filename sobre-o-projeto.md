@@ -30,4 +30,4 @@ O VivaBairro é uma proposta de site responsivo para reunir eventos, avisos e pe
 
 ## Estado atual
 
-A documentação descreve uma solução proposta, não um serviço em operação. Ainda dependem de decisão: município e bairros de referência, validação das contas municipais, equipe e horário de moderação, stack, retenção de dados e provedor de IA. O repositório não registra parceria municipal ou resultado de pesquisa com moradores. Protótipos e integrações simuladas devem ser identificados como tais.
+A documentação descreve uma solução proposta, não um serviço em operação. Ainda dependem de decisão: município e bairros de referência, validação das contas municipais, equipe e horário de moderação, stack, retenção de dados e provedor de IA. O repositório não registra parceria municipal ou resultado de pesquisa com moradores. Protótipos e integrações simuladas devem ser identificados como tais. A [versão Alfa](rt03/versao-alfa.md) roda localmente com dados fictícios e IA simulada.

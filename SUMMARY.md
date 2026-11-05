@@ -54,3 +54,9 @@
 
 ## Desenvolvimento
 * [Planejamento do desenvolvimento](planejamento/como-usar-o-quadro.md)
+
+## RT03 — Consolidação
+* [Consolidação do projeto](rt03/README.md)
+* [Versão Alfa executável](rt03/versao-alfa.md)
+* [Relatório de uso de IA](rt03/relatorio-ia.md)
+* [Usabilidade, validação e testes](rt03/usabilidade-e-testes.md)

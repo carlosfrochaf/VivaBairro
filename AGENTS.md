@@ -43,6 +43,7 @@ Este arquivo orienta agentes que trabalham no repositório. O GitBook continua s
 | Protótipo e fluxos | `9-prototipo-interface/` e `assets/` |
 | Requisitos e rastreabilidade | `10-requisitos/` |
 | Qualidade e planejamento | `11-qualidade/` e `planejamento/` |
+| Versão Alfa, relatório de IA e testes (RT03) | `app/` e `rt03/` |
 
 Ao mudar um fluxo, confira o requisito, a página de regra de negócio, o desenho afetado e a rastreabilidade. Atualize todos os elementos impactados na mesma tarefa e confira termos, papéis, links e status entre eles.
 
@@ -67,4 +68,4 @@ Ao mudar um fluxo, confira o requisito, a página de regra de negócio, o desenh
 
 ## Decisões ainda sem evidência ou aprovação
 
-O repositório não registra pesquisa concluída com moradores nem autorização oficial de um município. Não há aplicação funcional ou integrações reais demonstradas. Os públicos, a adesão municipal, a operação de moderação, a política de retenção e algumas metas de desempenho devem continuar identificados como propostas até a equipe reunir evidências e decidir. O planejamento em `planejamento/plano-de-desenvolvimento.csv` é um ponto de partida, não um quadro de tarefas já ativo.
+O repositório não registra pesquisa concluída com moradores nem autorização oficial de um município. A pasta `app/` tem uma versão Alfa local, com dados fictícios em memória, conta de demonstração e IA simulada; não há integrações reais nem implantação pública. Ao mudar regras em `app/src/dominio/`, atualize os testes em `app/tests/` e as páginas de `rt03/`. Os públicos, a adesão municipal, a operação de moderação, a política de retenção e algumas metas de desempenho devem continuar identificados como propostas até a equipe reunir evidências e decidir. O planejamento em `planejamento/plano-de-desenvolvimento.csv` é um ponto de partida, não um quadro de tarefas já ativo.

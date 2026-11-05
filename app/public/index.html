@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VivaBairro · Versão Alfa</title>
+    <link rel="stylesheet" href="/estilo.css" />
+    <script type="module" src="/app.js"></script>
+  </head>
+  <body>
+    <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+    <p class="faixa-demo" role="note">Versão Alfa · dados fictícios de demonstração · IA simulada</p>
+    <header class="topo" hidden>
+      <a href="#/inicio" class="marca">VivaBairro</a>
+      <span class="bairro-ativo" id="bairro-ativo"></span>
+    </header>
+    <main id="conteudo" tabindex="-1"></main>
+    <div id="aviso-tela" class="aviso-tela" role="status" aria-live="polite"></div>
+    <nav class="navegacao" aria-label="Navegação principal" hidden>
+      <a href="#/inicio" data-rota="inicio"><span aria-hidden="true">⌂</span>Início</a>
+      <a href="#/publicar" data-rota="publicar"><span aria-hidden="true">＋</span>Publicar</a>
+      <a href="#/perfil" data-rota="perfil"><span aria-hidden="true">○</span>Meu perfil</a>
+    </nav>
+  </body>
+</html>

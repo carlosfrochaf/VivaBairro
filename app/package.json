@@ -1,0 +1,31 @@
+{
+  "name": "vivabairro-alfa",
+  "version": "0.1.0-alfa",
+  "private": true,
+  "description": "Versão Alfa do VivaBairro: feed por bairro, eventos, avisos e IA simulada.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node src/servidor/servidor.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test:cobertura": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/tests/**/*.test.js"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ],
+    "coverageReporters": [
+      "text",
+      "text-summary"
+    ]
+  },
+  "devDependencies": {
+    "jest": "^30.5.2"
+  }
+}
