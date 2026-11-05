@@ -6,15 +6,15 @@ Este relatório separa dois assuntos: a IA usada **para desenvolver** o VivaBair
 
 | Ferramenta | Para que foi usada | Evidência |
 | --- | --- | --- |
-| Claude Code (agente de programação da Anthropic, modelo Claude Opus 5.5) | Gerar o código da versão Alfa (`app/`), os testes Jest e o rascunho destas páginas da RT03, em 05/11/2026. Também executou os testes e percorreu as telas num navegador. | Arquivos em `app/` e `rt03/`; commit com a linha `Co-Authored-By: Claude`. |
+| Claude Code (agente de programação da Anthropic, modelo Claude Opus 5.5) | Apoio à equipe, em 05/11/2026, na escrita do código da versão Alfa (`app/`), dos testes Jest e do rascunho destas páginas da RT03. Também ajudou a executar os testes e a percorrer as telas num navegador. A ferramenta não fez o projeto sozinha nem faz a entrega: escopo, requisitos, protótipo e decisões são da equipe, que conduziu o trabalho, revisou o resultado e responde por ele. | Arquivos em `app/` e `rt03/`; commit com a linha `Co-Authored-By: Claude`. |
 | Agentes de IA na manutenção do GitBook | Reorganização da documentação na RT02, com as regras de autoria do `AGENTS.md`. | `AGENTS.md` (commit `c72e748`, 01/10/2026). O histórico não registra qual ferramenta foi usada. |
 | *A equipe deve completar* | Ex.: ChatGPT, GitHub Copilot ou Gemini, se usados em pesquisa, textos ou protótipo. | Indicar data, finalidade e onde o resultado entrou. |
 
 > A última linha deve ser preenchida pela equipe. Não listamos ferramentas sem evidência.
 
-## Trechos gerados com IA
+## Trechos produzidos com apoio de IA
 
-Todo o código de `app/` foi gerado com o Claude Code, a partir da documentação de requisitos e regras deste GitBook. Seguem três trechos representativos.
+O código de `app/` foi escrito com apoio do Claude Code, a partir dos requisitos, regras e protótipo que a equipe já havia definido neste GitBook nas RT01 e RT02. A IA acelerou a escrita; a equipe orientou o que construir, revisou e decidiu o que entra na entrega. Seguem três trechos representativos.
 
 ### 1. Validação de aviso compartilhada entre navegador e servidor
 
@@ -75,17 +75,17 @@ if (estado === 'lotado') return falha('lotado');
 if (estado !== 'inscricoes-abertas') return falha('indisponivel');
 ```
 
-Os testes em `app/tests/` também foram gerados com IA. Por isso, a revisão humana deve conferir se cada teste verifica a regra documentada, e não apenas o comportamento que o código já tem.
+Os testes em `app/tests/` também foram escritos com apoio de IA. Por isso, a revisão humana deve conferir se cada teste verifica a regra documentada, e não apenas o comportamento que o código já tem.
 
 ## Validação humana e automação
 
 | Etapa | Automatizado | Responsabilidade humana |
 | --- | --- | --- |
 | Regras do produto | Não. A IA partiu do que já estava escrito no GitBook. | A equipe definiu escopo, requisitos e regras nas RT01 e RT02. Decisões em aberto continuam com a equipe. |
-| Geração de código | Sim, pelo Claude Code. | Revisar cada arquivo antes de aprovar e conferir nomes e estados contra a documentação. |
+| Escrita de código | Com apoio do Claude Code, orientado pela equipe. | Revisar cada arquivo antes de aprovar e conferir nomes e estados contra a documentação. |
 | Testes unitários e de integração | Execução automática com `npm test`: 66 testes, todos passando em 05/11/2026. | Conferir se os casos cobrem os critérios dos requisitos. Acrescentar casos quando encontrar falhas. |
 | Verificação das telas | O agente percorreu as seis telas no navegador e corrigiu dois problemas (ver [Usabilidade e testes](usabilidade-e-testes.md#problemas-encontrados-e-corrigidos)). | Repetir o roteiro em outros navegadores e com teclado. Fazer sessões com pessoas do público. |
-| Texto da documentação | Rascunho gerado por IA. | Revisar a precisão, a voz do grupo e o que é fato ou hipótese antes da entrega. |
+| Texto da documentação | Rascunho escrito com apoio de IA. | Revisar a precisão, a voz do grupo e o que é fato ou hipótese antes da entrega. |
 
 ## Riscos e como mitigamos
 
