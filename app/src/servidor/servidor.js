@@ -18,6 +18,13 @@ import { atualizarEstadoAviso, acoesDisponiveis, NOMES_ESTADO_AVISO } from '../d
 import { detectarDadosSensiveis } from '../dominio/privacidade.js';
 import { solicitarSugestao, provedorSimulado, CAMPOS_ENVIADOS } from '../integracoes/ia.js';
 import { validarCadastro, validarLogin } from '../dominio/contas.js';
+import {
+  validarFoto,
+  validarBairrosAcompanhados,
+  bairrosDaConta,
+  lembretesPendentes,
+  momentoDoLembrete,
+} from '../dominio/extras.js';
 import { criarRepositorio, CONTA_DEMO } from './repositorio.js';
 import { gerarHash, conferirSenha, gerarToken } from './senhas.js';
 
@@ -28,6 +35,8 @@ const PASTAS_ESTATICAS = {
 };
 const TIPOS = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.svg': 'image/svg+xml' };
 const TAMANHO_MAXIMO_CORPO = 20_000;
+// Avisos podem levar uma foto já reduzida no navegador (até ~900 KB em base64).
+const TAMANHO_MAXIMO_COM_FOTO = 1_300_000;
 const COOKIE_SESSAO = 'vb_sessao';
 const DURACAO_SESSAO_MS = 8 * 60 * 60 * 1000;
 const MAX_TENTATIVAS = 5;
@@ -65,11 +74,11 @@ function responder(res, status, corpo) {
   res.end(JSON.stringify(corpo));
 }
 
-async function lerCorpo(req) {
+async function lerCorpo(req, limite = TAMANHO_MAXIMO_CORPO) {
   let texto = '';
   for await (const parte of req) {
     texto += parte;
-    if (texto.length > TAMANHO_MAXIMO_CORPO) throw new ErroHttp(413, 'O conteúdo enviado é grande demais.');
+    if (texto.length > limite) throw new ErroHttp(413, 'O conteúdo enviado é grande demais.');
   }
   if (!texto) return {};
   try {
@@ -91,6 +100,8 @@ export function criarApp({ repositorio = criarRepositorio(), provedorIa = proved
     email: conta.email,
     bairroId: conta.bairroId,
     bairro: nomeBairro(conta.bairroId),
+    bairrosAcompanhados: conta.bairrosAcompanhados ?? [],
+    lembretes: conta.lembretes !== false,
   });
 
   function contaDaSessao(req) {
@@ -130,6 +141,8 @@ export function criarApp({ repositorio = criarRepositorio(), provedorIa = proved
   }
 
   function apresentarEvento(evento, contaId) {
+    const conta = estado.contas.find((c) => c.id === contaId);
+    const euConfirmei = estado.inscricoes.some((i) => i.eventoId === evento.id && i.contaId === contaId && i.ativa);
     const confirmados = contarConfirmacoes(estado.inscricoes, evento.id);
     const situacao = calcularEstadoEvento(evento, confirmados, relogio());
     return {
@@ -140,13 +153,18 @@ export function criarApp({ repositorio = criarRepositorio(), provedorIa = proved
       vagas: vagasRestantes(evento, confirmados),
       estado: situacao,
       estadoNome: NOMES_ESTADO_EVENTO[situacao],
-      euConfirmei: estado.inscricoes.some((i) => i.eventoId === evento.id && i.contaId === contaId && i.ativa),
+      euConfirmei,
+      // Momento em que o lembrete aparece no site, se a pessoa confirmou e deixou lembretes ligados.
+      lembreteEm: euConfirmei && conta?.lembretes !== false ? momentoDoLembrete(evento).toISOString() : null,
     };
   }
 
   function apresentarAviso(aviso, contaId) {
+    // A foto não vai no JSON; o navegador a busca pelo endereço próprio.
+    const { foto, ...resto } = aviso;
     return {
-      ...aviso,
+      ...resto,
+      fotoUrl: foto ? `/api/avisos/${aviso.id}/foto` : null,
       tipo: 'aviso',
       bairro: nomeBairro(aviso.bairroId),
       categoriaNome: CATEGORIAS_AVISO.find((c) => c.id === aviso.categoria)?.nome,
@@ -180,6 +198,8 @@ export function criarApp({ repositorio = criarRepositorio(), provedorIa = proved
         nome: v.dados.nome,
         email: v.dados.email,
         bairroId: v.dados.bairroId,
+        bairrosAcompanhados: [],
+        lembretes: true,
         senhaHash: gerarHash(v.dados.senha),
       };
       estado.contas.push(conta);
@@ -214,13 +234,15 @@ export function criarApp({ repositorio = criarRepositorio(), provedorIa = proved
 
     ['GET', /^\/api\/bairros$/, () => ({ municipio: estado.municipio, bairros: estado.bairros, categorias: CATEGORIAS_AVISO }), 200, 'publica'],
 
-    ['GET', /^\/api\/feed$/, ({ url, contaId }) => {
+    ['GET', /^\/api\/feed$/, ({ url, conta, contaId }) => {
       const bairro = url.searchParams.get('bairro');
       const busca = (url.searchParams.get('q') ?? '').trim().toLowerCase();
       const tipo = url.searchParams.get('tipo');
-      if (bairro && !idsBairros().includes(bairro)) throw new ErroHttp(400, 'Bairro inválido.');
+      if (bairro && bairro !== 'meus' && !idsBairros().includes(bairro)) throw new ErroHttp(400, 'Bairro inválido.');
+      // "meus" junta o bairro principal e os bairros acompanhados da conta.
+      const permitidos = bairro === 'meus' ? bairrosDaConta(conta) : bairro ? [bairro] : null;
       const confere = (item) =>
-        (!bairro || item.bairroId === bairro) &&
+        (!permitidos || permitidos.includes(item.bairroId)) &&
         (!busca || `${item.titulo} ${item.descricao} ${item.local}`.toLowerCase().includes(busca));
       const eventos = tipo === 'aviso' ? [] : estado.eventos.filter(confere).map((e) => apresentarEvento(e, contaId));
       const avisos = tipo === 'evento' ? [] : estado.avisos.filter(confere).map((a) => apresentarAviso(a, contaId));
@@ -248,12 +270,15 @@ export function criarApp({ repositorio = criarRepositorio(), provedorIa = proved
     }],
 
     ['POST', /^\/api\/avisos$/, async ({ req, contaId }) => {
-      const corpo = await lerCorpo(req);
+      const corpo = await lerCorpo(req, TAMANHO_MAXIMO_COM_FOTO);
       const v = validarAviso(corpo, idsBairros());
-      if (!v.valido) throw new ErroHttp(422, 'Revise os campos destacados.', { erros: v.erros });
+      const f = validarFoto(corpo.foto);
+      const erros = { ...v.erros, ...(f.valido ? {} : { foto: f.erro }) };
+      if (Object.keys(erros).length) throw new ErroHttp(422, 'Revise os campos destacados.', { erros });
       const aviso = {
         id: repositorio.novoId('av'),
         ...v.dados,
+        foto: f.foto ? { tipo: f.foto.tipo, dados: Buffer.from(f.foto.base64, 'base64') } : null,
         autorId: contaId,
         estado: 'aberto',
         criadoEm: relogio().toISOString(),
@@ -262,6 +287,12 @@ export function criarApp({ repositorio = criarRepositorio(), provedorIa = proved
       estado.avisos.unshift(aviso);
       return { aviso: apresentarAviso(aviso, contaId), alertas: detectarDadosSensiveis(aviso.titulo, aviso.descricao, aviso.local) };
     }, 201],
+
+    ['GET', /^\/api\/avisos\/([\w-]+)\/foto$/, ({ params }) => {
+      const aviso = estado.avisos.find((a) => a.id === params[0]);
+      if (!aviso?.foto) throw new ErroHttp(404, 'Foto não encontrada.');
+      return { binario: aviso.foto };
+    }],
 
     ['PATCH', /^\/api\/avisos\/([\w-]+)\/estado$/, async ({ req, params, contaId }) => {
       const indice = estado.avisos.findIndex((a) => a.id === params[0]);
@@ -279,6 +310,25 @@ export function criarApp({ repositorio = criarRepositorio(), provedorIa = proved
       // Falha da IA não é erro da aplicação: a resposta informa o motivo e o fluxo manual continua.
       return { ...r, camposEnviados: CAMPOS_ENVIADOS, provedor: 'Simulado (sem serviço externo)' };
     }],
+
+    ['PATCH', /^\/api\/perfil$/, async ({ req, conta }) => {
+      const corpo = await lerCorpo(req);
+      if (corpo.bairrosAcompanhados !== undefined) {
+        const r = validarBairrosAcompanhados(corpo.bairrosAcompanhados, idsBairros(), conta.bairroId);
+        if (!r.valido) throw new ErroHttp(422, r.erro, { erros: { bairrosAcompanhados: r.erro } });
+        conta.bairrosAcompanhados = r.bairros;
+      }
+      if (corpo.lembretes !== undefined) {
+        if (typeof corpo.lembretes !== 'boolean') throw new ErroHttp(422, 'Escolha se quer receber lembretes.');
+        conta.lembretes = corpo.lembretes;
+      }
+      return { conta: contaPublica(conta) };
+    }],
+
+    ['GET', /^\/api\/notificacoes$/, ({ conta }) => ({
+      lembretes: lembretesPendentes({ conta: { ...conta, lembretes: conta.lembretes !== false }, eventos: estado.eventos, inscricoes: estado.inscricoes, agora: relogio() })
+        .map((l) => ({ ...l, bairro: nomeBairro(estado.eventos.find((e) => e.id === l.eventoId).bairroId) })),
+    })],
 
     ['GET', /^\/api\/perfil$/, ({ conta, contaId }) => ({
       conta: contaPublica(conta),
@@ -318,6 +368,10 @@ export function criarApp({ repositorio = criarRepositorio(), provedorIa = proved
           const conta = contaDaSessao(req);
           if (!conta && acesso !== 'publica') throw new ErroHttp(401, 'Entre na sua conta para continuar.');
           const corpo = await acao({ req, res, url, params: achou.slice(1), conta, contaId: conta?.id });
+          if (corpo?.binario) {
+            res.writeHead(200, { 'Content-Type': corpo.binario.tipo, 'Cache-Control': 'private, max-age=3600' });
+            return res.end(corpo.binario.dados);
+          }
           return responder(res, status, corpo);
         }
       }

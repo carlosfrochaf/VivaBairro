@@ -207,3 +207,26 @@ dialog::backdrop { background: rgba(20, 37, 61, 0.5); }
   .confirmado .selo { animation: aparecer 0.35s ease-out; }
   @keyframes aparecer { from { transform: scale(0.85); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 }
+
+/* ---------- lembretes, foto e preferências ---------- */
+.topo-acoes { display: flex; align-items: center; gap: 10px; }
+.sino { position: relative; width: 40px; height: 40px; border-radius: 50%; background: var(--menta); color: var(--verde); display: grid; place-items: center; }
+.contador { position: absolute; top: -3px; right: -3px; min-width: 20px; height: 20px; padding: 0 5px; border-radius: 999px; background: var(--coral); color: var(--tinta); font-size: 0.7rem; font-weight: 800; display: grid; place-items: center; border: 2px solid var(--tela); }
+.lembrete { justify-content: flex-start; }
+.lembrete > div { flex: 1; }
+.sino-item { width: 40px; height: 40px; border-radius: 50%; background: #fff0d9; display: grid; place-items: center; flex: none; }
+
+.rotulo-campo { display: block; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--suave); margin-bottom: 8px; }
+.area-foto { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 18px 16px; border: 1.5px dashed var(--menta-borda); border-radius: 16px; background: var(--menta); cursor: pointer; text-align: center; font-weight: 500; text-transform: none; letter-spacing: 0; font-size: 0.9rem; color: var(--tinta-2) !important; }
+.area-foto .mais { font-size: 1.6rem; color: var(--verde); line-height: 1; }
+.area-foto .ajuda-foto { font-size: 0.78rem; color: var(--suave); }
+#foto:focus-visible + * , .campo:focus-within .area-foto { outline: 3px solid var(--coral); outline-offset: 2px; }
+.campo.com-erro .area-foto { border-color: var(--erro); }
+.foto-aviso { display: block; width: 100%; max-height: 220px; object-fit: cover; border-radius: 12px; margin: 10px 0 4px; }
+
+.preferencias { padding: 18px; }
+.preferencias fieldset { border: none; padding: 0; margin: 0 0 18px; }
+.preferencias legend { font-weight: 800; font-size: 0.95rem; margin-bottom: 4px; }
+.opcao { display: flex; gap: 10px; align-items: flex-start; padding: 10px 0; font-weight: 500; min-height: 44px; cursor: pointer; }
+.opcao input { width: 22px; height: 22px; margin: 0; accent-color: var(--verde); flex: none; }
+.numeros > div { min-width: 70px; }

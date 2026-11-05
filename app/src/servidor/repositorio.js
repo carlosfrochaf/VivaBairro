@@ -11,12 +11,21 @@ export const CONTA_DEMO = {
   nome: 'Perfil de demonstração',
   email: 'demonstracao@vivabairro.test',
   bairroId: 'jardim-aurora',
+  bairrosAcompanhados: ['centro'],
+  lembretes: true,
 };
 
 function emDias(agora, dias, hora) {
   const data = new Date(agora.getTime() + dias * DIA);
   // Horários de Brasília (UTC-3), independentemente do fuso do servidor.
   data.setUTCHours(hora + 3, 0, 0, 0);
+  return data.toISOString();
+}
+
+// Evento que começa em cerca de 20 h, para o lembrete de "um dia antes" já aparecer.
+function emHoras(agora, horas) {
+  const data = new Date(agora.getTime() + horas * HORA);
+  data.setUTCMinutes(0, 0, 0);
   return data.toISOString();
 }
 
@@ -32,6 +41,18 @@ export function criarRepositorio(agora = new Date()) {
       { id: 'centro', nome: 'Centro' },
     ],
     eventos: [
+      {
+        id: 'ev-roda',
+        titulo: 'Roda de conversa sobre a praça',
+        descricao: 'Encontro para combinar as próximas melhorias da Praça do Sol com quem frequenta o espaço.',
+        local: 'Banco grande em frente ao coreto',
+        bairroId: 'jardim-aurora',
+        autorId: 'conta-organizadora',
+        inicio: emHoras(agora, 20),
+        fim: emHoras(agora, 22),
+        capacidade: null,
+        gratuito: true,
+      },
       {
         id: 'ev-mutirao',
         titulo: 'Mutirão da Praça do Sol',
@@ -74,6 +95,8 @@ export function criarRepositorio(agora = new Date()) {
     inscricoes: [
       ...Array.from({ length: 17 }, (_, n) => ({ eventoId: 'ev-mutirao', contaId: `vizinho-${n}`, ativa: true })),
       { eventoId: 'ev-horta', contaId: 'vizinho-a', ativa: true },
+      { eventoId: 'ev-roda', contaId: CONTA_DEMO.id, ativa: true },
+      { eventoId: 'ev-roda', contaId: 'vizinho-b', ativa: true },
     ],
     avisos: [
       {

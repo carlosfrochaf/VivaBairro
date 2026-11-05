@@ -36,7 +36,9 @@ A validação acontece em duas camadas com o mesmo código: no navegador, para r
 | E-mail | Obrigatório, formato nome@exemplo.com, sem diferença entre maiúsculas e minúsculas | "Confira o e-mail. Ele deve ter o formato nome@exemplo.com." |
 | Senha | Pelo menos 8 caracteres, com letras e números | "A senha precisa ter pelo menos 8 caracteres (agora são 3)." / "Use letras e números na senha." |
 | Confirmação de senha | Igual à senha | "As senhas não são iguais." |
-| Corpo da requisição | JSON válido e no máximo 20 mil caracteres | "Não foi possível ler os dados enviados." / "O conteúdo enviado é grande demais." |
+| Foto do aviso | Opcional; JPG, PNG ou WebP; até 900 KB depois de reduzida no navegador | "Use uma foto JPG, PNG ou WebP." / "A foto é grande demais (950 KB). Use uma de até 900 KB." |
+| Bairros acompanhados | Até 5, todos do município; o principal e os repetidos são ignorados | "Escolha até 5 bairros para acompanhar." |
+| Corpo da requisição | JSON válido e no máximo 20 mil caracteres (1,3 milhão em aviso com foto) | "Não foi possível ler os dados enviados." / "O conteúdo enviado é grande demais." |
 
 ## Tratamento de erros
 
@@ -70,12 +72,14 @@ Ferramenta: [Jest](https://jestjs.io/) 30, com módulos ES no Node.js 22. Execu�
 | `tests/api.test.js` | Integração | Servidor real: filtro por bairro, `400`, `403`, `404`, `409` e `422`, alerta de privacidade e falha de IA sem quebrar o fluxo | 9 |
 | `tests/contas.test.js` | Unitário | Cadastro e login: campos obrigatórios, e-mail, força e confirmação da senha; hash com sal e token de sessão | 16 |
 | `tests/contas-api.test.js` | Integração | `401` sem login, cookie `HttpOnly` e `Secure`, senha fora das respostas, e-mail repetido, mesma mensagem para e-mail e senha errados, bloqueio após 5 tentativas e saída | 8 |
+| `tests/extras.test.js` | Unitário | Foto (tipo, tamanho, formato), bairros acompanhados (limite, repetidos, inexistentes) e lembretes (24 h antes, só presença ativa, preferência desligada, evento cancelado) | 15 |
+| `tests/extras-api.test.js` | Integração | Foto enviada e servida à parte, foto inválida com `422`, feed "meus bairros", preferências inválidas, lembrete que some ao desligar ou ao cancelar a presença | 7 |
 
 ### Resultado da execução (05/11/2026)
 
 ```text
-Test Suites: 8 passed, 8 total
-Tests:       90 passed, 90 total
+Test Suites: 10 passed, 10 total
+Tests:       112 passed, 112 total
 Snapshots:   0 total
 ```
 
@@ -84,13 +88,13 @@ Snapshots:   0 total
 ```text
 File             | % Stmts | % Branch | % Funcs | % Lines
 -----------------|---------|----------|---------|--------
-All files        |   88.42 |    78.59 |   92.59 |   90.27
- dominio         |   97.33 |     85.5 |     100 |   98.36
+All files        |   91.23 |    81.48 |   95.38 |    92.70
+ dominio         |   97.36 |    87.20 |   97.67 |   98.01
  integracoes     |     100 |    80.76 |     100 |     100
- servidor        |   80.97 |    70.24 |   88.05 |   83.78
+ servidor        |   85.71 |    75.16 |   93.33 |   88.15
 ```
 
-As regras do produto (`dominio` e `integracoes`) têm mais de 98% das linhas cobertas. O servidor tem cobertura menor porque o envio de arquivos estáticos e algumas rotas (cancelar presença e perfil) foram verificados no navegador, não por teste automatizado.
+As regras do produto (`dominio` e `integracoes`) têm mais de 98% das linhas cobertas. O servidor tem cobertura menor porque o envio de arquivos estáticos e alguns caminhos de erro foram verificados no navegador, não por teste automatizado.
 
 ### Exemplo de teste
 

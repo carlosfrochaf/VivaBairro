@@ -2,6 +2,7 @@
 import { validarAviso, CATEGORIAS_AVISO, LIMITES } from '/dominio/validacao.js';
 import { detectarDadosSensiveis } from '/dominio/privacidade.js';
 import { validarCadastro, validarLogin, LIMITES_CONTA } from '/dominio/contas.js';
+import { validarFoto, FOTO, MAX_BAIRROS_ACOMPANHADOS } from '/dominio/extras.js';
 
 const CHAVE_BAIRRO = 'vivabairro.bairro';
 const CHAVE_RASCUNHO = 'vivabairro.rascunho-aviso';
@@ -54,7 +55,7 @@ async function api(caminho, opcoes = {}) {
 }
 
 const bairroAtual = () => localStorage.getItem(CHAVE_BAIRRO);
-const nomeBairro = (id) => catalogo?.bairros.find((b) => b.id === id)?.nome ?? '';
+const nomeBairro = (id) => (id === 'meus' ? 'Meus bairros' : catalogo?.bairros.find((b) => b.id === id)?.nome ?? '');
 
 function mostrar(html, titulo) {
   principal.innerHTML = html;
@@ -107,6 +108,7 @@ function cartaoAviso(a, comAcoes = false) {
         <p class="meta">${esc(a.local)}</p>
         <p class="meta">${esc(a.origem)} · ${esc(formatarData(a.criadoEm))}</p>
         <span class="etiqueta">Estado: ${esc(a.estadoNome)}</span>
+        ${a.fotoUrl ? `<img class="foto-aviso" src="${esc(a.fotoUrl)}" alt="Foto enviada por quem publicou o aviso" loading="lazy" />` : ''}
       </div>
       ${acoes ? `<div class="acoes-aviso">${acoes}</div>` : ''}
     </article>`;
@@ -327,9 +329,10 @@ function telaBairro() {
      <p class="suave">Escolha qual bairro ver no início. Isso não muda o bairro das suas publicações.</p>
      <form id="form-bairro">
        <div class="campo"><label for="bairro">Bairro</label>
-       <select id="bairro">${opcoesBairro(bairroAtual())}</select></div>
+       <select id="bairro"><option value="meus" ${bairroAtual() === 'meus' ? 'selected' : ''}>Todos os meus bairros (${1 + (sessao.bairrosAcompanhados?.length ?? 0)})</option>${opcoesBairro(bairroAtual())}</select></div>
        <button class="botao" type="submit">Ver este bairro</button>
-     </form>`,
+     </form>
+     <p class="suave">"Meus bairros" junta o bairro principal e os que você acompanha. Escolha quais acompanhar em <a href="#/perfil">Meu perfil</a>.</p>`,
     'Trocar bairro',
   );
   document.getElementById('form-bairro').onsubmit = (ev) => {
@@ -427,6 +430,11 @@ async function telaEvento(id) {
        </div>
        <div id="erro-acao"></div>
        ${acao}
+       ${e.lembreteEm
+         ? `<p class="nota">🔔 Lembrete aqui no site em ${esc(formatarData(e.lembreteEm))}, um dia antes.</p>`
+         : e.estado === 'inscricoes-abertas' && !e.euConfirmei && sessao.lembretes
+           ? '<p class="nota">Você recebe um lembrete aqui no site um dia antes.</p>'
+           : ''}
      </div>`,
     e.titulo,
   );
@@ -466,7 +474,9 @@ async function telaConfirmado(id) {
      <div class="cartao cartao-destaque"><span class="rotulo">Sua próxima atividade</span><h3>${esc(e.titulo)}</h3><p class="meta">${esc(formatarData(e.inicio))} · ${esc(e.local)}</p></div>
      <a class="botao" href="#/perfil">Ver minhas atividades</a>
      <a class="botao secundario" href="#/inicio">Voltar ao início</a>
-     <p class="nota">Lembretes por e-mail ainda não existem nesta versão.</p>`,
+     <p class="nota">${e.lembreteEm
+       ? `🔔 Você recebe um lembrete aqui no site em ${esc(formatarData(e.lembreteEm))}, um dia antes.`
+       : 'Lembretes estão desligados. Você pode ligar em Meu perfil.'}</p>`,
     'Presença confirmada',
   );
 }
@@ -498,6 +508,17 @@ function telaPublicar() {
        ${campo('bairroId', 'Bairro *', `<select id="bairroId" name="bairroId">${opcoesBairro}</select>`, 'O aviso aparece no feed deste bairro.')}
        ${campo('local', 'Local *', `<input id="local" name="local" maxlength="${LIMITES.local.max}" value="${esc(r.local)}" placeholder="Rua ou ponto de referência público" />`, 'Use um lugar público. Não informe endereço residencial.')}
        ${campo('descricao', 'O que aconteceu? *', `<textarea id="descricao" name="descricao" maxlength="${LIMITES.descricao.max}" placeholder="Explique de um jeito simples para quem puder ajudar.">${esc(r.descricao)}</textarea>`, 'Não inclua telefone, documentos ou dados de outras pessoas.')}
+       <div class="campo" id="campo-foto">
+         <span class="rotulo-campo" id="rotulo-foto">Foto (opcional)</span>
+         <label class="area-foto" for="foto" id="area-foto">
+           <span class="mais" aria-hidden="true">＋</span>
+           <span>Adicionar foto (opcional)</span>
+           <span class="ajuda-foto">JPG, PNG ou WebP. Evite rostos e placas de carro de outras pessoas.</span>
+         </label>
+         <input id="foto" name="foto" type="file" accept="image/jpeg,image/png,image/webp" class="pular" aria-describedby="rotulo-foto erro-foto" />
+         <div id="previa-foto"></div>
+         <p class="erro-campo" id="erro-foto" hidden></p>
+       </div>
        <div id="alerta-privacidade" aria-live="polite"></div>
 
        <section class="ia" aria-labelledby="ia-titulo">
@@ -517,6 +538,44 @@ function telaPublicar() {
 
   const form = document.getElementById('form-aviso');
   const campos = ['titulo', 'categoria', 'bairroId', 'local', 'descricao'];
+  let fotoDataUrl = null;
+
+  function erroFoto(mensagem) {
+    const erro = document.getElementById('erro-foto');
+    erro.hidden = !mensagem;
+    erro.textContent = mensagem ?? '';
+    document.getElementById('campo-foto').classList.toggle('com-erro', Boolean(mensagem));
+  }
+
+  // Reduz a foto no navegador antes de enviar: menos dados trafegando e guardados.
+  function reduzirFoto(arquivo) {
+    return new Promise((resolver, rejeitar) => {
+      const imagem = new Image();
+      const url = URL.createObjectURL(arquivo);
+      imagem.onload = () => {
+        const escala = Math.min(1, FOTO.ladoMaximo / Math.max(imagem.width, imagem.height));
+        const tela = document.createElement('canvas');
+        tela.width = Math.round(imagem.width * escala);
+        tela.height = Math.round(imagem.height * escala);
+        tela.getContext('2d').drawImage(imagem, 0, 0, tela.width, tela.height);
+        URL.revokeObjectURL(url);
+        resolver(tela.toDataURL('image/jpeg', 0.82));
+      };
+      imagem.onerror = () => { URL.revokeObjectURL(url); rejeitar(new Error('Não foi possível abrir essa imagem.')); };
+      imagem.src = url;
+    });
+  }
+
+  function mostrarPrevia() {
+    const previa = document.getElementById('previa-foto');
+    document.getElementById('area-foto').hidden = Boolean(fotoDataUrl);
+    previa.innerHTML = fotoDataUrl
+      ? `<img class="foto-aviso" src="${fotoDataUrl}" alt="Prévia da foto escolhida" />
+         <button type="button" class="botao secundario pequeno" id="remover-foto">Remover foto</button>`
+      : '';
+    const remover = document.getElementById('remover-foto');
+    if (remover) remover.onclick = () => { fotoDataUrl = null; form.elements.foto.value = ''; mostrarPrevia(); document.getElementById('area-foto').focus(); };
+  }
   const valores = () => Object.fromEntries(campos.map((c) => [c, form.elements[c].value]));
 
   function marcarErro(id, mensagem) {
@@ -630,6 +689,25 @@ function telaPublicar() {
     if (lista.length) form.elements[lista[0]].focus();
   }
 
+  form.elements.foto.onchange = async () => {
+    const arquivo = form.elements.foto.files[0];
+    erroFoto(null);
+    if (!arquivo) return;
+    if (!FOTO.tipos.includes(arquivo.type)) {
+      form.elements.foto.value = '';
+      return erroFoto('Use uma foto JPG, PNG ou WebP.');
+    }
+    try {
+      const reduzida = await reduzirFoto(arquivo);
+      const v = validarFoto(reduzida);
+      if (!v.valido) return erroFoto(v.erro);
+      fotoDataUrl = reduzida;
+      mostrarPrevia();
+    } catch (erro) {
+      erroFoto(erro.message);
+    }
+  };
+
   form.onsubmit = async (ev) => {
     ev.preventDefault();
     const v = validarAviso(valores(), catalogo.bairros.map((b) => b.id));
@@ -639,13 +717,14 @@ function telaPublicar() {
     botao.disabled = true;
     botao.textContent = 'Publicando…';
     try {
-      const r = await api('/api/avisos', { method: 'POST', corpo: valores() });
+      const r = await api('/api/avisos', { method: 'POST', corpo: { ...valores(), foto: fotoDataUrl } });
       localStorage.removeItem(CHAVE_RASCUNHO);
       avisar('Aviso publicado. Você pode acompanhar o estado em Meu perfil.');
       location.hash = '#/perfil';
       return r;
     } catch (erro) {
       // Erros do servidor voltam para os mesmos campos; o rascunho continua salvo.
+      if (erro.dados?.erros?.foto) erroFoto(erro.dados.erros.foto);
       if (erro.dados?.erros) exibirErros(erro.dados.erros);
       else document.getElementById('resumo-erros').innerHTML = `<div class="caixa erro" role="alert"><p>${esc(erro.message)} Seu texto foi mantido.</p></div>`;
       botao.disabled = false;
@@ -662,14 +741,28 @@ async function telaPerfil() {
        <span class="avatar" aria-hidden="true">${esc(p.conta.nome.trim().charAt(0).toUpperCase())}</span>
        <div><h2>${esc(p.conta.nome)}</h2><p>Bairro principal: ${esc(p.conta.bairro)}</p><p>${esc(p.conta.email)}</p></div>
      </div>
-     <div class="numeros"><div><strong>${p.eventos.length}</strong><span>atividades</span></div><div><strong>${p.avisos.length}</strong><span>avisos</span></div></div>
+     <div class="numeros"><div><strong>${p.eventos.length}</strong><span>atividades</span></div><div><strong>${p.avisos.length}</strong><span>avisos</span></div><div><strong>${1 + p.conta.bairrosAcompanhados.length}</strong><span>bairros</span></div></div>
      <h2>Próximas atividades</h2>
      ${p.eventos.length
        ? p.eventos.map((e) => `<a class="cartao item-lista" href="#/evento/${esc(e.id)}"><div><h3>${esc(e.titulo)}</h3><p class="meta">${esc(formatarData(e.inicio))} · Confirmada</p></div><span class="seta" aria-hidden="true">›</span></a>`).join('')
        : '<p class="suave">Você ainda não confirmou presença em eventos. <a href="#/inicio">Ver eventos do bairro</a></p>'}
      <h2>Seus avisos</h2>
      <div id="erro-perfil"></div>
-     <div class="lista-avisos">${p.avisos.length ? p.avisos.map((a) => cartaoAviso(a, true)).join('') : '<p class="suave">Você ainda não publicou avisos. <a href="#/publicar">Criar aviso</a></p>'}</div>`,
+     <div class="lista-avisos">${p.avisos.length ? p.avisos.map((a) => cartaoAviso(a, true)).join('') : '<p class="suave">Você ainda não publicou avisos. <a href="#/publicar">Criar aviso</a></p>'}</div>
+     <h2>Preferências</h2>
+     <form id="form-preferencias" class="cartao preferencias">
+       <fieldset>
+         <legend>Bairros que acompanho</legend>
+         <p class="meta">Além do principal (${esc(p.conta.bairro)}). Até ${MAX_BAIRROS_ACOMPANHADOS}. Aparecem juntos em "Todos os meus bairros".</p>
+         ${catalogo.bairros.filter((b) => b.id !== p.conta.bairroId).map((b) => `<label class="opcao"><input type="checkbox" name="acompanhados" value="${esc(b.id)}" ${p.conta.bairrosAcompanhados.includes(b.id) ? 'checked' : ''} /> ${esc(b.nome)}</label>`).join('')}
+       </fieldset>
+       <fieldset>
+         <legend>Lembretes</legend>
+         <label class="opcao"><input type="checkbox" name="lembretes" ${p.conta.lembretes ? 'checked' : ''} /> Avisar aqui no site um dia antes dos eventos que confirmei</label>
+       </fieldset>
+       <div id="erro-preferencias"></div>
+       <button class="botao" type="submit">Salvar preferências</button>
+     </form>`,
     'Meu perfil',
   );
   principal.insertAdjacentHTML('beforeend', '<button class="botao secundario" id="sair">Sair da conta</button>');
@@ -680,6 +773,20 @@ async function telaPerfil() {
     avisar('Você saiu da conta.');
     location.hash = '#/';
   };
+  document.getElementById('form-preferencias').onsubmit = async (ev) => {
+    ev.preventDefault();
+    const form = ev.currentTarget;
+    const bairrosAcompanhados = [...form.querySelectorAll('[name=acompanhados]:checked')].map((c) => c.value);
+    try {
+      const { conta } = await api('/api/perfil', { method: 'PATCH', corpo: { bairrosAcompanhados, lembretes: form.elements.lembretes.checked } });
+      sessao = conta;
+      avisar('Preferências salvas.');
+      atualizarSino();
+      telaPerfil();
+    } catch (erro) {
+      document.getElementById('erro-preferencias').innerHTML = `<div class="caixa erro" role="alert"><p>${esc(erro.message)}</p></div>`;
+    }
+  };
   principal.querySelectorAll('[data-aviso]').forEach((b) => (b.onclick = async () => {
     try {
       await api(`/api/avisos/${encodeURIComponent(b.dataset.aviso)}/estado`, { method: 'PATCH', corpo: { estado: b.dataset.estado } });
@@ -689,6 +796,35 @@ async function telaPerfil() {
       document.getElementById('erro-perfil').innerHTML = `<div class="caixa erro" role="alert"><p>${esc(erro.message)}</p></div>`;
     }
   }));
+}
+
+async function telaNotificacoes() {
+  const { lembretes } = await api('/api/notificacoes');
+  mostrar(
+    `<a class="voltar" href="#/inicio">‹  Início</a>
+     <h1>Lembretes</h1>
+     <p class="suave">Eventos que você confirmou e que começam nas próximas 24 horas.</p>
+     ${lembretes.length
+       ? `<div class="lista-avisos">${lembretes.map((l) => `<a class="cartao item-lista lembrete" href="#/evento/${esc(l.eventoId)}">
+           <span class="sino-item" aria-hidden="true">🔔</span>
+           <div><h3>${esc(l.titulo)}</h3><p class="meta">Começa ${esc(formatarData(l.inicio))} · ${esc(l.local)}</p><p class="meta">${esc(l.bairro)}</p></div>
+           <span class="seta" aria-hidden="true">›</span></a>`).join('')}</div>`
+       : `<div class="caixa info"><p>Nenhum lembrete agora.</p><p>Quando faltar um dia para um evento que você confirmou, ele aparece aqui.</p></div>`}
+     <p class="nota">Os lembretes aparecem só aqui no site. Envio por e-mail ainda não existe nesta versão.</p>`,
+    'Lembretes',
+  );
+}
+
+async function atualizarSino() {
+  try {
+    const { lembretes } = await api('/api/notificacoes', { semRedirecionar: true });
+    const contador = document.getElementById('contador');
+    contador.textContent = lembretes.length;
+    contador.hidden = lembretes.length === 0;
+    document.getElementById('sino').setAttribute('aria-label', lembretes.length ? `Lembretes: ${lembretes.length} novo(s)` : 'Lembretes');
+  } catch {
+    // O sino é complementar; uma falha aqui não interrompe a tela.
+  }
 }
 
 // ---------- roteamento ----------
@@ -710,9 +846,11 @@ async function rotear() {
     if (!bairroAtual()) localStorage.setItem(CHAVE_BAIRRO, sessao.bairroId);
     esconderNavegacao(false);
     document.getElementById('bairro-ativo').textContent = nomeBairro(bairroAtual());
+    atualizarSino();
     document.querySelectorAll('.navegacao a').forEach((a) =>
       a.dataset.rota === rota ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current'));
     if (rota === 'bairro') return telaBairro();
+    if (rota === 'notificacoes') return await telaNotificacoes();
     if (rota === 'evento') return await telaEvento(id);
     if (rota === 'confirmado') return await telaConfirmado(id);
     if (rota === 'publicar') return telaPublicar();

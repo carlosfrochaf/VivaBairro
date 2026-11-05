@@ -17,7 +17,13 @@
     <div class="tela">
       <header class="topo" hidden>
         <a href="#/inicio" class="marca">VivaBairro</a>
-        <a href="#/bairro" class="bairro-ativo" id="bairro-ativo" title="Trocar bairro"></a>
+        <div class="topo-acoes">
+          <a href="#/bairro" class="bairro-ativo" id="bairro-ativo" title="Trocar bairro"></a>
+          <a href="#/notificacoes" class="sino" id="sino" aria-label="Lembretes">
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 16V11a6 6 0 1 1 12 0v5l2 2H4l2-2Zm4 4h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="contador" id="contador" hidden></span>
+          </a>
+        </div>
       </header>
       <main id="conteudo" tabindex="-1"></main>
       <nav class="navegacao" aria-label="Navegação principal" hidden>

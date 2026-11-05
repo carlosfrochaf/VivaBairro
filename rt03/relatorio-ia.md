@@ -83,7 +83,7 @@ Os testes em `app/tests/` também foram escritos com apoio de IA. Por isso, a re
 | --- | --- | --- |
 | Regras do produto | Não. A IA partiu do que já estava escrito no GitBook. | A equipe definiu escopo, requisitos e regras nas RT01 e RT02. Decisões em aberto continuam com a equipe. |
 | Escrita de código | Com apoio do Claude Code, orientado pela equipe. | Revisar cada arquivo antes de aprovar e conferir nomes e estados contra a documentação. |
-| Testes unitários e de integração | Execução automática com `npm test`: 90 testes, todos passando em 05/11/2026. | Conferir se os casos cobrem os critérios dos requisitos. Acrescentar casos quando encontrar falhas. |
+| Testes unitários e de integração | Execução automática com `npm test`: 112 testes, todos passando em 05/11/2026. | Conferir se os casos cobrem os critérios dos requisitos. Acrescentar casos quando encontrar falhas. |
 | Verificação das telas | O agente percorreu as telas no navegador e corrigiu os problemas encontrados (ver [Usabilidade e testes](usabilidade-e-testes.md#problemas-encontrados-e-corrigidos)). | Repetir o roteiro em outros navegadores e com teclado. Fazer sessões com pessoas do público. |
 | Texto da documentação | Rascunho escrito com apoio de IA. | Revisar a precisão, a voz do grupo e o que é fato ou hipótese antes da entrega. |
 
