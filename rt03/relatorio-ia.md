@@ -8,7 +8,7 @@ Este relatório separa dois assuntos: a IA usada **para desenvolver** o VivaBair
 | --- | --- | --- |
 | Claude Code (agente de programação da Anthropic, modelo Claude Opus 5.5) | Apoio à equipe, em 05/11/2026, na escrita do código da versão Alfa (`app/`), dos testes Jest e do rascunho destas páginas da RT03. Também ajudou a executar os testes e a percorrer as telas num navegador. A ferramenta não fez o projeto sozinha nem faz a entrega: escopo, requisitos, protótipo e decisões são da equipe, que conduziu o trabalho, revisou o resultado e responde por ele. | Arquivos em `app/` e `rt03/`; commit com a linha `Co-Authored-By: Claude`. |
 | Agentes de IA na manutenção do GitBook | Reorganização da documentação na RT02, com as regras de autoria do `AGENTS.md`. | `AGENTS.md` (commit `c72e748`, 01/10/2026). O histórico não registra qual ferramenta foi usada. |
-| *A equipe deve completar* | Ex.: ChatGPT, GitHub Copilot ou Gemini, se usados em pesquisa, textos ou protótipo. | Indicar data, finalidade e onde o resultado entrou. |
+| Gemini e Figma | Usados em protótipos e imagens|Usamos para refinar o protótipo e o layout|
 
 > A última linha deve ser preenchida pela equipe. Não listamos ferramentas sem evidência.
 
