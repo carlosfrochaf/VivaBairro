@@ -1,11 +1,14 @@
 // Interface da versão Alfa. As regras de validação vêm do mesmo módulo usado pelo servidor.
 import { validarAviso, CATEGORIAS_AVISO, LIMITES } from '/dominio/validacao.js';
 import { detectarDadosSensiveis } from '/dominio/privacidade.js';
+import { validarCadastro, validarLogin, LIMITES_CONTA } from '/dominio/contas.js';
 
 const CHAVE_BAIRRO = 'vivabairro.bairro';
 const CHAVE_RASCUNHO = 'vivabairro.rascunho-aviso';
+const ROTAS_PUBLICAS = ['', 'entrar', 'criar-conta'];
 const principal = document.getElementById('conteudo');
 let catalogo = null;
+let sessao; // undefined = ainda não consultada; null = sem login
 
 // ---------- utilidades ----------
 
@@ -39,6 +42,12 @@ async function api(caminho, opcoes = {}) {
   if (!resposta.ok) {
     const erro = new Error(dados.mensagem ?? 'Não foi possível concluir a ação.');
     Object.assign(erro, { status: resposta.status, dados });
+    // Sessão expirada em uma ação protegida: volta para a tela de entrada.
+    if (resposta.status === 401 && !opcoes.semRedirecionar) {
+      sessao = null;
+      avisar('Sua sessão terminou. Entre de novo para continuar.');
+      location.hash = '#/entrar';
+    }
     throw erro;
   }
   return dados;
@@ -99,43 +108,220 @@ function cartaoAviso(a, comAcoes = false) {
 
 // ---------- telas ----------
 
-function telaEntrada() {
-  document.querySelector('.topo').hidden = true;
-  document.querySelector('.navegacao').hidden = true;
-  const opcoes = catalogo.bairros
-    .map((b) => `<option value="${esc(b.id)}" ${b.id === bairroAtual() ? 'selected' : ''}>${esc(b.nome)}</option>`)
+function esconderNavegacao(esconder) {
+  document.querySelector('.topo').hidden = esconder;
+  document.querySelector('.navegacao').hidden = esconder;
+}
+
+function opcoesBairro(selecionado) {
+  return catalogo.bairros
+    .map((b) => `<option value="${esc(b.id)}" ${b.id === selecionado ? 'selected' : ''}>${esc(b.nome)}</option>`)
     .join('');
+}
+
+// Campo de formulário com rótulo, ajuda e espaço para erro ligados por aria-describedby.
+function campoConta(id, rotulo, controle, ajuda = '') {
+  return `<div class="campo" id="campo-${id}">
+      <label for="${id}">${rotulo}</label>${controle}
+      ${ajuda ? `<p class="ajuda" id="ajuda-${id}"><span>${ajuda}</span></p>` : ''}
+      <p class="erro-campo" id="erro-${id}" hidden></p></div>`;
+}
+
+// Exibe erros por campo e um resumo com links; leva o foco ao primeiro erro.
+function exibirErrosConta(form, campos, erros) {
+  for (const id of campos) {
+    const mensagem = erros[id];
+    const el = form.elements[id];
+    const erro = document.getElementById(`erro-${id}`);
+    const temAjuda = document.getElementById(`ajuda-${id}`);
+    document.getElementById(`campo-${id}`).classList.toggle('com-erro', Boolean(mensagem));
+    erro.hidden = !mensagem;
+    erro.textContent = mensagem ?? '';
+    el.setAttribute('aria-invalid', mensagem ? 'true' : 'false');
+    el.setAttribute('aria-describedby', [mensagem && `erro-${id}`, temAjuda && `ajuda-${id}`].filter(Boolean).join(' '));
+  }
+  const lista = campos.filter((c) => erros[c]);
+  const resumo = form.querySelector('.resumo-erros');
+  resumo.innerHTML = lista.length
+    ? `<div class="caixa erro" role="alert"><p><strong>Revise ${lista.length} campo(s):</strong></p><ul>${lista
+        .map((c) => `<li><a href="#${c}" data-foco="${c}">${esc(erros[c])}</a></li>`)
+        .join('')}</ul></div>`
+    : '';
+  resumo.querySelectorAll('[data-foco]').forEach((a) => (a.onclick = (ev) => { ev.preventDefault(); form.elements[a.dataset.foco].focus(); }));
+  if (lista.length) form.elements[lista[0]].focus();
+}
+
+function mostrarErroGeral(form, mensagem) {
+  form.querySelector('.resumo-erros').innerHTML = `<div class="caixa erro" role="alert"><p>${esc(mensagem)}</p></div>`;
+}
+
+function botaoMostrarSenha(form) {
+  form.querySelectorAll('[data-mostrar]').forEach((botao) => {
+    botao.onclick = () => {
+      const campo = form.elements[botao.dataset.mostrar];
+      const visivel = campo.type === 'text';
+      campo.type = visivel ? 'password' : 'text';
+      botao.textContent = visivel ? 'Mostrar senha' : 'Ocultar senha';
+      botao.setAttribute('aria-pressed', String(!visivel));
+    };
+  });
+}
+
+function concluirEntrada(conta, mensagem) {
+  sessao = conta;
+  localStorage.setItem(CHAVE_BAIRRO, conta.bairroId);
+  avisar(mensagem);
+  location.hash = '#/inicio';
+}
+
+async function entrarDemonstracao(botao) {
+  botao.disabled = true;
+  try {
+    const { conta } = await api('/api/sessao/demonstracao', { method: 'POST' });
+    concluirEntrada(conta, 'Você entrou com a conta de demonstração.');
+  } catch (erro) {
+    avisar(erro.message);
+    botao.disabled = false;
+  }
+}
+
+function telaEntrada() {
+  esconderNavegacao(true);
   mostrar(
     `<section class="boas-vindas">
       <h1>VivaBairro</h1>
-      <p>Veja o que acontece no bairro: eventos, avisos e iniciativas locais.</p>
-      <form id="form-entrada" novalidate>
-        <div class="campo">
-          <label for="bairro">Escolha um bairro para começar</label>
-          <select id="bairro" required aria-describedby="erro-bairro">
-            <option value="">Selecione…</option>${opcoes}
-          </select>
-          <p id="erro-bairro" class="erro-campo" hidden></p>
-        </div>
-        <p>${esc(catalogo.municipio.nome)}. Não pedimos sua localização nem endereço.</p>
-        <button class="botao" type="submit">Entrar com perfil de demonstração</button>
-      </form>
-      <p class="suave" style="color:#e8f5f4">Cadastro e login reais ainda não fazem parte da Alfa.</p>
+      <p><strong>Veja o que acontece no bairro.</strong></p>
+      <p>Eventos, avisos e iniciativas locais.</p>
+      <a class="botao" href="#/entrar">Entrar</a>
+      <a class="botao secundario contorno-claro" href="#/criar-conta">Criar conta</a>
+      <button type="button" class="link-claro" id="demo">Explorar com a conta de demonstração</button>
+      <p class="suave" style="color:#e8f5f4">${esc(catalogo.municipio.nome)}. Não pedimos sua localização nem endereço.</p>
     </section>`,
     'Boas-vindas',
   );
-  document.getElementById('form-entrada').onsubmit = (ev) => {
+  document.getElementById('demo').onclick = (ev) => entrarDemonstracao(ev.currentTarget);
+}
+
+function telaEntrar() {
+  esconderNavegacao(true);
+  mostrar(
+    `<a href="#/">‹ Voltar</a>
+     <h1>Entrar</h1>
+     <p class="suave">Use o e-mail e a senha da sua conta.</p>
+     <form id="form-entrar" novalidate>
+       <div class="resumo-erros"></div>
+       ${campoConta('email', 'E-mail', '<input id="email" name="email" type="email" autocomplete="email" inputmode="email" />')}
+       ${campoConta('senha', 'Senha', '<input id="senha" name="senha" type="password" autocomplete="current-password" /><button type="button" class="chip" data-mostrar="senha" aria-pressed="false" style="margin-top:8px">Mostrar senha</button>')}
+       <button class="botao" type="submit" id="botao-entrar">Entrar</button>
+     </form>
+     <p>Ainda não tem conta? <a href="#/criar-conta">Criar conta</a></p>
+     <p class="suave">Recuperação de senha por e-mail ainda não existe nesta versão.</p>
+     <button type="button" class="botao secundario" id="demo">Explorar com a conta de demonstração</button>`,
+    'Entrar',
+  );
+  const form = document.getElementById('form-entrar');
+  const campos = ['email', 'senha'];
+  botaoMostrarSenha(form);
+  document.getElementById('demo').onclick = (ev) => entrarDemonstracao(ev.currentTarget);
+
+  form.onsubmit = async (ev) => {
     ev.preventDefault();
-    const campo = document.getElementById('bairro');
-    const erro = document.getElementById('erro-bairro');
-    if (!campo.value) {
-      erro.textContent = 'Escolha um bairro para ver o que acontece nele.';
-      erro.hidden = false;
-      campo.setAttribute('aria-invalid', 'true');
-      campo.focus();
-      return;
+    const valores = { email: form.elements.email.value, senha: form.elements.senha.value };
+    const v = validarLogin(valores);
+    exibirErrosConta(form, campos, v.erros);
+    if (!v.valido) return;
+    const botao = document.getElementById('botao-entrar');
+    botao.disabled = true;
+    botao.textContent = 'Entrando…';
+    try {
+      const { conta } = await api('/api/sessao', { method: 'POST', corpo: valores, semRedirecionar: true });
+      concluirEntrada(conta, `Olá, ${conta.nome}!`);
+    } catch (erro) {
+      if (erro.dados?.erros) exibirErrosConta(form, campos, erro.dados.erros);
+      else mostrarErroGeral(form, erro.message);
+      // A senha é apagada; o e-mail continua para a pessoa só corrigir a senha.
+      form.elements.senha.value = '';
+      form.elements.senha.focus();
+      botao.disabled = false;
+      botao.textContent = 'Entrar';
     }
-    localStorage.setItem(CHAVE_BAIRRO, campo.value);
+  };
+}
+
+function telaCriarConta() {
+  esconderNavegacao(true);
+  mostrar(
+    `<a href="#/">‹ Voltar</a>
+     <h1>Criar conta</h1>
+     <p class="suave">Pedimos só o necessário. Todos os campos são obrigatórios.</p>
+     <form id="form-conta" novalidate>
+       <div class="resumo-erros"></div>
+       ${campoConta('nome', 'Nome de exibição', `<input id="nome" name="nome" autocomplete="nickname" maxlength="${LIMITES_CONTA.nome.max}" />`, 'É como os vizinhos vão ver você. Pode ser um apelido.')}
+       ${campoConta('email', 'E-mail', '<input id="email" name="email" type="email" autocomplete="email" inputmode="email" />', 'Usado para entrar. Não aparece para outras pessoas.')}
+       ${campoConta('senha', 'Senha', '<input id="senha" name="senha" type="password" autocomplete="new-password" /><button type="button" class="chip" data-mostrar="senha" aria-pressed="false" style="margin-top:8px">Mostrar senha</button>', `Pelo menos ${LIMITES_CONTA.senha.min} caracteres, com letras e números.`)}
+       ${campoConta('confirmacao', 'Repita a senha', '<input id="confirmacao" name="confirmacao" type="password" autocomplete="new-password" />')}
+       ${campoConta('bairroId', 'Bairro principal', `<select id="bairroId" name="bairroId"><option value="">Selecione…</option>${opcoesBairro('')}</select>`, 'Define o que aparece primeiro no início. Não pedimos endereço.')}
+       <button class="botao destaque" type="submit" id="botao-criar">Criar conta</button>
+     </form>
+     <p>Já tem conta? <a href="#/entrar">Entrar</a></p>`,
+    'Criar conta',
+  );
+  const form = document.getElementById('form-conta');
+  const campos = ['nome', 'email', 'senha', 'confirmacao', 'bairroId'];
+  const valores = () => Object.fromEntries(campos.map((c) => [c, form.elements[c].value]));
+  botaoMostrarSenha(form);
+
+  // Depois do primeiro erro, cada campo é revalidado enquanto a pessoa corrige.
+  form.addEventListener('input', (ev) => {
+    if (ev.target.getAttribute('aria-invalid') !== 'true') return;
+    const { erros } = validarCadastro(valores(), catalogo.bairros.map((b) => b.id));
+    const atuais = Object.fromEntries(campos.filter((c) => form.elements[c].getAttribute('aria-invalid') === 'true').map((c) => [c, erros[c]]));
+    for (const id of campos) {
+      if (!(id in atuais)) continue;
+      const erro = document.getElementById(`erro-${id}`);
+      erro.hidden = !atuais[id];
+      erro.textContent = atuais[id] ?? '';
+      document.getElementById(`campo-${id}`).classList.toggle('com-erro', Boolean(atuais[id]));
+      if (!atuais[id]) form.elements[id].setAttribute('aria-invalid', 'false');
+    }
+  });
+
+  form.onsubmit = async (ev) => {
+    ev.preventDefault();
+    const v = validarCadastro(valores(), catalogo.bairros.map((b) => b.id));
+    exibirErrosConta(form, campos, v.erros);
+    if (!v.valido) return;
+    const botao = document.getElementById('botao-criar');
+    botao.disabled = true;
+    botao.textContent = 'Criando conta…';
+    try {
+      const { conta } = await api('/api/contas', { method: 'POST', corpo: valores(), semRedirecionar: true });
+      concluirEntrada(conta, `Conta criada. Boas-vindas, ${conta.nome}!`);
+    } catch (erro) {
+      if (erro.dados?.erros) exibirErrosConta(form, campos, erro.dados.erros);
+      else mostrarErroGeral(form, erro.message);
+      botao.disabled = false;
+      botao.textContent = 'Criar conta';
+    }
+  };
+}
+
+function telaBairro() {
+  mostrar(
+    `<a href="#/inicio">‹ Início</a>
+     <h1>Trocar bairro</h1>
+     <p class="suave">Escolha qual bairro ver no início. Isso não muda o bairro das suas publicações.</p>
+     <form id="form-bairro">
+       <div class="campo"><label for="bairro">Bairro</label>
+       <select id="bairro">${opcoesBairro(bairroAtual())}</select></div>
+       <button class="botao" type="submit">Ver este bairro</button>
+     </form>`,
+    'Trocar bairro',
+  );
+  document.getElementById('form-bairro').onsubmit = (ev) => {
+    ev.preventDefault();
+    localStorage.setItem(CHAVE_BAIRRO, document.getElementById('bairro').value);
+    avisar(`Mostrando ${nomeBairro(bairroAtual())}.`);
     location.hash = '#/inicio';
   };
 }
@@ -151,7 +337,7 @@ async function telaInicio() {
 
   mostrar(
     `<h1>Olá!</h1>
-     <p class="suave">Bairro selecionado: <strong>${esc(nomeBairro(bairro))}</strong> · <a href="#/">trocar bairro</a></p>
+     <p class="suave">Bairro selecionado: <strong>${esc(nomeBairro(bairro))}</strong> · <a href="#/bairro">trocar bairro</a></p>
      <form class="busca" id="form-busca" role="search">
        <div class="campo"><label for="q">Buscar no bairro</label>
        <input id="q" type="search" value="${esc(filtrosFeed.q)}" placeholder="Ex.: praça, luz, feira" /></div>
@@ -447,7 +633,7 @@ async function telaPerfil() {
   const p = await api('/api/perfil');
   mostrar(
     `<h1>Meu espaço</h1>
-     <p><strong>${esc(p.conta.nome)}</strong><br /><span class="suave">Bairro selecionado: ${esc(nomeBairro(bairroAtual()))}</span></p>
+     <p><strong>${esc(p.conta.nome)}</strong><br /><span class="suave">${esc(p.conta.email)} · Bairro principal: ${esc(p.conta.bairro)}</span></p>
      <div class="numeros"><div><strong>${p.eventos.length}</strong>atividades</div><div><strong>${p.avisos.length}</strong>avisos</div></div>
      <h2>Próximas atividades</h2>
      ${p.eventos.length ? p.eventos.map(cartaoEvento).join('') : '<p class="suave">Você ainda não confirmou presença em eventos. <a href="#/inicio">Ver eventos do bairro</a></p>'}
@@ -456,6 +642,14 @@ async function telaPerfil() {
      ${p.avisos.length ? p.avisos.map((a) => cartaoAviso(a, true)).join('') : '<p class="suave">Você ainda não publicou avisos. <a href="#/publicar">Criar aviso</a></p>'}`,
     'Meu perfil',
   );
+  principal.insertAdjacentHTML('beforeend', '<button class="botao secundario" id="sair">Sair da conta</button>');
+  document.getElementById('sair').onclick = async () => {
+    await api('/api/sessao', { method: 'DELETE' }).catch(() => {});
+    sessao = null;
+    localStorage.removeItem(CHAVE_RASCUNHO);
+    avisar('Você saiu da conta.');
+    location.hash = '#/';
+  };
   principal.querySelectorAll('[data-aviso]').forEach((b) => (b.onclick = async () => {
     try {
       await api(`/api/avisos/${encodeURIComponent(b.dataset.aviso)}/estado`, { method: 'PATCH', corpo: { estado: b.dataset.estado } });
@@ -473,19 +667,29 @@ async function rotear() {
   const [, rota = '', id] = location.hash.replace(/^#\/?/, '/').split('/');
   try {
     catalogo ??= await api('/api/bairros');
-    if (!bairroAtual() || rota === '') return telaEntrada();
-    document.querySelector('.topo').hidden = false;
-    document.querySelector('.navegacao').hidden = false;
+    if (sessao === undefined) {
+      sessao = await api('/api/sessao', { semRedirecionar: true }).then((r) => r.conta).catch(() => null);
+    }
+    // Sem login, só as telas públicas; com login, as públicas levam ao início.
+    if (!sessao && !ROTAS_PUBLICAS.includes(rota)) return void (location.hash = '#/');
+    if (sessao && ROTAS_PUBLICAS.includes(rota)) return void (location.hash = '#/inicio');
+    if (rota === '') return telaEntrada();
+    if (rota === 'entrar') return telaEntrar();
+    if (rota === 'criar-conta') return telaCriarConta();
+
+    if (!bairroAtual()) localStorage.setItem(CHAVE_BAIRRO, sessao.bairroId);
+    esconderNavegacao(false);
     document.getElementById('bairro-ativo').textContent = nomeBairro(bairroAtual());
     document.querySelectorAll('.navegacao a').forEach((a) =>
       a.dataset.rota === rota ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current'));
+    if (rota === 'bairro') return telaBairro();
     if (rota === 'evento') return await telaEvento(id);
     if (rota === 'confirmado') return await telaConfirmado(id);
     if (rota === 'publicar') return telaPublicar();
     if (rota === 'perfil') return await telaPerfil();
     return await telaInicio();
   } catch (erro) {
-    telaDeErro(erro);
+    if (erro.status !== 401) telaDeErro(erro);
   }
 }
 

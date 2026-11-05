@@ -27,6 +27,8 @@ p { margin: 0 0 12px; }
 a { color: var(--verde); }
 
 :focus-visible { outline: 3px solid var(--laranja); outline-offset: 2px; border-radius: 6px; }
+/* Títulos recebem foco só para o leitor de tela anunciar a nova tela. */
+h1[tabindex='-1']:focus { outline: none; }
 
 .pular { position: absolute; left: -999px; }
 .pular:focus { left: 12px; top: 12px; background: #fff; padding: 8px 12px; z-index: 10; }
@@ -111,3 +113,6 @@ dialog::backdrop { background: rgba(20, 37, 61, .45); }
   .grade { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   .grade .cartao { margin: 0; }
 }
+
+.boas-vindas .botao.contorno-claro { background: rgba(255, 255, 255, .12); border-color: rgba(255, 255, 255, .6); color: #fff; }
+.link-claro { display: block; margin: 16px auto 8px; background: none; border: none; color: #fff; font: 700 .95rem Inter, Arial, sans-serif; text-decoration: underline; cursor: pointer; min-height: 44px; }

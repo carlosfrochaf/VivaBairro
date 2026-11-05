@@ -32,6 +32,10 @@ A validação acontece em duas camadas com o mesmo código: no navegador, para r
 | Início e término do evento | Datas válidas; início no futuro; término depois do início | "O término precisa ser depois do início." |
 | Capacidade do evento | Vazia ou inteiro de 1 a 5000 | "O limite de participantes deve ser um número inteiro entre 1 e 5000, ou ficar em branco." |
 | Dados pessoais no texto | Telefone, CPF ou e-mail geram alerta, sem bloquear | "Parece haver um número de telefone. Evite expor dados pessoais." |
+| Nome de exibição | Obrigatório, de 2 a 60 caracteres | "Informe como quer ser chamado." |
+| E-mail | Obrigatório, formato nome@exemplo.com, sem diferença entre maiúsculas e minúsculas | "Confira o e-mail. Ele deve ter o formato nome@exemplo.com." |
+| Senha | Pelo menos 8 caracteres, com letras e números | "A senha precisa ter pelo menos 8 caracteres (agora são 3)." / "Use letras e números na senha." |
+| Confirmação de senha | Igual à senha | "As senhas não são iguais." |
 | Corpo da requisição | JSON válido e no máximo 20 mil caracteres | "Não foi possível ler os dados enviados." / "O conteúdo enviado é grande demais." |
 
 ## Tratamento de erros
@@ -41,6 +45,10 @@ A validação acontece em duas camadas com o mesmo código: no navegador, para r
 | Campos inválidos | `422` com `erros` por campo | Os mesmos erros nos mesmos campos; o rascunho é mantido |
 | JSON malformado | `400` | Mensagem compreensível, sem detalhe técnico |
 | Evento lotado, presença repetida ou evento encerrado | `409` com `codigo` | "Não há mais vagas neste evento." e similares; o botão volta a funcionar |
+| Ação sem login | `401` | Volta para a entrada: "Entre na sua conta para continuar." |
+| E-mail ou senha incorretos | `401` | "E-mail ou senha incorretos..." (a mesma mensagem nos dois casos); a senha é apagada e o e-mail fica |
+| 5 tentativas de login erradas | `429` | "Muitas tentativas sem sucesso. Aguarde 15 minutos..." |
+| E-mail já cadastrado | `409` | "Use outro e-mail ou entre na conta que você já tem." |
 | Mudar aviso de outra pessoa | `403` | "Só o autor pode mudar o estado deste aviso." |
 | Transição de estado inválida | `409` | "Não é possível passar de "Resolvido pelo autor" para "Em andamento"." |
 | Item ou rota inexistente | `404` | "Evento não encontrado." |
@@ -60,12 +68,14 @@ Ferramenta: [Jest](https://jestjs.io/) 30, com módulos ES no Node.js 22. Execu�
 | `tests/privacidade.test.js` | Unitário | Detecção de telefone, CPF e e-mail sem falso alarme para endereço, horário e data | 6 |
 | `tests/ia.test.js` | Unitário | Consentimento, payload mínimo, tempo limite, falha, respostas inválidas e provedor simulado | 15 |
 | `tests/api.test.js` | Integração | Servidor real: filtro por bairro, `400`, `403`, `404`, `409` e `422`, alerta de privacidade e falha de IA sem quebrar o fluxo | 9 |
+| `tests/contas.test.js` | Unitário | Cadastro e login: campos obrigatórios, e-mail, força e confirmação da senha; hash com sal e token de sessão | 16 |
+| `tests/contas-api.test.js` | Integração | `401` sem login, cookie `HttpOnly` e `Secure`, senha fora das respostas, e-mail repetido, mesma mensagem para e-mail e senha errados, bloqueio após 5 tentativas e saída | 8 |
 
 ### Resultado da execução (05/11/2026)
 
 ```text
-Test Suites: 6 passed, 6 total
-Tests:       66 passed, 66 total
+Test Suites: 8 passed, 8 total
+Tests:       90 passed, 90 total
 Snapshots:   0 total
 ```
 
@@ -74,13 +84,13 @@ Snapshots:   0 total
 ```text
 File             | % Stmts | % Branch | % Funcs | % Lines
 -----------------|---------|----------|---------|--------
-All files        |   84.28 |    72.02 |   85.18 |   86.99
- dominio         |   98.14 |    84.21 |     100 |     100
+All files        |   88.42 |    78.59 |   92.59 |   90.27
+ dominio         |   97.33 |     85.5 |     100 |   98.36
  integracoes     |     100 |    80.76 |     100 |     100
- servidor        |   70.42 |    52.77 |   73.33 |   74.56
+ servidor        |   80.97 |    70.24 |   88.05 |   83.78
 ```
 
-As regras do produto (`dominio` e `integracoes`) têm 100% das linhas cobertas. O servidor tem cobertura menor porque o envio de arquivos estáticos e algumas rotas (cancelar presença e perfil) foram verificados no navegador, não por teste automatizado.
+As regras do produto (`dominio` e `integracoes`) têm mais de 98% das linhas cobertas. O servidor tem cobertura menor porque o envio de arquivos estáticos e algumas rotas (cancelar presença e perfil) foram verificados no navegador, não por teste automatizado.
 
 ### Exemplo de teste
 
@@ -101,7 +111,12 @@ Roteiro executado em 05/11/2026, no navegador do ambiente de desenvolvimento, co
 
 | Passo | Resultado |
 | --- | --- |
-| Entrar sem escolher bairro | Mensagem de erro e foco no campo |
+| Criar conta com o formulário vazio | Resumo com 5 erros e foco no primeiro campo |
+| Criar conta com senhas diferentes | Só o erro da confirmação, com foco nela |
+| Criar conta válida | Entra direto, com mensagem de boas-vindas e o início no bairro principal |
+| Sair e abrir o perfil | Perfil bloqueado; volta para a entrada |
+| Entrar com a senha errada | Mensagem genérica; e-mail mantido, senha apagada e foco na senha |
+| Entrar com a senha certa e com a conta de demonstração | Entra e abre o início |
 | Buscar "piscina" | Estado vazio com orientação e filtro ativo visível |
 | Confirmar a última vaga de "Aula de horta" | Tela de confirmação; o evento passa a "Lotado", com 0 vagas |
 | Enviar aviso vazio | Resumo com 4 erros, foco no título e `aria-invalid="true"` |
@@ -117,6 +132,8 @@ Roteiro executado em 05/11/2026, no navegador do ambiente de desenvolvimento, co
 1. A barra de navegação aparecia na tela de boas-vindas, porque o CSS sobrepunha o atributo `hidden`. Corrigido com `[hidden] { display: none !important; }`.
 2. A mensagem de erro vermelha tinha pouco contraste sobre o fundo escuro da tela de boas-vindas. Nessa tela ela agora usa amarelo.
 3. O botão "Marcar como aberto" era confuso para reabrir um aviso. Ele passou a se chamar "Reabrir aviso".
+4. Os horários dos eventos apareciam 3 horas adiantados no servidor publicado, que usa outro fuso. Os dados de demonstração agora usam o horário de Brasília.
+5. A Alfa entrava direto com um perfil de demonstração, diferente do protótipo. Agora tem as telas "Entrar" e "Criar conta".
 
 ## O que ainda falta verificar
 

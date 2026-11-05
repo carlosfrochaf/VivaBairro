@@ -4,14 +4,17 @@ import { criarRepositorio } from '../src/servidor/repositorio.js';
 
 let servidor;
 let base;
+let cookie = '';
 
-async function chamar(caminho, metodo = 'GET', corpo) {
+async function chamar(caminho, metodo = 'GET', corpo, { semCookie = false } = {}) {
   const r = await fetch(base + caminho, {
     method: metodo,
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', ...(cookie && !semCookie ? { Cookie: cookie } : {}) },
     body: corpo === undefined ? undefined : typeof corpo === 'string' ? corpo : JSON.stringify(corpo),
   });
-  return { status: r.status, corpo: await r.json() };
+  const definido = r.headers.get('set-cookie');
+  if (definido) cookie = definido.split(';')[0];
+  return { status: r.status, corpo: await r.json(), setCookie: definido };
 }
 
 beforeEach(async () => {
@@ -21,6 +24,9 @@ beforeEach(async () => {
     tempoLimiteIaMs: 30,
   });
   base = `http://localhost:${servidor.address().port}`;
+  cookie = '';
+  // Os testes abaixo usam a conta de demonstração; os de conta ficam em contas-api.test.js.
+  await chamar('/api/sessao/demonstracao', 'POST');
 });
 
 afterEach(() => new Promise((resolver) => servidor.close(resolver)));

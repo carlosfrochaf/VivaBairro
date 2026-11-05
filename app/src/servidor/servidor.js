@@ -17,7 +17,9 @@ import {
 import { atualizarEstadoAviso, acoesDisponiveis, NOMES_ESTADO_AVISO } from '../dominio/avisos.js';
 import { detectarDadosSensiveis } from '../dominio/privacidade.js';
 import { solicitarSugestao, provedorSimulado, CAMPOS_ENVIADOS } from '../integracoes/ia.js';
+import { validarCadastro, validarLogin } from '../dominio/contas.js';
 import { criarRepositorio, CONTA_DEMO } from './repositorio.js';
+import { gerarHash, conferirSenha, gerarToken } from './senhas.js';
 
 const RAIZ = dirname(fileURLToPath(import.meta.url));
 const PASTAS_ESTATICAS = {
@@ -26,6 +28,29 @@ const PASTAS_ESTATICAS = {
 };
 const TIPOS = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.svg': 'image/svg+xml' };
 const TAMANHO_MAXIMO_CORPO = 20_000;
+const COOKIE_SESSAO = 'vb_sessao';
+const DURACAO_SESSAO_MS = 8 * 60 * 60 * 1000;
+const MAX_TENTATIVAS = 5;
+const JANELA_TENTATIVAS_MS = 15 * 60 * 1000;
+const ERRO_LOGIN = 'E-mail ou senha incorretos. Confira os dados e tente de novo.';
+// Hash fixo usado quando o e-mail não existe, para o tempo de resposta não revelar isso.
+const HASH_FICTICIO = gerarHash(gerarToken());
+
+function lerCookies(req) {
+  return Object.fromEntries(
+    (req.headers.cookie ?? '')
+      .split(';')
+      .map((par) => par.trim().split('='))
+      .filter(([nome, valor]) => nome && valor)
+      .map(([nome, valor]) => [nome, decodeURIComponent(valor)]),
+  );
+}
+
+function cookieSessao(req, token, maxAgeSegundos) {
+  // Secure quando o acesso chega por HTTPS (como no Render, atrás de proxy).
+  const seguro = req.headers['x-forwarded-proto'] === 'https' ? '; Secure' : '';
+  return `${COOKIE_SESSAO}=${token}; HttpOnly; SameSite=Lax; Path=/; Max-Age=${maxAgeSegundos}${seguro}`;
+}
 
 class ErroHttp extends Error {
   constructor(status, mensagem, extra = {}) {
@@ -36,7 +61,7 @@ class ErroHttp extends Error {
 }
 
 function responder(res, status, corpo) {
-  res.writeHead(status, { 'Content-Type': 'application/json; charset=utf-8' });
+  res.writeHead(status, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' });
   res.end(JSON.stringify(corpo));
 }
 
@@ -58,6 +83,51 @@ export function criarApp({ repositorio = criarRepositorio(), provedorIa = proved
   const { estado } = repositorio;
   const idsBairros = () => estado.bairros.map((b) => b.id);
   const nomeBairro = (id) => estado.bairros.find((b) => b.id === id)?.nome ?? id;
+  const tentativas = new Map();
+
+  const contaPublica = (conta) => ({
+    id: conta.id,
+    nome: conta.nome,
+    email: conta.email,
+    bairroId: conta.bairroId,
+    bairro: nomeBairro(conta.bairroId),
+  });
+
+  function contaDaSessao(req) {
+    const token = lerCookies(req)[COOKIE_SESSAO];
+    const sessao = token && estado.sessoes.get(token);
+    if (!sessao) return null;
+    if (sessao.expiraEm <= relogio().getTime()) {
+      estado.sessoes.delete(token);
+      return null;
+    }
+    return estado.contas.find((c) => c.id === sessao.contaId) ?? null;
+  }
+
+  function abrirSessao(req, res, conta) {
+    const token = gerarToken();
+    estado.sessoes.set(token, { contaId: conta.id, expiraEm: relogio().getTime() + DURACAO_SESSAO_MS });
+    res.setHeader('Set-Cookie', cookieSessao(req, token, DURACAO_SESSAO_MS / 1000));
+    return { conta: contaPublica(conta) };
+  }
+
+  // Limita tentativas erradas por e-mail para dificultar adivinhação de senha.
+  function bloqueado(email) {
+    const registro = tentativas.get(email);
+    if (!registro) return false;
+    if (relogio().getTime() - registro.inicio > JANELA_TENTATIVAS_MS) {
+      tentativas.delete(email);
+      return false;
+    }
+    return registro.falhas >= MAX_TENTATIVAS;
+  }
+
+  function registrarFalha(email) {
+    const agora = relogio().getTime();
+    const registro = tentativas.get(email);
+    if (!registro || agora - registro.inicio > JANELA_TENTATIVAS_MS) tentativas.set(email, { inicio: agora, falhas: 1 });
+    else registro.falhas += 1;
+  }
 
   function apresentarEvento(evento, contaId) {
     const confirmados = contarConfirmacoes(estado.inscricoes, evento.id);
@@ -92,8 +162,57 @@ export function criarApp({ repositorio = criarRepositorio(), provedorIa = proved
     return evento;
   }
 
+  // Rotas marcadas como 'publica' não exigem login; as demais respondem 401 sem sessão.
   const rotas = [
-    ['GET', /^\/api\/bairros$/, () => ({ municipio: estado.municipio, bairros: estado.bairros, categorias: CATEGORIAS_AVISO })],
+    ['GET', /^\/api\/sessao$/, ({ conta }) => ({ conta: conta ? contaPublica(conta) : null }), 200, 'publica'],
+
+    ['POST', /^\/api\/contas$/, async ({ req, res }) => {
+      const v = validarCadastro(await lerCorpo(req), idsBairros());
+      if (!v.valido) throw new ErroHttp(422, 'Revise os campos destacados.', { erros: v.erros });
+      if (estado.contas.some((c) => c.email === v.dados.email)) {
+        // Mensagem genérica: não confirma para terceiros quais e-mails estão cadastrados.
+        throw new ErroHttp(409, 'Não foi possível criar a conta com esse e-mail.', {
+          erros: { email: 'Use outro e-mail ou entre na conta que você já tem.' },
+        });
+      }
+      const conta = {
+        id: repositorio.novoId('conta'),
+        nome: v.dados.nome,
+        email: v.dados.email,
+        bairroId: v.dados.bairroId,
+        senhaHash: gerarHash(v.dados.senha),
+      };
+      estado.contas.push(conta);
+      return abrirSessao(req, res, conta);
+    }, 201, 'publica'],
+
+    ['POST', /^\/api\/sessao$/, async ({ req, res }) => {
+      const v = validarLogin(await lerCorpo(req));
+      if (!v.valido) throw new ErroHttp(422, 'Revise os campos destacados.', { erros: v.erros });
+      if (bloqueado(v.dados.email)) {
+        throw new ErroHttp(429, 'Muitas tentativas sem sucesso. Aguarde 15 minutos e tente de novo.');
+      }
+      const conta = estado.contas.find((c) => c.email === v.dados.email);
+      const confere = conferirSenha(v.dados.senha, conta?.senhaHash ?? HASH_FICTICIO);
+      if (!conta || !confere) {
+        registrarFalha(v.dados.email);
+        throw new ErroHttp(401, ERRO_LOGIN);
+      }
+      tentativas.delete(v.dados.email);
+      return abrirSessao(req, res, conta);
+    }, 200, 'publica'],
+
+    ['POST', /^\/api\/sessao\/demonstracao$/, ({ req, res }) =>
+      abrirSessao(req, res, estado.contas.find((c) => c.id === CONTA_DEMO.id)), 200, 'publica'],
+
+    ['DELETE', /^\/api\/sessao$/, ({ req, res }) => {
+      const token = lerCookies(req)[COOKIE_SESSAO];
+      if (token) estado.sessoes.delete(token);
+      res.setHeader('Set-Cookie', cookieSessao(req, '', 0));
+      return { ok: true };
+    }, 200, 'publica'],
+
+    ['GET', /^\/api\/bairros$/, () => ({ municipio: estado.municipio, bairros: estado.bairros, categorias: CATEGORIAS_AVISO }), 200, 'publica'],
 
     ['GET', /^\/api\/feed$/, ({ url, contaId }) => {
       const bairro = url.searchParams.get('bairro');
@@ -161,8 +280,8 @@ export function criarApp({ repositorio = criarRepositorio(), provedorIa = proved
       return { ...r, camposEnviados: CAMPOS_ENVIADOS, provedor: 'Simulado (sem serviço externo)' };
     }],
 
-    ['GET', /^\/api\/perfil$/, ({ contaId }) => ({
-      conta: CONTA_DEMO,
+    ['GET', /^\/api\/perfil$/, ({ conta, contaId }) => ({
+      conta: contaPublica(conta),
       eventos: estado.eventos
         .filter((e) => estado.inscricoes.some((i) => i.eventoId === e.id && i.contaId === contaId && i.ativa))
         .map((e) => apresentarEvento(e, contaId)),
@@ -191,14 +310,15 @@ export function criarApp({ repositorio = criarRepositorio(), provedorIa = proved
 
   return async function tratar(req, res) {
     const url = new URL(req.url, 'http://localhost');
-    // Alfa sem login real (RF-01 pendente): todas as requisições usam a conta de demonstração.
-    const contaId = CONTA_DEMO.id;
     try {
       if (!url.pathname.startsWith('/api/')) return await servirArquivo(url.pathname, res);
-      for (const [metodo, padrao, acao, status = 200] of rotas) {
+      for (const [metodo, padrao, acao, status = 200, acesso] of rotas) {
         const achou = url.pathname.match(padrao);
         if (achou && req.method === metodo) {
-          return responder(res, status, await acao({ req, url, params: achou.slice(1), contaId }));
+          const conta = contaDaSessao(req);
+          if (!conta && acesso !== 'publica') throw new ErroHttp(401, 'Entre na sua conta para continuar.');
+          const corpo = await acao({ req, res, url, params: achou.slice(1), conta, contaId: conta?.id });
+          return responder(res, status, corpo);
         }
       }
       throw new ErroHttp(404, 'Rota não encontrada.');

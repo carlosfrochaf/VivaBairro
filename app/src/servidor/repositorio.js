@@ -1,10 +1,17 @@
 // Armazenamento em memória com dados fictícios de demonstração.
 // Reinicia a cada execução; substitui o banco de dados previsto na arquitetura.
 
+import { gerarHash, gerarToken } from './senhas.js';
+
 const HORA = 60 * 60 * 1000;
 const DIA = 24 * HORA;
 
-export const CONTA_DEMO = { id: 'conta-demo', nome: 'Perfil de demonstração' };
+export const CONTA_DEMO = {
+  id: 'conta-demo',
+  nome: 'Perfil de demonstração',
+  email: 'demonstracao@vivabairro.test',
+  bairroId: 'jardim-aurora',
+};
 
 function emDias(agora, dias, hora) {
   const data = new Date(agora.getTime() + dias * DIA);
@@ -16,6 +23,9 @@ function emDias(agora, dias, hora) {
 export function criarRepositorio(agora = new Date()) {
   const estado = {
     municipio: { id: 'mun-demo', nome: 'Município de demonstração' },
+    // A conta de demonstração recebe uma senha aleatória: só se entra nela pelo botão de demonstração.
+    contas: [{ ...CONTA_DEMO, senhaHash: gerarHash(gerarToken()) }],
+    sessoes: new Map(),
     bairros: [
       { id: 'jardim-aurora', nome: 'Jardim Aurora' },
       { id: 'vila-esperanca', nome: 'Vila Esperança' },

@@ -48,12 +48,12 @@ As regras de validação (`app/src/dominio/validacao.js`) rodam no navegador, pa
 
 ![Fluxos mobile do VivaBairro](../assets/prototipo-vivabairro.svg)
 
-O protótipo tem seis telas: boas-vindas, início, detalhe do evento, confirmação, criar aviso e perfil. A Alfa implementa essas seis telas com dados vindos do backend. Os fluxos de consentimento da IA e de moderação municipal estão em [Telas e fluxos](../9-prototipo-interface/prototipo-wireframes.md).
+O protótipo tem seis telas: boas-vindas, início, detalhe do evento, confirmação, criar aviso e perfil. A Alfa implementa essas seis telas com dados vindos do backend, incluindo as telas de entrar e criar conta que a tela 01 abre. Os fluxos de consentimento da IA e de moderação municipal estão em [Telas e fluxos](../9-prototipo-interface/prototipo-wireframes.md).
 
 ## Estado do projeto na RT03
 
-- **Existe e funciona:** versão Alfa local com feed por bairro, busca, detalhe e confirmação de evento, criação de aviso com validação e rascunho, sugestão de IA simulada com consentimento, perfil e mudança de estado de avisos. São 66 testes automatizados, todos passando.
-- **Ainda é proposta:** cadastro e login reais, moderação, administração municipal, notificações, banco de dados persistente, integração com um provedor de IA real e implantação pública.
+- **Existe e funciona:** versão Alfa, local e online, com criar conta, entrar e sair, feed por bairro, busca, detalhe e confirmação de evento, criação de aviso com validação e rascunho, sugestão de IA simulada com consentimento, perfil e mudança de estado de avisos. São 90 testes automatizados, todos passando.
+- **Ainda é proposta:** recuperação de senha por e-mail, moderação, administração municipal, notificações, banco de dados persistente, integração com um provedor de IA real e implantação pública.
 - **Sem evidência ainda:** nenhuma sessão de teste com moradores, organizadores ou equipe municipal foi registrada. As verificações de usabilidade desta entrega foram feitas pela equipe.
 
-Para encerrar o desenvolvimento rumo à Beta, faltam: escolher a stack definitiva e o banco, implementar autenticação (RF-01), moderação (RF-11 a RF-13) e o painel municipal (RF-14), e fazer sessões de uso com o roteiro da [matriz de rastreabilidade](../10-requisitos/rastreabilidade-usabilidade.md).
+Para encerrar o desenvolvimento rumo à Beta, faltam: escolher a stack definitiva e o banco, completar a autenticação com recuperação de acesso (RF-01), moderação (RF-11 a RF-13) e o painel municipal (RF-14), e fazer sessões de uso com o roteiro da [matriz de rastreabilidade](../10-requisitos/rastreabilidade-usabilidade.md).
