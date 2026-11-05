@@ -79,14 +79,17 @@ function telaDeErro(erro) {
 }
 
 function cartaoEvento(e) {
-  const vagas = e.vagas === null ? 'Sem limite de vagas' : `${e.vagas} vaga(s)`;
-  return `<a class="cartao" href="#/evento/${esc(e.id)}">
-      <span class="rotulo">Evento · ${esc(e.bairro)}</span>
+  const vagas = e.vagas === null ? 'sem limite de vagas' : `${e.vagas} vaga(s)`;
+  return `<a class="cartao cartao-evento" href="#/evento/${esc(e.id)}">
+      <div class="capa ${capaDe(e.id)}" aria-hidden="true"></div>
       <h3>${esc(e.titulo)}</h3>
-      <p class="meta">${esc(formatarData(e.inicio))} · ${esc(e.local)}</p>
+      <p class="meta">${esc(formatarData(e.inicio))}</p>
       <p class="meta">${e.confirmados} confirmado(s) · ${vagas}</p>
-      <span class="etiqueta ${esc(e.estado)}">${esc(e.estadoNome)}</span>
-      ${e.euConfirmei ? '<span class="etiqueta">✓ Você vai</span>' : ''}
+      <div class="etiquetas">
+        <span class="etiqueta ${esc(e.estado)}">${esc(e.estadoNome)}</span>
+        ${e.gratuito ? '<span class="etiqueta gratuito">Gratuito</span>' : ''}
+        ${e.euConfirmei ? '<span class="etiqueta voce">✓ Você vai</span>' : ''}
+      </div>
     </a>`;
 }
 
@@ -96,15 +99,23 @@ function cartaoAviso(a, comAcoes = false) {
         .map((ac) => `<button class="botao secundario pequeno" data-aviso="${esc(a.id)}" data-estado="${esc(ac.id)}">${ac.id === 'aberto' ? 'Reabrir aviso' : `Marcar como ${esc(ac.nome.toLowerCase())}`}</button>`)
         .join('')}</div>`
     : '';
-  return `<article class="cartao">
-      <span class="rotulo">Aviso · ${esc(a.categoriaNome)} · ${esc(a.bairro)}</span>
-      <h3>${esc(a.titulo)}</h3>
-      <p class="meta">${esc(a.local)}</p>
-      <p class="meta">${esc(a.origem)} · ${esc(formatarData(a.criadoEm))}</p>
-      <span class="etiqueta">Estado: ${esc(a.estadoNome)}</span>
-      ${acoes}
+  return `<article class="cartao cartao-aviso">
+      <span class="icone" aria-hidden="true">!</span>
+      <div>
+        <span class="rotulo">${esc(a.categoriaNome)}</span>
+        <h3>${esc(a.titulo)}</h3>
+        <p class="meta">${esc(a.local)}</p>
+        <p class="meta">${esc(a.origem)} · ${esc(formatarData(a.criadoEm))}</p>
+        <span class="etiqueta">Estado: ${esc(a.estadoNome)}</span>
+      </div>
+      ${acoes ? `<div class="acoes-aviso">${acoes}</div>` : ''}
     </article>`;
 }
+
+const SOL = `<svg class="sol" viewBox="0 0 96 96" aria-hidden="true"><circle cx="48" cy="48" r="44" fill="#FFD166"/><path d="M24 53c17-31 30-32 48 0M28 62h40M36 38V21M60 38V21" fill="none" stroke="#14253D" stroke-width="5" stroke-linecap="round"/></svg>`;
+const ONDA = `<svg viewBox="0 0 393 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 84c70-42 123-4 180-35 63-35 108-2 213-49v90H0Z" fill="#E47A43" opacity=".4"/></svg>`;
+const CHECK = `<svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><path d="m9 21 8 8 15-17" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const capaDe = (id) => ([...String(id)].reduce((t, c) => t + c.charCodeAt(0), 0) % 2 ? 'capa-a' : 'capa-b');
 
 // ---------- telas ----------
 
@@ -189,13 +200,16 @@ function telaEntrada() {
   esconderNavegacao(true);
   mostrar(
     `<section class="boas-vindas">
+      ${SOL}
       <h1>VivaBairro</h1>
-      <p><strong>Veja o que acontece no bairro.</strong></p>
-      <p>Eventos, avisos e iniciativas locais.</p>
-      <a class="botao" href="#/entrar">Entrar</a>
-      <a class="botao secundario contorno-claro" href="#/criar-conta">Criar conta</a>
-      <button type="button" class="link-claro" id="demo">Explorar com a conta de demonstração</button>
-      <p class="suave" style="color:#e8f5f4">${esc(catalogo.municipio.nome)}. Não pedimos sua localização nem endereço.</p>
+      <p class="chamada">Veja o que acontece no bairro.</p>
+      <p class="apoio">Eventos, avisos e iniciativas locais.</p>
+      <div class="acoes">
+        <a class="botao" href="#/entrar">Entrar</a>
+        <a class="botao contorno-claro" href="#/criar-conta">Criar conta</a>
+        <button type="button" class="link-claro" id="demo">Explorar com a conta de demonstração</button>
+        <p class="rodape">${esc(catalogo.municipio.nome)}. Não pedimos sua localização nem endereço.</p>
+      </div>
     </section>`,
     'Boas-vindas',
   );
@@ -205,7 +219,7 @@ function telaEntrada() {
 function telaEntrar() {
   esconderNavegacao(true);
   mostrar(
-    `<a href="#/">‹ Voltar</a>
+    `<a class="voltar" href="#/">‹  Voltar</a>
      <h1>Entrar</h1>
      <p class="suave">Use o e-mail e a senha da sua conta.</p>
      <form id="form-entrar" novalidate>
@@ -251,7 +265,7 @@ function telaEntrar() {
 function telaCriarConta() {
   esconderNavegacao(true);
   mostrar(
-    `<a href="#/">‹ Voltar</a>
+    `<a class="voltar" href="#/">‹  Voltar</a>
      <h1>Criar conta</h1>
      <p class="suave">Pedimos só o necessário. Todos os campos são obrigatórios.</p>
      <form id="form-conta" novalidate>
@@ -308,7 +322,7 @@ function telaCriarConta() {
 
 function telaBairro() {
   mostrar(
-    `<a href="#/inicio">‹ Início</a>
+    `<a class="voltar" href="#/inicio">‹  Início</a>
      <h1>Trocar bairro</h1>
      <p class="suave">Escolha qual bairro ver no início. Isso não muda o bairro das suas publicações.</p>
      <form id="form-bairro">
@@ -336,11 +350,11 @@ async function telaInicio() {
   const vazio = !feed.eventos.length && !feed.avisos.length;
 
   mostrar(
-    `<h1>Olá!</h1>
-     <p class="suave">Bairro selecionado: <strong>${esc(nomeBairro(bairro))}</strong> · <a href="#/bairro">trocar bairro</a></p>
+    `<h1 class="ola">Olá!</h1>
+     <p class="suave">Bairro selecionado · ${esc(nomeBairro(bairro))} · <a href="#/bairro">trocar</a></p>
      <form class="busca" id="form-busca" role="search">
-       <div class="campo"><label for="q">Buscar no bairro</label>
-       <input id="q" type="search" value="${esc(filtrosFeed.q)}" placeholder="Ex.: praça, luz, feira" /></div>
+       <label for="q" class="pular">Buscar no bairro</label>
+       <input id="q" type="search" value="${esc(filtrosFeed.q)}" placeholder="Buscar: praça, luz, feira" />
        <button class="botao pequeno" type="submit">Buscar</button>
      </form>
      <div class="filtros" role="group" aria-label="Tipo de publicação">
@@ -353,9 +367,10 @@ async function telaInicio() {
        ? `<div class="caixa info" role="status"><p><strong>Nada encontrado.</strong></p>
           <p>Tente outra palavra, limpe os filtros ou escolha outro bairro.</p></div>`
        : ''}
-     ${feed.eventos.length ? `<section class="destaque-semana"><span class="rotulo">Próximos dias</span><h2 style="margin-top:4px">Próximas atividades</h2>
-       <div class="grade">${feed.eventos.map(cartaoEvento).join('')}</div></section>` : ''}
-     ${feed.avisos.length ? `<h2>Avisos do bairro</h2><div class="grade">${feed.avisos.map((a) => cartaoAviso(a)).join('')}</div>` : ''}`,
+     ${feed.eventos.length ? `<section class="destaque-semana"><span class="rotulo">Próximos dias</span><h2>Próximas atividades</h2>
+       <p>Eventos no bairro selecionado.</p></section>
+       <div class="grade">${feed.eventos.map(cartaoEvento).join('')}</div>` : ''}
+     ${feed.avisos.length ? `<h2>Avisos do bairro</h2><div class="lista-avisos">${feed.avisos.map((a) => cartaoAviso(a)).join('')}</div>` : ''}`,
     'Início',
   );
 
@@ -393,16 +408,26 @@ async function telaEvento(id) {
   else acao = `<button class="botao" id="confirmar">Quero participar</button>`;
 
   mostrar(
-    `<a href="#/inicio">‹ Voltar</a>
-     <p class="rotulo" style="margin-top:16px">Evento · ${esc(e.bairro)}</p>
-     <h1>${esc(e.titulo)}</h1>
-     <p class="suave">${esc(formatarData(e.inicio))} até ${esc(new Date(e.fim).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }))}</p>
-     <span class="etiqueta ${esc(e.estado)}">${esc(e.estadoNome)}</span>
-     <p style="margin-top:16px">${esc(e.descricao)}</p>
-     <div class="caixa info"><p class="rotulo">Ponto de encontro</p><p>${esc(e.local)}</p>
-       <p class="meta">${e.confirmados} pessoa(s) confirmada(s) · ${e.vagas === null ? 'sem limite de vagas' : `${e.vagas} vaga(s) restante(s)`}${e.gratuito ? ' · gratuito' : ''}</p></div>
-     <div id="erro-acao"></div>
-     ${acao}`,
+    `<div class="capa-evento ${capaDe(e.id)}">
+       <a class="voltar" href="#/inicio">‹  Voltar</a>
+       <span class="sol-capa" aria-hidden="true"></span>${ONDA}
+     </div>
+     <div class="detalhe">
+       <span class="rotulo">Evento · ${esc(e.bairro)}</span>
+       <h1>${esc(e.titulo)}</h1>
+       <p class="suave">${esc(formatarData(e.inicio))} até ${esc(new Date(e.fim).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }))}</p>
+       <span class="etiqueta ${esc(e.estado)}">${esc(e.estadoNome)}</span>${e.gratuito ? '<span class="etiqueta gratuito">Gratuito</span>' : ''}
+       <hr class="divisor" />
+       <p>${esc(e.descricao)}</p>
+       <div class="ponto-encontro">
+         <span class="rotulo">Ponto de encontro</span>
+         <p>${esc(e.local)}</p>
+         <p class="meta">${e.confirmados} pessoa(s) confirmada(s) · ${e.vagas === null ? 'sem limite de vagas' : `${e.vagas} vaga(s) restante(s)`}</p>
+         <span class="pino" aria-hidden="true">⌖</span>
+       </div>
+       <div id="erro-acao"></div>
+       ${acao}
+     </div>`,
     e.titulo,
   );
 
@@ -436,12 +461,12 @@ async function telaEvento(id) {
 async function telaConfirmado(id) {
   const e = await api(`/api/eventos/${encodeURIComponent(id)}`);
   mostrar(
-    `<div class="confirmado"><div class="icone" aria-hidden="true">✓</div>
+    `<div class="confirmado"><div class="selo" aria-hidden="true"><span>${CHECK}</span></div>
      <h1>Presença confirmada!</h1><p class="suave">Seu lugar está reservado.</p></div>
-     <div class="cartao"><p class="rotulo">Sua próxima atividade</p><h3>${esc(e.titulo)}</h3><p class="meta">${esc(formatarData(e.inicio))} · ${esc(e.local)}</p></div>
+     <div class="cartao cartao-destaque"><span class="rotulo">Sua próxima atividade</span><h3>${esc(e.titulo)}</h3><p class="meta">${esc(formatarData(e.inicio))} · ${esc(e.local)}</p></div>
      <a class="botao" href="#/perfil">Ver minhas atividades</a>
      <a class="botao secundario" href="#/inicio">Voltar ao início</a>
-     <p class="suave" style="text-align:center">Lembretes por e-mail ainda não existem nesta versão.</p>`,
+     <p class="nota">Lembretes por e-mail ainda não existem nesta versão.</p>`,
     'Presença confirmada',
   );
 }
@@ -461,7 +486,7 @@ function telaPublicar() {
       <p class="erro-campo" id="erro-${id}" hidden></p></div>`;
 
   mostrar(
-    `<a href="#/inicio">‹ Início</a>
+    `<a class="voltar" href="#/inicio">‹  Início</a>
      <h1>Criar aviso</h1>
      <p class="suave">Conte algo importante para o bairro. Campos com * são obrigatórios.</p>
      ${temRascunho ? '<div class="caixa info" role="status"><p>Recuperamos o rascunho que você começou. <button class="chip" id="descartar">Descartar rascunho</button></p></div>' : ''}
@@ -632,14 +657,19 @@ function telaPublicar() {
 async function telaPerfil() {
   const p = await api('/api/perfil');
   mostrar(
-    `<h1>Meu espaço</h1>
-     <p><strong>${esc(p.conta.nome)}</strong><br /><span class="suave">${esc(p.conta.email)} · Bairro principal: ${esc(p.conta.bairro)}</span></p>
-     <div class="numeros"><div><strong>${p.eventos.length}</strong>atividades</div><div><strong>${p.avisos.length}</strong>avisos</div></div>
+    `<h1 class="ola">Meu espaço</h1>
+     <div class="perfil-cabecalho">
+       <span class="avatar" aria-hidden="true">${esc(p.conta.nome.trim().charAt(0).toUpperCase())}</span>
+       <div><h2>${esc(p.conta.nome)}</h2><p>Bairro principal: ${esc(p.conta.bairro)}</p><p>${esc(p.conta.email)}</p></div>
+     </div>
+     <div class="numeros"><div><strong>${p.eventos.length}</strong><span>atividades</span></div><div><strong>${p.avisos.length}</strong><span>avisos</span></div></div>
      <h2>Próximas atividades</h2>
-     ${p.eventos.length ? p.eventos.map(cartaoEvento).join('') : '<p class="suave">Você ainda não confirmou presença em eventos. <a href="#/inicio">Ver eventos do bairro</a></p>'}
+     ${p.eventos.length
+       ? p.eventos.map((e) => `<a class="cartao item-lista" href="#/evento/${esc(e.id)}"><div><h3>${esc(e.titulo)}</h3><p class="meta">${esc(formatarData(e.inicio))} · Confirmada</p></div><span class="seta" aria-hidden="true">›</span></a>`).join('')
+       : '<p class="suave">Você ainda não confirmou presença em eventos. <a href="#/inicio">Ver eventos do bairro</a></p>'}
      <h2>Seus avisos</h2>
      <div id="erro-perfil"></div>
-     ${p.avisos.length ? p.avisos.map((a) => cartaoAviso(a, true)).join('') : '<p class="suave">Você ainda não publicou avisos. <a href="#/publicar">Criar aviso</a></p>'}`,
+     <div class="lista-avisos">${p.avisos.length ? p.avisos.map((a) => cartaoAviso(a, true)).join('') : '<p class="suave">Você ainda não publicou avisos. <a href="#/publicar">Criar aviso</a></p>'}</div>`,
     'Meu perfil',
   );
   principal.insertAdjacentHTML('beforeend', '<button class="botao secundario" id="sair">Sair da conta</button>');
