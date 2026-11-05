@@ -2,7 +2,11 @@
 
 A Alfa é uma aplicação web que roda localmente: um servidor Node.js com API HTTP e uma interface responsiva ligada a ela. Usa dados fictícios em memória e uma IA simulada, sem chamar serviço externo. Cada reinício do servidor volta aos dados iniciais.
 
-## Como executar
+## Acesso online
+
+A Alfa está publicada em **[vivabairro-alfa.onrender.com](https://vivabairro-alfa.onrender.com)**, no plano gratuito do Render. Depois de alguns minutos sem uso, o servidor hiberna, e o primeiro acesso pode levar cerca de um minuto para carregar. Os dados voltam ao estado inicial sempre que o servidor reinicia.
+
+## Como executar localmente
 
 Requisito: [Node.js](https://nodejs.org/) 20 ou mais recente.
 

@@ -8,7 +8,8 @@ export const CONTA_DEMO = { id: 'conta-demo', nome: 'Perfil de demonstração' }
 
 function emDias(agora, dias, hora) {
   const data = new Date(agora.getTime() + dias * DIA);
-  data.setHours(hora, 0, 0, 0);
+  // Horários de Brasília (UTC-3), independentemente do fuso do servidor.
+  data.setUTCHours(hora + 3, 0, 0, 0);
   return data.toISOString();
 }
 

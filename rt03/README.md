@@ -7,7 +7,7 @@ Esta seção reúne a entrega RT03 do VivaBairro: documentação consolidada, ve
 | Item do template RT03 | Onde encontrar |
 | --- | --- |
 | 1. Documentação escrita consolidada (escopo, requisitos, arquitetura, protótipo) | Esta página, seção [Documentação consolidada](#documentacao-consolidada) |
-| 2. Protótipo interativo / versão Alfa executável | [Versão Alfa executável](versao-alfa.md) e código em `app/` |
+| 2. Protótipo interativo / versão Alfa executável | Online em [vivabairro-alfa.onrender.com](https://vivabairro-alfa.onrender.com); guia em [Versão Alfa executável](versao-alfa.md) e código em `app/` |
 | 3. Relatório do uso de IA no desenvolvimento | [Relatório de uso de IA](relatorio-ia.md) |
 | 4. Evidências de usabilidade: validação de entradas, tratamento de erros e testes unitários | [Usabilidade, validação e testes](usabilidade-e-testes.md) |
 
