@@ -2,7 +2,7 @@
 
 ## Propósito
 
-O VivaBairro é um site para organizar informações locais por bairro. Moradores e pessoas que atuam na região podem consultar eventos, publicar avisos e acompanhar atualizações. O projeto também prevê ferramentas municipais, separadas das publicações comunitárias.
+O VivaBairro é um aplicativo Android para organizar informações locais por bairro. Moradores e pessoas que atuam na região podem consultar eventos, publicar avisos e acompanhar atualizações. O projeto também prevê ferramentas municipais, separadas das publicações comunitárias.
 
 ## Públicos previstos
 
@@ -35,4 +35,4 @@ Não há parceria municipal confirmada, métrica de adoção ou redução de pro
 
 ## Documento-fonte
 
-O arquivo Word em [assets/Documento_de_Visao_do_Produto_VivaBairro.docx](../assets/Documento_de_Visao_do_Produto_VivaBairro.docx) é uma versão de referência anterior, não a fonte de verdade. Esta página descreve a visão vigente no repositório.
+O arquivo Word em [assets/Documento_de_Visao_do_Produto_VivaBairro.docx](../assets/Documento_de_Visao_do_Produto_VivaBairro.docx) é material de apoio e não possui garantia de sincronização com o código. Esta página descreve a visão vigente no repositório.

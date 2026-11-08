@@ -1,46 +1,41 @@
 # Uso de IA no desenvolvimento
 
-É preciso separar a IA usada para construir o projeto de uma função de IA oferecida ao usuário. O aplicativo atual foi desenvolvido com participação substancial de um agente de programação; isso não significa que ele tenha IA conectada dentro do produto.
+Usamos assistência de IA no planejamento, na programação, na revisão da interface, nos testes e na documentação do VivaBairro. A participação inclui geração e alteração substancial de código, não apenas correção de textos. A equipe define o objetivo, fornece os protótipos, decide o escopo e responde pelo que apresenta e disponibiliza.
 
-## Ferramentas e participação
+## Ferramentas e modelos
 
-| Ferramenta | Participação registrada | Limite da evidência |
+Registro baseado na informação do responsável em 08/11/2026. Ferramenta e modelo são informações diferentes. Não há um registro completo que associe cada arquivo ou resposta a um modelo específico.
+
+| Ferramenta ou família | Modelo informado | Precisão da atribuição |
 | --- | --- | --- |
-| Codex | Em 08/11/2026, escreveu e revisou código Flutter, API, migrações, testes, configuração de hospedagem e documentação. Também operou o emulador para revisar telas e corrigir problemas. | Código e documentação tiveram autoria assistida extensa, não apenas correção ortográfica. Revisão humana integral ainda não está registrada. |
-| Claude Code | O registro anterior da equipe atribui à ferramenta apoio na Alfa web, testes Jest e documentação em 05/11/2026. | Preserva-se a atribuição histórica; a versão exata do modelo e a extensão da revisão humana não foram verificadas nesta etapa. |
-| Gemini e Figma | A equipe informou uso no refinamento de imagens e protótipo. | Figma é ferramenta de design; não se presume que todo trabalho nele seja gerado por IA. Versões, prompts e contribuições detalhadas ainda não foram registrados. |
-| Assistentes na documentação anterior | Histórico do AGENTS.md e das páginas registra reorganização e manutenção. | Não atribuir ferramenta ou modelo sem evidência. |
+| Assistentes OpenAI / Codex | GPT-6 Lunar | Nome informado pelo responsável com ressalva de memória; identificação declarada, a confirmar. Não inferimos versão interna ou identificador de API. |
+| Assistentes OpenAI / Codex | GPT-6 Astra | Uso informado pelo responsável no trabalho assistido de desenvolvimento. Não atribuímos toda a produção exclusivamente a esse modelo. |
+| Claude Code | Claude Opus 5.5 | Nome confirmado pelo responsável, com participação em código, testes e documentação. Não há atribuição verificável por trecho. |
 
-## Decisões do responsável e da equipe
+Figma é a ferramenta de design dos protótipos de referência; isso não implica geração por IA. A relação de modelos confirmada pelo responsável contém os três nomes acima. Não atribuímos o trabalho a Gemini sem confirmação. Documentação dos fornecedores explica ferramentas, mas não comprova quais modelos a equipe utilizou: essa atribuição vem do relato do responsável.
 
-O responsável forneceu a proposta, os SVGs corretos e feedback sobre fidelidade visual e espaçamento. Escolheu Flutter, autorizou a configuração Android e definiu Render com Neon. Pediu revisão com teclado, fonte ampliada e TalkBack, dados fictícios para demonstração e atualização contínua do GitBook.
+## Participação no projeto
 
-Essas decisões orientaram o agente, mas não comprovam que toda linha de código tenha sido revisada pela equipe. Antes de apresentar ou operar o projeto, a equipe deve entender e conseguir explicar regras, dados, permissões e limitações.
+No planejamento, a assistência organiza tarefas de moradores, autores, moderadores e administradores em requisitos e critérios de aceitação. Ajuda a apontar inconsistências e relacionar regras às telas. A equipe decide Flutter para Android, escolha manual do bairro, escopo municipal e hospedagem Render com Neon.
 
-## Exemplos de trabalho assistido
+Na implementação, o Codex participa da escrita e revisão de telas Flutter, chamadas HTTP, validações, permissões territoriais, transações de vagas, migrações PostgreSQL e scripts. Também prepara testes, configuração de qualidade, APKs e documentação. Os exemplos de eventos, avisos e autores são fictícios; não representam pesquisa de campo nem ocorrências reais.
 
-A API verifica autoria e território no servidor e usa transação PostgreSQL para concorrência de vagas. O aplicativo preserva rascunhos, oferece revisão antes de publicar e trata estados de carregamento e erro. Esses trechos e seus testes foram produzidos com assistência de IA.
+Na interface, o SVG fornecido pela equipe orienta identidade, hierarquia e fluxos. A revisão assistida cobre espaçamento, teclado aberto, fonte ampliada e semântica para TalkBack. Na hospedagem, o agente auxilia na configuração e conferência de dados e permissões. O responsável entra nas próprias contas e define sua senha fora do chat. Credenciais não fazem parte da documentação pública.
 
-A revisão encontrou botões encostados, rótulos cortados e transbordamento de formulários com teclado e texto ampliado. Foram corrigidos espaçamento, rolagem, seletores e semântica de cartões. O [histórico](../docs/IMPLEMENTACAO.md) registra casos, capturas e limites; não houve teste com moradores.
+## Orientações e revisão
 
-Exemplos de orientações recebidas foram manter o SVG de referência, testar telas no emulador com fonte ampliada, povoar o ambiente com contas fictícias e atualizar o GitBook a cada mudança. Esses pedidos não substituem critérios de aceitação; precisam ser traduzidos em verificações observáveis.
+Exemplos de pedidos da equipe, resumidos: manter fidelidade ao protótipo; conferir textos cortados e controles sobrepostos; revisar telas com teclado e fonte ampliada; verificar acessibilidade no Android; criar exemplos de outras contas; e atualizar o GitBook junto com o aplicativo. Os pedidos são convertidos em alterações e verificações observáveis.
 
-## Como verificamos e o que não foi verificado
+O [AGENTS.md](../AGENTS.md) orienta manutenção, consulta aos requisitos, privacidade e proibição de inventar evidências. As [referências](../referencias-e-pesquisa.md) permitem conferir recomendações fora das respostas dos assistentes.
 
-Lint, análise estática, compilação e testes automatizados ajudam a detectar falhas. A API foi exercitada com PostgreSQL real; widgets foram verificados em larguras e escalas de texto específicas. Houve revisão visual e parcial do foco/ativação com TalkBack no emulador. Não houve acesso ao áudio para avaliar pronúncia, teste em aparelho físico ou certificação de acessibilidade.
+A verificação combina análise estática, lint, compilação, PostgreSQL real, testes Flutter e execução no emulador. Os [resultados](usabilidade-e-testes.md) têm escopo e limitações registrados. Os testes também têm autoria assistida: passar neles não prova cobertura integral nem substitui revisão independente. Falhas exigem diagnóstico; testes não devem ser enfraquecidos apenas para obter aprovação.
 
-Os testes também foram escritos pelo agente. Por isso, a equipe deve conferir se verificam o requisito e se incluem falhas possíveis, em vez de apenas reproduzir a implementação. Teste que falha precisa de diagnóstico; não deve ser removido ou ter sua expectativa enfraquecida para produzir um resultado positivo.
+Não há registro de revisão humana integral de cada linha, teste com moradores, teste em aparelho físico ou auditoria de segurança. A equipe precisa entender e explicar as regras, revisar o código e decidir as pendências operacionais. A aprovação de uma escolha de produto não comprova revisão completa da implementação.
 
-Os 112 testes citados no registro histórico são da Alfa, em app/. Os testes de Flutter e da nova API são baterias distintas, com resultados documentados separadamente. Não afirmar revisão completa ou aprovação humana sem registro.
+## Cuidados e limites
 
-## Riscos que permanecem
+Respostas podem conter erros, dependências inadequadas, referências incorretas ou funções não solicitadas. Informações externas precisam de fonte; comportamento precisa de teste pertinente; conclusão precisa de evidência. Não publicamos credenciais, dados privados ou relatos fictícios como pesquisa real. Autoridade municipal, retenção e operação de moderação exigem decisões humanas.
 
-Código gerado pode conter erros, regras não solicitadas ou dependências mal escolhidas. Diagramas e documentação podem ficar divergentes. Dados fictícios podem parecer reais se não forem identificados. Para reduzir esses riscos, regras estão no AGENTS.md, permissões são verificadas no servidor, segredos ficam fora do repositório e mudanças atualizam a documentação funcional.
+## IA dentro do aplicativo
 
-Retenção, validação institucional, pesquisa com usuários e operação pública ainda exigem decisões humanas. A IA não valida representação de prefeitura nem substitui responsáveis pela moderação.
-
-## IA dentro do produto
-
-Na Alfa, sugestões usam regras por palavras-chave, sem modelo de linguagem externo. No Flutter, IA externa permanece indisponível e o fluxo manual funciona. Não há publicação nem moderação automática. Uma integração futura exige escolher provedor, definir consentimento, minimizar dados, revisar retenção e testar falhas sem perder o rascunho.
-
-Na implantação online, o agente preparou e verificou a carga de exemplos e executou a designação administrativa autorizada pelo responsável. A pessoa criou sua conta e definiu a senha diretamente no aplicativo; a senha não foi solicitada no chat. O agente confirmou contagens no banco e abertura do feed/painel no emulador. Esses procedimentos não equivalem a validação institucional de uma prefeitura.
+O aplicativo não possui provedor externo de IA conectado. Criar eventos e avisos funciona manualmente. Uma assistência de redação ou categoria permanece proposta: exige consentimento antes do envio, minimização de dados, revisão da sugestão e confirmação humana para publicar. IA não publica, remove conteúdo ou decide sanções automaticamente.

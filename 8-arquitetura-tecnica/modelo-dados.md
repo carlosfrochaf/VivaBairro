@@ -1,6 +1,6 @@
 # Modelo de dados
 
-O modelo conceitual abaixo preserva a proposta do produto. A implementação PostgreSQL atual usa as tabelas descritas na seção de correspondência; as migrações SQL são a fonte dos tipos, chaves e restrições físicas. AIConsent continua conceitual, sem integração externa ativa.
+O modelo conceitual abaixo descreve as entidades e relações previstas para o produto. A implementação PostgreSQL atual usa as tabelas descritas na seção de correspondência; as migrações SQL são a fonte dos tipos, chaves e restrições físicas. AIConsent continua conceitual, sem integração externa ativa.
 
 ## Relações
 

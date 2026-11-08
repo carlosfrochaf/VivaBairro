@@ -4,6 +4,9 @@ Este arquivo orienta agentes que trabalham no repositório. O GitBook continua s
 
 ## Regras de autoria
 
+- Descreva o VivaBairro no presente e pela solução vigente: aplicativo Android, funcionalidades, arquitetura e operação. Não narre mudanças de direção, comparações entre propostas ou etapas acadêmicas nas páginas do produto. Preserve a verdade dos resultados, as pendências e a rastreabilidade no Git.
+- No relatório de IA, registre ferramenta, modelo, contribuição, origem da atribuição e limites da revisão. Os modelos declarados pelo responsável em 08/11/2026 são GPT-6 Lunar (nome lembrado com ressalva), GPT-6 Astra e Claude Opus 5.5. Não invente versões, identificadores de API ou autoria por arquivo; não confunda IA no desenvolvimento com integração no produto.
+
 - Escreva em português brasileiro claro, direto e compatível com o público da página. Use termos concretos e verbos ativos; explique siglas na primeira ocorrência.
 - Não use aberturas genéricas, slogans, adjetivos promocionais, conclusões que repetem o texto ou listas previsíveis só para preencher espaço. Não invente coloquialismos nem erros para o texto “parecer humano”. Priorize precisão, exemplos próprios do produto e a voz do grupo.
 - Diferencie fatos do produto, decisões aprovadas, hipóteses e perguntas abertas. Dê evidência quando existir: fonte, método, data e o que ela permite concluir. Nunca crie entrevistas, citações, resultados de pesquisa, aprovações municipais, medições ou integrações.
@@ -43,7 +46,7 @@ Este arquivo orienta agentes que trabalham no repositório. O GitBook continua s
 | Protótipo e fluxos | `9-prototipo-interface/` e `assets/` |
 | Requisitos e rastreabilidade | `10-requisitos/` |
 | Qualidade e planejamento | `11-qualidade/` e `planejamento/` |
-| Histórico da Alfa, relatório de IA e testes | `app/` e `rt03/` |
+| Processo de desenvolvimento, relatório de IA e validação | `rt03/` |
 
 Ao mudar um fluxo, confira o requisito, a página de regra de negócio, o desenho afetado e a rastreabilidade. Atualize todos os elementos impactados na mesma tarefa e confira termos, papéis, links e status entre eles.
 

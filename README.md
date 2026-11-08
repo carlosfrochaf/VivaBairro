@@ -2,7 +2,7 @@
 
 Aplicativo de bairro para consultar eventos, confirmar presença, publicar avisos e colaborar com a comunidade. Moderadores analisam denúncias no território atribuído; administradores municipais gerenciam bairros, designações e comunicados.
 
-A implementação atual usa **Flutter para Android, API Fastify/TypeScript e PostgreSQL**. A [Alfa web](https://vivabairro-alfa.onrender.com), preservada em app/, é uma demonstração anterior com dados em memória.
+A implementação atual usa **Flutter para Android, API Fastify/TypeScript e PostgreSQL**.
 
 ## Comece por aqui
 
@@ -20,14 +20,14 @@ A implementação atual usa **Flutter para Android, API Fastify/TypeScript e Pos
 | --- | --- |
 | mobile/ | Aplicativo Flutter e testes |
 | api/ | API, migrações SQL e testes de integração |
-| app/ | Alfa web histórica |
+| app/ | Demonstração web de apoio, com execução e dados independentes |
 | Pastas numeradas e SUMMARY.md | Documentação funcional e navegação do GitBook |
 | docs/ | Desenvolvimento, operação e evidências |
 | assets/ e docs/design/ | Diagramas e SVGs de referência |
 | scripts/ | Ferramentas locais e geração do APK |
-| render.yaml | Configuração do novo serviço da API |
+| render.yaml | Configuração do serviço da API |
 | AGENTS.md | Instruções para manutenção por assistentes |
 
-Os fluxos principais funcionam localmente com banco persistente e dados fictícios. Render e Neon foram aprovados para demonstração. O estado da publicação fica no guia de implantação. Ainda faltam aparelho físico, avaliação com moradores, desempenho em release e decisões de operação municipal. E-mail externo, push e IA externa não estão conectados.
+Os fluxos principais funcionam com banco persistente e dados fictícios. A demonstração está hospedada no Render e no Neon. O estado da publicação fica no guia de implantação. Ainda faltam aparelho físico, avaliação com moradores, desempenho em release e decisões de operação municipal. E-mail externo, push e IA externa não estão conectados.
 
 Toda mudança de comportamento, infraestrutura ou validação deve atualizar a página correspondente do [GitBook](https://vivabairro.gitbook.io/vivabairro) na mesma entrega.

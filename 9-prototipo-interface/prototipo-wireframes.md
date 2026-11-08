@@ -6,7 +6,7 @@
 
 O [arquivo SVG do protótipo mobile](../assets/prototipo-vivabairro.svg) está incluído nesta página para consulta no GitBook. Ele deriva do export vetorial que estava na pasta de usabilidade e recebeu alterações neste repositório, portanto não deve ser tratado como uma cópia intacta do arquivo original do Figma. O arquivo é um protótipo visual, não uma aplicação funcionando.
 
-As telas mostram entrada, feed, detalhe e confirmação de evento, criação de aviso e perfil. Nomes, bairros, contagens e eventos são dados de demonstração. A captura JPG em `assets/` é uma versão anterior do visual e não deve ser usada como referência atual. Preserve o arquivo-fonte do Figma separadamente quando ele estiver disponível; registre propostas de alteração sem apresentá-las como parte do original.
+As telas mostram entrada, feed, detalhe e confirmação de evento, criação de aviso e perfil. Nomes, bairros, contagens e eventos são dados de demonstração. O SVG é a referência visual para implementar as telas; a captura JPG em `assets/` serve apenas como material de apoio. Preserve o arquivo-fonte do Figma separadamente quando ele estiver disponível; registre propostas de alteração sem apresentá-las como parte do original.
 
 ## Fluxo opcional de IA
 
@@ -41,9 +41,9 @@ Usar rótulos que correspondam aos documentos: “evento” para atividade, “a
 
 As telas propostas ainda precisam ser percorridas com participantes. Registrar versão, tarefa, dúvida observada e alteração escolhida; não afirmar que a interface foi validada antes de realizar essas sessões.
 
-## Implementação Android e evolução
+## Aplicação nas telas Android
 
-O SVG de alta fidelidade confirmado permanece a referência, com cópia em [docs/design](../docs/design/vivabairro_a3_prototipo-mobile.svg). O app Flutter amplia as telas para segurança da conta, filtros, moderação, revisão e administração. Isso não altera a autoria nem substitui o protótipo original. A prévia web serve de apoio; a verificação nativa está registrada em [implementação](../docs/IMPLEMENTACAO.md).
+O SVG de alta fidelidade confirmado permanece a referência, com cópia em [docs/design](../docs/design/vivabairro_a3_prototipo-mobile.svg). O app Flutter também possui telas de segurança da conta, filtros, moderação, revisão e administração. Isso não altera a autoria nem substitui o protótipo original. A prévia web serve de apoio; a verificação nativa está registrada em [implementação](../docs/IMPLEMENTACAO.md).
 
 ![Feed no Android com dados fictícios](../docs/screenshots/android-feed.png)
 

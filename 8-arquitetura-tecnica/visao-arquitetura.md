@@ -28,8 +28,8 @@ O banco guarda contas, publicações, participações, respostas, denúncias, de
 
 Fotos são validadas e redimensionadas, com metadados removidos, e ficam no PostgreSQL. Isso evita depender do disco temporário da hospedagem, mas requer planejamento de armazenamento para maior volume. Lembretes internos e fila de e-mail são processados enquanto a API está ativa. O plano gratuito não garante execução contínua.
 
-## Limites e evolução
+## Integrações e limites
 
 SMTP está preparado, sem provedor conectado. Push e IA externa não estão implementados no aplicativo; avisos funcionam manualmente. Não existe integração com sistemas internos de prefeitura. Validar representante municipal, retenção, limpeza de imagens abandonadas, backup e operação ainda exige decisões.
 
-Os SVGs de [contexto](../assets/contexto-vivabairro.svg) e [containers](../assets/arquitetura-vivabairro.svg) registram a proposta anterior de site e foram preservados como histórico. O diagrama desta página descreve a implementação atual. A Alfa em app/ permanece separada, com dados próprios em memória.
+O diagrama desta página representa a aplicação Android e seus serviços. As integrações pendentes permanecem identificadas para não sugerir funcionalidades disponíveis.

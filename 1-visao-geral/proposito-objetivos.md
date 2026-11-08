@@ -23,4 +23,4 @@ Esses itens são tarefas para testar no protótipo. Ainda não são resultados d
 
 ## Fora do escopo previsto
 
-O site não substitui serviços de emergência ou canais oficiais de solicitação de serviço; não garante que a prefeitura responda; não acompanha a localização contínua; não verifica automaticamente se uma publicação é verdadeira; e não usa IA para publicar, moderar ou decidir sanções. Mensagens privadas e monetização por anúncio também não fazem parte da primeira versão planejada.
+O aplicativo não substitui serviços de emergência ou canais oficiais de solicitação de serviço; não garante que a prefeitura responda; não acompanha a localização contínua; não verifica automaticamente se uma publicação é verdadeira; e não usa IA para publicar, moderar ou decidir sanções. Mensagens privadas e monetização por anúncio também não fazem parte da primeira versão planejada.

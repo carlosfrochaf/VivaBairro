@@ -1,6 +1,6 @@
 # Requisitos do VivaBairro
 
-Os requisitos descrevem comportamentos e qualidades esperadas. A cobertura atual do aplicativo Android está ao final desta página. A Alfa é uma etapa histórica. Stack aprovada: Flutter, Fastify/TypeScript e PostgreSQL; critérios operacionais ainda precisam de validação.
+Os requisitos descrevem comportamentos e qualidades esperadas. A cobertura atual do aplicativo Android está ao final desta página. Stack aprovada: Flutter, Fastify/TypeScript e PostgreSQL; critérios operacionais ainda precisam de validação.
 
 ## Requisitos funcionais
 
@@ -48,7 +48,7 @@ A IA pode sugerir somente categoria e redação de aviso. Não verifica verdade,
 | RF-01 | Cadastro, sessão, troca/recuperação de senha implementados. Entrega externa de e-mail pendente; caixa fictícia somente local. |
 | RF-02 a RF-04 | Bairro principal/acompanhados, feed e filtros implementados. Conferir todos os atributos de cada cartão; parte da informação aparece no detalhe. |
 | RF-05 a RF-08 | Publicação, edição, presença, estados e respostas implementados. Vagas concorridas verificadas com PostgreSQL; não há lista de espera. |
-| RF-09 | Sem provedor externo; não concluído no mobile. A simulação da Alfa não é IA real. |
+| RF-09 | Sem provedor externo; não concluído no mobile. |
 | RF-10 | Publicação manual disponível, com rascunhos. Falhas de provedor real ainda não podem ser validadas. |
 | RF-11 a RF-14 | Denúncias, moderação territorial, recursos e administração implementados. Validação institucional da prefeitura pendente. |
 | RF-15 | Central interna e preferência de lembretes implementadas. Push e preferências de todos os canais pendentes. |

@@ -17,7 +17,7 @@ Use essa referência nas páginas do GitBook, mensagens da interface, erros, avi
 
 ## Interface e usabilidade
 
-- [Material Design 3 — Google](https://m3.material.io/): sistema de design com orientações para componentes, layout, estados de interação, conteúdo e acessibilidade. Consulte-o para comparar padrões visuais e de interação e para discutir consistência entre telas; adapte os exemplos ao VivaBairro e ao uso na web, sem assumir que o produto precisa copiar o visual ou os componentes do Google.
+- [Material Design 3 — Google](https://m3.material.io/): sistema de design com orientações para componentes, layout, estados de interação, conteúdo e acessibilidade. Consulte-o para comparar padrões visuais e de interação e para discutir consistência entre telas; adapte os exemplos ao VivaBairro e ao uso no Android, sem assumir que o produto precisa copiar o visual ou os componentes do Google.
 - [Fundamentos do Material Design 3](https://m3.material.io/foundations/): referência mais específica para layout, estados, acessibilidade e conteúdo de interface.
 
 Material Design 3 é uma referência de design, não uma pesquisa feita com o público do VivaBairro. As decisões de usabilidade do projeto ainda precisam ser avaliadas com pessoas que representem seus públicos.
@@ -66,3 +66,38 @@ Ao propor uma decisão com base numa fonte externa, anote na documentação qual
 | [Google: TalkBack](https://support.google.com/accessibility/android/answer/6110948) | Revisão de foco e ativação no Android. | Fala não avaliada e revisão parcial. |
 
 Render com Neon foi escolhido pela simplicidade de operação da demonstração. Isso não é uma conclusão de superioridade geral sobre AWS. Fontes técnicas sustentam configuração e critérios; não comprovam satisfação dos moradores ou conformidade do produto.
+
+## Usabilidade e acessibilidade nativa
+
+- [Dez heurísticas de usabilidade — Nielsen Norman Group](https://www.nngroup.com/articles/ten-usability-heuristics/): orientam a inspeção de estado, linguagem, controle, consistência e recuperação. Aplicação registrada em [usabilidade e testes](rt03/usabilidade-e-testes.md); inspeção não equivale a pesquisa com moradores.
+- [Acessibilidade — Flutter](https://docs.flutter.dev/ui/accessibility): referência para semântica, tecnologias assistivas e revisão antes de disponibilizar o app. Não comprova acessibilidade completa do VivaBairro.
+
+## Dependências e ferramentas de desenvolvimento
+
+As fontes abaixo apoiam manutenção e consulta técnica. As versões efetivamente usadas estão nos manifests e arquivos de lock do repositório; não se deve atualizar dependências apenas porque a documentação mostra uma versão mais recente.
+
+| Fonte | Uso no projeto |
+| --- | --- |
+| [Instalação do Flutter](https://docs.flutter.dev/install/manual) e [pubspec](https://docs.flutter.dev/tools/pubspec) | Distinguir SDK de dependências e reproduzir o ambiente. |
+| [Dart: análise estática](https://dart.dev/tools/analysis) | Regras de análise do aplicativo. |
+| [TypeScript](https://www.typescriptlang.org/docs/) | Tipos e compilação da API. |
+| [ESLint](https://eslint.org/docs/latest/) e [Prettier](https://prettier.io/docs/) | Configuração de lint e formatação; não substituem testes de comportamento. |
+| [Node.js: crypto](https://nodejs.org/api/crypto.html) | Primitivas usadas em senhas, tokens e códigos; o uso da biblioteca não constitui auditoria de segurança. |
+| [flutter_secure_storage](https://pub.dev/packages/flutter_secure_storage) | Persistência de credenciais no aplicativo. |
+| [shared_preferences](https://pub.dev/packages/shared_preferences) | Preferências e rascunhos; não tratar como armazenamento criptografado. |
+| [image_picker](https://pub.dev/packages/image_picker) | Seleção de imagens no dispositivo. |
+| [Sharp](https://sharp.pixelplumbing.com/) | Processamento das imagens recebidas pela API. |
+| [GitHub Actions](https://docs.github.com/en/actions) | Execução automatizada de verificações no repositório. |
+
+## Serviços externos em avaliação
+
+- [Resend por SMTP](https://resend.com/docs/send-with-smtp) e [SMTP da Brevo](https://developers.brevo.com/docs/smtp-integration): opções para entrega de e-mail. Ainda não há provedor conectado. Credenciais, remetente e disponibilidade de portas precisam ser conferidos na hospedagem antes de escolher.
+- [Firebase Cloud Messaging para Flutter](https://firebase.google.com/docs/cloud-messaging/flutter/get-started): referência para eventual push. Não está integrado; exige configuração e testes de permissão e entrega. O banco do projeto continua PostgreSQL.
+
+## Assistência de IA e autoria
+
+- [Documentação oficial da OpenAI](https://developers.openai.com/codex/): referência para o ambiente de assistência de programação. Uma página do fornecedor não comprova o modelo usado pela equipe.
+- [Claude Code — visão geral](https://code.claude.com/docs/en/overview): explica a ferramenta de programação assistida e sua atuação sobre arquivos e comandos.
+- [Relatório de uso de IA do VivaBairro](rt03/relatorio-ia.md): fonte interna para modelos informados pelo responsável, contribuições, revisão e limites. A declaração registra GPT-6 Lunar, GPT-6 Astra e Claude Opus 5.5, com ressalva de memória para o nome Lunar.
+
+Esta consolidação é revisada em 08/11/2026. Referências acrescentadas para manutenção não significam que todas tenham sido consultadas em cada etapa da implementação. Os SVGs fornecidos pela equipe são fontes de design; testes, código e execuções registradas são evidências próprias do projeto. Nenhuma referência externa substitui essas evidências.

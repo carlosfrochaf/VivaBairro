@@ -12,7 +12,7 @@ O VivaBairro é um aplicativo Flutter para Android, com prévia web de apoio, pa
 - conta básica, seleção de bairros e preferências de notificação;
 - denúncia e moderação individual com justificativa, histórico e pedido de revisão;
 - administração municipal de bairros, moderadores e comunicados oficiais;
-- publicação manual de avisos; assistência por IA permanece uma evolução proposta, sem provedor conectado.
+- publicação manual de avisos; assistência por IA permanece uma funcionalidade proposta, sem provedor conectado.
 
 ## O que não faz parte da primeira versão
 
@@ -24,4 +24,4 @@ O cadastro oficial de bairros, a autorização de administradores municipais, a 
 
 ## Materiais de referência
 
-O arquivo Word em [assets/VivaBairro_Documento_de_Escopo.docx](../assets/VivaBairro_Documento_de_Escopo.docx) é uma versão de referência anterior, não a fonte de verdade. Esta página descreve o escopo vigente no repositório.
+O arquivo Word em [assets/VivaBairro_Documento_de_Escopo.docx](../assets/VivaBairro_Documento_de_Escopo.docx) é material de apoio e não possui garantia de sincronização com o código. Esta página descreve o escopo vigente no repositório.

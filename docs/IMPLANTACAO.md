@@ -2,7 +2,7 @@
 
 ## Estado em 08/11/2026
 
-Render Free para a API e Neon Free para PostgreSQL foram aprovados. O projeto Neon VivaBairro foi criado com PostgreSQL 18 na região São Paulo. A API foi publicada em https://vivabairro-api.onrender.com, no Render Free em Virginia. Primeiro deploy do commit 71a337a concluído em 08/11/2026, com migrações aplicadas no Neon. /health retornou HTTP 200 e confirmou a conexão com o banco. /api/config confirmou modo de caixa fictícia desabilitado, e-mail indisponível e push não configurado. A Alfa anterior permanece separada.
+Render Free para a API e Neon Free para PostgreSQL foram aprovados. O projeto Neon VivaBairro foi criado com PostgreSQL 18 na região São Paulo. A API foi publicada em https://vivabairro-api.onrender.com, no Render Free em Virginia. Primeiro deploy do commit 71a337a concluído em 08/11/2026, com migrações aplicadas no Neon. /health retornou HTTP 200 e confirmou a conexão com o banco. /api/config confirmou modo de caixa fictícia desabilitado, e-mail indisponível e push não configurado.
 
 ## Serviço da API
 

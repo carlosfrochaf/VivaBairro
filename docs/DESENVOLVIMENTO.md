@@ -2,7 +2,7 @@
 
 Aplicativo de bairro em Flutter, com API Node.js/TypeScript e PostgreSQL. Eventos, avisos, conversa da comunidade e moderação com responsabilidade territorial.
 
-Este repositório contém a implementação mobile iniciada em 08/11/2026. A [documentação do produto](https://vivabairro.gitbook.io/vivabairro) e a [Alfa web](https://vivabairro-alfa.onrender.com) servem de referência; a Alfa não foi substituída nem modificada.
+Este repositório reúne aplicativo, API, testes e [documentação do produto](https://vivabairro.gitbook.io/vivabairro). O GitBook define regras e critérios; os SVGs orientam a interface.
 
 ## Organização
 

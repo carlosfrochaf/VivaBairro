@@ -8,7 +8,7 @@ Autores podem editar, atualizar ou remover suas publicações. Denúncias levam 
 
 ## Implementação atual
 
-O produto principal passou da proposta de site para Flutter Android, com API Node.js/Fastify e PostgreSQL. A Alfa web anterior foi preservada em app/. O desenvolvimento atual fica em mobile/ e api/, no mesmo repositório da documentação. Render e Neon foram escolhidos para hospedar a demonstração.
+O VivaBairro é um aplicativo Flutter para Android, com API Node.js/Fastify e PostgreSQL. O código fica em mobile/ e api/, no mesmo repositório da documentação. Render hospeda a API e Neon mantém o banco da demonstração.
 
 Há dados fictícios, fluxos de conta, eventos, avisos, colaboração e administração. Notificações internas funcionam; e-mail externo, push e IA externa não estão conectados. O estado verificável e as limitações estão em [implementação](docs/IMPLEMENTACAO.md), e a publicação em [hospedagem](docs/IMPLANTACAO.md).
 

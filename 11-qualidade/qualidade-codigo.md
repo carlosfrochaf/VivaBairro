@@ -10,12 +10,11 @@ A configuração .github/workflows/mobile-api.yml prepara essas verificações p
 
 ## Evidências e limites
 
-Em 08/11/2026, 16 testes da API e 18 testes Flutter foram aprovados na revisão local anterior. Cobrem autorização, concorrência de vagas, revisão por outro responsável, imagens, recuperação de conta, lembretes, layout e semântica. O [histórico de implementação](../docs/IMPLEMENTACAO.md) registra a revisão Android e seus limites.
+Em 08/11/2026, 16 testes da API e 18 testes Flutter foram aprovados na revisão local registrada. Cobrem autorização, concorrência de vagas, revisão por outro responsável, imagens, recuperação de conta, lembretes, layout e semântica. O [estado da implementação](../docs/IMPLEMENTACAO.md) registra a revisão Android e seus limites.
 
-Os 112 testes citados na documentação da Alfa pertencem a app/, não ao aplicativo Flutter. Não somar baterias diferentes para sugerir cobertura integral.
 
 Ainda faltam teste físico, medição de desempenho em release, pesquisa com usuários e verificação completa dos serviços externos. Testes automatizados e revisão por IA não substituem avaliação humana do produto.
 
 ## Regra de manutenção
 
-Uma mudança de regra deve atualizar código, teste pertinente, requisito e página funcional na mesma entrega. Não versionar .env, dados locais, tokens ou chaves de assinatura. Dependências têm arquivos de lock; usar instalação reproduzível. Preservar a Alfa e a sincronização do GitBook.
+Uma mudança de regra deve atualizar código, teste pertinente, requisito e página funcional na mesma entrega. Não versionar .env, dados locais, tokens ou chaves de assinatura. Dependências têm arquivos de lock; usar instalação reproduzível. Preservar os artefatos de apoio e a sincronização do GitBook.
