@@ -52,6 +52,22 @@ APKs debug ARM64, ARM32 e x86_64 compilados com API_URL=https://vivabairro-api.o
 
 Em 08/11/2026, foram inicializados Município de demonstração e os bairros Jardim Aurora, Centro e Vila Esperança. Com uma conta temporária, foram aprovados cadastro, consulta de conta, saída, novo login, gravação/leitura de aviso no Neon e recusa de comunicado oficial sem permissão. A conta foi encerrada e seu conteúdo público removido ao final. Esses testes foram feitos por HTTPS na API hospedada; não equivalem a teste físico do aplicativo.
 
-O banco remoto é separado do banco local: os eventos e avisos do seed local ainda não foram transferidos. O responsável já definiu o e-mail da primeira conta administradora. O cadastro e a senha devem ser concluídos diretamente no aplicativo; a atribuição do papel municipal vem depois, mediante conferência da conta. A conta ainda não foi provisionada. O endereço pessoal não é publicado nesta documentação. Não existem credenciais administrativas públicas.
+O banco remoto é separado do banco local. O responsável criou sua conta e definiu a senha diretamente no aplicativo. Depois da confirmação, recebeu o papel admin somente no Município de demonstração, com registro de auditoria. O painel Município e bairros foi aberto e verificado no emulador conectado à API online. O endereço pessoal não é publicado nesta documentação. Não existem credenciais administrativas públicas.
 
 ![API publicada no Render Free](screenshots/render-api-publicada.png)
+
+## Dados de demonstração online
+
+Em 08/11/2026, foram carregados oito autores fictícios, 12 eventos, dez avisos, 12 imagens e exemplos de participações e respostas. Há atividades em três bairros, um evento lotado, um cancelado, um já realizado e avisos em estados diferentes. As contagens vêm do banco; dados e ilustrações são fictícios. O feed online com imagens foi conferido no emulador.
+
+Os exemplos foram gerados a partir de api/src/demo-data.ts. A carga online não cria moradores com a senha pública do seed local nem contas de moderador/administrador de demonstração. Os autores fictícios recebem hash de senha aleatória descartada, sem credencial de acesso divulgada. A única administração ativa é a conta designada pelo responsável. Não foi criado comunicado oficial em nome dessa pessoa.
+
+Para preparar novamente a carga, executar npm --prefix api run build e node scripts/prepare-online-demo.mjs. O script apenas gera .local/online-demo.sql, sem se conectar ao banco. O operador confere o projeto e executa esse arquivo no editor SQL do Neon. O bloco exige o município fictício e os três bairros esperados, usa transação atômica e não substitui registros existentes. Não inserir essa carga na inicialização do servidor. O arquivo gerado permanece fora do Git.
+
+A importação foi executada duas vezes em um schema PostgreSQL local isolado para verificar integridade e ausência de duplicação: oito contas, 22 publicações, 12 imagens e nenhum papel privilegiado criado pela carga. No Neon foram conferidos os mesmos totais de demonstração e um administrador. Novas execuções preservam datas e alterações de registros já existentes; reagendar uma apresentação futura exige revisão explícita dos exemplos.
+
+![Feed Android conectado ao banco online](screenshots/android-feed-online.png)
+
+![Painel municipal disponível à conta administradora](screenshots/android-admin-online.png)
+
+![Conferência dos registros no Neon](screenshots/neon-demonstracao-online.png)

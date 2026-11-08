@@ -25,3 +25,9 @@ Para uso sem computador, gerar o APK com a URL HTTPS validada, conforme [implant
 ## Limites a apresentar
 
 Teste físico, pesquisa com moradores, desempenho em release e operação municipal continuam pendentes. E-mail externo, push e IA externa não estão conectados. As revisões visuais e de TalkBack têm escopo registrado em [implementação](IMPLEMENTACAO.md).
+
+## Ambiente online disponível
+
+A API hospedada usa um banco próprio no Neon, com 12 eventos, dez avisos e oito autores fictícios. Há uma conta administradora real do responsável, cuja senha foi definida diretamente no aplicativo. As credenciais públicas da demonstração local não funcionam online. Entrar com sua própria conta; exemplos de outros autores aparecem conforme o bairro selecionado. Centro, Jardim Aurora e Vila Esperança têm conteúdo.
+
+A conta administradora encontra Município e bairros em Meu perfil. Concessões feitas enquanto o app estava aberto aparecem após reabertura para recarregar o perfil; permissões continuam verificadas no servidor. O aplicativo já foi reaberto e o painel conferido nesta etapa.

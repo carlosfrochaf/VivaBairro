@@ -19,6 +19,6 @@
 "Operação","Preparar implantação e suporte","Definir responsáveis, canal de contato, atualização de conteúdo e resposta a incidentes","Alta","A planejar",""
 
 "Implementação","Aplicativo Flutter e API PostgreSQL","Fluxos locais e dados fictícios implementados","Alta","Implementado; validação parcial",""
-"Hospedagem","Publicar API no Render com banco Neon","Conexão HTTPS e persistência verificadas","Alta","Em andamento",""
+"Hospedagem","Publicar API no Render com banco Neon","Conexão HTTPS e persistência verificadas","Alta","Publicado e verificado em 08/11/2026",""
 "Validação","Teste em aparelho Android físico","Instalação e roteiro no celular","Alta","Pendente: aparelho indisponível",""
 "Documentação","Manter GitBook junto ao código","Regras, arquitetura, referências e IA atualizadas","Alta","Contínuo",""

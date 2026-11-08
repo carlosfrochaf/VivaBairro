@@ -168,3 +168,11 @@ APKs debug por arquitetura gerados com scripts/android-demo.ps1. A variante x86_
 API https://vivabairro-api.onrender.com publicada no Render Free, em Virginia, conectada ao Neon PostgreSQL 18 em São Paulo. Migrações aplicadas, /health HTTP 200 e testes remotos de cadastro, sessão, gravação/leitura e autorização aprovados. Conta temporária encerrada após o teste. Município fictício e três bairros inicializados; primeiro administrador e população completa do banco remoto ainda pendentes.
 
 APKs online compilados para ARM64, ARM32 e x86_64. A variante x86_64 foi instalada no emulador. O fluxo completo anterior foi testado com API local; não atribuir automaticamente essa cobertura ao aplicativo conectado à hospedagem. Artefatos ARM ainda não testados em aparelho. E-mail externo e push continuam indisponíveis.
+
+## Administração e população online — 08/11/2026
+
+Conta cadastrada pelo responsável promovida a admin no município demo, após consulta da conta ativa e ausência de administrador anterior. Atribuição transacional e auditada, preservando senha e e-mail sem publicá-los na documentação. Permissão conferida no banco e painel Município e bairros aberto no emulador após reiniciar o aplicativo.
+
+Neon povoado com oito autores fictícios, 12 eventos, dez avisos, 12 imagens, participações e respostas, sem copiar credenciais locais nem criar outros papéis privilegiados. Carga idempotente gerada pela fonte de exemplos existente; scripts/prepare-online-demo.mjs permite preparar SQL para operação manual. O gerador não executa comandos remotamente. Importação dupla validada em schema local isolado antes da conferência dos totais online.
+
+Feed online exibindo eventos ilustrados do Centro e administração exibindo os três bairros ativos conferidos no Android. Não foram alteradas preferências da conta nem criadas publicações em nome do responsável. Evidências em screenshots/android-feed-online.png e screenshots/android-admin-online.png. Esta conferência não substitui teste físico nem o roteiro completo de moderação em nuvem.

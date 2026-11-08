@@ -42,3 +42,5 @@ Retenção, validação institucional, pesquisa com usuários e operação públ
 ## IA dentro do produto
 
 Na Alfa, sugestões usam regras por palavras-chave, sem modelo de linguagem externo. No Flutter, IA externa permanece indisponível e o fluxo manual funciona. Não há publicação nem moderação automática. Uma integração futura exige escolher provedor, definir consentimento, minimizar dados, revisar retenção e testar falhas sem perder o rascunho.
+
+Na implantação online, o agente preparou e verificou a carga de exemplos e executou a designação administrativa autorizada pelo responsável. A pessoa criou sua conta e definiu a senha diretamente no aplicativo; a senha não foi solicitada no chat. O agente confirmou contagens no banco e abertura do feed/painel no emulador. Esses procedimentos não equivalem a validação institucional de uma prefeitura.
