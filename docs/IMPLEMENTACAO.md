@@ -155,4 +155,6 @@ Referência: [Atalhos do TalkBack — Google](https://support.google.com/accessi
 
 Código mobile e API foram integrados ao histórico do repositório VivaBairro, preservando app/ e caminhos do GitBook. Render Free e Neon Free aprovados; configuração em render.yaml e roteiro em IMPLANTACAO.md. O banco Neon foi criado com PostgreSQL 18 em São Paulo. Implantação ainda em andamento.
 
-Lint e formatação da API e seus 16 testes passaram nesta etapa. O teste nativo de ponta a ponta está em diagnóstico; não foi aprovado ainda. A configuração de GitHub Actions foi preparada, mas sua execução remota ainda precisa ser conferida. Não há aparelho físico disponível.
+Lint e formatação da API e seus 16 testes passaram nesta etapa. O teste nativo de ponta a ponta passou no emulador Android API 36: conta temporária, login pela interface, criação, edição, resolução e remoção de aviso. A conta foi encerrada ao final. O roteiro inicialmente selecionava o título Entrar em vez do botão; o seletor foi corrigido, sem alterar as regras do produto. A configuração de GitHub Actions foi preparada, mas sua execução remota ainda precisa ser conferida. Não há aparelho físico disponível.
+
+Nesta etapa, Flutter analyze não encontrou problemas e os 18 testes de widget/cliente passaram novamente. Código e documentação enviados para main no commit 5fd363e. GitHub Actions iniciado; sincronização pública do GitBook confirmada: novas páginas de desenvolvimento, implementação, implantação e demonstração aparecem no índice público; a arquitetura publicada já descreve Flutter.
