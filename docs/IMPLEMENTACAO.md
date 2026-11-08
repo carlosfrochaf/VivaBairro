@@ -162,3 +162,9 @@ Nesta etapa, Flutter analyze não encontrou problemas e os 18 testes de widget/c
 GitHub Actions também concluiu com sucesso os jobs api e flutter no commit 5fd363e: https://github.com/carlosfrochaf/VivaBairro/actions/runs/42490292213. A execução remota inclui lint, formatação, compilação e testes da API, além de análise e testes Flutter; o roteiro com emulador foi executado localmente.
 
 APKs debug por arquitetura gerados com scripts/android-demo.ps1. A variante x86_64 foi instalada no emulador após o teste, restaurando o aplicativo normal e validando adb reverse para a API local. As variantes ARM64 e ARM32 foram compiladas, mas não instaladas em aparelho físico. Cópias locais em .local/artifacts/ usam conexão USB com o computador; não são APKs da hospedagem. Cache Kotlin excluído do versionamento.
+
+## Primeira implantação remota — 08/11/2026
+
+API https://vivabairro-api.onrender.com publicada no Render Free, em Virginia, conectada ao Neon PostgreSQL 18 em São Paulo. Migrações aplicadas, /health HTTP 200 e testes remotos de cadastro, sessão, gravação/leitura e autorização aprovados. Conta temporária encerrada após o teste. Município fictício e três bairros inicializados; primeiro administrador e população completa do banco remoto ainda pendentes.
+
+APKs online compilados para ARM64, ARM32 e x86_64. A variante x86_64 foi instalada no emulador. O fluxo completo anterior foi testado com API local; não atribuir automaticamente essa cobertura ao aplicativo conectado à hospedagem. Artefatos ARM ainda não testados em aparelho. E-mail externo e push continuam indisponíveis.
