@@ -1,0 +1,16 @@
+node_modules/
+dist/
+.env
+.local/
+.dart_tool/
+build/
+*.log
+.idea/
+.fvm/
+.tools/
+
+.env.*
+!.env.example
+*.jks
+*.keystore
+key.properties

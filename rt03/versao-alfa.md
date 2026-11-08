@@ -1,5 +1,7 @@
 # Versão Alfa executável
 
+> Registro histórico da Alfa web em app/. Para o aplicativo Android atual, consulte [implementação](../docs/IMPLEMENTACAO.md).
+
 A Alfa é uma aplicação web: um servidor Node.js com API HTTP e uma interface responsiva ligada a ela. Tem cadastro e login, usa dados fictícios em memória e uma IA simulada, sem chamar serviço externo. Cada reinício do servidor volta aos dados iniciais, inclusive as contas criadas.
 
 ## Acesso online
@@ -95,3 +97,7 @@ npm test
 - Fotos ficam em memória junto com os outros dados. Na Beta, devem ir para um serviço de armazenamento de arquivos.
 - Lembretes aparecem só dentro do site, quando a pessoa abre a página. Não há e-mail nem notificação no celular.
 - A implantação no Render é de demonstração. Não houve teste de desempenho (RNF-01).
+
+## Atualização da implementação — 08/11/2026
+
+Esta página registra a Alfa web de app/, com dados em memória. Não descreve o aplicativo Flutter atual, mantido em mobile/ e api/. A Alfa online foi preservada.

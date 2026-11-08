@@ -17,3 +17,8 @@
 "Implementação","Integrar notificações e IA opcional","Proteger credenciais, respeitar preferências e manter alternativa manual","Normal","A planejar",""
 "Qualidade","Verificar acessibilidade, segurança e desempenho","Registrar ambiente, roteiro, evidências e pendências sem alegar conformidade não avaliada","Alta","A planejar",""
 "Operação","Preparar implantação e suporte","Definir responsáveis, canal de contato, atualização de conteúdo e resposta a incidentes","Alta","A planejar",""
+
+"Implementação","Aplicativo Flutter e API PostgreSQL","Fluxos locais e dados fictícios implementados","Alta","Implementado; validação parcial",""
+"Hospedagem","Publicar API no Render com banco Neon","Conexão HTTPS e persistência verificadas","Alta","Em andamento",""
+"Validação","Teste em aparelho Android físico","Instalação e roteiro no celular","Alta","Pendente: aparelho indisponível",""
+"Documentação","Manter GitBook junto ao código","Regras, arquitetura, referências e IA atualizadas","Alta","Contínuo",""

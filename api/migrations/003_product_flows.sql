@@ -1,0 +1,10 @@
+ALTER TABLE accounts ADD COLUMN email_verified_at timestamptz, ADD COLUMN deleted_at timestamptz;
+CREATE TABLE account_tokens(token_hash text PRIMARY KEY, account_id uuid NOT NULL REFERENCES accounts, purpose text NOT NULL CHECK(purpose IN ('reset','verify')), expires_at timestamptz NOT NULL, used_at timestamptz);
+CREATE TABLE mail_outbox(id uuid PRIMARY KEY, account_id uuid REFERENCES accounts, recipient text NOT NULL, subject text NOT NULL, body text NOT NULL, status text NOT NULL DEFAULT 'pending', attempts integer NOT NULL DEFAULT 0, created_at timestamptz NOT NULL DEFAULT now(), sent_at timestamptz);
+CREATE TABLE media(id uuid PRIMARY KEY, owner_id uuid NOT NULL REFERENCES accounts, mime text NOT NULL, data bytea NOT NULL, created_at timestamptz NOT NULL DEFAULT now());
+ALTER TABLE posts ADD COLUMN photo_id uuid REFERENCES media ON DELETE SET NULL;
+ALTER TABLE notifications ADD COLUMN dedupe_key text UNIQUE;
+CREATE TABLE demo_records(kind text NOT NULL, record_id uuid NOT NULL, PRIMARY KEY(kind,record_id));
+CREATE INDEX media_owner ON media(owner_id);
+CREATE INDEX account_tokens_owner ON account_tokens(account_id,purpose);
+CREATE INDEX mail_pending ON mail_outbox(status,created_at);

@@ -1,6 +1,6 @@
-# Modelo conceitual de dados
+# Modelo de dados
 
-O modelo abaixo descreve entidades e relações propostas. Ainda não é um esquema de banco aprovado: atributos, retenção e regras de exclusão precisam ser decididos antes da implementação.
+O modelo conceitual abaixo preserva a proposta do produto. A implementação PostgreSQL atual usa as tabelas descritas na seção de correspondência; as migrações SQL são a fonte dos tipos, chaves e restrições físicas. AIConsent continua conceitual, sem integração externa ativa.
 
 ## Relações
 
@@ -52,4 +52,38 @@ MODERATABLE_ITEM é uma referência conceitual a um evento, aviso ou resposta; n
 
 Uma publicação pertence a um município por meio de seu bairro. A troca de bairro deve verificar que o bairro está ativo e dentro do município selecionado. Guardar uma linha de designação por bairro autorizado; uma função administrativa municipal pode ter escopo de município, sem bairro específico. A auditoria deve permanecer consultável após desativação de conta ou bairro, de acordo com uma política de retenção ainda a definir.
 
-Este diagrama não especifica tipos de banco, índices, chaves físicas ou política legal de retenção. Decidir isso com a stack e a política de dados antes de criar migrations.
+O diagrama conceitual não define política legal de retenção. As migrações já implementam tipos, índices e chaves; a política de retenção continua pendente.
+
+## Correspondência com PostgreSQL — 08/11/2026
+
+| Conceito | Tabela implementada |
+| --- | --- |
+| Conta e sessão | accounts, sessions, account_tokens |
+| Município, bairro e acompanhamento | municipalities, neighborhoods, follows |
+| Permissão territorial | roles |
+| Evento, aviso e comunicado | posts, diferenciados por kind |
+| Inscrição | participations, chave única por publicação e conta |
+| Resposta e denúncia | replies, reports |
+| Decisão e recurso | audit, appeals |
+| Notificação e envio de e-mail | notifications, mail_outbox |
+| Imagem | media, conteúdo binário validado |
+| Controle local de exemplos | demo_records |
+
+Bairro principal fica em accounts; follows registra acompanhamentos. Papéis administrativos são municipais; moderadores recebem escopo de bairro. Remoção de publicação altera visibilidade, preservando rastreabilidade. Exclusão de conta tem anonimização técnica específica; não equivale a política de retenção aprovada nem apaga backups automaticamente.
+
+~~~mermaid
+erDiagram
+  municipalities ||--o{ neighborhoods : contem
+  neighborhoods ||--o{ accounts : bairro_principal
+  neighborhoods ||--o{ posts : localiza
+  accounts ||--o{ posts : publica
+  accounts ||--o{ roles : recebe
+  accounts ||--o{ sessions : inicia
+  posts ||--o{ participations : recebe
+  accounts ||--o{ participations : confirma
+  posts ||--o{ replies : recebe
+  posts ||--o{ reports : recebe
+  audit ||--o{ appeals : permite_revisao
+~~~
+
+Este recorte físico mostra as relações centrais; consultar api/migrations/ para todas as chaves e tabelas auxiliares.

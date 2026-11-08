@@ -2,7 +2,7 @@
 
 O encerramento de conta afeta credenciais, preferências e autoria de conteúdo. O sistema precisa explicar o que será removido, o que pode permanecer e por quê antes da confirmação.
 
-## Fluxo proposto
+## Fluxo e política de dados
 
 1. A pessoa autenticada solicita encerramento e recebe resumo dos efeitos.
 2. Confirmar a solicitação antes de desativar o acesso.
@@ -14,4 +14,8 @@ Não prometer remoção imediata de todo registro, anonimização automática ou
 
 ## Decisões necessárias
 
-Definir prazo de encerramento, dados eliminados, dados anonimizados, conteúdo que continua público, tratamento de eventos futuros, registros de denúncia/moderação, backups e pedidos em andamento. A equipe ainda não definiu esses prazos. Até lá, o fluxo é uma proposta e não deve ser implementado como se a política estivesse aprovada.
+Definir prazo de encerramento, dados eliminados, dados anonimizados, conteúdo que continua público, tratamento de eventos futuros, registros de denúncia/moderação, backups e pedidos em andamento. A equipe ainda não definiu esses prazos. Há um fluxo técnico de demonstração, descrito abaixo, mas ele não representa aprovação da política para uso com dados reais.
+
+## Atualização da implementação — 08/11/2026
+
+A conta pode solicitar exclusão com senha e confirmação. O backend remove sessões, conteúdo público, imagens e preferências e anonimiza identificação, preservando referências técnicas. A última conta administradora é protegida contra exclusão sem sucessão. Essa implementação não define retenção legal nem elimina backups automaticamente; ver docs/IMPLEMENTACAO.md.

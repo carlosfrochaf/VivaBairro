@@ -54,8 +54,12 @@
 
 ## Desenvolvimento
 * [Planejamento do desenvolvimento](planejamento/como-usar-o-quadro.md)
+* [Executar e desenvolver](docs/DESENVOLVIMENTO.md)
+* [Estado da implementação](docs/IMPLEMENTACAO.md)
+* [Hospedagem Render e Neon](docs/IMPLANTACAO.md)
+* [Demonstração e APK](docs/APRESENTACAO.md)
 
-## RT03 — Consolidação
+## Histórico e uso de IA
 * [Consolidação do projeto](rt03/README.md)
 * [Versão Alfa executável](rt03/versao-alfa.md)
 * [Relatório de uso de IA](rt03/relatorio-ia.md)

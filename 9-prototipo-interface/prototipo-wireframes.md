@@ -40,3 +40,11 @@ A próxima revisão do arquivo de design deve contemplar:
 Usar rótulos que correspondam aos documentos: “evento” para atividade, “aviso” para ocorrência comunitária, “comunicado municipal” para publicação oficial. Distinguir esses tipos pela palavra e contexto, não só por cor. Marcar qualquer dado de demonstração como fictício; não usar nomes, estatísticas ou recomendações sem regra. Em formulários sensíveis, apresentar privacidade, confirmação e recuperação junto à ação correspondente.
 
 As telas propostas ainda precisam ser percorridas com participantes. Registrar versão, tarefa, dúvida observada e alteração escolhida; não afirmar que a interface foi validada antes de realizar essas sessões.
+
+## Implementação Android e evolução
+
+O SVG de alta fidelidade confirmado permanece a referência, com cópia em [docs/design](../docs/design/vivabairro_a3_prototipo-mobile.svg). O app Flutter amplia as telas para segurança da conta, filtros, moderação, revisão e administração. Isso não altera a autoria nem substitui o protótipo original. A prévia web serve de apoio; a verificação nativa está registrada em [implementação](../docs/IMPLEMENTACAO.md).
+
+![Feed no Android com dados fictícios](../docs/screenshots/android-feed.png)
+
+![Revisão com teclado e fonte ampliada](../docs/screenshots/android-editor-fonte-ampliada.png)

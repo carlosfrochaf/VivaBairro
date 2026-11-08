@@ -39,3 +39,7 @@ A verificação da autoridade do administrador municipal é uma decisão em aber
 - Recusar por padrão uma ação quando a designação estiver expirada, revogada ou fora de escopo.
 - Registrar no histórico quem concedeu ou revogou um papel e quando isso ocorreu.
 - Não implementar administrador global ou acesso municipal cruzado sem decisão explícita e justificativa.
+
+## Atualização da implementação — 08/11/2026
+
+Papéis são conferidos no servidor. Cadastro público cria morador; moderador recebe bairros atribuídos; administrador atua no município vinculado. O primeiro administrador é provisionado pelo operador, sem equivaler a validação oficial da prefeitura.

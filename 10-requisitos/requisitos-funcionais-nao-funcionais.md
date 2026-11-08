@@ -1,6 +1,6 @@
 # Requisitos do VivaBairro
 
-Os requisitos descrevem comportamentos e qualidades esperadas. Parte deles já tem implementação na [versão Alfa](../rt03/versao-alfa.md#cobertura-dos-requisitos); os demais continuam como proposta. Critérios marcados como proposta devem ser confirmados quando a equipe definir a stack e a operação.
+Os requisitos descrevem comportamentos e qualidades esperadas. A cobertura atual do aplicativo Android está ao final desta página. A Alfa é uma etapa histórica. Stack aprovada: Flutter, Fastify/TypeScript e PostgreSQL; critérios operacionais ainda precisam de validação.
 
 ## Requisitos funcionais
 
@@ -40,3 +40,23 @@ Os requisitos descrevem comportamentos e qualidades esperadas. Parte deles já t
 ## Limites da assistência de IA
 
 A IA pode sugerir somente categoria e redação de aviso. Não verifica verdade, urgência ou segurança; não identifica pessoas; não decide denúncia ou sanção; não encaminha demanda; e não publica. A interface mantém modo manual. A equipe ainda precisa escolher provedor, retenção, política de dados e mensagens finais de consentimento antes de usar serviço real.
+
+## Cobertura da implementação mobile — 08/11/2026
+
+| Requisitos | Estado e limite |
+| --- | --- |
+| RF-01 | Cadastro, sessão, troca/recuperação de senha implementados. Entrega externa de e-mail pendente; caixa fictícia somente local. |
+| RF-02 a RF-04 | Bairro principal/acompanhados, feed e filtros implementados. Conferir todos os atributos de cada cartão; parte da informação aparece no detalhe. |
+| RF-05 a RF-08 | Publicação, edição, presença, estados e respostas implementados. Vagas concorridas verificadas com PostgreSQL; não há lista de espera. |
+| RF-09 | Sem provedor externo; não concluído no mobile. A simulação da Alfa não é IA real. |
+| RF-10 | Publicação manual disponível, com rascunhos. Falhas de provedor real ainda não podem ser validadas. |
+| RF-11 a RF-14 | Denúncias, moderação territorial, recursos e administração implementados. Validação institucional da prefeitura pendente. |
+| RF-15 | Central interna e preferência de lembretes implementadas. Push e preferências de todos os canais pendentes. |
+| RNF-01 | Meta de desempenho ainda não medida; suspensão do plano gratuito afeta primeira abertura. |
+| RNF-02 e RNF-06 | Revisões de tela estreita, fonte ampliada, teclado e parte do TalkBack realizadas; sem certificação de acessibilidade. |
+| RNF-03 e RNF-04 | Hash, sessões e autorização no servidor testados. Verificação da implantação HTTPS ainda depende da publicação. |
+| RNF-05 | Sem GPS obrigatório/endereço residencial. Política de retenção e operação com dados reais pendentes. |
+| RNF-07 a RNF-09 | Rascunhos, organização por responsabilidade e auditoria implementados; retenção e cobertura de todas as falhas precisam de revisão. |
+| RNF-10 | Android é a plataforma principal; API 36 em emulador verificada. Aparelho físico e matriz de versões pendentes. |
+
+Os critérios acima preservam as lacunas; implementação parcial não equivale a requisito integralmente aceito. Ver [evidências](../docs/IMPLEMENTACAO.md).

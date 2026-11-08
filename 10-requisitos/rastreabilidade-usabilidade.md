@@ -22,3 +22,9 @@ Dar retorno visível após ações; usar termos conhecidos pelo público; evitar
 ## Registro de sessões
 
 Depois de cada avaliação, registrar data, versão do protótipo, tarefas tentadas, perfil geral dos participantes, problemas observados e mudanças decididas. Não inventar resultados ou publicar detalhes que identifiquem participantes. Até realizar sessões, esta matriz é um plano de verificação.
+
+## Evidência na implementação atual
+
+A referência visual é o SVG mobile confirmado pelo responsável, preservado em docs/design/. A implementação está em mobile/lib/screens/; regras e autorização, em api/src/; evidências e limites, em [implementação](../docs/IMPLEMENTACAO.md). Feedback imediato, revisão antes de publicar, confirmação de ações sensíveis, rascunhos, estados por texto e permissões verificadas no servidor conectam os requisitos aos fluxos reais.
+
+Foram corrigidos espaçamentos, cortes de rótulo, transbordamento com teclado e fonte ampliada e semântica de cartões. Testes de widget e revisão parcial no TalkBack sustentam essas correções, mas não comprovam facilidade de uso com o público. Avaliação por tarefas com moradores continua pendente.

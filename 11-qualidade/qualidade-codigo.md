@@ -1,23 +1,21 @@
-# Qualidade e manutenção
+# Qualidade de código
 
-## Configuração existente
+## Verificações atuais
 
-Na raiz estão .editorconfig, .prettierrc.json, .markdownlint-cli2.jsonc, eslint.config.mjs e .gitattributes. Eles definem padrões de edição e ferramentas pretendidas; sua presença não significa que a aplicação ou as dependências de lint já existam.
+A API usa TypeScript, ESLint e Prettier, com arquivos de configuração versionados em api/. Na raiz, executar npm --prefix api run lint, npm --prefix api run format:check, npm --prefix api run build e npm --prefix api test. Os testes usam PostgreSQL real com schema isolado; não apontar o banco de testes para produção.
 
-Quando a equipe escolher a stack, configurar comandos reproduzíveis para formatar, analisar e verificar o código. Registrar no README os comandos de desenvolvimento e as versões necessárias.
+O Flutter usa analysis_options.yaml e flutter_lints. O wrapper scripts/flutter.ps1 executa analyze e test com o SDK fixado em .fvmrc. O teste em mobile/integration_test/ exige emulador e API local e cria uma conta temporária. Seu resultado deve ser registrado separadamente dos testes de widget.
 
-## Práticas de implementação
+A configuração .github/workflows/mobile-api.yml prepara essas verificações para GitHub Actions. Configuração existente não equivale a execução remota aprovada; consultar os resultados do workflow após o push.
 
-- Separar interface, regras do produto, autorização, persistência e integrações.
-- Validar dados na entrada do servidor; não depender de controles escondidos na tela.
-- Aplicar autorização por conta, município e bairro em cada rota protegida.
-- Isolar e-mail, armazenamento e IA atrás de adaptadores, com caminho de falha.
-- Manter as entidades, transições de estado e permissões com os mesmos nomes da documentação.
-- Evitar dados pessoais em logs, exemplos, capturas e massa de demonstração.
-- Corrigir documentação, protótipo, requisitos e rastreabilidade junto à mudança que os afeta.
+## Evidências e limites
 
-## Revisão de mudanças
+Em 08/11/2026, 16 testes da API e 18 testes Flutter foram aprovados na revisão local anterior. Cobrem autorização, concorrência de vagas, revisão por outro responsável, imagens, recuperação de conta, lembretes, layout e semântica. O [histórico de implementação](../docs/IMPLEMENTACAO.md) registra a revisão Android e seus limites.
 
-Uma revisão deve responder: qual tarefa do produto mudou? Que requisito e regra a sustentam? O que acontece fora de escopo ou quando falha? A permissão foi verificada no servidor? O desenho e a documentação continuam coerentes? Links, dados de exemplo e acessibilidade foram considerados?
+Os 112 testes citados na documentação da Alfa pertencem a app/, não ao aplicativo Flutter. Não somar baterias diferentes para sugerir cobertura integral.
 
-Registrar quais verificações foram executadas e seu resultado; não afirmar que lint, testes, auditoria de segurança ou avaliação de acessibilidade ocorreram sem evidência.
+Ainda faltam teste físico, medição de desempenho em release, pesquisa com usuários e verificação completa dos serviços externos. Testes automatizados e revisão por IA não substituem avaliação humana do produto.
+
+## Regra de manutenção
+
+Uma mudança de regra deve atualizar código, teste pertinente, requisito e página funcional na mesma entrega. Não versionar .env, dados locais, tokens ou chaves de assinatura. Dependências têm arquivos de lock; usar instalação reproduzível. Preservar a Alfa e a sincronização do GitBook.

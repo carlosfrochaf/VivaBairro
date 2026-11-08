@@ -2,7 +2,7 @@
 
 ## O que o VivaBairro pretende oferecer
 
-O VivaBairro é um site responsivo para consultar e publicar informações de um município por bairro. A primeira versão planejada cobre:
+O VivaBairro é um aplicativo Flutter para Android, com prévia web de apoio, para consultar e publicar informações por bairro. A implementação atual cobre:
 
 - feed de eventos, avisos e comunicados oficiais;
 - busca por texto, bairro, categoria e período;
@@ -12,7 +12,7 @@ O VivaBairro é um site responsivo para consultar e publicar informações de um
 - conta básica, seleção de bairros e preferências de notificação;
 - denúncia e moderação individual com justificativa, histórico e pedido de revisão;
 - administração municipal de bairros, moderadores e comunicados oficiais;
-- assistência opcional de IA para sugerir categoria e resumo, com consentimento e revisão humana.
+- publicação manual de avisos; assistência por IA permanece uma evolução proposta, sem provedor conectado.
 
 ## O que não faz parte da primeira versão
 
@@ -20,7 +20,7 @@ O produto não será apresentado como serviço de emergência, central de atendi
 
 ## Dependências e limites
 
-O cadastro oficial de bairros, a autorização de administradores municipais, a operação diária da moderação e o canal para encaminhar demandas dependem de decisões e responsáveis ainda não definidos. Até que isso exista, as telas municipais representam um fluxo proposto. Integrações externas podem ser simuladas em protótipos, mas a demonstração deve identificar a simulação.
+O cadastro oficial de bairros, a autorização de administradores municipais, a operação diária da moderação e o canal para encaminhar demandas dependem de decisões e responsáveis ainda não definidos. As telas municipais já funcionam tecnicamente na demonstração, mas não representam autorização institucional nem operação real de prefeitura. Integrações externas podem ser simuladas em protótipos, mas a demonstração deve identificar a simulação.
 
 ## Materiais de referência
 

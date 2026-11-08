@@ -18,3 +18,7 @@ Para criar uma conta, são solicitados estritamente:
 
 * **Sessões Seguras:** Tokens JWT assinados com expiração e rotação de Refresh Tokens em cookies `HttpOnly` e `Secure`.
 * **Recuperação de Senha:** Fluxo por e-mail com token temporário e de uso único (*magic link / OTP*).
+
+## Atualização da implementação — 08/11/2026
+
+Cadastro e sessão estão implementados na API, com senhas scrypt, tokens de sessão armazenados como hash e revogação. Troca de senha, código de recuperação e confirmação de e-mail têm fluxo técnico. Entrega real por e-mail exige provedor; caixa fictícia atende somente contas locais permitidas. Não há Neon Auth.

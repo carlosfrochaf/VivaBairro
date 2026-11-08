@@ -1,104 +1,44 @@
-# Relatório do uso de IA no desenvolvimento
+# Uso de IA no desenvolvimento
 
-Este relatório separa dois assuntos: a IA usada **para desenvolver** o VivaBairro e a IA prevista **dentro do produto** (sugestão de categoria e resumo de avisos, RF-09). Só registramos o uso que tem evidência no repositório ou que a equipe declarou.
+É preciso separar a IA usada para construir o projeto de uma função de IA oferecida ao usuário. O aplicativo atual foi desenvolvido com participação substancial de um agente de programação; isso não significa que ele tenha IA conectada dentro do produto.
 
-## Ferramentas utilizadas
+## Ferramentas e participação
 
-| Ferramenta | Para que foi usada | Evidência |
+| Ferramenta | Participação registrada | Limite da evidência |
 | --- | --- | --- |
-| Claude Code (agente de programação da Anthropic, modelo Claude Opus 5.5) | Apoio à equipe, em 05/11/2026, na escrita do código da versão Alfa (`app/`), dos testes Jest e do rascunho destas páginas da RT03. Também ajudou a executar os testes e a percorrer as telas num navegador. A ferramenta não fez o projeto sozinha nem faz a entrega: escopo, requisitos, protótipo e decisões são da equipe, que conduziu o trabalho, revisou o resultado e responde por ele. | Arquivos em `app/` e `rt03/`; commit com a linha `Co-Authored-By: Claude`. |
-| Agentes de IA na manutenção do GitBook | Reorganização da documentação na RT02, com as regras de autoria do `AGENTS.md`. | `AGENTS.md` (commit `c72e748`, 01/10/2026). O histórico não registra qual ferramenta foi usada. |
-| Gemini e Figma | Usados em protótipos e imagens|Usamos para refinar o protótipo e o layout|
+| Codex | Em 08/11/2026, escreveu e revisou código Flutter, API, migrações, testes, configuração de hospedagem e documentação. Também operou o emulador para revisar telas e corrigir problemas. | Código e documentação tiveram autoria assistida extensa, não apenas correção ortográfica. Revisão humana integral ainda não está registrada. |
+| Claude Code | O registro anterior da equipe atribui à ferramenta apoio na Alfa web, testes Jest e documentação em 05/11/2026. | Preserva-se a atribuição histórica; a versão exata do modelo e a extensão da revisão humana não foram verificadas nesta etapa. |
+| Gemini e Figma | A equipe informou uso no refinamento de imagens e protótipo. | Figma é ferramenta de design; não se presume que todo trabalho nele seja gerado por IA. Versões, prompts e contribuições detalhadas ainda não foram registrados. |
+| Assistentes na documentação anterior | Histórico do AGENTS.md e das páginas registra reorganização e manutenção. | Não atribuir ferramenta ou modelo sem evidência. |
 
-> A última linha deve ser preenchida pela equipe. Não listamos ferramentas sem evidência.
+## Decisões do responsável e da equipe
 
-## Trechos produzidos com apoio de IA
+O responsável forneceu a proposta, os SVGs corretos e feedback sobre fidelidade visual e espaçamento. Escolheu Flutter, autorizou a configuração Android e definiu Render com Neon. Pediu revisão com teclado, fonte ampliada e TalkBack, dados fictícios para demonstração e atualização contínua do GitBook.
 
-O código de `app/` foi escrito com apoio do Claude Code, a partir dos requisitos, regras e protótipo que a equipe já havia definido neste GitBook nas RT01 e RT02. A IA acelerou a escrita; a equipe orientou o que construir, revisou e decidiu o que entra na entrega. Seguem três trechos representativos.
+Essas decisões orientaram o agente, mas não comprovam que toda linha de código tenha sido revisada pela equipe. Antes de apresentar ou operar o projeto, a equipe deve entender e conseguir explicar regras, dados, permissões e limitações.
 
-### 1. Validação de aviso compartilhada entre navegador e servidor
+## Exemplos de trabalho assistido
 
-Arquivo `app/src/dominio/validacao.js`. A mesma função dá retorno imediato na tela e é executada de novo pela API antes de gravar.
+A API verifica autoria e território no servidor e usa transação PostgreSQL para concorrência de vagas. O aplicativo preserva rascunhos, oferece revisão antes de publicar e trata estados de carregamento e erro. Esses trechos e seus testes foram produzidos com assistência de IA.
 
-```javascript
-export function validarAviso(entrada = {}, bairrosValidos = []) {
-  const dados = {
-    titulo: texto(entrada.titulo),
-    local: texto(entrada.local),
-    descricao: texto(entrada.descricao),
-    categoria: texto(entrada.categoria),
-    bairroId: texto(entrada.bairroId),
-  };
-  const erros = {};
+A revisão encontrou botões encostados, rótulos cortados e transbordamento de formulários com teclado e texto ampliado. Foram corrigidos espaçamento, rolagem, seletores e semântica de cartões. O [histórico](../docs/IMPLEMENTACAO.md) registra casos, capturas e limites; não houve teste com moradores.
 
-  validarTexto(erros, 'titulo', dados.titulo, 'um título');
-  validarTexto(erros, 'local', dados.local, 'a rua ou um ponto de referência público');
-  validarTexto(erros, 'descricao', dados.descricao, 'o que aconteceu');
-  if (!CATEGORIAS_AVISO.some((c) => c.id === dados.categoria)) {
-    erros.categoria = 'Escolha uma categoria da lista.';
-  }
-  validarBairro(erros, dados.bairroId, bairrosValidos);
+Exemplos de orientações recebidas foram manter o SVG de referência, testar telas no emulador com fonte ampliada, povoar o ambiente com contas fictícias e atualizar o GitBook a cada mudança. Esses pedidos não substituem critérios de aceitação; precisam ser traduzidos em verificações observáveis.
 
-  return resultado(erros, dados);
-}
-```
+## Como verificamos e o que não foi verificado
 
-### 2. Regras da sugestão por IA (consentimento, minimização, tempo limite e validação da resposta)
+Lint, análise estática, compilação e testes automatizados ajudam a detectar falhas. A API foi exercitada com PostgreSQL real; widgets foram verificados em larguras e escalas de texto específicas. Houve revisão visual e parcial do foco/ativação com TalkBack no emulador. Não houve acesso ao áudio para avaliar pronúncia, teste em aparelho físico ou certificação de acessibilidade.
 
-Arquivo `app/src/integracoes/ia.js`. Este trecho implementa no código as regras de RF-09, RF-10 e RNF-05.
+Os testes também foram escritos pelo agente. Por isso, a equipe deve conferir se verificam o requisito e se incluem falhas possíveis, em vez de apenas reproduzir a implementação. Teste que falha precisa de diagnóstico; não deve ser removido ou ter sua expectativa enfraquecida para produzir um resultado positivo.
 
-```javascript
-export async function solicitarSugestao(entrada, provedor, opcoes = {}) {
-  const tempoLimiteMs = opcoes.tempoLimiteMs ?? TEMPO_LIMITE_PADRAO_MS;
-  if (entrada?.consentimento !== true) return { ok: false, motivo: 'sem-consentimento' };
+Os 112 testes citados no registro histórico são da Alfa, em app/. Os testes de Flutter e da nova API são baterias distintas, com resultados documentados separadamente. Não afirmar revisão completa ou aprovação humana sem registro.
 
-  const payload = minimizarEntrada(entrada); // só título e descrição
-  if (!payload.titulo && !payload.descricao) return { ok: false, motivo: 'texto-vazio' };
+## Riscos que permanecem
 
-  try {
-    const resposta = await comTempoLimite(Promise.resolve().then(() => provedor(payload)), tempoLimiteMs);
-    if (!respostaValida(resposta)) return { ok: false, motivo: 'resposta-invalida' };
-    return { ok: true, sugestao: { categoria: resposta.categoria, resumo: resposta.resumo.trim().slice(0, 280) } };
-  } catch (erro) {
-    return { ok: false, motivo: erro.message === 'tempo-esgotado' ? 'tempo-esgotado' : 'falha' };
-  }
-}
-```
+Código gerado pode conter erros, regras não solicitadas ou dependências mal escolhidas. Diagramas e documentação podem ficar divergentes. Dados fictícios podem parecer reais se não forem identificados. Para reduzir esses riscos, regras estão no AGENTS.md, permissões são verificadas no servidor, segredos ficam fora do repositório e mudanças atualizam a documentação funcional.
 
-### 3. Regra de capacidade e inscrição única
-
-Arquivo `app/src/dominio/eventos.js`.
-
-```javascript
-if (jaInscrito) return falha('ja-inscrito');
-if (estado === 'lotado') return falha('lotado');
-if (estado !== 'inscricoes-abertas') return falha('indisponivel');
-```
-
-Os testes em `app/tests/` também foram escritos com apoio de IA. Por isso, a revisão humana deve conferir se cada teste verifica a regra documentada, e não apenas o comportamento que o código já tem.
-
-## Validação humana e automação
-
-| Etapa | Automatizado | Responsabilidade humana |
-| --- | --- | --- |
-| Regras do produto | Não. A IA partiu do que já estava escrito no GitBook. | A equipe definiu escopo, requisitos e regras nas RT01 e RT02. Decisões em aberto continuam com a equipe. |
-| Escrita de código | Com apoio do Claude Code, orientado pela equipe. | Revisar cada arquivo antes de aprovar e conferir nomes e estados contra a documentação. |
-| Testes unitários e de integração | Execução automática com `npm test`: 112 testes, todos passando em 05/11/2026. | Conferir se os casos cobrem os critérios dos requisitos. Acrescentar casos quando encontrar falhas. |
-| Verificação das telas | O agente percorreu as telas no navegador e corrigiu os problemas encontrados (ver [Usabilidade e testes](usabilidade-e-testes.md#problemas-encontrados-e-corrigidos)). | Repetir o roteiro em outros navegadores e com teclado. Fazer sessões com pessoas do público. |
-| Texto da documentação | Rascunho escrito com apoio de IA. | Revisar a precisão, a voz do grupo e o que é fato ou hipótese antes da entrega. |
-
-## Riscos e como mitigamos
-
-| Risco | Exemplo concreto | Mitigação aplicada |
-| --- | --- | --- |
-| Erros de sintaxe ou de execução | Código que não roda ou quebra em outro ambiente. | Testes automatizados executados após a geração; servidor iniciado e telas percorridas no navegador. O console do navegador ficou sem erros. |
-| Alucinação de requisito | A IA inventar uma função não especificada, como uma lista de espera. | O `AGENTS.md` proíbe inventar funções, pesquisas e integrações. A Alfa não tem lista de espera, e a tela de lotação diz apenas que a vaga volta se alguém cancelar. |
-| Alucinação de dados | Números de uso, depoimentos ou parcerias municipais inventados. | Faixa fixa "dados fictícios de demonstração" em todas as telas. O relatório declara que não houve pesquisa com usuários. |
-| Alucinação de formato da IA do produto | Um modelo devolver categoria inexistente ou texto vazio. | `respostaValida()` descarta a resposta, e o teste "descarta resposta fora do formato esperado" cobre cinco casos. |
-| Vazamento de dados para o provedor de IA | Enviar conta, bairro ou local sem necessidade. | `minimizarEntrada()` envia só título e descrição. Um teste confere o payload exato. |
-| Dependência e perda de autoria | A equipe não entender o código que entrega. | Código sem framework, separado por responsabilidade e comentado em português. A equipe deve revisar e conseguir explicar cada módulo. |
-| Segurança | Segredos expostos ou permissões só no navegador. | Nenhuma chave no código. Permissões e validação refeitas no servidor (`403` para aviso de outra pessoa e `422` para entrada inválida). Mensagens de erro `500` não mostram detalhes internos. |
+Retenção, validação institucional, pesquisa com usuários e operação pública ainda exigem decisões humanas. A IA não valida representação de prefeitura nem substitui responsáveis pela moderação.
 
 ## IA dentro do produto
 
-Na Alfa, a sugestão de categoria e resumo usa um **provedor simulado** (`provedorSimulado`), que classifica por palavras-chave, sem rede e sem modelo de linguagem. A troca por um provedor real exige apenas uma nova função com a mesma assinatura. Antes disso, a equipe precisa decidir provedor, retenção de dados e texto final de consentimento, como registrado em [Privacidade e segurança](../4-avisos-pedidos-ajuda/privacidade-seguranca.md).
+Na Alfa, sugestões usam regras por palavras-chave, sem modelo de linguagem externo. No Flutter, IA externa permanece indisponível e o fluxo manual funciona. Não há publicação nem moderação automática. Uma integração futura exige escolher provedor, definir consentimento, minimizar dados, revisar retenção e testar falhas sem perder o rascunho.

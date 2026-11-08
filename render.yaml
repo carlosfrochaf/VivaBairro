@@ -1,0 +1,25 @@
+# Novo serviço; não substitui a Alfa hospedada a partir de app/.
+services:
+  - type: web
+    name: vivabairro-api
+    runtime: node
+    plan: free
+    region: virginia
+    rootDir: api
+    buildCommand: npm ci --include=dev && npm run build && npm prune --omit=dev
+    startCommand: node dist/migrate.js && node dist/main.js
+    healthCheckPath: /health
+    autoDeployTrigger: off
+    envVars:
+      - key: NODE_VERSION
+        value: 24.22.2
+      - key: NODE_ENV
+        value: production
+      - key: HOST
+        value: 0.0.0.0
+      - key: DEMO_MODE
+        value: "false"
+      - key: JOBS_ENABLED
+        value: "true"
+      - key: DATABASE_URL
+        sync: false

@@ -43,19 +43,19 @@ Este arquivo orienta agentes que trabalham no repositório. O GitBook continua s
 | Protótipo e fluxos | `9-prototipo-interface/` e `assets/` |
 | Requisitos e rastreabilidade | `10-requisitos/` |
 | Qualidade e planejamento | `11-qualidade/` e `planejamento/` |
-| Versão Alfa, relatório de IA e testes (RT03) | `app/` e `rt03/` |
+| Histórico da Alfa, relatório de IA e testes | `app/` e `rt03/` |
 
 Ao mudar um fluxo, confira o requisito, a página de regra de negócio, o desenho afetado e a rastreabilidade. Atualize todos os elementos impactados na mesma tarefa e confira termos, papéis, links e status entre eles.
 
 ## Regras do produto que não podem se contradizer
 
-- O VivaBairro é um site responsivo, organizado por município e bairro. A conta escolhe bairro principal e bairros acompanhados; não é necessário GPS contínuo nem endereço residencial.
+- O VivaBairro é um aplicativo Flutter para Android, com prévia web de apoio, organizado por município e bairro. A conta escolhe bairro principal e bairros acompanhados; não é necessário GPS contínuo nem endereço residencial.
 - Publicações usam local público ou ponto de referência e não devem expor dados sensíveis de terceiros.
 - Autores gerenciam suas próprias publicações; organizadores são autores com ações de gestão do evento. Moderação é uma permissão separada, limitada a bairros atribuídos no servidor.
 - Administradores municipais gerenciam o município configurado, bairros, designações e comunicados oficiais. A forma de validar a autoridade municipal é uma decisão pendente, não presumida.
 - Denúncia inicia análise humana; não remove conteúdo automaticamente. Toda ação individual de moderação tem motivo, ator e histórico. O autor é avisado e pode pedir revisão.
 - Comunicados oficiais são identificados por órgão emissor. O serviço não é canal de emergência nem garante atendimento público.
-- IA opcional sugere categoria e redação de avisos. Consentimento explícito precede o envio ao serviço externo. O backend minimiza o texto; a pessoa revisa; a publicação é manual. Falha da IA não bloqueia o fluxo.
+- IA externa está indisponível na implementação mobile. Uma integração futura poderá sugerir categoria e redação de avisos. Consentimento explícito precede o envio ao serviço externo. O backend minimiza o texto; a pessoa revisa; a publicação é manual. Falha da IA não bloqueia o fluxo.
 - Validar permissões no servidor, privacidade, acessibilidade e auditoria conforme requisitos documentados. Não declarar conformidade, segurança ou qualidade sem verificação.
 
 ## Rotina de mudança
@@ -68,4 +68,32 @@ Ao mudar um fluxo, confira o requisito, a página de regra de negócio, o desenh
 
 ## Decisões ainda sem evidência ou aprovação
 
-O repositório não registra pesquisa concluída com moradores nem autorização oficial de um município. A pasta `app/` tem uma versão Alfa com cadastro e login, dados fictícios em memória e IA simulada, publicada para demonstração em https://vivabairro-alfa.onrender.com. Não há integrações reais nem banco de dados. Ao mudar regras em `app/src/dominio/`, atualize os testes em `app/tests/` e as páginas de `rt03/`. Os públicos, a adesão municipal, a operação de moderação, a política de retenção e algumas metas de desempenho devem continuar identificados como propostas até a equipe reunir evidências e decidir. O planejamento em `planejamento/plano-de-desenvolvimento.csv` é um ponto de partida, não um quadro de tarefas já ativo.
+O repositório não registra pesquisa concluída com moradores nem autorização oficial de um município. A pasta `app/` tem uma versão Alfa com cadastro e login, dados fictícios em memória e IA simulada, publicada para demonstração em https://vivabairro-alfa.onrender.com. A implementação atual fica em mobile/ e api/, com PostgreSQL persistente; a Alfa permanece como referência histórica. Ao mudar regras em `app/src/dominio/`, atualize os testes em `app/tests/` e as páginas de `rt03/`. Os públicos, a adesão municipal, a operação de moderação, a política de retenção e algumas metas de desempenho devem continuar identificados como propostas até a equipe reunir evidências e decidir. O planejamento em `planejamento/plano-de-desenvolvimento.csv` é um ponto de partida, não um quadro de tarefas já ativo.
+
+## Desenvolvimento mobile
+
+Aplicativo Flutter/Dart para Android inicialmente, API Node.js/TypeScript e PostgreSQL. Decisão aprovada em 08/11/2026. A Alfa web é referência de fluxo, não a plataforma final.
+
+Consulte https://vivabairro.gitbook.io/vivabairro/llms.txt e a documentação existente antes de alterar regras. Preserve os SVGs de origem. Use português brasileiro claro e mantenha a identidade azul-marinho, verde-petróleo, verde-água e coral. Material 3 orienta componentes e acessibilidade.
+
+A referência visual confirmada pelo responsável é docs/design/vivabairro_a3_prototipo-mobile.svg, acompanhada de vivabairro_a3_publicos-e-tarefas.svg. São cópias preservadas dos arquivos enviados da pasta Usabilidade - A3 - 1. Não usar os arquivos prototipo-mobile.svg/prototipo-web.svg do aplicativo filter: foram enviados por engano. Material 3 não autoriza substituir o layout do protótipo por uma interface genérica. Conferir as seis telas: boas-vindas com degradê e símbolo, feed com cards e avisos separados, capa/detalhe do evento, confirmação dedicada, criar aviso e Meu espaço. Contagens devem vir do banco; não copiar números fictícios nem prometer funções indisponíveis. A prévia desktop mantém uma coluna mobile; testar também texto ampliado.
+
+Valide permissões e entradas no servidor. Nunca permita autoatribuição de administrador. Moderadores atuam nos bairros designados; toda ação individual exige motivo e histórico. Denúncias não removem conteúdo automaticamente. Não exponha denunciantes.
+
+Não exija GPS ou endereço residencial. IA é opcional e não publica nem modera; integrações não configuradas devem ser identificadas como indisponíveis. Não invente resultados de pesquisa ou conformidade. Preserve rascunhos em falhas e expiração da sessão. Ofereça retorno de carregamento, erro recuperável e sucesso; estados não podem depender só de cor.
+
+Organize código por responsabilidade, mantenha segredos fora do Git e atualize docs/IMPLEMENTACAO.md com o estado real. Execute análise do Flutter, compilação TypeScript e testes de regras/integração afetados. Testes de vagas devem usar transações reais de PostgreSQL. Não modifique a Alfa online durante testes locais.
+
+Flutter está fixado em .fvmrc; use scripts/flutter.ps1 ou um SDK compatível, sem alterar o PATH global. O responsável autorizou configurar Android em 08/11/2026. O responsável revisou e autorizou o aceite do Android SDK License Agreement em 08/11/2026. O build debug x86_64 e os fluxos de entrada, feed e detalhe foram conferidos no emulador Android 16/API 36. Preserve a prévia web como apoio; não confunda essa validação com testes em aparelho real, acessibilidade completa ou desempenho de release. Não confunda pubspec com instalador do SDK. Destino aprovado em 08/11/2026: https://github.com/carlosfrochaf/VivaBairro. Preservar app/ (Alfa) e a sincronização atual do GitBook.
+
+Revise espaçamento em telas estreitas: mantenha pelo menos 12 px entre controles empilhados e use runSpacing nos grupos Wrap. Separe textos auxiliares e imagens dos botões; mantenha ações do mesmo grupo alinhadas. Confira quebras de linha e fonte ampliada antes de considerar a interface pronta.
+
+Ao revisar layouts Android, testar teclado aberto e texto ampliado juntos. Diálogos com formulários precisam de rolagem; seletores devem acomodar largura e altura do texto. Usar rótulos curtos com ajuda abaixo, área segura inferior e espaço acima dos campos em painéis expansíveis. Registrar separadamente revisão visual nativa e testes de widget, sem declarar cobertura de estados não exercitados.
+
+Acessibilidade: cartões acionáveis devem expor papel de botão, rótulo contextual e ação ao leitor, sem duplicar os filhos. Marcar títulos como cabeçalhos e comunicar estados como lida/não lida por texto semântico. Validar semântica e foco nativo separadamente; não alegar avaliação da fala sem acesso ao áudio.
+
+## Manutenção contínua do GitBook e hospedagem
+
+Render Free e Neon Free aprovados para demonstração. Preservar a Alfa. Não contratar planos pagos sem decisão do responsável. A autenticação é própria da API; não ativar Neon Auth. Nunca versionar credenciais, dumps, tokens, .env ou chaves de assinatura.
+
+Toda mudança até a conclusão do aplicativo atualiza o GitBook na mesma entrega: regras na página funcional, decisões na arquitetura, configuração em docs/IMPLANTACAO.md e resultados em docs/IMPLEMENTACAO.md. Atualizar referências e relatório de IA quando necessário. Distinguir alteração local, commit enviado e sincronização pública verificada. Configuração preparada não é serviço publicado. Preservar .gitbook.yaml e caminhos públicos existentes.

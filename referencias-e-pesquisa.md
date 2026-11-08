@@ -36,7 +36,7 @@ Use os critérios pertinentes para revisar teclado, foco, formulários, mensagen
 
 ## Segurança e privacidade
 
-- [OWASP Application Security Verification Standard (ASVS)](https://owasp.org/www-project-application-security-verification-standard/): catálogo de requisitos para orientar a revisão de controles técnicos em aplicações web. Consulte a versão estável vigente quando a equipe definir a stack e transformar requisitos em verificações concretas.
+- [OWASP Application Security Verification Standard (ASVS)](https://owasp.org/www-project-application-security-verification-standard/): catálogo de requisitos para orientar a revisão de controles técnicos em aplicações web. Consulte a versão estável vigente ao transformar requisitos em verificações concretas para a stack atual.
 - [Guia da ANPD sobre tratamento de dados pessoais pelo Poder Público](https://www.gov.br/anpd/pt-br/centrais-de-conteudo/materiais-educativos-e-publicacoes/guia_orientativo_tratamento_de_dados_pessoais_pelo_poder_publico): material brasileiro para leitura quando o cenário envolver tratamento de dados por órgãos públicos. A aplicação ao projeto depende de quem será responsável pelo tratamento e do contexto real; o guia não substitui análise jurídica.
 
 Antes de coletar dados reais, documente finalidade, necessidade, acesso, retenção e descarte. Não peça endereço residencial ou localização contínua sem necessidade demonstrada. Uma referência técnica não confirma que a solução esteja segura ou em conformidade legal.
@@ -51,3 +51,18 @@ São referências para quando a equipe escolher a ferramenta de planejamento. A 
 ## Como manter estas referências
 
 Ao propor uma decisão com base numa fonte externa, anote na documentação qual recomendação foi usada e o que ela sustenta. Dê preferência a padrões, órgãos responsáveis e documentação primária; confira a versão e a data antes de aplicar recomendações sujeitas a mudança. Adapte práticas de outros países ao contexto brasileiro e aos objetivos do projeto. Registre separadamente evidência de pesquisa com usuários, regra aprovada, requisito e hipótese. Revise os links quando uma decisão importante for tomada ou uma fonte deixar de ser atual.
+
+## Implementação mobile e hospedagem — consulta em 08/11/2026
+
+| Fonte primária | Aplicação no VivaBairro | Limite |
+| --- | --- | --- |
+| [Flutter: configuração Android](https://docs.flutter.dev/platform-integration/android/setup) | SDK, build e emulador Android. | Emulador não substitui aparelho físico. |
+| [Flutter: testes de integração](https://docs.flutter.dev/testing/integration-tests) | Roteiro automatizado nativo com API local. | Um roteiro não cobre todos os estados. |
+| [Material Design 3](https://m3.material.io/) | Componentes, hierarquia, estados e interação. | Não substitui o SVG confirmado nem valida usabilidade sozinho. |
+| [Fastify](https://fastify.dev/docs/latest/) | API HTTP e testes por injeção. | Framework não garante regras de autorização corretas. |
+| [PostgreSQL: bloqueios](https://www.postgresql.org/docs/current/explicit-locking.html) | Proteção da última vaga em transação. | Depende de verificar a regra e os limites dentro da transação. |
+| [Render Free](https://render.com/docs/free) e [Blueprint](https://render.com/docs/blueprint-spec) | API de demonstração e configuração versionada. | Suspensão por inatividade, cotas e disco temporário. |
+| [Neon: conexão](https://neon.com/docs/connect/connect-from-any-app) | PostgreSQL gerenciado com conexão segura da API. | Rever limites do plano e backup antes de operação real. |
+| [Google: TalkBack](https://support.google.com/accessibility/android/answer/6110948) | Revisão de foco e ativação no Android. | Fala não avaliada e revisão parcial. |
+
+Render com Neon foi escolhido pela simplicidade de operação da demonstração. Isso não é uma conclusão de superioridade geral sobre AWS. Fontes técnicas sustentam configuração e critérios; não comprovam satisfação dos moradores ou conformidade do produto.

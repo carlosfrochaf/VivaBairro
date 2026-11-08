@@ -1,30 +1,33 @@
 # VivaBairro
 
-O VivaBairro organiza eventos, avisos e pedidos de colaboração por município e bairro. A proposta é que moradores encontrem local, data e estado de cada informação, enquanto equipes municipais usam um espaço identificado para comunicados e moderação.
+Aplicativo de bairro para consultar eventos, confirmar presença, publicar avisos e colaborar com a comunidade. Moderadores analisam denúncias no território atribuído; administradores municipais gerenciam bairros, designações e comunicados.
 
-O produto ainda está em definição. A documentação diferencia o que foi proposto, o que continua como hipótese e as decisões pendentes. Não há parceria municipal ou pesquisa com moradores registrada neste repositório.
+A implementação atual usa **Flutter para Android, API Fastify/TypeScript e PostgreSQL**. A [Alfa web](https://vivabairro-alfa.onrender.com), preservada em app/, é uma demonstração anterior com dados em memória.
 
-A pasta `app/` contém uma versão Alfa executável, com dados fictícios e IA simulada. Veja a [entrega RT03](rt03/README.md).
+## Comece por aqui
 
-## Conteúdo
+- [Sobre o projeto](sobre-o-projeto.md) e [escopo](1-visao-geral/documento-escopo.md).
+- [Implementação e evidências](docs/IMPLEMENTACAO.md).
+- [Executar e desenvolver](docs/DESENVOLVIMENTO.md).
+- [Hospedagem Render e Neon](docs/IMPLANTACAO.md).
+- [Demonstração e APK](docs/APRESENTACAO.md).
+- [Arquitetura](8-arquitetura-tecnica/visao-arquitetura.md), [requisitos](10-requisitos/requisitos-funcionais-nao-funcionais.md) e [protótipo](9-prototipo-interface/prototipo-wireframes.md).
+- [Referências](referencias-e-pesquisa.md) e [uso de IA](rt03/relatorio-ia.md).
 
-- [Sobre o VivaBairro](sobre-o-projeto.md)
-- [Visão do produto, público e hipóteses](1-visao-geral/visao-produto-lean-canvas.md)
-- [Escopo](1-visao-geral/documento-escopo.md)
-- [Requisitos](10-requisitos/requisitos-funcionais-nao-funcionais.md)
-- [Arquitetura e dados](8-arquitetura-tecnica/visao-arquitetura.md)
-- [Protótipo e fluxos](9-prototipo-interface/prototipo-wireframes.md)
-- [Planejamento do desenvolvimento](planejamento/como-usar-o-quadro.md)
-- [RT03: consolidação, versão Alfa, relatório de IA e testes](rt03/README.md)
-- [Referências e pesquisa](referencias-e-pesquisa.md)
+## Organização
 
-## Materiais
+| Caminho | Conteúdo |
+| --- | --- |
+| mobile/ | Aplicativo Flutter e testes |
+| api/ | API, migrações SQL e testes de integração |
+| app/ | Alfa web histórica |
+| Pastas numeradas e SUMMARY.md | Documentação funcional e navegação do GitBook |
+| docs/ | Desenvolvimento, operação e evidências |
+| assets/ e docs/design/ | Diagramas e SVGs de referência |
+| scripts/ | Ferramentas locais e geração do APK |
+| render.yaml | Configuração do novo serviço da API |
+| AGENTS.md | Instruções para manutenção por assistentes |
 
-- [Protótipo mobile atualizado](assets/prototipo-vivabairro.svg)
-- [Públicos e tarefas provisórias](assets/publicos-e-tarefas.svg)
-- [Contexto do sistema](assets/contexto-vivabairro.svg)
-- [Arquitetura proposta](assets/arquitetura-vivabairro.svg)
-- [Consentimento para uso opcional de IA](assets/fluxo-ia-avisos.svg)
-- [Administração e moderação municipal](assets/fluxo-moderacao-municipal.svg)
+Os fluxos principais funcionam localmente com banco persistente e dados fictícios. Render e Neon foram aprovados para demonstração. O estado da publicação fica no guia de implantação. Ainda faltam aparelho físico, avaliação com moradores, desempenho em release e decisões de operação municipal. E-mail externo, push e IA externa não estão conectados.
 
-Para navegar por todas as páginas, use o [sumário](SUMMARY.md).
+Toda mudança de comportamento, infraestrutura ou validação deve atualizar a página correspondente do [GitBook](https://vivabairro.gitbook.io/vivabairro) na mesma entrega.

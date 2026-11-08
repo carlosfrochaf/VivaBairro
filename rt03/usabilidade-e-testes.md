@@ -1,5 +1,7 @@
 # Usabilidade, validação e testes
 
+> Registro histórico da Alfa web em app/. Para o aplicativo Android atual, consulte [implementação](../docs/IMPLEMENTACAO.md).
+
 Esta página mostra como a versão Alfa aplica os princípios de usabilidade definidos na [matriz de rastreabilidade](../10-requisitos/rastreabilidade-usabilidade.md) e quais testes comprovam o comportamento. As verificações foram feitas pela equipe; ainda não houve sessões com moradores ou organizadores.
 
 ## Princípios de usabilidade implementados
@@ -145,3 +147,7 @@ Roteiro executado em 05/11/2026, no navegador do ambiente de desenvolvimento, co
 - Navegação completa só por teclado e com leitor de tela (NVDA, VoiceOver).
 - Zoom de texto a 200% e larguras de tablet e desktop largo.
 - Navegadores além do Chromium.
+
+## Atualização da implementação — 08/11/2026
+
+Os testes abaixo pertencem à Alfa web e ao registro anterior da equipe. Para revisão Android, widgets, API PostgreSQL e TalkBack, consultar [implementação atual](../docs/IMPLEMENTACAO.md).

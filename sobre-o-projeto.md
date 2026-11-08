@@ -1,33 +1,15 @@
 # Sobre o VivaBairro
 
-O VivaBairro é uma proposta de site responsivo para reunir eventos, avisos e pedidos de colaboração organizados por município e bairro. O produto também prevê comunicados municipais identificados e ferramentas de moderação com escopo e histórico.
+O VivaBairro organiza informações da comunidade por bairro: eventos com data, local e confirmação de presença; avisos sobre ocorrências; pedidos e ofertas de ajuda. A proposta é facilitar encontrar e acompanhar essas informações sem depender de mensagens espalhadas em grupos. Esse benefício é uma hipótese a avaliar com moradores, não um resultado de pesquisa já medido.
 
-## Navegue pela documentação
+A pessoa escolhe seu bairro principal e outros que deseja acompanhar. Não precisa informar endereço residencial nem manter GPS ativo. Publicações usam locais públicos ou referências; o aplicativo não é canal de emergência e não garante atendimento da prefeitura.
 
-- [Visão do produto e hipóteses](1-visao-geral/visao-produto-lean-canvas.md)
-- [Escopo do produto](1-visao-geral/documento-escopo.md)
-- [Públicos e tarefas previstas](1-visao-geral/publicos-e-tarefas.md)
-- [Requisitos e critérios de verificação](10-requisitos/requisitos-funcionais-nao-funcionais.md)
-- [Rastreabilidade entre necessidades, requisitos e interface](10-requisitos/rastreabilidade-usabilidade.md)
-- [Arquitetura proposta](8-arquitetura-tecnica/visao-arquitetura.md)
-- [Modelo conceitual de dados](8-arquitetura-tecnica/modelo-dados.md)
-- [Telas e fluxos](9-prototipo-interface/prototipo-wireframes.md)
-- [Papéis, permissões e escopo](6-governanca-moderacao/matriz-permissoes.md)
+Autores podem editar, atualizar ou remover suas publicações. Denúncias levam à análise humana, com justificativa e possibilidade de revisão. Moderadores recebem bairros específicos; administradores municipais controlam bairros, designações e comunicados. Ainda será necessário definir como comprovar a representação da prefeitura e quem opera a moderação.
 
-## Materiais do produto
+## Implementação atual
 
-![Diagrama de contexto do sistema](assets/contexto-vivabairro.svg)
+O produto principal passou da proposta de site para Flutter Android, com API Node.js/Fastify e PostgreSQL. A Alfa web anterior foi preservada em app/. O desenvolvimento atual fica em mobile/ e api/, no mesmo repositório da documentação. Render e Neon foram escolhidos para hospedar a demonstração.
 
-![Arquitetura em containers](assets/arquitetura-vivabairro.svg)
+Há dados fictícios, fluxos de conta, eventos, avisos, colaboração e administração. Notificações internas funcionam; e-mail externo, push e IA externa não estão conectados. O estado verificável e as limitações estão em [implementação](docs/IMPLEMENTACAO.md), e a publicação em [hospedagem](docs/IMPLANTACAO.md).
 
-![Fluxos mobile do VivaBairro](assets/prototipo-vivabairro.svg)
-
-![Públicos e tarefas ainda a validar](assets/publicos-e-tarefas.svg)
-
-![Fluxo de consentimento da IA](assets/fluxo-ia-avisos.svg)
-
-![Fluxo de moderação municipal](assets/fluxo-moderacao-municipal.svg)
-
-## Estado atual
-
-A documentação descreve uma solução proposta, não um serviço em operação. Ainda dependem de decisão: município e bairros de referência, validação das contas municipais, equipe e horário de moderação, stack, retenção de dados e provedor de IA. O repositório não registra parceria municipal ou resultado de pesquisa com moradores. Protótipos e integrações simuladas devem ser identificados como tais. A [versão Alfa](rt03/versao-alfa.md) roda localmente com dados fictícios e IA simulada.
+O [protótipo](9-prototipo-interface/prototipo-wireframes.md) orienta a identidade e as telas principais. Novos fluxos podem ser acrescentados com coerência visual, clareza de ações, erros recuperáveis e acessibilidade.

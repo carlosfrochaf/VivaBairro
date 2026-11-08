@@ -20,3 +20,7 @@ Notificações explicam o que aconteceu e levam à publicação ou configuraçã
 - Falha de e-mail não deve apagar o registro da central; registrar falha sem expor conteúdo sensível em logs.
 - Não enviar notificações de resposta a quem denunciou se isso revelar sua identidade.
 - Frequência, retenção, horários silenciosos e canal para atualizações críticas ainda precisam de decisão operacional.
+
+## Atualização da implementação — 08/11/2026
+
+Central interna e marcação de leitura estão implementadas. Lembretes até 24 horas antes dependem de presença, preferência e processamento da API, com deduplicação. Não há push com aplicativo fechado. SMTP externo não está conectado. Na hospedagem gratuita, suspensão da API impede garantia de entrega no horário.

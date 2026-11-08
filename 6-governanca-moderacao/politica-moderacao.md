@@ -25,3 +25,7 @@ A moderação protege pessoas e mantém informações úteis sem tratar volume d
 Moderadores só analisam itens de bairros atribuídos a eles. Administradores municipais podem acompanhar a fila e agir nos bairros de seu município. Toda decisão registra ator, papel, município/bairro, item, ação, motivo, data, notificação enviada e eventual revisão. Permissões e escopo são validados no servidor.
 
 A equipe precisa aprovar e publicar regras de comunidade e definir retenção de denúncias antes de operar com conteúdo real. O repositório ainda não registra equipe ativa, prazo de resposta ou escala de atendimento; não prometer tempo de resolução.
+
+## Atualização da implementação — 08/11/2026
+
+Denúncias, ações individuais com motivo, notificações e recursos estão implementados. O servidor limita o território e exige responsável diferente para revisar uma decisão. A autorização institucional e a disponibilidade humana para operar a fila ainda não foram definidas.

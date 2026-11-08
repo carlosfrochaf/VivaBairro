@@ -1,44 +1,35 @@
 # Arquitetura do VivaBairro
 
-A arquitetura descreve responsabilidades e fluxos, sem escolher frameworks ou provedores ainda. O objetivo é mostrar como a interface, as regras territoriais, os dados e serviços externos se relacionam.
+Flutter/Dart no aplicativo Android, Fastify/TypeScript na API Node.js e PostgreSQL na persistência. Render e Neon foram aprovados em 08/11/2026 para a demonstração; o estado da publicação está em [implantação](../docs/IMPLANTACAO.md).
 
-## Contexto do sistema
+## Componentes e comunicação
 
-![Contexto do sistema VivaBairro](../assets/contexto-vivabairro.svg)
+~~~mermaid
+flowchart TB
+  pessoa[Morador, moderador ou administrador]
+  subgraph produto[VivaBairro]
+    mobile[Flutter Android: interface e sessão]
+    api[Fastify no Render: regras e autorização]
+    banco[(PostgreSQL no Neon: dados e imagens)]
+    pessoa -->|Interação com telas| mobile
+    mobile -->|HTTPS e token de sessão| api
+    api -->|SQL com TLS| banco
+  end
+  api -.->|Fila: configuração pendente| smtp[Provedor SMTP externo]
+~~~
 
-O diagrama mostra quem usa o produto e quais serviços externos são opcionais. Não há integração direta prevista com sistemas da prefeitura; a existência de um canal municipal depende de autorização e operação acordadas.
+Setas contínuas representam a arquitetura escolhida; pontilhadas indicam integração pendente. Localmente, API e PostgreSQL rodam no computador. O emulador usa 10.0.2.2 para alcançar a API. A prévia web apoia revisão visual; não substitui teste Android.
 
-## Containers propostos
+## Responsabilidades e dados
 
-![Containers propostos do VivaBairro](../assets/arquitetura-vivabairro.svg)
+O aplicativo orienta o preenchimento e apresenta estados de carregamento, erro e sucesso. A API repete validações, verifica autoria, município e bairro e executa transações. Senhas usam scrypt e sessões são registradas como hash no servidor. Neon fornece somente PostgreSQL; Better Auth/Neon Auth não é necessário.
 
-- **Site responsivo:** feed, busca, eventos, avisos, perfil, telas administrativas e estados da interface.
-- **API e regras do produto:** sessão, autorização por município/bairro, validação de entrada, eventos, avisos, denúncias, moderação, auditoria, busca e notificações.
-- **Banco de dados:** contas, municípios, bairros, publicações, participações e histórico.
-- **Armazenamento de fotos:** opcional; separar acesso e remoção do conteúdo textual.
-- **E-mail:** serviço externo opcional para notificações configuradas.
-- **IA:** serviço externo opcional, chamado somente após consentimento. Recebe título e descrição necessários, devolve sugestão e não publica.
+O banco guarda contas, publicações, participações, respostas, denúncias, decisões, recursos e notificações. Um bloqueio transacional protege a última vaga contra inscrições simultâneas. Migrações versionadas em api/migrations/ são aplicadas antes de iniciar a API.
 
-As setas representam a direção e finalidade da comunicação. Os protocolos estão indicados apenas como proposta quando ainda não há stack: HTTPS para interface/API e conexão protegida no servidor para serviços e banco. A tecnologia específica permanece pendente.
+Fotos são validadas e redimensionadas, com metadados removidos, e ficam no PostgreSQL. Isso evita depender do disco temporário da hospedagem, mas requer planejamento de armazenamento para maior volume. Lembretes internos e fila de e-mail são processados enquanto a API está ativa. O plano gratuito não garante execução contínua.
 
-## Fluxo de sugestão por IA
+## Limites e evolução
 
-1. A pessoa preenche o rascunho e escolhe pedir ajuda de IA.
-2. Uma tela de consentimento informa quais campos serão enviados, o uso do provedor externo e a alternativa manual.
-3. O navegador envia a solicitação ao backend; a chave do provedor permanece no servidor.
-4. O backend minimiza e valida a entrada, aplica timeout e chama o serviço escolhido.
-5. O backend valida a resposta e retorna somente categoria e resumo sugeridos.
-6. A pessoa aceita, edita ou descarta as sugestões e confirma a publicação em ação separada.
-7. Em recusa, falha, timeout ou resposta inválida, o rascunho continua disponível para publicação manual.
+SMTP está preparado, sem provedor conectado. Push e IA externa não estão implementados no aplicativo; avisos funcionam manualmente. Não existe integração com sistemas internos de prefeitura. Validar representante municipal, retenção, limpeza de imagens abandonadas, backup e operação ainda exige decisões.
 
-A política de retenção do provedor e o texto final de consentimento precisam ser definidos antes de uma integração real.
-
-## Fronteiras de responsabilidade
-
-O navegador não decide permissões. Toda ação verifica conta, papel, município e bairro no backend. A autorização municipal é distinta da moderação: administrador administra apenas o município vinculado; moderador atua somente nos bairros designados; organizador gerencia eventos de que é autor. A auditoria guarda decisões sem permitir edição silenciosa do histórico.
-
-## Tecnologias e decisões pendentes
-
-React/TypeScript, uma API HTTP e PostgreSQL são opções possíveis, não decisões aprovadas. A equipe ainda precisa escolher stack, autenticação, hospedagem, armazenamento de imagens, provedor de e-mail e provedor de IA. O diagrama deve ser atualizado quando essas decisões forem tomadas.
-
-A implantação municipal, gestão de representantes, retenção dos dados e operação de moderação também não estão definidas. Não representar esses serviços como integrados até haver acordo e teste.
+Os SVGs de [contexto](../assets/contexto-vivabairro.svg) e [containers](../assets/arquitetura-vivabairro.svg) registram a proposta anterior de site e foram preservados como histórico. O diagrama desta página descreve a implementação atual. A Alfa em app/ permanece separada, com dados próprios em memória.
