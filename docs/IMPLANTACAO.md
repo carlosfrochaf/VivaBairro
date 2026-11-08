@@ -52,6 +52,6 @@ APKs debug ARM64, ARM32 e x86_64 compilados com API_URL=https://vivabairro-api.o
 
 Em 08/11/2026, foram inicializados Município de demonstração e os bairros Jardim Aurora, Centro e Vila Esperança. Com uma conta temporária, foram aprovados cadastro, consulta de conta, saída, novo login, gravação/leitura de aviso no Neon e recusa de comunicado oficial sem permissão. A conta foi encerrada e seu conteúdo público removido ao final. Esses testes foram feitos por HTTPS na API hospedada; não equivalem a teste físico do aplicativo.
 
-O banco remoto é separado do banco local: os eventos e avisos do seed local ainda não foram transferidos. A primeira conta administradora está pendente da definição do e-mail e de senha fora do chat. Não existem credenciais administrativas públicas.
+O banco remoto é separado do banco local: os eventos e avisos do seed local ainda não foram transferidos. O responsável já definiu o e-mail da primeira conta administradora. O cadastro e a senha devem ser concluídos diretamente no aplicativo; a atribuição do papel municipal vem depois, mediante conferência da conta. A conta ainda não foi provisionada. O endereço pessoal não é publicado nesta documentação. Não existem credenciais administrativas públicas.
 
 ![API publicada no Render Free](screenshots/render-api-publicada.png)
