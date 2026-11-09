@@ -2,6 +2,19 @@
 
 Esta página reúne fontes para orientar decisões de produto e desenvolvimento do VivaBairro. Elas ajudam a formular perguntas, revisar requisitos e consultar padrões; não comprovam, por si só, que uma necessidade existe entre os moradores nem que o produto atende a um padrão.
 
+## Estudos sobre o problema — consulta em 09/11/2026
+
+Os dados, as populações pesquisadas e os limites de interpretação estão em [Propósito, problema e objetivos](1-visao-geral/proposito-objetivos.md). Esta é pesquisa documental; não são entrevistas ou resultados de uso do VivaBairro.
+
+| Fonte primária | Contribuição e limite |
+| --- | --- |
+| [Observatório Fundação Itaú e Datafolha — Hábitos Culturais, 7ª edição, 2026](https://fundacaoitau.org.br/observatorio/biblioteca/habitos-culturais-7-2026) | Descoberta de atividades e desigualdades de participação cultural no Brasil. Não isola falta de divulgação como causa nem cobre todos os eventos comunitários. |
+| [Pew Research Center — Sources of local news, 2024](https://www.pewresearch.org/journalism/2024/05/07/sources-of-local-news/) e [metodologia](https://www.pewresearch.org/journalism/2024/05/07/local-news-trends-methodology/) | Uso de fóruns e grupos para informação local nos EUA; não comprova desorganização nem representa moradores brasileiros. |
+| [Pew Research Center — How connected do Americans feel to their neighbors?, 2025](https://www.pewresearch.org/short-reads/2025/05/08/how-connected-do-americans-feel-to-their-neighbors/) | Conhecimento entre vizinhos nos EUA; não equivale a medir comunicação, solidão ou demanda pelo aplicativo. |
+| [Cetic.br/NIC.br — resultados da TIC Domicílios 2024](https://www.cetic.br/pt/noticia/em-duas-decadas-proporcao-de-lares-urbanos-brasileiros-com-internet-passou-de-13-para-85-aponta-tic-domicilios-2024/) | Acesso pelo celular e exclusão digital no Brasil, no recorte de 2024. Não demonstra preferência por app instalado nem é apresentado como a edição mais recente. |
+
+Ao citar um percentual, mantenha ano da coleta, território e base de cálculo. Não transforme associação em causa nem dado estrangeiro em estimativa local. A pesquisa própria nos bairros continua pendente.
+
 ## Entender problemas e planejar pesquisa
 
 - [Learning about users and their needs — GOV.UK Service Manual](https://www.gov.uk/service-manual/user-research/start-by-learning-user-needs): orienta a começar pelo que as pessoas tentam fazer, observar como resolvem isso hoje e separar evidências de opiniões e hipóteses. Para o VivaBairro, serve para investigar como moradores descobrem eventos, divulgam problemas e encontram ajuda antes de decidir quais funções implementar.

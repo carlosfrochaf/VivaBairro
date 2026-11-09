@@ -6,7 +6,7 @@
 
 ## Visão do produto
 * [Visão do produto e hipóteses](1-visao-geral/visao-produto-lean-canvas.md)
-* [Propósito e objetivos](1-visao-geral/proposito-objetivos.md)
+* [Propósito, problema e objetivos](1-visao-geral/proposito-objetivos.md)
 * [Escopo do produto](1-visao-geral/documento-escopo.md)
 * [Públicos e tarefas previstas](1-visao-geral/publicos-e-tarefas.md)
 * [Documento de visão do produto](1-visao-geral/documento-visao-produto.md)

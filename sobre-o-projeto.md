@@ -2,6 +2,8 @@
 
 O VivaBairro organiza informações da comunidade por bairro: eventos com data, local e confirmação de presença; avisos sobre ocorrências; pedidos e ofertas de ajuda. A proposta é facilitar encontrar e acompanhar essas informações sem depender de mensagens espalhadas em grupos. Esse benefício é uma hipótese a avaliar com moradores, não um resultado de pesquisa já medido.
 
+A fundamentação do problema reúne [pesquisas sobre informação local, vizinhança e participação cultural](1-visao-geral/proposito-objetivos.md), com dados, métodos e limites. A pesquisa específica nos bairros do projeto ainda precisa ser realizada.
+
 A pessoa escolhe seu bairro principal e outros que deseja acompanhar. Não precisa informar endereço residencial nem manter GPS ativo. Publicações usam locais públicos ou referências; o aplicativo não é canal de emergência e não garante atendimento da prefeitura.
 
 Autores podem editar, atualizar ou remover suas publicações. Denúncias levam à análise humana, com justificativa e possibilidade de revisão. Moderadores recebem bairros específicos; administradores municipais controlam bairros, designações e comunicados. Ainda será necessário definir como comprovar a representação da prefeitura e quem opera a moderação.

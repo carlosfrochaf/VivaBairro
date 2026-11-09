@@ -29,6 +29,8 @@ Este arquivo orienta agentes que trabalham no repositório. O GitBook continua s
 - Prefira documentação oficial e pesquisas primárias. Adapte guias de outros países ao contexto local, sem apresentá-los como obrigação brasileira.
 - Ao usar uma fonte para justificar requisito ou decisão, registre o link, o ponto aplicado e o limite da conclusão na página pertinente. Atualize o índice quando uma fonte nova fundamentar uma decisão duradoura; remova ou marque links desatualizados.
 
+A fundamentação empírica do problema fica em `1-visao-geral/proposito-objetivos.md`. Ao incluir estatísticas, registre fonte primária, período de coleta, população, território e base do percentual. Diferencie comunicação, conhecimento entre vizinhos, participação cultural e acesso digital; um indicador não substitui o outro. Não generalize estudos estrangeiros para os bairros brasileiros nem atribua baixa participação à divulgação sem evidência.
+
 ## Mapa da documentação
 
 `SUMMARY.md` define a navegação do GitBook. Use as páginas atuais como referência por assunto:

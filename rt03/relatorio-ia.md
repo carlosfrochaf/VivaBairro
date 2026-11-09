@@ -32,6 +32,10 @@ A verificação combina análise estática, lint, compilação, PostgreSQL real,
 
 Não há registro de revisão humana integral de cada linha, teste com moradores, teste em aparelho físico ou auditoria de segurança. A equipe precisa entender e explicar as regras, revisar o código e decidir as pendências operacionais. A aprovação de uma escolha de produto não comprova revisão completa da implementação.
 
+## Apoio à pesquisa documental
+
+Na atualização de 09/11/2026, o assistente auxilia a localizar fontes primárias, conferir percentuais e metodologia e relacionar os achados às hipóteses do produto. A síntese identifica ano, território, base de cálculo e limitações. Isso não representa pesquisa de campo realizada pela equipe nem validação do aplicativo. Não há atribuição adicional de modelo específico por esta tarefa.
+
 ## Cuidados e limites
 
 Respostas podem conter erros, dependências inadequadas, referências incorretas ou funções não solicitadas. Informações externas precisam de fonte; comportamento precisa de teste pertinente; conclusão precisa de evidência. Não publicamos credenciais, dados privados ou relatos fictícios como pesquisa real. Autoridade municipal, retenção e operação de moderação exigem decisões humanas.
