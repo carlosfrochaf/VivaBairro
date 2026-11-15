@@ -1,3 +1,4 @@
+import { moderationMessage, readableNotification } from './moderation-messages.js';
 import { registerAccountRoutes } from './accounts.js';
 import { registerMediaRoutes, validatePhoto } from './media.js';
 import { registerCommunityRoutes } from './community.js';
@@ -531,7 +532,7 @@ export async function buildApp() {
         'SELECT * FROM notifications WHERE account_id=$1 ORDER BY created_at DESC LIMIT 100',
         [user(request).id],
       )
-    ).rows,
+    ).rows.map((item) => ({ ...item, message: readableNotification(item.message) })),
   }));
   app.patch('/api/notifications/:id', async (request) => {
     const u = user(request);
@@ -607,12 +608,7 @@ export async function buildApp() {
       );
       await db.query(
         'INSERT INTO notifications(id,account_id,post_id,message) VALUES($1,$2,$3,$4)',
-        [
-          randomUUID(),
-          recipient,
-          report.post_id,
-          'Decisão de moderação (' + d.action + '): ' + d.reason,
-        ],
+        [randomUUID(), recipient, report.post_id, moderationMessage(d.action, d.reason)],
       );
     });
     return { ok: true };
@@ -777,7 +773,14 @@ export async function buildApp() {
       );
       await db.query(
         'INSERT INTO notifications(id,account_id,post_id,message) VALUES($1,$2,$3,$4)',
-        [randomUUID(), e.author_id, e.post_id, 'Pedido de revisão analisado: ' + d.reason],
+        [
+          randomUUID(),
+          e.author_id,
+          e.post_id,
+          (d.action === 'restore'
+            ? 'Revisão concluída: conteúdo restaurado. Motivo: '
+            : 'Revisão concluída: decisão mantida. Motivo: ') + d.reason,
+        ],
       );
     });
     return { ok: true };

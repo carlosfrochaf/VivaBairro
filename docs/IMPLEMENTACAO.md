@@ -67,3 +67,9 @@ Faltam teste em aparelho físico, desempenho em release, orientação horizontal
 A equipe precisa definir validação de autoridade municipal, operação da moderação, retenção e descarte, limpeza de imagens, backup e restauração, observabilidade e resposta a incidentes. O limitador de requisições é local por processo; múltiplas instâncias exigem controle compartilhado. Assinatura de distribuição e teste de carga também não estão concluídos. Não há promessa medida de tamanho, memória ou taxa de quadros.
 
 As [referências](../referencias-e-pesquisa.md) apoiam as escolhas técnicas e o [relatório de IA](../rt03/relatorio-ia.md) explica a autoria assistida. Não há registro de revisão humana integral do código.
+
+## Revisão da moderação — 15/11/2026
+
+As notificações descrevem a ação em português, apresentam o motivo e indicam o caminho para pedir revisão quando aplicável. A leitura de notificações também traduz mensagens antigas no formato técnico, sem alterar o registro de auditoria. O resultado do recurso distingue conteúdo restaurado de decisão mantida. A tela de decisões do autor identifica a ação, e o diálogo de análise identifica o resultado que será registrado.
+
+Verificação local: testes da API com PostgreSQL real, análise e testes Flutter. A revisão online usa contas descartáveis e permissões temporárias no Centro; os resultados remotos serão registrados após execução. O SDK Android não está disponível no caminho configurado nesta máquina; não há nova validação nativa nem novo APK nesta etapa.

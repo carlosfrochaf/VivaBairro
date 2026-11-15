@@ -257,3 +257,13 @@ class PostCard extends StatelessWidget {
     );
   }
 }
+
+String moderationLabel(String action) => switch (action) {
+  'keep' => 'Conteúdo mantido',
+  'hide' => 'Conteúdo ocultado',
+  'remove' => 'Conteúdo removido',
+  'restore' => 'Conteúdo restaurado',
+  'request-change' => 'Correção solicitada',
+  'appeal-kept' => 'Decisão mantida após revisão',
+  _ => 'Atualização registrada',
+};

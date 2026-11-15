@@ -29,3 +29,7 @@ A equipe precisa aprovar e publicar regras de comunidade e definir retenção de
 ## Atualização da implementação — 08/11/2026
 
 Denúncias, ações individuais com motivo, notificações e recursos estão implementados. O servidor limita o território e exige responsável diferente para revisar uma decisão. A autorização institucional e a disponibilidade humana para operar a fila ainda não foram definidas.
+
+## Mensagens da decisão
+
+O autor recebe a ação por extenso: conteúdo mantido, ocultado, removido, restaurado ou correção solicitada. A notificação apresenta o motivo e, para ocultação, remoção ou pedido de correção, orienta a abrir Meu perfil, em Revisões de moderação. O resultado do recurso informa se a decisão foi mantida ou o conteúdo foi restaurado. Códigos internos continuam disponíveis para a aplicação e auditoria, mas não substituem a explicação ao morador.

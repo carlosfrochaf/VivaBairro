@@ -427,7 +427,7 @@ class _ModerationScreenState extends State<ModerationScreen> {
   Future<void> decide(Json item, String action, {bool appeal = false}) async {
     final reason = await askReason(
       context,
-      'Registrar decisão',
+      appeal && action == 'keep' ? 'Manter decisão' : moderationLabel(action),
       'Explique o motivo. O autor será informado e a decisão ficará no histórico.',
     );
     if (reason == null || !mounted) return;

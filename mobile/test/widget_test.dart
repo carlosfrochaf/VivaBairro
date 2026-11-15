@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vivabairro/api.dart';
 import 'package:vivabairro/screens/auth.dart';
+import 'package:vivabairro/screens/community.dart';
 import 'package:vivabairro/screens/account_security.dart';
 import 'package:vivabairro/screens/editor.dart';
 import 'package:vivabairro/screens/detail.dart';
@@ -58,7 +59,40 @@ class FakeApi extends Api {
   }
 }
 
+class ModeratedApi extends FakeApi {
+  @override
+  Future<Json> call(String path, {String method = 'GET', Json? body}) async {
+    if (path == '/api/me/moderation')
+      return {
+        'items': [
+          {
+            'id': 'decision',
+            'title': 'Aviso da praça',
+            'action': 'hide',
+            'reason': 'Dados pessoais expostos.',
+            'created_at': '2026-11-15T12:00:00Z',
+            'appeal_state': null,
+          },
+        ],
+      };
+    return super.call(path, method: method, body: body);
+  }
+}
+
 void main() {
+  testWidgets(
+    'autor identifica a ação e encontra revisão na tela de decisões',
+    (tester) async {
+      await tester.pumpWidget(
+        MaterialApp(home: MyModerationScreen(api: ModeratedApi())),
+      );
+      await tester.pumpAndSettle();
+      expect(find.text('Conteúdo ocultado'), findsOneWidget);
+      expect(find.text('Motivo: Dados pessoais expostos.'), findsOneWidget);
+      expect(find.text('Pedir revisão'), findsOneWidget);
+      expect(find.text('hide'), findsNothing);
+    },
+  );
   testWidgets('saudação do feed tem foco limitado ao próprio título', (
     tester,
   ) async {

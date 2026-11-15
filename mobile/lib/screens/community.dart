@@ -89,6 +89,7 @@ class _MyModerationState extends State<MyModerationScreen> {
                     ),
                     if (item['reply_body'] != null)
                       Text('Sua resposta: ${item['reply_body']}'),
+                    Text(moderationLabel(item['action'])),
                     Text('Motivo: ${item['reason']}'),
                     Text(dateLabel(item['created_at'])),
                     if (item['appeal_state'] == null)

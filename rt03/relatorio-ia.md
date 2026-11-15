@@ -43,3 +43,7 @@ Respostas podem conter erros, dependências inadequadas, referências incorretas
 ## IA dentro do aplicativo
 
 O aplicativo não possui provedor externo de IA conectado. Criar eventos e avisos funciona manualmente. Uma assistência de redação ou categoria permanece proposta: exige consentimento antes do envio, minimização de dados, revisão da sugestão e confirmação humana para publicar. IA não publica, remove conteúdo ou decide sanções automaticamente.
+
+## Revisão de moderação
+
+Em 15/11/2026, a assistência participa da revisão das mensagens, dos testes de moderação e do roteiro online com contas descartáveis. O responsável autoriza temporariamente as permissões necessárias. Resultados efetivamente executados, publicação e limites do ambiente ficam em [implementação](../docs/IMPLEMENTACAO.md); preparar um roteiro não comprova sua aprovação.
