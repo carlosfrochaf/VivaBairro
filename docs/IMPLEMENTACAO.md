@@ -72,4 +72,19 @@ As [referências](../referencias-e-pesquisa.md) apoiam as escolhas técnicas e o
 
 As notificações descrevem a ação em português, apresentam o motivo e indicam o caminho para pedir revisão quando aplicável. A leitura de notificações também traduz mensagens antigas no formato técnico, sem alterar o registro de auditoria. O resultado do recurso distingue conteúdo restaurado de decisão mantida. A tela de decisões do autor identifica a ação, e o diálogo de análise identifica o resultado que será registrado.
 
-Verificação local: testes da API com PostgreSQL real, análise e testes Flutter. A revisão online usa contas descartáveis e permissões temporárias no Centro; os resultados remotos serão registrados após execução. O SDK Android não está disponível no caminho configurado nesta máquina; não há nova validação nativa nem novo APK nesta etapa.
+Verificação local: 17 testes aprovados no executor da API com PostgreSQL real; 19 testes Flutter aprovados; análise Flutter sem problemas; lint, formatação e compilação TypeScript aprovados. O novo teste de widget verifica ação, motivo e acesso ao pedido de revisão em uma lista preenchida. Notificações antigas têm teste de conversão sem alterar mensagens de outros tipos.
+
+A API do commit b7c29d2 está publicada no Render. O roteiro HTTPS contra Render/Neon utiliza quatro contas descartáveis, sendo duas com moderação temporária somente no Centro, autorizada pelo responsável. Foram aprovados:
+
+- Denúncia sem ocultação automática, motivo obrigatório, notificação em português e ausência do identificador do denunciante na fila.
+- Manter conteúdo, pedir correção, ocultar evento e remover aviso; o conteúdo oculto/removido fica indisponível para outra conta.
+- Recurso do autor, rejeição de pedido duplicado, bloqueio de revisão pela mesma pessoa e análise independente, tanto mantendo a decisão quanto restaurando conteúdo.
+- Remoção e restauração de resposta: somente o autor da resposta pode recorrer, mesmo quando outra pessoa é dona da publicação.
+- Bloqueio sem login, bloqueio de ação de conta comum, filtro por bairro e impedimento de moderar o próprio conteúdo.
+- Revogação dos dois moderadores: ações retornam 403 mesmo usando sessões ainda abertas.
+
+As quatro contas estão encerradas; não há permissões temporárias ativas nem publicações de teste visíveis. Dois registros de denúncia de teste ainda abertos foram encerrados pelo operador após a limpeza, somente para os conteúdos descartáveis. O encerramento usa anonimização lógica e preserva referências técnicas; não é eliminação física de toda auditoria. Conteúdo e permissões das contas existentes não são usados como alvo dos testes.
+
+As designações e revogações temporárias são feitas pelo operador no Neon, com registro de auditoria. A tela e a rota de designação administrativa não foram exercitadas online nesta rodada; possuem cobertura local de API. O SDK Android está ausente do caminho configurado nesta máquina, portanto não há nova validação no emulador nem novo APK. As alterações de texto da API já chegam ao aplicativo instalado; rótulos novos nas telas Flutter exigem recompilar e instalar o app.
+
+![Implantação das correções de moderação no Render](screenshots/render-moderacao-publicada.png)

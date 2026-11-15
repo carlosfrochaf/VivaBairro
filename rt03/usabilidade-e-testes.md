@@ -49,3 +49,9 @@ Não há avaliação do áudio ou compreensão da fala. Cadastro, recuperação,
 ## Validação com pessoas
 
 Não há sessões concluídas com moradores nem teste em aparelho físico. A equipe precisa observar tarefas como encontrar evento, cancelar presença, publicar aviso e solicitar revisão. O registro deve incluir contexto, tarefa, dificuldade, resultado e limitação, sem inventar participantes ou métricas. Orientação horizontal, desempenho em release e revisão completa de acessibilidade também estão pendentes.
+
+## Revisão de moderação em 15/11/2026
+
+A bateria local passa com 17 testes no executor da API e 19 testes Flutter, além de lint, formatação, compilação e análise estática. A revisão online por HTTPS confirma decisões, notificações em português, recursos independentes, autoria de respostas, escopo da fila e revogação com sessões abertas. As contas descartáveis são encerradas ao final. Detalhes e limites estão em [implementação](../docs/IMPLEMENTACAO.md).
+
+Essa revisão não percorre as telas no emulador: o SDK Android está ausente do caminho configurado. A designação administrativa online também não faz parte do roteiro: os papéis de teste são preparados e revogados pelo operador. Não declarar revisão completa da experiência Android até restaurar o ambiente e testar as telas com a API online.

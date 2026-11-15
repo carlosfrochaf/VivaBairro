@@ -162,6 +162,56 @@ if (process.argv.includes('--run')) {
     reason: 'Conteúdo de teste mantido.',
   });
   check('Filtro territorial e conflito de autoria');
+  const parent = await post('owner');
+  await call('reporter', 'POST', '/api/posts/' + parent + '/replies', {
+    body: 'Resposta fictícia para teste de moderação.',
+  });
+  const reply = (await call('owner', 'GET', '/api/posts/' + parent)).replies[0];
+  const reportId = await report(parent, reply.id);
+  await call('moderator', 'POST', '/api/moderation/' + reportId, {
+    action: 'remove',
+    reason: 'Remoção de resposta fictícia.',
+  });
+  assert.equal((await call('owner', 'GET', '/api/posts/' + parent)).replies.length, 0);
+  const decision = (await call('reporter', 'GET', '/api/me/moderation')).items.find(
+    (x) => x.post_id === parent,
+  );
+  assert.ok(decision);
+  await call(
+    'owner',
+    'POST',
+    '/api/appeals',
+    { action_id: decision.id, reason: 'Autor da publicação não é autor da resposta.' },
+    403,
+  );
+  await call('reporter', 'POST', '/api/appeals', {
+    action_id: decision.id,
+    reason: 'Revisão da resposta fictícia.',
+  });
+  const appeal = (await call('reviewer', 'GET', '/api/moderation/appeals')).items.find(
+    (x) => x.post_id === parent,
+  );
+  await call('reviewer', 'POST', '/api/moderation/appeals/' + appeal.id, {
+    action: 'restore',
+    reason: 'Resposta fictícia restaurada.',
+  });
+  assert.equal((await call('owner', 'GET', '/api/posts/' + parent)).replies.length, 1);
+  check('Resposta removida e restaurada por recurso do autor correto');
+  const pending = await post('owner');
+  s.pendingReport = await report(pending);
+  save();
+} else if (process.argv.includes('--revoked')) {
+  for (const who of ['moderator', 'reviewer']) {
+    assert.equal((await call(who, 'GET', '/api/me')).roles.length, 0);
+    await call(
+      who,
+      'POST',
+      '/api/moderation/' + s.pendingReport,
+      { action: 'remove', reason: 'Tentativa após revogação de teste.' },
+      403,
+    );
+  }
+  check('Revogação impede ações mesmo com sessão ainda aberta');
 } else if (process.argv.includes('--cleanup')) {
   for (const [who, a] of Object.entries(s.accounts)) {
     if (a.closed) continue;
@@ -172,4 +222,4 @@ if (process.argv.includes('--run')) {
     save();
   }
   check('Contas de teste encerradas e credenciais descartadas');
-} else throw Error('Use --run ou --cleanup após conferir o ambiente e as permissões.');
+} else throw Error('Use --run, --revoked ou --cleanup após conferir o ambiente e as permissões.');

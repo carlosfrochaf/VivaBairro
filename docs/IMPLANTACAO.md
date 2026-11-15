@@ -71,3 +71,11 @@ A importação foi executada duas vezes em um schema PostgreSQL local isolado pa
 ![Painel municipal disponível à conta administradora](screenshots/android-admin-online.png)
 
 ![Conferência dos registros no Neon](screenshots/neon-demonstracao-online.png)
+
+## Revisão online de moderação — 15/11/2026
+
+API b7c29d2 publicada manualmente e confirmada como Live no Render. O [registro de implementação](IMPLEMENTACAO.md) descreve testes HTTPS de denúncias, decisões, recursos, respostas e revogação. A preparação e revogação dos papéis temporários são operações controladas no Neon; não substituem teste da interface administrativa.
+
+O roteiro scripts/check-online-moderation.mjs exige um arquivo privado .local/moderation-online-private.json com a URL autorizada, identificador da rodada, contas descartáveis (owner, reporter, moderator e reviewer), tokens, senhas e listas posts/checks. Esse arquivo não é versionado. As contas precisam ser preparadas explicitamente; o script não concede permissões. --run testa os fluxos, --revoked confere recusa após revogação e --cleanup encerra as contas e remove suas credenciais do arquivo local. Não usar contas de moradores ou o administrador real. Se houver falha, inspecionar o estado e concluir a limpeza antes de repetir; denúncias descartáveis abertas exigem fechamento restrito aos IDs dessa rodada.
+
+A revisão não gera APK porque o SDK Android está ausente. Os APKs de 08/11/2026 continuam sendo os artefatos disponíveis; não confundir publicação da API com atualização do aplicativo instalado.

@@ -62,7 +62,7 @@ class FakeApi extends Api {
 class ModeratedApi extends FakeApi {
   @override
   Future<Json> call(String path, {String method = 'GET', Json? body}) async {
-    if (path == '/api/me/moderation')
+    if (path == '/api/me/moderation') {
       return {
         'items': [
           {
@@ -75,6 +75,7 @@ class ModeratedApi extends FakeApi {
           },
         ],
       };
+    }
     return super.call(path, method: method, body: body);
   }
 }
