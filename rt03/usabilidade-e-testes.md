@@ -59,3 +59,5 @@ O roteiro HTTPS não substitui a revisão das telas: seus papéis são preparado
 ## Administração no aplicativo
 
 A bateria Flutter atual contém 20 testes aprovados. O cenário administrativo usa uma lista preenchida e texto ampliado em duas vezes e área de teclado de 300 pixels para conferir confirmação com o bairro, cancelamento sem envio, designação e revogação. O seletor exclui bairros de outro município. Esses resultados usam uma API simulada; não comprovam por si só a designação online nem a compreensão do fluxo por moradores.
+
+A revisão nativa de 16/11/2026 percorre a administração com fonte padrão, lista vazia e preenchida, seletor de bairro e confirmações de designação e revogação. O responsável conclui os cliques que alteram permissões. A API online confirma o papel somente no Centro e o bloqueio de moderação após revogação, mesmo com a sessão ainda aberta. A conta temporária é encerrada. Não foram observados cortes ou sobreposição nessas telas; fonte ampliada com teclado, nesta rodada, tem cobertura automatizada de widget, não nova avaliação visual nativa.
