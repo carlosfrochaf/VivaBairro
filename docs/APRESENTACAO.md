@@ -1,6 +1,12 @@
 # Demonstração do VivaBairro
 
-## Preparação
+## Preparação online — 16/11/2026
+
+Usar o APK configurado para a API HTTPS do Render, com banco no Neon. Não é necessário iniciar API ou banco no computador nesse cenário. Os APKs atuais e seus hashes estão em [implantação](IMPLANTACAO.md); a variante x86_64 foi conferida no emulador, e as variantes ARM aguardam teste em celular.
+
+Antes de apresentar, entrar com uma conta própria, abrir o feed e conferir a disponibilidade do serviço gratuito. Revisar as datas dos eventos fictícios próximos à apresentação; o comando de atualização do seed local não reagenda o banco online. Não usar contas descartáveis de testes encerrados nem publicar credenciais administrativas.
+
+## Preparação do ambiente local
 
 Seguir [desenvolvimento](DESENVOLVIMENTO.md) para iniciar banco e API, aplicar migrações e povoar o banco local. Executar npm run demo:refresh em api/ antes da apresentação para reagendar somente os eventos fictícios do seed.
 
@@ -18,9 +24,24 @@ Como administrador, mostrar bairros, designações e comunicados. Explicar que o
 
 ## Android e conexão
 
-O emulador acessa a API no computador. Quando houver aparelho, conectar USB, habilitar depuração e aceitar a confiança no próprio celular. Executar scripts/android-demo.ps1 -DeviceId "IDENTIFICADOR" -Install. A opção local usa adb reverse e depende da API aberta no computador.
+No cenário local, o emulador acessa a API no computador. No APK online, ele acessa diretamente a URL HTTPS do Render. Quando houver aparelho, conectar USB, habilitar depuração e aceitar a confiança no próprio celular. Executar scripts/android-demo.ps1 -DeviceId "IDENTIFICADOR" -Install. A opção local usa adb reverse e depende da API aberta no computador.
 
 Para uso sem computador, gerar o APK com a URL HTTPS validada, conforme [implantação](IMPLANTACAO.md). Antes da apresentação, verificar a disponibilidade da API gratuita e abrir o feed.
+
+## Ensaio final pendente
+
+Este checklist organiza uma nova passagem completa pela versão que será apresentada; não afirma que os fluxos nunca foram testados nem que o ensaio já foi concluído.
+
+- [ ] Encontrar evento por bairro, abrir detalhes, confirmar e cancelar presença e conferir lotação.
+- [ ] Publicar aviso com imagem, editar, atualizar o estado e remover somente o conteúdo de demonstração criado para o ensaio.
+- [ ] Sair e entrar, mudar bairro principal e conferir bairros acompanhados.
+- [ ] Percorrer denúncia, análise, notificação e pedido de revisão entre contas autorizadas, usando apenas conteúdo de teste. Designação e revogação já têm verificação online em 16/11; o percurso completo pelas telas ainda merece ensaio.
+- [ ] Conferir recuperação após indisponibilidade da API e preservação de rascunho em falha de publicação.
+- [ ] Revisar datas e estados dos exemplos fictícios; preparar um evento futuro com vagas, um lotado e avisos aberto e resolvido.
+- [ ] Ensaiar no equipamento e na conexão previstos. Se houver celular disponível, instalar a variante ARM adequada e registrar o resultado.
+- [ ] Guardar o APK e preparar uma gravação curta como alternativa em caso de falha de conexão. A gravação ainda não está registrada como produzida.
+
+Ao concluir, registrar data, versão, ambiente, resultado e eventuais correções em [usabilidade e testes](../rt03/usabilidade-e-testes.md). Decisões de responsáveis e prazos pertencem à equipe.
 
 ## Limites a apresentar
 

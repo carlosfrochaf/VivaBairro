@@ -24,7 +24,7 @@ Os requisitos descrevem comportamentos e qualidades esperadas. A cobertura atual
 
 ## Requisitos não funcionais
 
-| ID | Alvo proposto | Como verificar quando houver implementação |
+| ID | Alvo proposto | Como verificar |
 | --- | --- | --- |
 | RNF-01 Desempenho | Manter consultas comuns de feed, busca e detalhes abaixo de 2 s no percentil 95. É um alvo inicial, não uma medição. | Antes de aceitar o resultado, registrar versão, ambiente, quantidade de dados, concorrência simulada, amostra de requisições e percentis. Medir separadamente chamadas externas de IA. |
 | RNF-02 Responsividade | Conteúdo utilizável em celular, tablet e desktop, sem rolagem horizontal da página. | Definir e registrar larguras de referência; conferir feed, formulário e painel municipal nessas larguras, incluindo zoom de texto. |
@@ -33,15 +33,30 @@ Os requisitos descrevem comportamentos e qualidades esperadas. A cobertura atual
 | RNF-05 Privacidade | Não exigir endereço residencial ou GPS contínuo. Só enviar à IA os campos necessários depois do consentimento. | Conferir formulários, payload, retenção e aviso de consentimento. Definir finalidade, responsável e retenção antes de usar dados reais. |
 | RNF-06 Acessibilidade | Formulários com rótulos associados, foco visível, operação por teclado, contraste legível e erros compreensíveis. | Fazer roteiro com teclado, ampliação e leitor de tela; registrar falhas. Não declarar conformidade sem avaliação apropriada. |
 | RNF-07 Recuperação | Falha de IA ou conexão não deve descartar texto já inserido. | Interromper a chamada e a conexão em diferentes etapas; verificar recuperação do rascunho e fluxo manual. |
-| RNF-08 Manutenibilidade | Separar interface, regras de negócio, autorização, persistência e integrações externas. | Revisar a estrutura quando a aplicação existir; documentar uma decisão quando a separação exigir uma exceção. |
+| RNF-08 Manutenibilidade | Separar interface, regras de negócio, autorização, persistência e integrações externas. | Revisar a estrutura da implementação; documentar uma decisão quando a separação exigir uma exceção. |
 | RNF-09 Auditabilidade | Registrar ações municipais e de moderação com ator, escopo, item, motivo e data. | Conferir os registros ao conceder/revogar papel, moderar e revisar; definir retenção e acesso aos logs. |
-| RNF-10 Compatibilidade | Suportar os navegadores e versões escolhidos pela equipe para a implantação. | Publicar a matriz de navegadores e guardar os resultados do roteiro de verificação. |
+| RNF-10 Compatibilidade | Priorizar Android nas versões e aparelhos definidos pela equipe; manter a prévia web como apoio. | Registrar versão Android, aparelho ou emulador e resultado por fluxo. Documentar separadamente navegadores da prévia web. A matriz de dispositivos suportados ainda precisa de validação. |
 
 ## Limites da assistência de IA
 
 A IA pode sugerir somente categoria e redação de aviso. Não verifica verdade, urgência ou segurança; não identifica pessoas; não decide denúncia ou sanção; não encaminha demanda; e não publica. A interface mantém modo manual. A equipe ainda precisa escolher provedor, retenção, política de dados e mensagens finais de consentimento antes de usar serviço real.
 
-## Cobertura da implementação mobile — 08/11/2026
+## Atualização da cobertura — 16/11/2026
+
+Esta atualização complementa o registro de 08/11 preservado abaixo. Em caso de diferença de estado, considerar a informação mais recente e seu escopo de teste.
+
+| Requisitos | Estado atual verificado |
+| --- | --- |
+| RF-11 a RF-14 | Regras de moderação, notificações e recursos verificados por HTTPS em 15/11. Designação e revogação percorridas no emulador online em 16/11, com confirmação do responsável e bloqueio após revogação na mesma sessão. Validação institucional da prefeitura continua pendente. |
+| RNF-03 e RNF-04 | API publicada por HTTPS no Render com banco Neon; operações autenticadas e autorização territorial verificadas. A publicação não está pendente. Isso não equivale a auditoria integral de segurança ou de segredos. |
+| RNF-02 e RNF-06 | 20 testes Flutter aprovados; o cenário administrativo inclui lista preenchida, texto ampliado e área de teclado. Revisão nativa da administração com fonte padrão. Acessibilidade completa e avaliação com moradores continuam pendentes. |
+| RNF-10 | Android 16/API 36 verificado em emulador. APKs debug por arquitetura disponíveis; teste físico e matriz de versões Android ainda pendentes. A prévia web é apoio, não substitui a validação Android. |
+
+Os demais limites do registro inicial permanecem, incluindo e-mail externo, push, IA externa, desempenho medido e operação com dados reais. Evidências e datas ficam em [implementação](../docs/IMPLEMENTACAO.md).
+
+## Registro inicial da cobertura mobile — 08/11/2026
+
+Registro preservado para rastreabilidade. A pendência de publicação HTTPS indicada nesta tabela está superada pela atualização de 16/11 acima.
 
 | Requisitos | Estado e limite |
 | --- | --- |

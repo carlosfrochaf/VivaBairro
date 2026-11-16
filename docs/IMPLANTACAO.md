@@ -1,12 +1,16 @@
 # Hospedagem no Render e Neon
 
-## Estado em 08/11/2026
+## Estado atual — 16/11/2026
+
+A demonstração está publicada no Render Free com PostgreSQL no Neon. A versão da API é b7c29d2, verificada online em 15/11; a administração pelo aplicativo foi conferida em 16/11. APKs debug atualizados e seus hashes estão em “APK atualizado e ambiente Android”, nesta página. Teste físico e preparação operacional para uso público continuam pendentes. Os registros abaixo preservam as datas das implantações e revisões.
+
+## Implantação inicial — 08/11/2026
 
 Render Free para a API e Neon Free para PostgreSQL foram aprovados. O projeto Neon VivaBairro foi criado com PostgreSQL 18 na região São Paulo. A API foi publicada em https://vivabairro-api.onrender.com, no Render Free em Virginia. Primeiro deploy do commit 71a337a concluído em 08/11/2026, com migrações aplicadas no Neon. /health retornou HTTP 200 e confirmou a conexão com o banco. /api/config confirmou modo de caixa fictícia desabilitado, e-mail indisponível e push não configurado.
 
 ## Serviço da API
 
-Criar um novo Web Service a partir deste repositório, diretório raiz api, runtime Node e plano Free. Usar:
+O serviço existente usa este repositório, diretório raiz api, runtime Node e plano Free. Para reproduzir a configuração em outro ambiente, usar:
 
 ~~~text
 Build: npm ci --include=dev && npm run build && npm prune --omit=dev

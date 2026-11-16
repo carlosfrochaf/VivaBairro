@@ -2,6 +2,12 @@
 
 A revisão verifica se a pessoa identifica onde está, entende as ações e corrige erros sem perder o que escreve. As [heurísticas de Nielsen](https://www.nngroup.com/articles/ten-usability-heuristics/), o [Material Design 3](https://m3.material.io/) e a [acessibilidade Flutter](https://docs.flutter.dev/ui/accessibility) orientam a inspeção; não substituem avaliação com moradores.
 
+## Situação consolidada — 16/11/2026
+
+O último resultado da API é de 17 testes aprovados em 15/11; o do Flutter é de 20 testes aprovados em 16/11, com análise estática sem problemas. A compilação TypeScript passa em 16/11. Os totais menores nos registros anteriores correspondem às respectivas revisões e não ao total atual.
+
+A administração de moderadores foi percorrida no emulador conectado à API online, incluindo designação e revogação confirmadas pelo responsável. O novo cenário de widget combina lista preenchida, fonte ampliada e área de teclado. Essa cobertura simulada não deve ser apresentada como revisão visual nativa de todos esses estados. O ensaio completo dos fluxos da apresentação ainda está pendente; consulte o [roteiro](../docs/APRESENTACAO.md).
+
 ## Aplicação nas telas
 
 | Princípio | Aplicação |

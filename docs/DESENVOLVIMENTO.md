@@ -75,7 +75,7 @@ Nesta máquina, o emulador `VivaBairro_API_36` já está configurado (Android 16
 .\scripts\flutter.ps1 run -d ID_DO_DISPOSITIVO
 ```
 
-No emulador Android, o endereço padrão da API é `http://10.0.2.2:3001`. HTTP está permitido somente no manifesto de debug. Uma distribuição release precisa de API HTTPS e assinatura própria; foi gerado um APK debug x86_64 para o emulador em `mobile/build/app/outputs/flutter-apk/app-debug.apk`. Ele não é um pacote de distribuição para celulares ARM. Performance e tamanho de release ainda não foram medidos.
+No emulador Android, o endereço padrão da API é `http://10.0.2.2:3001`. HTTP está permitido somente no manifesto de debug. Uma distribuição release precisa de API HTTPS e assinatura própria. Para a demonstração online, `scripts/android-demo.ps1 -ApiUrl "https://vivabairro-api.onrender.com"` gera APKs debug separados por arquitetura em `mobile/build/app/outputs/flutter-apk/`: `app-arm64-v8a-debug.apk`, `app-armeabi-v7a-debug.apk` e `app-x86_64-debug.apk`. O x86_64 é usado no emulador; os pacotes ARM aguardam teste físico. Consulte [implantação](IMPLANTACAO.md) para os artefatos atuais. Performance e tamanho de release ainda não foram medidos.
 
 ## Verificar alterações
 
@@ -94,4 +94,4 @@ Os testes de API criam um schema exclusivo e o removem ao terminar; não apagam 
 
 ## Limites desta versão
 
-A demonstração inclui fotos, recuperação e confirmação de e-mail em caixa local, troca de senha, exclusão de conta, lembretes internos, filtros e gestão territorial. Push externo, IA e hospedagem de produção ainda dependem de configuração e validação. O APK Android debug foi compilado e instalado no emulador. Testes em aparelho real seguem pendentes. Consulte docs/IMPLEMENTACAO.md para limitações.
+A demonstração inclui fotos, recuperação e confirmação de e-mail em caixa local, troca de senha, exclusão de conta, lembretes internos, filtros e gestão territorial. A demonstração online já está hospedada no Render com banco Neon. E-mail externo, push e IA externa não estão conectados. A preparação operacional para uso público, incluindo backup, monitoramento e políticas de dados, continua pendente. O APK Android debug foi compilado e instalado no emulador. Testes em aparelho real seguem pendentes. Consulte docs/IMPLEMENTACAO.md para limitações.

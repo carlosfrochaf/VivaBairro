@@ -2,6 +2,12 @@
 
 O arquivo [plano-de-desenvolvimento.csv](plano-de-desenvolvimento.csv) oferece um ponto de partida para organizar o trabalho no GitHub Projects, Trello, Notion ou numa planilha. Ele não representa tarefas já atribuídas ou concluídas.
 
+## Estado do planejamento — 16/11/2026
+
+O CSV permanece como proposta, sem atribuições ou prazos assumidos em nome da equipe. As entregas efetivamente implementadas e verificadas estão no [estado da implementação](../docs/IMPLEMENTACAO.md), e as tarefas de conferência antes da apresentação ficam no [ensaio final](../docs/APRESENTACAO.md). Esses registros não comprovam que exista um quadro de equipe ativo.
+
+A equipe ainda precisa escolher a ferramenta, confirmar responsáveis e atualizar o quadro com base nessas evidências. Não marcar um requisito inteiro como concluído apenas porque parte do fluxo foi implementada ou testada.
+
 ## Como organizar
 
 1. Escolher a ferramenta que a equipe realmente vai atualizar.

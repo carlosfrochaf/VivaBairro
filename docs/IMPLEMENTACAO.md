@@ -1,6 +1,14 @@
 # Estado da implementação
 
-O VivaBairro é um aplicativo Flutter para Android com API Fastify/TypeScript e PostgreSQL. A demonstração usa [Render](https://vivabairro-api.onrender.com) para a API e Neon para o banco. Esta página consolida o estado verificado em 08/11/2026; requisitos desejados e funções disponíveis não são a mesma coisa.
+O VivaBairro é um aplicativo Flutter para Android com API Fastify/TypeScript e PostgreSQL. A demonstração usa [Render](https://vivabairro-api.onrender.com) para a API e Neon para o banco. Esta página consolida o estado verificado até 16/11/2026. Requisitos desejados e funções disponíveis não são a mesma coisa. Os registros datados abaixo preservam o escopo e os resultados de cada revisão.
+
+## Resumo atual — 16/11/2026
+
+- Demonstração online disponível com API no Render e PostgreSQL no Neon. A versão publicada da API é b7c29d2.
+- APKs debug ARM64, ARM32 e x86_64 gerados com a URL HTTPS. A variante x86_64 está instalada e foi revisada no emulador Android 16/API 36; as variantes ARM aguardam teste físico. Identificação e hashes ficam em [implantação](IMPLANTACAO.md).
+- Últimos resultados registrados: 17 testes da API em 15/11 e 20 testes Flutter em 16/11. Análise Flutter e compilação TypeScript aprovadas em 16/11; lint e formatação da API aprovados na revisão de 15/11. Não se trata de uma nova execução conjunta de todas as verificações.
+- Designação e revogação de moderador conferidas no Android online, com confirmação do responsável. O servidor limita o papel ao Centro e bloqueia a ação após revogação mesmo na sessão já aberta. A conta temporária foi encerrada.
+- Falta o [ensaio final da apresentação](APRESENTACAO.md), além dos testes físicos e das validações para uso real descritas nesta página. E-mail externo, push e IA externa não estão conectados.
 
 ## Funcionalidades disponíveis
 
@@ -40,7 +48,7 @@ O [SVG de referência](../9-prototipo-interface/prototipo-wireframes.md) orienta
 
 Diálogos rolam com teclado aberto, seletores acomodam texto ampliado e o conteúdo respeita a área segura inferior do Android. Cartões expõem ação e rótulo semântico, títulos são cabeçalhos e estados não dependem só de cor. A [página de testes](../rt03/usabilidade-e-testes.md) registra revisão visual, fonte ampliada e TalkBack, com capturas e limitações.
 
-## Evidências técnicas
+## Evidências técnicas iniciais — 08/11/2026
 
 A API registra 16 testes aprovados no executor e Flutter registra 18 testes aprovados, além de análise estática sem problemas. Um roteiro nativo de criação, edição, resolução e remoção de aviso passa no emulador Android 16/API 36 com API local. Lint, formatação, compilação e testes constam na [execução de CI](https://github.com/carlosfrochaf/VivaBairro/actions/runs/42490292213) do commit 5fd363e. Esses resultados não são testes em aparelho físico nem certificação de acessibilidade.
 
