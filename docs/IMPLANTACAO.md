@@ -78,4 +78,10 @@ API b7c29d2 publicada manualmente e confirmada como Live no Render. O [registro 
 
 O roteiro scripts/check-online-moderation.mjs exige um arquivo privado .local/moderation-online-private.json com a URL autorizada, identificador da rodada, contas descartáveis (owner, reporter, moderator e reviewer), tokens, senhas e listas posts/checks. Esse arquivo não é versionado. As contas precisam ser preparadas explicitamente; o script não concede permissões. --run testa os fluxos, --revoked confere recusa após revogação e --cleanup encerra as contas e remove suas credenciais do arquivo local. Não usar contas de moradores ou o administrador real. Se houver falha, inspecionar o estado e concluir a limpeza antes de repetir; denúncias descartáveis abertas exigem fechamento restrito aos IDs dessa rodada.
 
-A revisão não gera APK porque o SDK Android está ausente. Os APKs de 08/11/2026 continuam sendo os artefatos disponíveis; não confundir publicação da API com atualização do aplicativo instalado.
+## APK atualizado e ambiente Android
+
+O SDK Android está restaurado e o APK atualizado está instalado no emulador Android 16/API 36. A compilação usa `scripts/android-demo.ps1 -ApiUrl "https://vivabairro-api.onrender.com"` e gera versões debug para ARM64, ARM32 e x86_64. Os arquivos de entrega ficam em `.local/artifacts/`, fora do Git. Não são uma versão de loja nem uma medição de tamanho de release.
+
+O APK ARM64 `VivaBairro-online-arm64-debug.apk` tem 116.473.225 bytes e SHA-256 `1521de1eff2734029826e6efe88b99b7d1e73155efdd06e8fb12bb584472fda6`. O APK ARM32 `VivaBairro-online-arm32-debug.apk` tem 95.500.223 bytes e SHA-256 `8cffc946a8b98294c96444ec7297ed0b3ec11bcbdd834dfbba18d1e3f8745852`. Esses identificadores permitem conferir os artefatos desta entrega; uma nova compilação pode produzir hashes diferentes.
+
+A API continua na versão b7c29d2; as correções desta entrega estão no aplicativo Flutter. Publicar documentação ou compilar o APK não atualiza automaticamente os aplicativos já instalados.

@@ -47,3 +47,5 @@ O aplicativo não possui provedor externo de IA conectado. Criar eventos e aviso
 ## Revisão de moderação
 
 Em 15/11/2026, a assistência participa da revisão das mensagens, dos testes de moderação e do roteiro online com contas descartáveis. O responsável autoriza temporariamente as permissões necessárias. Resultados efetivamente executados, publicação e limites do ambiente ficam em [implementação](../docs/IMPLEMENTACAO.md); preparar um roteiro não comprova sua aprovação.
+
+Na revisão Android de 16/11/2026, a assistência restaura o ambiente de desenvolvimento, ajusta os estados e as confirmações da administração de moderadores, amplia o teste de widget e prepara os APKs de demonstração. Os registros distinguem testes simulados, conexão online e fluxos nativos efetivamente percorridos. Credenciais não são incluídas no código ou na documentação; a autenticação administrativa depende do responsável. Não há atribuição adicional de modelo específico por arquivo ou tarefa.

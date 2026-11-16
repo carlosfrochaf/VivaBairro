@@ -54,4 +54,8 @@ Não há sessões concluídas com moradores nem teste em aparelho físico. A equ
 
 A bateria local passa com 17 testes no executor da API e 19 testes Flutter, além de lint, formatação, compilação e análise estática. A revisão online por HTTPS confirma decisões, notificações em português, recursos independentes, autoria de respostas, escopo da fila e revogação com sessões abertas. As contas descartáveis são encerradas ao final. Detalhes e limites estão em [implementação](../docs/IMPLEMENTACAO.md).
 
-Essa revisão não percorre as telas no emulador: o SDK Android está ausente do caminho configurado. A designação administrativa online também não faz parte do roteiro: os papéis de teste são preparados e revogados pelo operador. Não declarar revisão completa da experiência Android até restaurar o ambiente e testar as telas com a API online.
+O roteiro HTTPS não substitui a revisão das telas: seus papéis são preparados e revogados pelo operador. O ambiente Android está restaurado e os resultados nativos e a situação do acesso administrativo estão em [implementação](../docs/IMPLEMENTACAO.md).
+
+## Administração no aplicativo
+
+A bateria Flutter atual contém 20 testes aprovados. O cenário administrativo usa uma lista preenchida e texto ampliado em duas vezes e área de teclado de 300 pixels para conferir confirmação com o bairro, cancelamento sem envio, designação e revogação. O seletor exclui bairros de outro município. Esses resultados usam uma API simulada; não comprovam por si só a designação online nem a compreensão do fluxo por moradores.

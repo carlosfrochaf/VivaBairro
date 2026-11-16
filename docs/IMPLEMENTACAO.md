@@ -85,6 +85,16 @@ A API do commit b7c29d2 está publicada no Render. O roteiro HTTPS contra Render
 
 As quatro contas estão encerradas; não há permissões temporárias ativas nem publicações de teste visíveis. Dois registros de denúncia de teste ainda abertos foram encerrados pelo operador após a limpeza, somente para os conteúdos descartáveis. O encerramento usa anonimização lógica e preserva referências técnicas; não é eliminação física de toda auditoria. Conteúdo e permissões das contas existentes não são usados como alvo dos testes.
 
-As designações e revogações temporárias são feitas pelo operador no Neon, com registro de auditoria. A tela e a rota de designação administrativa não foram exercitadas online nesta rodada; possuem cobertura local de API. O SDK Android está ausente do caminho configurado nesta máquina, portanto não há nova validação no emulador nem novo APK. As alterações de texto da API já chegam ao aplicativo instalado; rótulos novos nas telas Flutter exigem recompilar e instalar o app.
+As designações e revogações temporárias desse roteiro HTTPS são feitas pelo operador no Neon, com registro de auditoria. Essa execução não comprova o funcionamento da tela administrativa online; os resultados do aplicativo são registrados separadamente abaixo.
 
 ![Implantação das correções de moderação no Render](screenshots/render-moderacao-publicada.png)
+
+## Revisão Android e administração — 16/11/2026
+
+O ambiente Android está restaurado, com SDK, ferramentas de compilação e emulador Android 16/API 36. O APK atualizado é compilado com a URL HTTPS da API e instalado no emulador. Na abertura após inatividade, a conexão apresenta uma falha recuperável; a ação Tentar novamente permite chegar à tela de entrada quando o serviço volta a responder.
+
+A administração de moderadores informa o bairro na confirmação, permite cancelar sem alteração e diferencia carregamento, erro e lista vazia. Os controles ficam desabilitados durante o envio, e a revogação identifica a conta e o bairro no rótulo acessível. Essas mudanças ajudam a conferir o alcance da ação antes de modificar uma permissão.
+
+A verificação automatizada aprova 20 testes Flutter e a análise estática não aponta problemas. A compilação TypeScript também passa. O novo teste percorre designação, cancelamento e revogação com uma lista preenchida, largura de 360 pixels e texto ampliado em duas vezes e área de teclado de 300 pixels; usa respostas simuladas e não equivale a teste online.
+
+A sessão administrativa não está autenticada no emulador. A revisão nativa da designação e revogação online aguarda login do responsável. A conta descartável preparada para essa revisão permanece sem papel de moderação. Teste em aparelho físico, desempenho em release e avaliação com moradores continuam pendentes.

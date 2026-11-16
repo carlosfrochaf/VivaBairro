@@ -59,6 +59,50 @@ class FakeApi extends Api {
   }
 }
 
+class AdminApi extends FakeApi {
+  final mutations = <Json>[];
+  bool assigned = false;
+  AdminApi() {
+    account!['roles'] = [
+      {'role': 'admin', 'municipality_id': 'demo'},
+    ];
+  }
+  @override
+  Future<Json> call(String path, {String method = 'GET', Json? body}) async {
+    if (path == '/api/neighborhoods') {
+      return {
+        'items': [
+          {'id': 'centro', 'name': 'Centro', 'municipality_id': 'demo'},
+          {
+            'id': 'outside',
+            'name': 'Outro município',
+            'municipality_id': 'other',
+          },
+        ],
+      };
+    }
+    if (path == '/api/admin/moderators') {
+      if (method == 'POST') {
+        mutations.add(body!);
+        assigned = body['revoke'] != true;
+      }
+      return {
+        'items': assigned
+            ? [
+                {
+                  'name': 'Conta de teste',
+                  'email': 'moderador@vivabairro.test',
+                  'neighborhood_id': 'centro',
+                  'neighborhood_name': 'Centro',
+                },
+              ]
+            : [],
+      };
+    }
+    return super.call(path, method: method, body: body);
+  }
+}
+
 class ModeratedApi extends FakeApi {
   @override
   Future<Json> call(String path, {String method = 'GET', Json? body}) async {
@@ -81,6 +125,69 @@ class ModeratedApi extends FakeApi {
 }
 
 void main() {
+  testWidgets(
+    'designação identifica bairro, permite cancelar e revoga pela lista',
+    (tester) async {
+      tester.view.physicalSize = const Size(360, 800);
+      tester.view.devicePixelRatio = 1;
+      tester.view.viewInsets = const FakeViewPadding(bottom: 300);
+      addTearDown(tester.view.reset);
+      final api = AdminApi();
+      await tester.pumpWidget(
+        MaterialApp(
+          builder: (context, child) => MediaQuery(
+            data: MediaQuery.of(context)
+                .copyWith(textScaler: const TextScaler.linear(2)),
+            child: child!,
+          ),
+          home: ModeratorsScreen(api: api),
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(
+        find.text('Nenhum moderador designado neste município.'),
+        findsOneWidget,
+      );
+      await tester.enterText(
+        find.byType(TextField),
+        'moderador@vivabairro.test',
+      );
+      await tester.ensureVisible(find.byType(DropdownButtonFormField<String>));
+      await tester.pumpAndSettle();
+      await tester.tap(find.byType(DropdownButtonFormField<String>));
+      await tester.pumpAndSettle();
+      expect(find.text('Outro município'), findsNothing);
+      await tester.tap(find.text('Centro').last);
+      await tester.pumpAndSettle();
+      Future<void> tap(String text) async {
+        await tester.ensureVisible(find.text(text).last);
+        await tester.tap(find.text(text).last);
+        await tester.pumpAndSettle();
+      }
+
+      await tap('Designar moderador');
+      expect(find.textContaining('conteúdo de Centro.'), findsOneWidget);
+      await tap('Voltar');
+      expect(api.mutations, isEmpty);
+      await tap('Designar moderador');
+      await tap('Confirmar');
+      expect(api.mutations.single['neighborhood_id'], 'centro');
+      await tester.pump(const Duration(seconds: 5));
+      await tester.pumpAndSettle();
+      await tester.ensureVisible(find.byIcon(Icons.person_remove_outlined));
+      await tester.pumpAndSettle();
+      await tester.tap(find.byIcon(Icons.person_remove_outlined));
+      await tester.pumpAndSettle();
+      expect(find.textContaining('perderá permissão'), findsOneWidget);
+      await tap('Confirmar');
+      expect(api.mutations.last['revoke'], isTrue);
+      expect(
+        find.text('Nenhum moderador designado neste município.'),
+        findsOneWidget,
+      );
+      expect(tester.takeException(), isNull);
+    },
+  );
   testWidgets(
     'autor identifica a ação e encontra revisão na tela de decisões',
     (tester) async {

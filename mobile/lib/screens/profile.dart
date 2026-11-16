@@ -582,7 +582,7 @@ class _ModeratorsScreenState extends State<ModeratorsScreen> {
   final email = TextEditingController();
   List<dynamic> neighborhoods = [], moderators = [];
   String? neighborhood, error;
-  bool busy = false;
+  bool busy = false, loading = true;
   @override
   void initState() {
     super.initState();
@@ -590,6 +590,7 @@ class _ModeratorsScreenState extends State<ModeratorsScreen> {
   }
 
   Future<void> load() async {
+    if (mounted) setState(() => loading = true);
     try {
       final n = await widget.api.call('/api/neighborhoods');
       final m = await widget.api.call('/api/admin/moderators');
@@ -608,6 +609,8 @@ class _ModeratorsScreenState extends State<ModeratorsScreen> {
       }
     } catch (e) {
       if (mounted) setState(() => error = e.toString());
+    } finally {
+      if (mounted) setState(() => loading = false);
     }
   }
 
@@ -616,13 +619,20 @@ class _ModeratorsScreenState extends State<ModeratorsScreen> {
       feedback(context, 'Informe o e-mail da conta e escolha um bairro.');
       return;
     }
+    final areaName = neighborhoods
+        .where((n) => n['id'] == area)
+        .map((n) => n['name'] as String)
+        .firstOrNull;
+    if (areaName == null) return;
+    FocusManager.instance.primaryFocus?.unfocus();
     if (!await confirm(
       context,
       revoke ? 'Revogar moderação?' : 'Designar moderador?',
-      '$target ${revoke ? 'perderá' : 'receberá'} permissão para analisar conteúdo do bairro selecionado.',
+      '$target ${revoke ? 'perderá' : 'receberá'} permissão para analisar conteúdo de $areaName. As permissões nos outros bairros permanecem iguais.',
     )) {
       return;
     }
+    if (!mounted) return;
     setState(() => busy = true);
     try {
       await widget.api.call(
@@ -631,7 +641,14 @@ class _ModeratorsScreenState extends State<ModeratorsScreen> {
         body: {'email': target, 'neighborhood_id': area, 'revoke': revoke},
       );
       await load();
-      if (mounted) feedback(context, 'Permissões atualizadas.');
+      if (mounted) {
+        feedback(
+          context,
+          revoke
+              ? 'Moderação revogada em $areaName.'
+              : 'Moderador designado para $areaName.',
+        );
+      }
     } catch (e) {
       if (mounted) feedback(context, e.toString());
     } finally {
@@ -658,6 +675,8 @@ class _ModeratorsScreenState extends State<ModeratorsScreen> {
           const SizedBox(height: 20),
           TextField(
             controller: email,
+            enabled: !busy && !loading,
+            autocorrect: false,
             keyboardType: TextInputType.emailAddress,
             decoration: const InputDecoration(labelText: 'E-mail do moderador'),
           ),
@@ -675,25 +694,32 @@ class _ModeratorsScreenState extends State<ModeratorsScreen> {
                   ),
                 )
                 .toList(),
-            onChanged: (v) => neighborhood = v,
+            onChanged: busy || loading
+                ? null
+                : (v) => setState(() => neighborhood = v),
           ),
           const SizedBox(height: 20),
           FilledButton(
-            onPressed: busy
+            onPressed: busy || loading
                 ? null
                 : () => assign(email.text.trim(), neighborhood, false),
-            child: const Text('Designar moderador'),
+            child: Text(busy ? 'Atualizando…' : 'Designar moderador'),
           ),
           if (error != null) ErrorBox(error!, retry: load),
           const Divider(height: 40),
+          if (loading)
+            const Center(child: CircularProgressIndicator())
+          else if (error == null && moderators.isEmpty)
+            const Text('Nenhum moderador designado neste município.'),
           for (final m in moderators)
             ListTile(
               contentPadding: EdgeInsets.zero,
               title: Text(m['name']),
               subtitle: Text('${m['email']} • ${m['neighborhood_name']}'),
               trailing: IconButton(
-                tooltip: 'Revogar permissão',
-                onPressed: busy
+                tooltip:
+                    'Revogar moderação de ${m['name']} em ${m['neighborhood_name']}',
+                onPressed: busy || loading
                     ? null
                     : () => assign(m['email'], m['neighborhood_id'], true),
                 icon: const Icon(Icons.person_remove_outlined),

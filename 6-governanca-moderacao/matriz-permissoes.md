@@ -43,3 +43,9 @@ A verificação da autoridade do administrador municipal é uma decisão em aber
 ## Atualização da implementação — 08/11/2026
 
 Papéis são conferidos no servidor. Cadastro público cria morador; moderador recebe bairros atribuídos; administrador atua no município vinculado. O primeiro administrador é provisionado pelo operador, sem equivaler a validação oficial da prefeitura.
+
+## Designação pelo aplicativo
+
+O administrador informa o e-mail de uma conta cadastrada e escolhe um bairro do município que administra. Antes de enviar, a confirmação identifica a conta e o nome do bairro. É possível voltar sem alterar permissões. Revogar uma designação afeta apenas aquele bairro; outras designações permanecem iguais.
+
+A tela diferencia carregamento, falha recuperável e ausência de moderadores. Durante o envio, os controles ficam desabilitados para evitar operações repetidas. A lista identifica a conta e o bairro de cada designação, e o botão de revogação expõe essas informações também no rótulo acessível. A confirmação na interface não substitui a autorização territorial conferida pela API.
