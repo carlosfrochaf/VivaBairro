@@ -97,7 +97,9 @@ A administração de moderadores informa o bairro na confirmação, permite canc
 
 A verificação automatizada aprova 20 testes Flutter e a análise estática não aponta problemas. A compilação TypeScript também passa. O novo teste percorre designação, cancelamento e revogação com uma lista preenchida, largura de 360 pixels e texto ampliado em duas vezes e área de teclado de 300 pixels; usa respostas simuladas e não equivale a teste online.
 
-A sessão administrativa está autenticada no emulador. Foram percorridos Meu perfil, Administrar moderadores, lista vazia, preenchimento de e-mail, seleção do Centro e confirmação com o escopo territorial explícito. Nessas telas, com fonte padrão, não foram observados cortes ou sobreposição. A concessão e a revogação online ainda aguardam execução assistida pelo responsável; abrir a confirmação não comprova a mudança de permissão. A conta descartável preparada para essa revisão permanece sem papel de moderação. Teste em aparelho físico, desempenho em release e avaliação com moradores continuam pendentes.
+A sessão administrativa está autenticada no emulador. Foram percorridos Meu perfil, Administrar moderadores, lista vazia, preenchimento de e-mail, seleção do Centro e confirmação com o escopo territorial explícito. Nessas telas, com fonte padrão, não foram observados cortes ou sobreposição. A designação online é confirmada após o responsável concluir a ação no emulador: a conta aparece na lista, e a API retorna apenas o papel de moderador do Centro. A conta acessa a fila de moderação, que está vazia nesta verificação. A listagem administrativa não retorna contas para esse moderador, e uma tentativa de alterar designações é recusada com HTTP 403. A revogação está preparada e aguarda confirmação do responsável. Teste em aparelho físico, desempenho em release e avaliação com moradores continuam pendentes.
 
 
 ![Confirmação de moderação restrita ao Centro](screenshots/android-confirmacao-moderador.png)
+
+![Moderador de teste designado somente no Centro](screenshots/android-moderador-designado.png)
