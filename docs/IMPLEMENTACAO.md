@@ -1,5 +1,8 @@
 # Estado da implementação
 
+> **Verificação de 24/11/2026: ensaio online bloqueado.** O APK ARM64 baixado da release foi instalado no emulador, mas a abertura mostrou falha de conexão. As consultas HTTP à API retornaram 403 com `cf-mitigated: challenge` e HTML do Cloudflare. Cadastro, login, acesso aos exemplos e CRUD ainda não foram revalidados nesta rodada. É necessário investigar a hospedagem e repetir o roteiro antes da apresentação; os testes anteriores permanecem como histórico, não como garantia de disponibilidade atual.
+
+
 O VivaBairro é um aplicativo Flutter para Android com API Fastify/TypeScript e PostgreSQL. A demonstração usa [Render](https://vivabairro-api.onrender.com) para a API e Neon para o banco. Esta página consolida o estado verificado até 16/11/2026. Requisitos desejados e funções disponíveis não são a mesma coisa. Os registros datados abaixo preservam o escopo e os resultados de cada revisão.
 
 ## Resumo atual — 16/11/2026
@@ -117,3 +120,11 @@ A sessão administrativa está autenticada no emulador. Foram percorridos Meu pe
 ## Distribuição para apresentação — 24/11/2026
 
 Os APKs online ARM64 e ARM32 estão disponíveis no GitHub Releases, com links em [Demonstração e APK](APRESENTACAO.md). Foram conferidos os hashes e a presença da URL da API online nos dois pacotes. A publicação distribui os mesmos artefatos da revisão Android; não representa novos testes funcionais, novo teste físico ou uma atualização da API. Os registros de implementação e testes acima permanecem com suas datas originais.
+
+## Ensaio do APK publicado — 24/11/2026
+
+O arquivo ARM64 foi baixado diretamente do GitHub Releases. Seu SHA-256 é `1521de1eff2734029826e6efe88b99b7d1e73155efdd06e8fb12bb584472fda6`, igual ao publicado. O emulador API 36 informa suporte a x86_64 e arm64-v8a; o APK ARM64 foi instalado preservando os dados existentes. Isso continua sendo emulação, não teste em celular físico.
+
+Na abertura, o pacote exibe a mensagem de falha de conexão e a opção Tentar novamente. As consultas externas a /health e /api/config retornam HTML de desafio do Cloudflare, HTTP 403, antes da resposta JSON esperada. Ainda não está determinada a configuração ou condição que provoca o desafio. O painel do Render exige nova autenticação do responsável para continuar a investigação. Não foram criadas novas contas ou publicações de teste nesta rodada.
+
+![Falha de conexão na abertura do APK baixado da release](screenshots/android-release-conexao-bloqueada.png)

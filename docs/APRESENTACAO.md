@@ -1,5 +1,8 @@
 # Demonstração do VivaBairro
 
+> **Verificação de 24/11/2026: ensaio online bloqueado.** O APK ARM64 baixado da release foi instalado no emulador, mas a abertura mostrou falha de conexão. As consultas HTTP à API retornaram 403 com `cf-mitigated: challenge` e HTML do Cloudflare. Cadastro, login, acesso aos exemplos e CRUD ainda não foram revalidados nesta rodada. É necessário investigar a hospedagem e repetir o roteiro antes da apresentação; os testes anteriores permanecem como histórico, não como garantia de disponibilidade atual.
+
+
 ## Baixar o aplicativo Android
 
 - [Baixar APK ARM64 — celulares Android compatíveis](https://github.com/carlosfrochaf/VivaBairro/releases/download/demo-2026-11-24/VivaBairro-online-arm64-debug.apk)
