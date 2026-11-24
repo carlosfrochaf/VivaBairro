@@ -1,5 +1,16 @@
 # Demonstração do VivaBairro
 
+## Baixar o aplicativo Android
+
+- [Baixar APK ARM64 — celulares Android compatíveis](https://github.com/carlosfrochaf/VivaBairro/releases/download/demo-2026-11-24/VivaBairro-online-arm64-debug.apk)
+- [Baixar APK ARM32 — alternativa para aparelhos dessa arquitetura](https://github.com/carlosfrochaf/VivaBairro/releases/download/demo-2026-11-24/VivaBairro-online-arm32-debug.apk)
+- [Ver release e instruções de download](https://github.com/carlosfrochaf/VivaBairro/releases/tag/demo-2026-11-24)
+- [Conferir hashes SHA-256](https://github.com/carlosfrochaf/VivaBairro/releases/download/demo-2026-11-24/SHA256SUMS.txt)
+
+Os APKs desta release usam a API HTTPS do Render, conectada ao banco compartilhado no Neon. Após instalar, entrar ou criar uma conta e selecionar Centro, Jardim Aurora ou Vila Esperança para consultar os exemplos disponíveis. Os dados ficam no servidor, não dentro do APK; é necessário acesso à internet e disponibilidade do serviço. Não há senha pública para contas online nem credenciais administrativas no pacote.
+
+Esta é uma compilação debug de demonstração, com as correções documentadas em 16/11/2026, publicada em 24/11/2026. O código do aplicativo não mudou desde essa revisão. As variantes ARM não têm teste físico registrado. Se o Android solicitar autorização para instalar o arquivo, o próprio usuário deve revisar a origem e decidir se autoriza.
+
 ## Preparação online — 16/11/2026
 
 Usar o APK configurado para a API HTTPS do Render, com banco no Neon. Não é necessário iniciar API ou banco no computador nesse cenário. Os APKs atuais e seus hashes estão em [implantação](IMPLANTACAO.md); a variante x86_64 foi conferida no emulador, e as variantes ARM aguardam teste em celular.

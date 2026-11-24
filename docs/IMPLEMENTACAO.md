@@ -113,3 +113,7 @@ A sessão administrativa está autenticada no emulador. Foram percorridos Meu pe
 ![Moderador de teste designado somente no Centro](screenshots/android-moderador-designado.png)
 
 ![Lista após revogação do moderador de teste](screenshots/android-moderador-revogado.png)
+
+## Distribuição para apresentação — 24/11/2026
+
+Os APKs online ARM64 e ARM32 estão disponíveis no GitHub Releases, com links em [Demonstração e APK](APRESENTACAO.md). Foram conferidos os hashes e a presença da URL da API online nos dois pacotes. A publicação distribui os mesmos artefatos da revisão Android; não representa novos testes funcionais, novo teste físico ou uma atualização da API. Os registros de implementação e testes acima permanecem com suas datas originais.

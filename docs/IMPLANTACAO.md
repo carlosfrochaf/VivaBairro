@@ -91,3 +91,9 @@ O APK ARM64 `VivaBairro-online-arm64-debug.apk` tem 116.473.225 bytes e SHA-256 
 A API continua na versão b7c29d2; as correções desta entrega estão no aplicativo Flutter. Publicar documentação ou compilar o APK não atualiza automaticamente os aplicativos já instalados.
 
 Em 16/11/2026, designação e revogação são verificadas pela interface Android conectada ao Render/Neon, com confirmação manual do responsável. A conferência HTTPS usa a mesma sessão antes e depois da retirada da permissão: papel limitado ao Centro, recusa de administração de designações e recusa de moderação após revogação. A conta temporária é encerrada, a sessão é invalidada e suas credenciais locais são descartadas. A revisão não exige alteração da API nem nova compilação do APK já identificado acima.
+
+## Distribuição do APK — 24/11/2026
+
+Os APKs ARM64 e ARM32 estão publicados na [release de demonstração](https://github.com/carlosfrochaf/VivaBairro/releases/tag/demo-2026-11-24), junto com SHA256SUMS.txt. Os hashes conferem com os artefatos identificados nesta página. A inspeção dos dois pacotes confirma a URL https://vivabairro-api.onrender.com e os textos atuais da administração de moderadores. Não houve recompilação nem alteração do aplicativo nesta publicação; o código mobile permanece igual ao da revisão.
+
+A página [Demonstração e APK](APRESENTACAO.md) oferece os links diretos. Publicar o arquivo não comprova disponibilidade contínua da API: em 24/11, a consulta automatizada ao health recebeu uma página de verificação HTTP 403. Isso não permite concluir que o app esteja fora do ar nem confirmar um acesso completo nesta data. O último teste funcional online registrado é de 16/11; conferir login e feed no ensaio da apresentação.
