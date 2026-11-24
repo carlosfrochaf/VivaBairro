@@ -149,7 +149,7 @@ O ensaio identifica uma inconsistência no seletor de horário: com o Android co
 
 A abertura passa a informar que está conectando e que o primeiro acesso pode demorar. A consulta inicial de configuração aguarda até 60 segundos; as demais requisições mantêm 15 segundos. Timeout de escrita orienta conferir se a ação foi concluída antes de repetir. Respostas HTML inesperadas e desafios identificados por `cf-mitigated: challenge` têm mensagens específicas; o aplicativo não tenta contornar a proteção.
 
-O início lento do serviço gratuito é compatível com a falha inicial, mas não há captura da resposta dessa primeira chamada nativa que prove sua causa. O 403 das consultas automatizadas continua sendo uma limitação desse caminho de verificação; não é correto declarar que o Cloudflare foi corrigido ou que cadastro e login falharam por 403. Nenhuma proteção ou configuração de segurança do Render é desativada e a API permanece no commit b7c29d2.
+O início lento do serviço gratuito é compatível com a falha inicial, mas não há captura da resposta dessa primeira chamada nativa que prove sua causa. O 403 observado inicialmente nas consultas automatizadas limitou esse caminho de verificação; não é correto declarar que o Cloudflare foi corrigido ou que cadastro e login falharam por 403. Nenhuma proteção ou configuração de segurança do Render é desativada e a API permanece no commit b7c29d2.
 
 Verificação local após as correções: **25 testes Flutter aprovados e análise estática sem problemas**. A nova bateria cobre espera de 30 segundos na configuração, timeout de escrita, desafio HTTP, resposta não JSON e digitação de horário. Não representa teste físico, medição de desempenho, revisão integral com TalkBack nem ensaio completo de moderação entre várias contas nesta data. A publicação da versão corrigida e seus hashes ficam em [implantação](IMPLANTACAO.md).
 
@@ -158,3 +158,7 @@ Verificação local após as correções: **25 testes Flutter aprovados e análi
 O APK ARM64 corrigido é instalado sobre a versão anterior e preserva a sessão. A abertura mostra a mensagem de conexão e carrega o feed online. O seletor aceita 18:00 redigitado, retorna ao editor e a edição do evento é salva na API.
 
 ![Horário aceito no APK corrigido](screenshots/android-release-horario-corrigido-24nov.png)
+
+### Rechecagem HTTP ao final do ensaio
+
+As consultas automatizadas a `/health` e `/api/config` voltam a responder **HTTP 200 com JSON**, sem o cabeçalho de desafio, ao final de 24/11. A configuração informa modo de demonstração desativado, e-mail indisponível e push não configurado. Não houve alteração de proteção, credencial ou configuração da hospedagem para obter esse resultado. O 403 inicial é registrado como ocorrência intermitente cuja causa específica permanece desconhecida, e não como bloqueio ainda reproduzido na última consulta.
