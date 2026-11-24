@@ -40,6 +40,10 @@ Na atualização de 09/11/2026, o assistente auxilia a localizar fontes primári
 
 Respostas podem conter erros, dependências inadequadas, referências incorretas ou funções não solicitadas. Informações externas precisam de fonte; comportamento precisa de teste pertinente; conclusão precisa de evidência. Não publicamos credenciais, dados privados ou relatos fictícios como pesquisa real. Autoridade municipal, retenção e operação de moderação exigem decisões humanas.
 
+## Revisão do APK distribuído
+
+Na revisão de 24/11/2026, a assistência verifica o artefato distribuído no GitHub, percorre o aplicativo no emulador, investiga a diferença entre a resposta HTTP automatizada e o acesso nativo e implementa correções de conexão, horário e mensagens. O responsável realiza cadastro e autenticação diretamente no aparelho virtual, sem compartilhar senha. A assistência cria dados explicitamente fictícios para o ensaio, remove o aviso descartável, mantém o evento de demonstração e registra evidências e testes. O relatório separa o que foi observado, a hipótese sobre a inicialização lenta e os fluxos ainda não revalidados. A atribuição de modelos continua sendo a declaração da equipe acima; não há nova identificação de modelo por arquivo ou execução.
+
 ## IA dentro do aplicativo
 
 O aplicativo não possui provedor externo de IA conectado. Criar eventos e avisos funciona manualmente. Uma assistência de redação ou categoria permanece proposta: exige consentimento antes do envio, minimização de dados, revisão da sugestão e confirmação humana para publicar. IA não publica, remove conteúdo ou decide sanções automaticamente.

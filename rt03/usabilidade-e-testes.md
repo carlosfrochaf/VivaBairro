@@ -56,6 +56,16 @@ Não há avaliação do áudio ou compreensão da fala. Cadastro, recuperação,
 
 Não há sessões concluídas com moradores nem teste em aparelho físico. A equipe precisa observar tarefas como encontrar evento, cancelar presença, publicar aviso e solicitar revisão. O registro deve incluir contexto, tarefa, dificuldade, resultado e limitação, sem inventar participantes ou métricas. Orientação horizontal, desempenho em release e revisão completa de acessibilidade também estão pendentes.
 
+## APK do GitHub e ensaio online — 24/11/2026
+
+O APK ARM64 da release demo-2026-11-24 é baixado do GitHub, conferido por SHA-256 e instalado no emulador API 36 com suporte a ARM64. O responsável executa cadastro, saída e novo login; a sessão autenticada e os exemplos do Centro são observados. O roteiro percorre criar, buscar, editar, resolver e remover aviso, responder à publicação, criar evento futuro, confirmar presença, consultar Minhas atividades e cancelar presença. A única vaga é ocupada e depois liberada. O aviso descartável é removido; o evento fictício permanece para apresentação.
+
+O teste identifica e corrige a rejeição de 18:00 digitado no seletor quando o sistema usa 12 horas. A regressão automatizada falha antes da correção e passa depois. A abertura ganha mensagem de espera, prazo de 60 segundos para configuração e tratamento distinto para timeout e desafio HTTP. A confirmação de remoção explica a consulta posterior pelo autor.
+
+A bateria passa com **25 testes Flutter**, análise estática sem problemas e compilação dos três APKs debug. O teste de espera inicial usa relógio simulado; não mede a inicialização do Render. O 403 das consultas automatizadas não aparece no fluxo nativo concluído e sua condição exata no Cloudflare não é determinada. A falha inicial e a recuperação permanecem registradas em [implementação](../docs/IMPLEMENTACAO.md).
+
+Escopo: fonte padrão, teclado físico do emulador, conta comum e dados fictícios. Esta rodada não revalida upload de imagem, moderação completa entre contas, recuperação por e-mail, TalkBack integral, orientação horizontal ou aparelho físico. A lotação é observada com uma conta ocupando a única vaga; concorrência entre inscrições pertence aos testes anteriores com PostgreSQL, não a este ensaio de interface.
+
 ## Revisão de moderação em 15/11/2026
 
 A bateria local passa com 17 testes no executor da API e 19 testes Flutter, além de lint, formatação, compilação e análise estática. A revisão online por HTTPS confirma decisões, notificações em português, recursos independentes, autoria de respostas, escopo da fila e revogação com sessões abertas. As contas descartáveis são encerradas ao final. Detalhes e limites estão em [implementação](../docs/IMPLEMENTACAO.md).
@@ -64,6 +74,6 @@ O roteiro HTTPS não substitui a revisão das telas: seus papéis são preparado
 
 ## Administração no aplicativo
 
-A bateria Flutter atual contém 20 testes aprovados. O cenário administrativo usa uma lista preenchida e texto ampliado em duas vezes e área de teclado de 300 pixels para conferir confirmação com o bairro, cancelamento sem envio, designação e revogação. O seletor exclui bairros de outro município. Esses resultados usam uma API simulada; não comprovam por si só a designação online nem a compreensão do fluxo por moradores.
+A bateria Flutter de 16/11 contém 20 testes aprovados. O cenário administrativo usa uma lista preenchida e texto ampliado em duas vezes e área de teclado de 300 pixels para conferir confirmação com o bairro, cancelamento sem envio, designação e revogação. O seletor exclui bairros de outro município. Esses resultados usam uma API simulada; não comprovam por si só a designação online nem a compreensão do fluxo por moradores.
 
 A revisão nativa de 16/11/2026 percorre a administração com fonte padrão, lista vazia e preenchida, seletor de bairro e confirmações de designação e revogação. O responsável conclui os cliques que alteram permissões. A API online confirma o papel somente no Centro e o bloqueio de moderação após revogação, mesmo com a sessão ainda aberta. A conta temporária é encerrada. Não foram observados cortes ou sobreposição nessas telas; fonte ampliada com teclado, nesta rodada, tem cobertura automatizada de widget, não nova avaliação visual nativa.

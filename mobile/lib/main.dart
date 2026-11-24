@@ -179,7 +179,28 @@ class _SessionGateState extends State<SessionGate> {
   @override
   Widget build(BuildContext context) {
     if (loading) {
-      return const Scaffold(body: Center(child: CircularProgressIndicator()));
+      return const Scaffold(
+        body: SafeArea(
+          child: Center(
+            child: SingleChildScrollView(
+              padding: EdgeInsets.all(24),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  CircularProgressIndicator(),
+                  SizedBox(height: 24),
+                  Text('Conectando ao VivaBairro', textAlign: TextAlign.center),
+                  SizedBox(height: 12),
+                  Text(
+                    'No primeiro acesso, o servidor pode levar cerca de um minuto para iniciar.',
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
     }
     if (error != null) {
       return Scaffold(

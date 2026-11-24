@@ -141,7 +141,8 @@ class PostCard extends StatelessWidget {
         kindLabel(post['kind']),
         post['title'],
         if (event) dateLabel(post['starts_at']).replaceAll(' • ', ' às '),
-        if (event) "${post['participants']} participantes confirmados",
+        if (event)
+          "${post['participants']} ${post['participants'] == 1 ? 'participante confirmado' : 'participantes confirmados'}",
         if (!event) "Por ${post['author_name']}",
         post['attending'] == true ? 'Presença confirmada' : postState(post),
       ].join('. '),
@@ -183,7 +184,7 @@ class PostCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        '${post['participants']} confirmados',
+                        '${post['participants']} ${post['participants'] == 1 ? 'confirmado' : 'confirmados'}',
                         style: const TextStyle(
                           fontSize: 12,
                           color: Color(0xFF5F6D7E),

@@ -15,6 +15,8 @@ Guardar quem alterou o estado, quando e a origem da informação. Se o autor mar
 
 O autor pode corrigir ou encerrar seu aviso. A moderação pode ocultar ou remover por violação de regra, mas isso é uma ação de moderação separada do estado operacional. O sistema deve avisar o autor quando outra conta fizer uma alteração.
 
+Na implementação, remover retira o aviso da consulta dos demais moradores. O autor ainda pode encontrá-lo identificado como Removido e consultar seu histórico; responsáveis com escopo de moderação também podem acessar o registro. Essa consulta não reabre a publicação nem permite novas respostas. A confirmação de remoção explica essa diferença.
+
 ## Reabertura e validade
 
 Permitir ao autor reabrir um aviso se a situação voltar, preservando atualizações anteriores. O prazo de expiração automática, retenção e reabertura após remoção de conteúdo ainda precisam de política definida; não descartar um aviso silenciosamente.

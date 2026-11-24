@@ -1,20 +1,20 @@
 # Demonstração do VivaBairro
 
-> **Verificação de 24/11/2026: ensaio online bloqueado.** O APK ARM64 baixado da release foi instalado no emulador, mas a abertura mostrou falha de conexão. As consultas HTTP à API retornaram 403 com `cf-mitigated: challenge` e HTML do Cloudflare. Cadastro, login, acesso aos exemplos e CRUD ainda não foram revalidados nesta rodada. É necessário investigar a hospedagem e repetir o roteiro antes da apresentação; os testes anteriores permanecem como histórico, não como garantia de disponibilidade atual.
+> **Ensaio de 24/11/2026 concluído para o fluxo principal.** Cadastro, saída e novo login são realizados pelo responsável no APK baixado do GitHub. Feed online, busca, CRUD de aviso, resposta, criação de evento, inscrição, lotação e cancelamento são conferidos no emulador. A versão corrigida também carrega a sessão, aceita horário digitado em 24 horas e salva a edição online. O teste físico e os percursos adicionais listados abaixo continuam pendentes.
 
 
 ## Baixar o aplicativo Android
 
-- [Baixar APK ARM64 — celulares Android compatíveis](https://github.com/carlosfrochaf/VivaBairro/releases/download/demo-2026-11-24/VivaBairro-online-arm64-debug.apk)
-- [Baixar APK ARM32 — alternativa para aparelhos dessa arquitetura](https://github.com/carlosfrochaf/VivaBairro/releases/download/demo-2026-11-24/VivaBairro-online-arm32-debug.apk)
-- [Ver release e instruções de download](https://github.com/carlosfrochaf/VivaBairro/releases/tag/demo-2026-11-24)
-- [Conferir hashes SHA-256](https://github.com/carlosfrochaf/VivaBairro/releases/download/demo-2026-11-24/SHA256SUMS.txt)
+- [Baixar APK ARM64 — celulares Android compatíveis](https://github.com/carlosfrochaf/VivaBairro/releases/download/demo-2026-11-24-r2/VivaBairro-online-arm64-debug.apk)
+- [Baixar APK ARM32 — alternativa para aparelhos dessa arquitetura](https://github.com/carlosfrochaf/VivaBairro/releases/download/demo-2026-11-24-r2/VivaBairro-online-arm32-debug.apk)
+- [Ver release e instruções de download](https://github.com/carlosfrochaf/VivaBairro/releases/tag/demo-2026-11-24-r2)
+- [Conferir hashes SHA-256](https://github.com/carlosfrochaf/VivaBairro/releases/download/demo-2026-11-24-r2/SHA256SUMS.txt)
 
 Os APKs desta release usam a API HTTPS do Render, conectada ao banco compartilhado no Neon. Após instalar, entrar ou criar uma conta e selecionar Centro, Jardim Aurora ou Vila Esperança para consultar os exemplos disponíveis. Os dados ficam no servidor, não dentro do APK; é necessário acesso à internet e disponibilidade do serviço. Não há senha pública para contas online nem credenciais administrativas no pacote.
 
-Esta é uma compilação debug de demonstração, com as correções documentadas em 16/11/2026, publicada em 24/11/2026. O código do aplicativo não mudou desde essa revisão. As variantes ARM não têm teste físico registrado. Se o Android solicitar autorização para instalar o arquivo, o próprio usuário deve revisar a origem e decidir se autoriza.
+Esta é uma compilação debug de demonstração revisada em 24/11/2026. A release r2 corrige entrada de horário em 24 horas, mensagens de remoção e retorno da conexão. O ARM64 é conferido no emulador API 36; ARM32 é compilado e inspecionado, sem execução registrada. Nenhuma variante tem teste físico registrado. Se o Android solicitar autorização para instalar o arquivo, o próprio usuário deve revisar a origem e decidir se autoriza.
 
-## Preparação online — 16/11/2026
+## Preparação online
 
 Usar o APK configurado para a API HTTPS do Render, com banco no Neon. Não é necessário iniciar API ou banco no computador nesse cenário. Os APKs atuais e seus hashes estão em [implantação](IMPLANTACAO.md); a variante x86_64 foi conferida no emulador, e as variantes ARM aguardam teste em celular.
 
@@ -28,7 +28,7 @@ O cenário local tem 14 eventos, 11 avisos e um comunicado, com autores fictíci
 
 ## Roteiro
 
-Entrar como morador, filtrar o feed e abrir um evento disponível. Confirmar presença e localizar a inscrição em Meus eventos. Mostrar um evento lotado e explicar a indisponibilidade de vaga.
+Entrar como morador e selecionar Centro. O exemplo **Encontro de demonstracao - evento ficticio** está marcado para 15/12/2026, das 18h às 20h no horário do emulador, com uma vaga. Antes da apresentação, conferir a data e se a vaga está livre; depois dessa data, criar outro evento futuro. Abrir esse evento disponível. Confirmar presença e localizar a inscrição em Meus eventos. Mostrar um evento lotado e explicar a indisponibilidade de vaga.
 
 Criar aviso com local público, revisar e publicar. Editar o texto, marcar como resolvido e remover. Outra conta pode responder ou denunciar; denúncia não remove automaticamente.
 
@@ -42,13 +42,15 @@ No cenário local, o emulador acessa a API no computador. No APK online, ele ace
 
 Para uso sem computador, gerar o APK com a URL HTTPS validada, conforme [implantação](IMPLANTACAO.md). Antes da apresentação, verificar a disponibilidade da API gratuita e abrir o feed.
 
-## Ensaio final pendente
+## Complementos para o ensaio da equipe
 
-Este checklist organiza uma nova passagem completa pela versão que será apresentada; não afirma que os fluxos nunca foram testados nem que o ensaio já foi concluído.
+O fluxo principal já foi percorrido em 24/11. O checklist separa esse resultado dos complementos ainda necessários; a equipe deve repetir o roteiro no equipamento e na conexão usados na apresentação.
 
-- [ ] Encontrar evento por bairro, abrir detalhes, confirmar e cancelar presença e conferir lotação.
-- [ ] Publicar aviso com imagem, editar, atualizar o estado e remover somente o conteúdo de demonstração criado para o ensaio.
-- [ ] Sair e entrar, mudar bairro principal e conferir bairros acompanhados.
+- [x] Abrir evento no Centro, confirmar presença, conferir Minhas atividades e lotação e cancelar a presença liberando a vaga.
+- [x] Publicar aviso sem imagem, buscar, editar, responder, marcar como resolvido e remover o conteúdo descartável.
+- [ ] Repetir publicação com imagem na versão distribuída.
+- [x] Criar conta, sair e entrar novamente; passos feitos pelo responsável, com feed autenticado observado.
+- [ ] Repetir mudança de bairro principal e bairros acompanhados nesta versão.
 - [ ] Percorrer denúncia, análise, notificação e pedido de revisão entre contas autorizadas, usando apenas conteúdo de teste. Designação e revogação já têm verificação online em 16/11; o percurso completo pelas telas ainda merece ensaio.
 - [ ] Conferir recuperação após indisponibilidade da API e preservação de rascunho em falha de publicação.
 - [ ] Revisar datas e estados dos exemplos fictícios; preparar um evento futuro com vagas, um lotado e avisos aberto e resolvido.
@@ -63,6 +65,10 @@ Teste físico, pesquisa com moradores, desempenho em release e operação munici
 
 ## Ambiente online disponível
 
-A API hospedada usa um banco próprio no Neon, com 12 eventos, dez avisos e oito autores fictícios. Há uma conta administradora real do responsável, cuja senha foi definida diretamente no aplicativo. As credenciais públicas da demonstração local não funcionam online. Entrar com sua própria conta; exemplos de outros autores aparecem conforme o bairro selecionado. Centro, Jardim Aurora e Vila Esperança têm conteúdo.
+A carga inicial do Neon possui 12 eventos, dez avisos e oito autores fictícios. O ensaio de 24/11 acrescenta o evento futuro identificado acima; o aviso de teste é removido. Essas contagens descrevem a carga e a alteração registrada, não uma contagem atual automática do banco. Há uma conta administradora real do responsável, cuja senha foi definida diretamente no aplicativo. As credenciais públicas da demonstração local não funcionam online. Entrar com sua própria conta; exemplos de outros autores aparecem conforme o bairro selecionado. Centro, Jardim Aurora e Vila Esperança têm conteúdo.
 
 A conta administradora encontra Município e bairros em Meu perfil. Concessões feitas enquanto o app estava aberto aparecem após reabertura para recarregar o perfil; permissões continuam verificadas no servidor. O aplicativo já foi reaberto e o painel conferido nesta etapa.
+
+## Conexão no início da apresentação
+
+Abrir o aplicativo com antecedência e aguardar a conexão. O plano gratuito pode levar cerca de um minuto para iniciar; a configuração inicial aguarda até 60 segundos e oferece nova tentativa se necessário. No ensaio de 24/11, o aplicativo funciona após a tentativa inicial falhar. Consultas automatizadas recebem um desafio HTTP 403, enquanto navegador e fluxo nativo respondem; não foi determinada a condição exata do desafio. Não confundir isso com o 403 esperado ao tentar uma ação administrativa sem permissão. Os detalhes e limites ficam em [implementação](IMPLEMENTACAO.md).

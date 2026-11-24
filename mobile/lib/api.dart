@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
@@ -39,9 +40,19 @@ class Api extends ChangeNotifier {
       if (body != null) request.headers['Content-Type'] = 'application/json';
       if (_token != null) request.headers['Authorization'] = 'Bearer $_token';
       if (body != null) request.body = jsonEncode(body);
-      final response = await (() async => http.Response.fromStream(
-        await _client.send(request),
-      ))().timeout(const Duration(seconds: 15));
+      final response =
+          await (() async => http.Response.fromStream(
+            await _client.send(request),
+          ))().timeout(
+            Duration(
+              seconds: path == '/api/config' && method == 'GET' ? 60 : 15,
+            ),
+          );
+      if (response.headers['cf-mitigated'] == 'challenge') {
+        throw ApiError(
+          'O serviço está exigindo uma verificação que o aplicativo não consegue concluir. Tente mais tarde. Se continuar, avise a equipe do VivaBairro.',
+        );
+      }
       final data = jsonDecode(response.body) as Json;
       if (response.statusCode >= 400) {
         if (response.statusCode == 401 && !path.startsWith('/api/auth')) {
@@ -58,6 +69,16 @@ class Api extends ChangeNotifier {
       return data;
     } on ApiError {
       rethrow;
+    } on TimeoutException {
+      throw ApiError(
+        method == 'GET'
+            ? 'O servidor demorou para responder. No primeiro acesso, ele pode levar cerca de um minuto para iniciar. Tente novamente.'
+            : 'A resposta demorou e não foi possível confirmar o resultado. Confira se a ação foi concluída antes de repetir.',
+      );
+    } on FormatException {
+      throw ApiError(
+        'O serviço enviou uma resposta inesperada. Tente mais tarde. Se continuar, avise a equipe do VivaBairro.',
+      );
     } catch (_) {
       throw ApiError(
         'Não foi possível conectar. Confira sua conexão e tente novamente.',

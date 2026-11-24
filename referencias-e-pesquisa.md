@@ -104,6 +104,12 @@ As fontes abaixo apoiam manutenção e consulta técnica. As versões efetivamen
 
 ## Serviços externos em avaliação
 
+Referências aplicadas na revisão de 24/11/2026:
+
+- [Flutter — showTimePicker](https://api.flutter.dev/flutter/material/showTimePicker.html): uso de MediaQuery no diálogo para manter entrada e exibição em 24 horas. A correção é conferida por teste de regressão; a documentação não substitui o ensaio nativo.
+- [Render Free](https://render.com/docs/free): suspensão por inatividade e demora de inicialização fundamentam a mensagem de espera e o prazo maior na configuração inicial. Não constituem garantia de disponibilidade ou prova da causa de toda falha de rede.
+- [Render — proteção DDoS](https://render.com/docs/ddos-protection) e [Cloudflare — HTTP 403](https://developers.cloudflare.com/support/troubleshooting/http-status-codes/4xx-client-error/error-403/): ajudam a distinguir bloqueio intermediário de uma recusa de permissão pela API. O cabeçalho e o HTML observados identificam um desafio; não revelam a regra específica que o disparou. As proteções são preservadas.
+
 - [Resend por SMTP](https://resend.com/docs/send-with-smtp) e [SMTP da Brevo](https://developers.brevo.com/docs/smtp-integration): opções para entrega de e-mail. Ainda não há provedor conectado. Credenciais, remetente e disponibilidade de portas precisam ser conferidos na hospedagem antes de escolher.
 - [Firebase Cloud Messaging para Flutter](https://firebase.google.com/docs/cloud-messaging/flutter/get-started): referência para eventual push. Não está integrado; exige configuração e testes de permissão e entrega. O banco do projeto continua PostgreSQL.
 

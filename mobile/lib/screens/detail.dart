@@ -170,7 +170,7 @@ class _DetailScreenState extends State<DetailScreen> {
                     Text('Início: ${dateLabel(p['starts_at'])}'),
                     Text('Término: ${dateLabel(p['ends_at'])}'),
                     Text(
-                      '${p['participants']} participantes${p['capacity'] == null ? '' : ' / ${p['capacity']} vagas'}',
+                      '${p['participants']} ${p['participants'] == 1 ? 'participante' : 'participantes'}${p['capacity'] == null ? '' : ' / ${p['capacity']} ${p['capacity'] == 1 ? 'vaga' : 'vagas'}'}',
                     ),
                     const SizedBox(height: 20),
                     FilledButton.icon(
@@ -295,7 +295,7 @@ class _DetailScreenState extends State<DetailScreen> {
                               if (await confirm(
                                 context,
                                 'Remover publicação?',
-                                'Ela deixará de aparecer no bairro. O histórico será preservado.',
+                                'Ela deixará de aparecer para outros moradores. Você ainda poderá consultar a publicação como removida e seu histórico.',
                               )) {
                                 await action(
                                   '/api/posts/${widget.id}',

@@ -121,7 +121,9 @@ class _EditorScreenState extends State<EditorScreen> {
 
   Future<void> pickDate(bool first) async {
     final now = DateTime.now();
-    final initial = (first ? start : end) ?? now.add(const Duration(days: 1));
+    final initial =
+        (first ? start : end ?? start?.add(const Duration(hours: 2))) ??
+        now.add(const Duration(days: 1));
     final date = await showDatePicker(
       context: context,
       initialDate: initial.isBefore(now) ? now : initial,
@@ -132,6 +134,10 @@ class _EditorScreenState extends State<EditorScreen> {
     final time = await showTimePicker(
       context: context,
       initialTime: TimeOfDay.fromDateTime(initial),
+      builder: (context, child) => MediaQuery(
+        data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
+        child: child!,
+      ),
     );
     if (time == null || !mounted) return;
     setState(() {

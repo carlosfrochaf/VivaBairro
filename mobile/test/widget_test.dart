@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/semantics.dart';
 import 'package:vivabairro/visual.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -125,6 +126,48 @@ class ModeratedApi extends FakeApi {
 }
 
 void main() {
+  testWidgets('evento aceita hora digitada em 24h com sistema em 12h', (
+    tester,
+  ) async {
+    SharedPreferences.setMockInitialValues({});
+    tester.view.physicalSize = const Size(480, 1400);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
+    await tester.pumpWidget(
+      MaterialApp(
+        locale: const Locale('pt', 'BR'),
+        supportedLocales: const [Locale('pt', 'BR')],
+        localizationsDelegates: GlobalMaterialLocalizations.delegates,
+        builder: (context, child) => MediaQuery(
+          data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+          child: child!,
+        ),
+        home: EditorScreen(api: FakeApi()),
+      ),
+    );
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Evento'));
+    await tester.pumpAndSettle();
+    await tester.ensureVisible(find.text('Escolher início'));
+    await tester.tap(find.text('Escolher início'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('OK'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byIcon(Icons.keyboard_outlined));
+    await tester.pumpAndSettle();
+    final fields = find.descendant(
+      of: find.byType(TimePickerDialog),
+      matching: find.byType(TextField),
+    );
+    await tester.enterText(fields.at(0), '18');
+    await tester.enterText(fields.at(1), '00');
+    await tester.tap(find.text('OK'));
+    await tester.pumpAndSettle();
+    expect(find.byType(TimePickerDialog), findsNothing);
+    expect(find.textContaining('18:00'), findsOneWidget);
+    await tester.pumpWidget(const SizedBox());
+    await tester.pumpAndSettle();
+  });
   testWidgets(
     'designação identifica bairro, permite cancelar e revoga pela lista',
     (tester) async {

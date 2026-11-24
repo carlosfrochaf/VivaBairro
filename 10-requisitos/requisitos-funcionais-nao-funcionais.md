@@ -41,6 +41,12 @@ Os requisitos descrevem comportamentos e qualidades esperadas. A cobertura atual
 
 A IA pode sugerir somente categoria e redação de aviso. Não verifica verdade, urgência ou segurança; não identifica pessoas; não decide denúncia ou sanção; não encaminha demanda; e não publica. A interface mantém modo manual. A equipe ainda precisa escolher provedor, retenção, política de dados e mensagens finais de consentimento antes de usar serviço real.
 
+## Atualização da cobertura — 24/11/2026
+
+No APK ARM64 baixado do GitHub, em emulador API 36 conectado ao Render/Neon, são percorridos cadastro, saída e login pelo responsável (parte de RF-01), consulta e busca no Centro (RF-03/RF-04), criação de evento (RF-05), inscrição e cancelamento com uma vaga (RF-06), CRUD e estado do aviso (RF-07) e resposta (RF-08). O aviso descartável é removido; um evento futuro fictício permanece para apresentação. Recuperação por e-mail e concorrência entre várias contas não são revalidadas nesse roteiro.
+
+O seletor de horário é corrigido e conferido novamente no Android; a versão corrigida preserva a sessão e salva uma edição online. A bateria Flutter passa com 25 testes e análise sem problemas. Para RNF-07, mensagens distinguem demora, resposta inválida e desafio HTTP, e a consulta inicial aguarda 60 segundos. Isso não comprova RNF-01, disponibilidade contínua ou cobertura integral de acessibilidade. Evidências, hashes e limites estão em [implementação](../docs/IMPLEMENTACAO.md) e [implantação](../docs/IMPLANTACAO.md).
+
 ## Atualização da cobertura — 16/11/2026
 
 Esta atualização complementa o registro de 08/11 preservado abaixo. Em caso de diferença de estado, considerar a informação mais recente e seu escopo de teste.

@@ -96,4 +96,17 @@ Em 16/11/2026, designação e revogação são verificadas pela interface Androi
 
 Os APKs ARM64 e ARM32 estão publicados na [release de demonstração](https://github.com/carlosfrochaf/VivaBairro/releases/tag/demo-2026-11-24), junto com SHA256SUMS.txt. Os hashes conferem com os artefatos identificados nesta página. A inspeção dos dois pacotes confirma a URL https://vivabairro-api.onrender.com e os textos atuais da administração de moderadores. Não houve recompilação nem alteração do aplicativo nesta publicação; o código mobile permanece igual ao da revisão.
 
-A página [Demonstração e APK](APRESENTACAO.md) oferece os links diretos. Publicar o arquivo não comprova disponibilidade contínua da API: em 24/11, a consulta automatizada ao health recebeu uma página de verificação HTTP 403. Isso não permite concluir que o app esteja fora do ar nem confirmar um acesso completo nesta data. O último teste funcional online registrado é de 16/11; conferir login e feed no ensaio da apresentação.
+A página [Demonstração e APK](APRESENTACAO.md) oferece os links diretos. Publicar o arquivo não comprova disponibilidade contínua da API: em 24/11, a consulta automatizada ao health recebeu uma página de verificação HTTP 403. Isso não permite concluir que o app esteja fora do ar nem confirmar um acesso completo nesta data. Esse é o resultado da primeira consulta automatizada, anterior à continuação do ensaio. O registro de 24/11 em implementação documenta a recuperação no APK e a validação do fluxo principal; o registro de 16/11 é preservado como histórico.
+
+## APK corrigido — 24/11/2026, revisão 2
+
+A [release demo-2026-11-24-r2](https://github.com/carlosfrochaf/VivaBairro/releases/tag/demo-2026-11-24-r2) contém as correções de horário digitado em 24 horas, mensagens de conexão e remoção e contagens no singular. A API continua em b7c29d2, sem alteração de banco ou de proteção do Render. Os pacotes são compilados com API_URL=https://vivabairro-api.onrender.com. A revisão mantém a release anterior disponível para rastreabilidade.
+
+| Artefato | SHA-256 |
+| --- | --- |
+| [VivaBairro-online-arm32-debug.apk](https://github.com/carlosfrochaf/VivaBairro/releases/download/demo-2026-11-24-r2/VivaBairro-online-arm32-debug.apk) | `27130300d84350c8878dcf020e537f396c200555ffdafddf69904e17c76ed1ca` |
+| [VivaBairro-online-arm64-debug.apk](https://github.com/carlosfrochaf/VivaBairro/releases/download/demo-2026-11-24-r2/VivaBairro-online-arm64-debug.apk) | `0335f461ac964eccebb19118031bc8ce8ebe8f749205cfafe5a627e95bac9d9e` |
+
+[Arquivo de verificação SHA256SUMS.txt](https://github.com/carlosfrochaf/VivaBairro/releases/download/demo-2026-11-24-r2/SHA256SUMS.txt). Cópias locais em `.local/artifacts/demo-2026-11-24-r2/`.
+
+O APK ARM64 corrigido é instalado no emulador preservando a sessão. O feed e o evento fictício continuam disponíveis; o seletor aceita 18:00 digitado e a edição é salva online. A bateria Flutter contém 25 testes aprovados e a análise estática não aponta problemas. ARM32 e x86_64 também compilam, mas não têm nova execução nesta rodada. Não há teste físico nem publicação em loja.

@@ -17,6 +17,8 @@ Eventos descrevem iniciativas com horário e local definidos. O autor deve conse
 
 ## Estados
 
+O editor Android usa um seletor de 24 horas tanto no relógio quanto na digitação. Ao escolher o término pela primeira vez, sugere o início mais duas horas; a pessoa pode alterar e o formulário exige término posterior ao início. Na implementação atual, a conversão usa o fuso do dispositivo. Configurar e validar um fuso próprio por município continua uma melhoria necessária antes de operar em territórios de fusos diferentes.
+
 - **Rascunho:** ainda não aparece no feed.
 - **Inscrições abertas:** publicado e futuro.
 - **Lotado:** calculado quando as confirmações ativas atingem a capacidade; cancelamentos podem liberar vaga.

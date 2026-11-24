@@ -1,15 +1,15 @@
 # Estado da implementação
 
-> **Verificação de 24/11/2026: ensaio online bloqueado.** O APK ARM64 baixado da release foi instalado no emulador, mas a abertura mostrou falha de conexão. As consultas HTTP à API retornaram 403 com `cf-mitigated: challenge` e HTML do Cloudflare. Cadastro, login, acesso aos exemplos e CRUD ainda não foram revalidados nesta rodada. É necessário investigar a hospedagem e repetir o roteiro antes da apresentação; os testes anteriores permanecem como histórico, não como garantia de disponibilidade atual.
+> **Verificação de 24/11/2026: fluxo principal online conferido no emulador.** O APK ARM64 baixado do GitHub acessa os exemplos do Neon. O responsável realiza cadastro, saída e novo login; a revisão percorre aviso, edição, resposta, resolução, remoção e participação em evento. A falha inicial é recuperada com Tentar novamente. O HTTP 403 observado em consultas automatizadas é um desafio do Cloudflare e não foi reproduzido nesses fluxos nativos. Detalhes, correções e limites estão no registro desta data ao final da página.
 
 
-O VivaBairro é um aplicativo Flutter para Android com API Fastify/TypeScript e PostgreSQL. A demonstração usa [Render](https://vivabairro-api.onrender.com) para a API e Neon para o banco. Esta página consolida o estado verificado até 16/11/2026. Requisitos desejados e funções disponíveis não são a mesma coisa. Os registros datados abaixo preservam o escopo e os resultados de cada revisão.
+O VivaBairro é um aplicativo Flutter para Android com API Fastify/TypeScript e PostgreSQL. A demonstração usa [Render](https://vivabairro-api.onrender.com) para a API e Neon para o banco. Esta página consolida o estado verificado até 24/11/2026. Requisitos desejados e funções disponíveis não são a mesma coisa. Os registros datados abaixo preservam o escopo e os resultados de cada revisão.
 
-## Resumo atual — 16/11/2026
+## Base verificada em 16/11/2026
 
 - Demonstração online disponível com API no Render e PostgreSQL no Neon. A versão publicada da API é b7c29d2.
 - APKs debug ARM64, ARM32 e x86_64 gerados com a URL HTTPS. A variante x86_64 está instalada e foi revisada no emulador Android 16/API 36; as variantes ARM aguardam teste físico. Identificação e hashes ficam em [implantação](IMPLANTACAO.md).
-- Últimos resultados registrados: 17 testes da API em 15/11 e 20 testes Flutter em 16/11. Análise Flutter e compilação TypeScript aprovadas em 16/11; lint e formatação da API aprovados na revisão de 15/11. Não se trata de uma nova execução conjunta de todas as verificações.
+- Resultados dessa revisão: 17 testes da API em 15/11 e 20 testes Flutter em 16/11. Análise Flutter e compilação TypeScript aprovadas em 16/11; lint e formatação da API aprovados na revisão de 15/11. Não se trata de uma nova execução conjunta de todas as verificações. A bateria Flutter de 24/11 é registrada abaixo.
 - Designação e revogação de moderador conferidas no Android online, com confirmação do responsável. O servidor limita o papel ao Centro e bloqueia a ação após revogação mesmo na sessão já aberta. A conta temporária foi encerrada.
 - Falta o [ensaio final da apresentação](APRESENTACAO.md), além dos testes físicos e das validações para uso real descritas nesta página. E-mail externo, push e IA externa não estão conectados.
 
@@ -125,6 +125,36 @@ Os APKs online ARM64 e ARM32 estão disponíveis no GitHub Releases, com links e
 
 O arquivo ARM64 foi baixado diretamente do GitHub Releases. Seu SHA-256 é `1521de1eff2734029826e6efe88b99b7d1e73155efdd06e8fb12bb584472fda6`, igual ao publicado. O emulador API 36 informa suporte a x86_64 e arm64-v8a; o APK ARM64 foi instalado preservando os dados existentes. Isso continua sendo emulação, não teste em celular físico.
 
-Na abertura, o pacote exibe a mensagem de falha de conexão e a opção Tentar novamente. As consultas externas a /health e /api/config retornam HTML de desafio do Cloudflare, HTTP 403, antes da resposta JSON esperada. Ainda não está determinada a configuração ou condição que provoca o desafio. O painel do Render exige nova autenticação do responsável para continuar a investigação. Não foram criadas novas contas ou publicações de teste nesta rodada.
+Na primeira tentativa, o pacote exibe a mensagem de falha de conexão e a opção Tentar novamente. Consultas automatizadas a /health e /api/config retornam HTML de desafio do Cloudflare, HTTP 403, antes da resposta JSON esperada. Nesse momento a investigação aguarda a autenticação do responsável no Render. Essa observação inicial é preservada aqui; o resultado da continuação está abaixo.
 
 ![Falha de conexão na abertura do APK baixado da release](screenshots/android-release-conexao-bloqueada.png)
+
+### Continuação do ensaio e correções
+
+Após a autenticação no Render, o painel mostra a API ativa e os registros de inicialização e migração. A consulta pelo navegador a /health retorna `{"ok":true}`. No mesmo APK, Tentar novamente permite abrir a entrada e carregar os bairros. O responsável cria uma conta comum no Centro, sai e entra novamente, sem fornecer a senha ao assistente. O feed autenticado apresenta eventos e imagens de outros autores.
+
+O roteiro nativo confirma publicação de aviso fictício, localização pela busca, edição do título, mudança para Resolvido, envio de resposta e remoção com histórico. A remoção retira o conteúdo dos demais moradores; o autor ainda consegue consultá-lo como Removido. Essa exceção é confirmada no código da API e a mensagem do aplicativo é ajustada para explicá-la. Não houve uma segunda sessão de morador para repetir esse isolamento nesta rodada; os testes anteriores de moderação registram esse comportamento entre contas.
+
+Foi criado no Centro o evento **Encontro de demonstracao - evento ficticio**, em 15/12/2026, das 18h às 20h no horário do emulador, com uma vaga e local fictício. A presença é confirmada, a inscrição aparece em Minhas atividades e o evento indica Lotado. Ao cancelar a presença, a contagem retorna a zero e as inscrições reabrem. O evento permanece disponível para ensaio; o aviso descartável é removido. Revisar a data antes de outra apresentação, pois eventos passados não aceitam inscrição.
+
+![Feed do APK baixado do GitHub](screenshots/android-release-feed-24nov.png)
+
+![Aviso editado e resolvido](screenshots/android-release-aviso-editado-resolvido-24nov.png)
+
+![Confirmação de presença online](screenshots/android-release-presenca-24nov.png)
+
+![Vaga liberada após cancelamento](screenshots/android-release-vaga-liberada-24nov.png)
+
+O ensaio identifica uma inconsistência no seletor de horário: com o Android configurado para 12 horas, o relógio em português mostra 24 horas, mas rejeita 18:00 digitado. O diálogo passa a usar explicitamente 24 horas. Um teste de regressão reproduz a rejeição antes da correção e passa depois. O término sugerido usa o início mais duas horas. Contagens também distinguem participante/vaga no singular.
+
+A abertura passa a informar que está conectando e que o primeiro acesso pode demorar. A consulta inicial de configuração aguarda até 60 segundos; as demais requisições mantêm 15 segundos. Timeout de escrita orienta conferir se a ação foi concluída antes de repetir. Respostas HTML inesperadas e desafios identificados por `cf-mitigated: challenge` têm mensagens específicas; o aplicativo não tenta contornar a proteção.
+
+O início lento do serviço gratuito é compatível com a falha inicial, mas não há captura da resposta dessa primeira chamada nativa que prove sua causa. O 403 das consultas automatizadas continua sendo uma limitação desse caminho de verificação; não é correto declarar que o Cloudflare foi corrigido ou que cadastro e login falharam por 403. Nenhuma proteção ou configuração de segurança do Render é desativada e a API permanece no commit b7c29d2.
+
+Verificação local após as correções: **25 testes Flutter aprovados e análise estática sem problemas**. A nova bateria cobre espera de 30 segundos na configuração, timeout de escrita, desafio HTTP, resposta não JSON e digitação de horário. Não representa teste físico, medição de desempenho, revisão integral com TalkBack nem ensaio completo de moderação entre várias contas nesta data. A publicação da versão corrigida e seus hashes ficam em [implantação](IMPLANTACAO.md).
+
+### Verificação da revisão 2
+
+O APK ARM64 corrigido é instalado sobre a versão anterior e preserva a sessão. A abertura mostra a mensagem de conexão e carrega o feed online. O seletor aceita 18:00 redigitado, retorna ao editor e a edição do evento é salva na API.
+
+![Horário aceito no APK corrigido](screenshots/android-release-horario-corrigido-24nov.png)
