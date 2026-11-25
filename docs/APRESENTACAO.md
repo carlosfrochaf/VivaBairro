@@ -72,3 +72,7 @@ A conta administradora encontra Município e bairros em Meu perfil. Concessões 
 ## Conexão no início da apresentação
 
 Abrir o aplicativo com antecedência e aguardar a conexão. O plano gratuito pode levar cerca de um minuto para iniciar; a configuração inicial aguarda até 60 segundos e oferece nova tentativa se necessário. No ensaio de 24/11, o aplicativo funciona após a tentativa inicial falhar. As consultas automatizadas inicialmente recebem um desafio HTTP 403, enquanto navegador e fluxo nativo respondem; a rechecagem final de /health e /api/config retorna HTTP 200 com JSON; não foi determinada a condição exata do desafio. Não confundir isso com o 403 esperado ao tentar uma ação administrativa sem permissão. Os detalhes e limites ficam em [implementação](IMPLEMENTACAO.md).
+
+## Demonstração web da EXPOUNA
+
+A edição da feira usa as telas Flutter do Android e uma API com PostgreSQL próprio. “Experimentar como visitante” cria uma sessão individual de morador no Centro. Cadastro e login continuam disponíveis. Use dados fictícios ao publicar. O projeto Neon VivaBairro-EXPOUNA recebe os oito autores, eventos, avisos, ilustrações e respostas do gerador da demonstração. As datas relativas são calculadas na primeira carga. O evento de uma vaga do ensaio também está incluído, com autoria fictícia. A conexão é restrita ao banco da feira no início do serviço. A publicação e o teste do endereço público estão em andamento.

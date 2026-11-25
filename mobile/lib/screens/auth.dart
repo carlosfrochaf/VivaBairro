@@ -66,6 +66,10 @@ class WelcomeScreen extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: constraints.maxHeight * .15),
+                      if (Api.fair) ...[
+                        _VisitorButton(api: api),
+                        const SizedBox(height: 14),
+                      ],
                       FilledButton(
                         style: FilledButton.styleFrom(
                           backgroundColor: yellow,
@@ -337,5 +341,32 @@ class _AuthScreenState extends State<AuthScreen> {
         ),
       ),
     ),
+  );
+}
+
+class _VisitorButton extends StatefulWidget {
+  final Api api;
+  const _VisitorButton({required this.api});
+  @override
+  State<_VisitorButton> createState() => _VisitorButtonState();
+}
+
+class _VisitorButtonState extends State<_VisitorButton> {
+  bool busy = false;
+  Future<void> enter() async {
+    setState(() => busy = true);
+    try {
+      await widget.api.visitFair();
+    } catch (error) {
+      if (mounted) feedback(context, error.toString());
+    } finally {
+      if (mounted) setState(() => busy = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) => FilledButton(
+    onPressed: busy ? null : enter,
+    child: Text(busy ? 'Abrindo demonstração…' : 'Experimentar como visitante'),
   );
 }

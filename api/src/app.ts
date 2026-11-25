@@ -100,7 +100,10 @@ export async function buildApp() {
       origin: /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/,
       methods: ['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'DELETE'],
     });
-  await app.register(rateLimit, { max: 100, timeWindow: '1 minute' });
+  await app.register(rateLimit, {
+    max: process.env.EXPOUNA === 'true' ? 3000 : 100,
+    timeWindow: '1 minute',
+  });
   const dummyHash = await hashPassword(newToken());
   app.setErrorHandler((error, request, reply) => {
     if (error instanceof z.ZodError) {
@@ -149,6 +152,20 @@ export async function buildApp() {
       [tokenHash(token), accountId],
     );
     return { token };
+  }
+  if (process.env.EXPOUNA === 'true') {
+    app.post(
+      '/api/fair/visitors',
+      { config: { rateLimit: { max: 80, timeWindow: '1 minute' } } },
+      async () => {
+        const id = randomUUID();
+        await pool.query(
+          "INSERT INTO accounts(id,name,email,password_hash,neighborhood_id) VALUES($1,$2,$3,$4,'centro')",
+          [id, 'Visitante ' + id.slice(0, 6), id + '@visitante.invalid', dummyHash],
+        );
+        return session(id);
+      },
+    );
   }
   app.post(
     '/api/auth/register',

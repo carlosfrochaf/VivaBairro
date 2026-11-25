@@ -16,10 +16,15 @@ class ApiError implements Exception {
 }
 
 class Api extends ChangeNotifier {
-  static const baseUrl = String.fromEnvironment(
-    'API_URL',
-    defaultValue: kIsWeb ? 'http://127.0.0.1:3001' : 'http://10.0.2.2:3001',
-  );
+  static const fair = bool.fromEnvironment('EXPOUNA');
+  static final baseUrl = kIsWeb && fair
+      ? Uri.base.origin
+      : const String.fromEnvironment(
+          'API_URL',
+          defaultValue: kIsWeb
+              ? 'http://127.0.0.1:3001'
+              : 'http://10.0.2.2:3001',
+        );
   final FlutterSecureStorage _storage;
   final http.Client _client;
   Api({http.Client? client, FlutterSecureStorage? storage})
@@ -103,6 +108,14 @@ class Api extends ChangeNotifier {
       method: 'POST',
       body: data,
     );
+    await saveSession(result);
+  }
+
+  Future<void> visitFair() async {
+    await saveSession(await call('/api/fair/visitors', method: 'POST'));
+  }
+
+  Future<void> saveSession(Json result) async {
     _token = result['token'];
     await _storage.write(key: 'session', value: _token);
     account = await call('/api/me');
