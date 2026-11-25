@@ -75,4 +75,10 @@ Abrir o aplicativo com antecedência e aguardar a conexão. O plano gratuito pod
 
 ## Demonstração web da EXPOUNA
 
-A edição da feira usa as telas Flutter do Android e uma API com PostgreSQL próprio. “Experimentar como visitante” cria uma sessão individual de morador no Centro. Cadastro e login continuam disponíveis. Use dados fictícios ao publicar. O projeto Neon VivaBairro-EXPOUNA recebe os oito autores, eventos, avisos, ilustrações e respostas do gerador da demonstração. As datas relativas são calculadas na primeira carga. O evento de uma vaga do ensaio também está incluído, com autoria fictícia. A conexão é restrita ao banco da feira no início do serviço. A publicação e o teste do endereço público estão em andamento.
+[Abrir o VivaBairro da feira](https://vivabairro-expouna.onrender.com)
+
+![QR code para abrir a demonstração no celular](screenshots/qr-expouna.png)
+
+Aponte a câmera do celular para o código e toque em **Experimentar como visitante**. No Centro, abra **Manhã de jogos na quadra** para consultar local, horário e vagas. Toque em **Quero participar** e confirme para ver o comprovante de inscrição. Na aba **Publicar**, você também pode criar um aviso fictício e depois editar ou remover sua publicação.
+
+A edição da feira usa as telas Flutter do Android e uma API com PostgreSQL próprio. “Experimentar como visitante” cria uma sessão individual de morador no Centro. Cadastro e login continuam disponíveis. Use dados fictícios ao publicar. O projeto Neon VivaBairro-EXPOUNA recebe os oito autores, eventos, avisos, ilustrações e respostas do gerador da demonstração. As datas relativas são calculadas na primeira carga. O evento de uma vaga do ensaio também está incluído, com autoria fictícia. A conexão é restrita ao banco da feira no início do serviço. As ações dos visitantes ficam no ambiente da feira.

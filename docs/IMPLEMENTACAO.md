@@ -162,3 +162,7 @@ O APK ARM64 corrigido é instalado sobre a versão anterior e preserva a sessão
 ### Rechecagem HTTP ao final do ensaio
 
 As consultas automatizadas a `/health` e `/api/config` voltam a responder **HTTP 200 com JSON**, sem o cabeçalho de desafio, ao final de 24/11. A configuração informa modo de demonstração desativado, e-mail indisponível e push não configurado. Não houve alteração de proteção, credencial ou configuração da hospedagem para obter esse resultado. O 403 inicial é registrado como ocorrência intermitente cuja causa específica permanece desconhecida, e não como bloqueio ainda reproduzido na última consulta.
+
+### Ensaio público da EXPOUNA em 25/11/2026
+
+No navegador, uma sessão de visitante abriu o feed do Centro, consultou o evento “Manhã de jogos na quadra” e recebeu a confirmação de inscrição. Pela API pública, duas sessões de visitantes permitiram verificar o ciclo de um aviso. O autor criou, editou e removeu a publicação. O segundo visitante viu a edição no feed e, após a remoção, a publicação saiu da busca. O QR code foi decodificado e seu conteúdo conferido com o endereço publicado no Render.
